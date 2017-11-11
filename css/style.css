@@ -3,11 +3,6 @@
 	padding:0px;
 }
 
-body{
-	background-image: url("prueba.jpeg");
-	background-size: 1300px 1100px;
-}
-
 main{
 	display: -webkit-flex;
 	display: flex;
@@ -27,8 +22,17 @@ header {
 	z-index: 100;
 }
 
+body{
+	background-image: url("../prueba.jpeg");
+	background-size: 1400px 800px;
+}
+
 footer{
 	background-color: black;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
 }
 
 ul, ol {
@@ -52,7 +56,7 @@ ul, ol {
 	background-color:#000;
 	color:#fff;
 	text-decoration:none;
-	padding:10px 12px;
+	padding:20px 12px;
 	display:block;
 }
 
@@ -153,7 +157,7 @@ button {
 	font-size: 18px;
 	text-align: center;
 	font-style: normal;
-	border-radius: 5px;
+	border-radius: 5px;  
 	border: 1px solid #3ac162;
 	border-width: 1px 1px 3px;
 	box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
@@ -162,6 +166,10 @@ button {
 
 img{
 	padding-left: 45%;
+}
+
+#login{
+	margin-top: 18%;
 }
 
 @media (max-width: 900px){
@@ -177,12 +185,69 @@ img{
 		float:left;
 		margin-right: 0px;
 		text-align: center;
-	}
+	}	
 
 	.nav li ul li ul {
 		right:80px;
 		top:0px;
 		z-index: 100;
+	}
+
+	footer{
+		background-color: black;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height: 20px;
+	}
+
+}
+
+@media (min-width: 460px) and (max-width: 1370px){
+
+	body{
+		background-image: url("../prueba.jpeg");
+		background-size: 1400px 800px;
+	}
+
+	footer{
+		background-color: black;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height: 20px;
+	}
+
+	.recuadro{
+		padding-top: 0;
+		padding-bottom: 30px;
+		/*background-color: #9E9E9E;*/
+		width: 100%;
+	}
+
+}
+
+@media (min-width: 460px) and (max-width: 1370px) and (min-height: 900px){
+
+	.recuadro{
+		padding-top: 20px;
+		padding-bottom: 30px;
+		/*background-color: #9E9E9E;*/
+		width: 100%;
+	}
+
+	body{
+		background-image: url("../prueba.jpeg");
+		background-size: 1300px 1100px;
+	}
+
+
+	footer{
+		background-color: black;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height: 20px;
 	}
 
 }
