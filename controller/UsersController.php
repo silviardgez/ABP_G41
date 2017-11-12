@@ -28,9 +28,7 @@ class UsersController extends BaseController {
 			if ($this->userMapper->isValidUser($_POST["username"], $_POST["passwd"])) {
 
 				$_SESSION["currentuser"]=$_POST["username"];
-
-
-
+	
 				$this->view->redirect("login", "home");
 
 			}else{
