@@ -39,20 +39,27 @@ ul, ol {
 	list-style:none;
 }
 
-.nav{
-	left: 30%;
+#nav{
+	left: 35%;
 	margin: 0 auto;
 	padding: 0;
 	position: relative;
 }
 
-.nav > li {
+.navAdmin{
+	left: 5%;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+}
+
+.navEn > li,.navDep > li, .navAdmin > li {
 	float:left;
 	margin-right: 15px;
 	text-align: center;
 }
 
-.nav li a {
+.navEn li a, .navDep li a, .navAdmin li a {
 	background-color:#000;
 	color:#fff;
 	text-decoration:none;
@@ -60,29 +67,51 @@ ul, ol {
 	display:block;
 }
 
-.nav li a:hover {
+.navEn li a:hover, .navDep li a:hover, .navAdmin li a:hover {
 	background-color:#434343;
 }
 
-.nav li ul {
+.navEn li ul, .navDep li ul, .navAdmin li ul {
 	display:none;
 	position:absolute;
 	min-width:140px;
 }
 
-.nav li:hover > ul {
+.navEn li:hover > ul, .navDep li:hover > ul, .navAdmin li:hover > ul {
 	display:block;
 }
 
-.nav li ul li {
+.navEn li ul li, .navDep li ul li, .navAdmin li ul li {
 	position:relative;
 }
 
-.nav li ul li ul {
+.navEn li ul li ul, .navDep li ul li ul, .navAdmin li ul li ul {
 	right:-140px;
 	top:0px;
 }
 
+.navDep{
+	left: 15%;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+}
+
+.navEn{
+	left: 20%;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+}
+
+.home{
+	max-width: 700px;
+	margin: 0px auto;
+	margin-top: 85px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+}
 
 .recuadro{
 	padding-top: 80px;
@@ -174,20 +203,27 @@ img{
 
 @media (max-width: 900px){
 
-	.nav{
+	.navEn, .navDep{
+		left: 5%;
+		margin: 0 auto;
+		padding: 0;
+		position: relative;
+	}
+
+	.navAdmin{
 		left: 0%;
 		margin: 0 auto;
 		padding: 0;
 		position: relative;
 	}
 
-	.nav > li {
+	.navDep > li, .navAdmin > li {
 		float:left;
 		margin-right: 0px;
 		text-align: center;
 	}	
 
-	.nav li ul li ul {
+	.navAdmin li ul li ul {
 		right:80px;
 		top:0px;
 		z-index: 100;
@@ -201,9 +237,33 @@ img{
 		height: 20px;
 	}
 
+	.home{
+		max-width: 350px;
+		margin: 0px auto;
+		margin-top: 180px;
+		padding: 10px 20px;
+		background: #f4f7f8;
+		border-radius: 8px;
+	}
+
 }
 
+
 @media (min-width: 460px) and (max-width: 1370px){
+
+	.navAdmin{
+		left: 15%;
+		margin: 0 auto;
+		padding: 0;
+		position: relative;
+	}
+
+	.navDep, .navEn{
+		left: 22%;
+		margin: 0 auto;
+		padding: 0;
+		position: relative;
+	}
 
 	body{
 		background-image: url("../prueba.jpeg");
@@ -218,6 +278,15 @@ img{
 		height: 20px;
 	}
 
+	.home{
+		max-width: 700px;
+		margin: 0px auto;
+		margin-top: 130px;
+		padding: 10px 20px;
+		background: #f4f7f8;
+		border-radius: 8px;
+	}
+
 	.recuadro{
 		padding-top: 0;
 		padding-bottom: 30px;
@@ -228,6 +297,22 @@ img{
 }
 
 @media (min-width: 460px) and (max-width: 1370px) and (min-height: 900px){
+
+	.navDep{
+		left: 16%;
+		margin: 0 auto;
+		padding: 0;
+		position: relative;
+	}
+
+	.home{
+		max-width: 800px;
+		margin: 0px auto;
+		margin-top: 190px;
+		padding: 10px 20px;
+		background: #f4f7f8;
+		border-radius: 8px;
+	}
 
 	.recuadro{
 		padding-top: 20px;
@@ -248,6 +333,6 @@ img{
 		bottom: 0;
 		width: 100%;
 		height: 20px;
-	}
+	}	
 
 }
