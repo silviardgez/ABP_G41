@@ -2,10 +2,10 @@
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 10, 2017 at 11:48 AM
--- Server version: 5.7.15-0ubuntu0.16.04.1
--- PHP Version: 5.6.27-1+deb.sury.org~xenial+1
+-- Servidor: localhost
+-- Xerado en: 12 de Nov de 2017 ás 20:59
+-- Versión do servidor: 5.7.15-0ubuntu0.16.04.1
+-- Versión do PHP: 5.6.27-1+deb.sury.org~xenial+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `BSBASports`
+-- Base de datos: `BSBASports`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ACTIVIDAD`
+-- Estrutura da táboa `ACTIVIDAD`
 --
 
 CREATE TABLE `ACTIVIDAD` (
@@ -38,7 +38,7 @@ CREATE TABLE `ACTIVIDAD` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ASISTE`
+-- Estrutura da táboa `ASISTE`
 --
 
 CREATE TABLE `ASISTE` (
@@ -51,7 +51,7 @@ CREATE TABLE `ASISTE` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `EJERCICIO`
+-- Estrutura da táboa `EJERCICIO`
 --
 
 CREATE TABLE `EJERCICIO` (
@@ -65,7 +65,7 @@ CREATE TABLE `EJERCICIO` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ENGLOBA`
+-- Estrutura da táboa `ENGLOBA`
 --
 
 CREATE TABLE `ENGLOBA` (
@@ -76,7 +76,7 @@ CREATE TABLE `ENGLOBA` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ENTRENAMIENTO`
+-- Estrutura da táboa `ENTRENAMIENTO`
 --
 
 CREATE TABLE `ENTRENAMIENTO` (
@@ -88,7 +88,7 @@ CREATE TABLE `ENTRENAMIENTO` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `INCLUYE`
+-- Estrutura da táboa `INCLUYE`
 --
 
 CREATE TABLE `INCLUYE` (
@@ -99,7 +99,7 @@ CREATE TABLE `INCLUYE` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `RESERVA`
+-- Estrutura da táboa `RESERVA`
 --
 
 CREATE TABLE `RESERVA` (
@@ -113,7 +113,7 @@ CREATE TABLE `RESERVA` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `SESION`
+-- Estrutura da táboa `SESION`
 --
 
 CREATE TABLE `SESION` (
@@ -126,7 +126,7 @@ CREATE TABLE `SESION` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `TABLA`
+-- Estrutura da táboa `TABLA`
 --
 
 CREATE TABLE `TABLA` (
@@ -138,7 +138,7 @@ CREATE TABLE `TABLA` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `TLF_USUARIO`
+-- Estrutura da táboa `TLF_USUARIO`
 --
 
 CREATE TABLE `TLF_USUARIO` (
@@ -146,14 +146,22 @@ CREATE TABLE `TLF_USUARIO` (
   `TELEFONO` varchar(9) COLLATE latin1_spanish_ci NOT NULL DEFAULT '000000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+--
+-- A extraer os datos da táboa `TLF_USUARIO`
+--
+
+INSERT INTO `TLF_USUARIO` (`DNI`, `TELEFONO`) VALUES
+('44484761R', '633801916');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `USUARIO`
+-- Estrutura da táboa `USUARIO`
 --
 
 CREATE TABLE `USUARIO` (
   `DNI` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
+  `CONTRASEÑA` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
   `NOMBRE` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
   `APELLIDOS` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
   `EMAIL` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -164,6 +172,15 @@ CREATE TABLE `USUARIO` (
   `ID_SESION` int(11) DEFAULT NULL,
   `ID_TABLA` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- A extraer os datos da táboa `USUARIO`
+--
+
+INSERT INTO `USUARIO` (`DNI`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NAC`, `ADMIN`, `ENTRENADOR`, `DEPORTISTA`, `ID_SESION`, `ID_TABLA`) VALUES
+('44484761R', 'e3928a3bc4be46516aa33a79bbdfdb08', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL, NULL, NULL),
+('44484762E', '926e27eecdbc7a18858b3798ba99bddd', 'Pepe', 'Fernández', 'dadad@gmail.com', '2017-11-07', NULL, NULL, 1, NULL, NULL),
+('44484762P', '926e27eecdbc7a18858b3798ba99bddd', 'Pepe', 'Glez', 'adsf@yahoo.com', '2017-11-08', NULL, 1, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -266,7 +283,7 @@ ALTER TABLE `ASISTE`
 -- AUTO_INCREMENT for table `EJERCICIO`
 --
 ALTER TABLE `EJERCICIO`
-  MODIFY `ID_EJERCICIO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_EJERCICIO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `ENTRENAMIENTO`
 --
@@ -288,61 +305,71 @@ ALTER TABLE `SESION`
 ALTER TABLE `TABLA`
   MODIFY `ID_TABLA` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Constraints for dumped tables
+-- Restricións para os envorcados das táboas
 --
 
 --
--- Constraints for table `ACTIVIDAD`
+-- Restricións para a táboa `ACTIVIDAD`
 --
 ALTER TABLE `ACTIVIDAD`
   ADD CONSTRAINT `ACTIVIDAD_ibfk_1` FOREIGN KEY (`DNI_ENTR`) REFERENCES `USUARIO` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ACTIVIDAD_ibfk_2` FOREIGN KEY (`ID_ACT`) REFERENCES `RESERVA` (`ID_ACT`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ASISTE`
+-- Restricións para a táboa `ASISTE`
 --
 ALTER TABLE `ASISTE`
   ADD CONSTRAINT `ASISTE_ibfk_1` FOREIGN KEY (`DNI_DEP`) REFERENCES `USUARIO` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ASISTE_ibfk_2` FOREIGN KEY (`ID_ACT`) REFERENCES `ACTIVIDAD` (`ID_ACT`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ENGLOBA`
+-- Restricións para a táboa `ENGLOBA`
 --
 ALTER TABLE `ENGLOBA`
   ADD CONSTRAINT `ENGLOBA_ibfk_1` FOREIGN KEY (`ID_ENTRENA`) REFERENCES `ENTRENAMIENTO` (`ID_ENTRENA`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ENGLOBA_ibfk_2` FOREIGN KEY (`ID_EJER`) REFERENCES `EJERCICIO` (`ID_EJERCICIO`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ENTRENAMIENTO`
+-- Restricións para a táboa `ENTRENAMIENTO`
 --
 ALTER TABLE `ENTRENAMIENTO`
   ADD CONSTRAINT `ENTRENAMIENTO_ibfk_1` FOREIGN KEY (`ID_ENTRENA`) REFERENCES `INCLUYE` (`ID_ENTRENA`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `INCLUYE`
+-- Restricións para a táboa `INCLUYE`
 --
 ALTER TABLE `INCLUYE`
   ADD CONSTRAINT `INCLUYE_ibfk_1` FOREIGN KEY (`ID_TABLA`) REFERENCES `TABLA` (`ID_TABLA`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `RESERVA`
+-- Restricións para a táboa `RESERVA`
 --
 ALTER TABLE `RESERVA`
   ADD CONSTRAINT `RESERVA_ibfk_1` FOREIGN KEY (`DNI_DEP`) REFERENCES `USUARIO` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `SESION`
+-- Restricións para a táboa `SESION`
 --
 ALTER TABLE `SESION`
   ADD CONSTRAINT `SESION_ibfk_1` FOREIGN KEY (`ID_SESION`) REFERENCES `TABLA` (`ID_SESION`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `USUARIO`
+-- Restricións para a táboa `TABLA`
+--
+ALTER TABLE `TABLA`
+  ADD CONSTRAINT `TABLA_ibfk_1` FOREIGN KEY (`ID_TABLA`) REFERENCES `USUARIO` (`ID_TABLA`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restricións para a táboa `TLF_USUARIO`
+--
+ALTER TABLE `TLF_USUARIO`
+  ADD CONSTRAINT `TLF_USUARIO_ibfk_1` FOREIGN KEY (`DNI`) REFERENCES `USUARIO` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restricións para a táboa `USUARIO`
 --
 ALTER TABLE `USUARIO`
-  ADD CONSTRAINT `USUARIO_ibfk_1` FOREIGN KEY (`ID_SESION`) REFERENCES `SESION` (`ID_SESION`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `USUARIO_ibfk_2` FOREIGN KEY (`ID_TABLA`) REFERENCES `TABLA` (`ID_TABLA`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `USUARIO_ibfk_3` FOREIGN KEY (`DNI`) REFERENCES `TLF_USUARIO` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `USUARIO_ibfk_2` FOREIGN KEY (`ID_TABLA`) REFERENCES `TABLA` (`ID_TABLA`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
