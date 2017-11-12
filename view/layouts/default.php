@@ -20,7 +20,7 @@ $currentuser = $view->getVariable("currentusername");
 <body>
 
 	<header>
-		<ul class="nav">
+		<ul class="navAdmin" id="nav">
 			<li><a><?= i18n("Language:") ?></a></li>
 			<?php
 			include(__DIR__."/language_select_element.php");
