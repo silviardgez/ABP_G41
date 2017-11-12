@@ -20,4 +20,19 @@ class UserMapper {
 			return true;
 		}
 	}
+
+	public function findType(){
+		$user = $_SESSION["currentuser"]; 
+		$stmt = $this->db->query("SELECT * FROM USUARIO WHERE DNI='".$user."'");
+		//$stmt->execute(array($user));
+		$array = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($array["ADMIN"] == 1) {
+			return "admin";
+		} else if($array["ENTRENADOR"] == 1){
+			return "entrenador";
+		}else{
+			return "deportista";
+		}
+	}
 }
