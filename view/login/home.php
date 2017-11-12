@@ -11,11 +11,9 @@ $errors = $view->getVariable("errors");
 <?= isset($errors["general"])?$errors["general"]:"" ?>
 <div class="recuadro">
 	<div id="formulario">
-		<div id="login">
-			<form action="" method="POST">
-				Bienvenido, seleccione opción en el menú principal
-			</form>
-		</div>
+
+		<object class="home" type="text/html" data="https://www.deportes.uvigo.es/instalacions/campus-de-ourense/" width="820" height="500"></object>
+
 	</div>
 </div>
 
