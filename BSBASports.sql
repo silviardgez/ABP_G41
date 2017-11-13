@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `BSBASports`
 --
+DROP DATABASE IF EXISTS `BSBASports`;
+CREATE DATABASE IF NOT EXISTS `BSBASports` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `BSBASports`;
 
 -- --------------------------------------------------------
 
