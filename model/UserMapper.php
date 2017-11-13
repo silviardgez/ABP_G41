@@ -23,8 +23,8 @@ class UserMapper {
 
 	public function findType(){
 		$user = $_SESSION["currentuser"]; 
-		$stmt = $this->db->query("SELECT * FROM USUARIO WHERE DNI='".$user."'");
-		//$stmt->execute(array($user));
+		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DNI=?");
+		$stmt->execute(array($user));
 		$array = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		if($array["ADMIN"] == 1) {
