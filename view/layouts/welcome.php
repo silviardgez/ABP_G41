@@ -38,14 +38,14 @@ $type = $view->getVariable("type2");
 							<li><a href=""><?=i18n("Activities")?></a></li>
 						</ul>
 					</li>
-					<li><a href=""><?=i18n("Fitness")?></a>
+					<li><a href="index.php?controller=activity&amp;action=show"><?=i18n("Activities")?></a>
 						<ul>
 							<li><a href=""><?=i18n("Activities")?></a></li>
 							<li><a href=""><?=i18n("Reservations")?></a></li>
 							<li><a href=""><?=i18n("Assistance")?></a></li>
 						</ul>
 					</li>
-					<li><a href=""><?=i18n("Activities")?></a>
+					<li><a href=""><?=i18n("Fitness")?></a>
 						<ul>
 							<li><a href=""><?=i18n("Exercises")?></a></li>
 							<li><a href=""><?=i18n("Workouts")?></a></li>
@@ -75,7 +75,7 @@ $type = $view->getVariable("type2");
 							<li><a href=""><?=i18n("Activities")?></a></li>
 						</ul>
 					</li>
-					<li><a href=""><?=i18n("Fitness")?></a>
+					<li><a href=""><?=i18n("Activities")?></a>
 						<ul>
 							<li><a href=""><?=i18n("Activities")?></a></li>
 							<li><a href=""><?=i18n("Reservations")?></a></li>
