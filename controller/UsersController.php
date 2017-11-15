@@ -51,7 +51,7 @@ class UsersController extends BaseController {
 
 	public function show(){
 		if(!isset($this->currentUser)){
-			throw new Exception("Not in session. Editing posts requires login");
+			throw new Exception("Not in session. Show users requires login");
 		}
 
 		if($this->userMapper->findType() != "admin"){
