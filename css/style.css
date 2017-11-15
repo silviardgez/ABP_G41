@@ -113,6 +113,30 @@ ul, ol {
 	border-radius: 8px;
 }
 
+.home2{
+	width: 300px;
+	margin: 0px auto;
+	margin-top: 85px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+}
+
+.users{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: top;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.margin{
+	margin-top: 80px;
+	margin-left: 50px;
+	margin-right: 20px;
+}
+
 .recuadro{
 	padding-top: 80px;
 	padding-bottom: 30px;
@@ -201,6 +225,45 @@ img{
 	margin-top: 18%;
 }
 
+.icons{
+	padding-right: 5px;
+	text-align: right;
+}
+
+.circulo {
+	height: 50px;
+	width: 55px;
+	display: table-cell;
+	text-align: center;
+	font-size:36px;
+	vertical-align: middle;
+	border-radius: 50%;
+	background-color: green;
+}
+
+#add{
+	color: white;
+}
+
+.fa{
+	font-size: 25px;
+}
+
+/*botón flotante*/
+.btn-group-sm .btn-fab{
+	position: fixed !important;
+	right: 29px;
+}
+
+.btn-group .btn-fab{
+	position: fixed !important;
+	right: 20px;
+}
+
+a:link  {   
+	text-decoration:none;   
+}  
+
 @media (max-width: 900px){
 
 	.navEn, .navDep{
@@ -244,6 +307,18 @@ img{
 		padding: 10px 20px;
 		background: #f4f7f8;
 		border-radius: 8px;
+	}
+
+	.margin{
+		margin-top: 180px;
+		margin-left: 10px;
+		margin-right: 20px;
+		margin-bottom: 40px;
+	}
+
+	#add{
+		color: white;
+		bottom: 20px;
 	}
 
 }
@@ -294,6 +369,13 @@ img{
 		width: 100%;
 	}
 
+	.margin{
+		margin-top: 80px;
+		margin-left: 100px;
+		margin-right: 20px;
+		margin-bottom: 40px;
+	}
+
 }
 
 @media (min-width: 460px) and (max-width: 1370px) and (min-height: 900px){
@@ -335,4 +417,10 @@ img{
 		height: 20px;
 	}	
 
+	.margin{
+		margin-top: 80px;
+		margin-left: 80px;
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
 }

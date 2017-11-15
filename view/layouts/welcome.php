@@ -2,7 +2,6 @@
 // file: view/layouts/welcome.php
 
 $view = ViewManager::getInstance();
-$type = $view->getVariable("type2"); 
 
 ?><!DOCTYPE html>
 <html>
@@ -13,12 +12,42 @@ $type = $view->getVariable("type2");
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<?= $view->getFragment("css") ?>
 	<?= $view->getFragment("javascript") ?>
+
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.7.2.custom.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '&#x3c;Ant',
+		nextText: 'Sig&#x3e;',
+		currentText: 'Hoy',
+		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+		'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+		monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+		'Jul','Ago','Sep','Oct','Nov','Dic'],
+		dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+		dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+		weekHeader: 'Sm',
+		dateFormat: 'yy/mm/dd',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''};
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+});    
+$(document).ready(function() {
+   $("#datepicker").datepicker();
+});
+</script>
 </head>
 
 <body>
 	<header>
 		<?php if (isset($_SESSION["currentuser"])): ?>
-			<?php if ($type == "admin"): ?>
+			<?php if ($_SESSION["type"] == "admin"): ?>
 				<ul class="navAdmin">
 					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
 					<li><a><?=i18n("User")?></a>
@@ -29,7 +58,7 @@ $type = $view->getVariable("type2");
 					<li><a href=""><?=i18n("Administration")?></a>
 						<ul>
 							<li><a href=""><?=i18n("Notifications")?></a></li>
-							<li><a href=""><?=i18n("Users")?></a></li>
+							<li><a href="index.php?controller=users&amp;action=show"><?=i18n("Users")?></a></li>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Statistics")?></a>
@@ -61,7 +90,7 @@ $type = $view->getVariable("type2");
 					<li><a id="logout" href="index.php?controller=users&amp;action=logout"><?= i18n("Logout")?></a></li>
 				</ul>
 			<?php endif ?>
-			<?php if ($type == "entrenador"): ?>
+			<?php if ($_SESSION["type"] == "entrenador"): ?>
 				<ul class="navEn">
 					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
 					<li><a><?=i18n("User")?></a>
@@ -98,7 +127,7 @@ $type = $view->getVariable("type2");
 					<li><a id="logout" href="index.php?controller=users&amp;action=logout"><?= i18n("Logout")?></a></li>
 				</ul>
 			<?php endif ?>
-			<?php if ($type == "deportista"): ?>
+			<?php if ($_SESSION["type"] == "deportista"): ?>
 				<ul class="navDep">
 					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
 					<li><a><?=i18n("Profile")?></a>
