@@ -15,8 +15,10 @@ class User{
 	private $coach;
 	private $deportist;
 	private $tlf;
+	private $id_sesion;
+	private $id_table;
 
-	public function __construct($username=NULL, $pass=NULL, $name=NULL, $surname=NULL, $email=NULL, $date_born=NULL, $admin=NULL,$coach=NULL,$deportist=NULL,$tlf=NULL){
+	public function __construct($username=NULL, $pass=NULL, $name=NULL, $surname=NULL, $email=NULL, $date_born=NULL, $admin=NULL,$coach=NULL,$deportist=NULL,$tlf=NULL,$id_sesion=NULL,$id_table=NULL){
 		$this->username = $username;
 		$this->pass = $pass;
 		$this->name = $name;
@@ -27,6 +29,8 @@ class User{
 		$this->coach = $coach;
 		$this->deportist = $deportist;
 		$this->tlf = $tlf;
+		$this->id_sesion = $id_sesion;
+		$this->id_table = $id_table;
 	}
 
 	public function setUsername($username){
@@ -67,6 +71,14 @@ class User{
 
 	public function setTlf($tlf){
 		$this->tlf = $tlf;
+	}
+
+	public function setIdSesion($id_sesion){
+		$this->id_sesion = $id_sesion;
+	}
+
+	public function setIdTable($id_table){
+		$this->id_table = $id_table;
 	}
 
 	public function validar_username($username){
@@ -193,7 +205,14 @@ class User{
 			throw new ValidationException($errors, "user is not valid");
 		}
 	}
+
+	public function getIdSesion(){
+		return $this->id_sesion;
+	}
+
+	public function getIdTable(){
+		return $this->id_table;
+	}
 	
 }
-
 ?>
