@@ -172,11 +172,14 @@ input[type="password"],
 input[type="date"],
 input[type="datetime"],
 input[type="email"],
+input[type="file"],
 input[type="number"],
 input[type="search"],
 input[type="tel"],
 input[type="time"],
 input[type="url"],
+img,
+iframe,
 textarea,
 select {
 	background: rgba(255,255,255,0.1);
@@ -215,10 +218,6 @@ button {
 	border-width: 1px 1px 3px;
 	box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
 	margin-bottom: 10px;
-}
-
-img{
-	padding-left: 45%;
 }
 
 #login{
@@ -262,7 +261,15 @@ img{
 
 a:link  {   
 	text-decoration:none;   
-}  
+	color: black;
+} 
+
+.home2 > a {
+	color: black;
+} 
+a:visited{
+	color: black;
+}
 
 @media (max-width: 900px){
 
