@@ -27,12 +27,11 @@ $errors = $view->getVariable("errors");
 					<?=i18n("Password")?>:<?= isset($errors["passwd"])?i18n($errors["passwd"]):"" ?><input type="password" name="pass">
 					
 					<?=i18n("Repeat Password")?>:<input type="password" name="rpass">
-					<?=i18n("Type")?>:
-					<select name="type">
-						<option value="administrador"><?=i18n("Administrator")?></option>
-						<option value="deportista"><?=i18n("Deportist")?></option>
-						<option value="monitor"><?=i18n("Coach")?></option>
-					</select>
+
+					<?=i18n("Administrator")?><input type="checkbox" name="administrador" value="1">
+					<?=i18n("Coach")?><input type="checkbox" name="entrenador" value="1">
+					<?=i18n("Deportist")?><input type="checkbox" name="deportista" value="1"> 
+
 					<button type="submit" name="submit"><?=i18n("Send")?></button>
 					
 				</form>
