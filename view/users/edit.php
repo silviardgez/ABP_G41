@@ -28,22 +28,20 @@ $view->setVariable("title", "Edit User");
 
 				<?=i18n("DNI")?>:<?= isset($errors["DNI"])?i18n($errors["DNI"]):"" ?><input type="text" name="dni" value="<?=$user->getUsername()?>" readonly="readonly">
 
-				<?=i18n("Type")?>:
-				<select name="type">
-					<?php if($user->getAdmin() == 1){ ?>
-					<option value="administrador" selected="selected"><?=i18n("Administrator")?></option>
-					<option value="deportista"><?=i18n("Deportist")?></option>
-					<option value="monitor"><?=i18n("Coach")?></option>
-					<?php }elseif ($user->getCoach() == 1) { ?>
-					<option value="administrador"><?=i18n("Administrator")?></option>
-					<option value="deportista"><?=i18n("Deportist")?></option>
-					<option value="monitor" selected="selected"><?=i18n("Coach")?></option>
-					<?php }else{ ?>
-					<option value="administrador"><?=i18n("Administrator")?></option>
-					<option value="deportista" selected="selected"><?=i18n("Deportist")?></option>
-					<option value="monitor"><?=i18n("Coach")?></option>
-					<?php } ?>
-				</select>
+				<?php if($user->getAdmin() == 1){ ?>
+				<?=i18n("Administrator")?><input type="checkbox" name="administrador" value="1" checked="checked"> 
+				<?php }else{ ?>
+				<?=i18n("Administrator")?><input type="checkbox" name="administrador" value="1">
+				<?php }if ($user->getCoach() == 1) { ?>
+				<?=i18n("Coach")?><input type="checkbox" name="entrenador" value="1" checked="checked">
+				<?php }else{ ?>
+				<?=i18n("Coach")?><input type="checkbox" name="entrenador" value="1">
+				<?php }if($user->getDeportist() == 1){ ?>
+				<?=i18n("Deportist")?><input type="checkbox" name="deportista" value="1" checked="checked">
+				<?php }else{ ?>
+				<?=i18n("Deportist")?><input type="checkbox" name="deportista" value="1">
+				<?php } ?>
+
 				<button type="submit" name="submit"><?=i18n("Send")?></button>
 
 			</form>
