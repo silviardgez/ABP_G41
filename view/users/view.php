@@ -19,13 +19,13 @@ $view->setVariable("title", "View User");
 					<?=i18n("DNI")?>:<input type="text" name="dni" value="<?=$user->getUsername()?>" readonly="readonly">
 					<?=i18n("Type")?>:
 					<?php if ($user->getAdmin() == 1): ?>
-						<input type="text" name="dni" value="<?=i18n("Administrator"); echo ' '?>" readonly="readonly">
+						<input type="text" name="administrador" value="<?=i18n("Administrator"); echo ' '?>" readonly="readonly">
 					<?php endif ?>
 					<?php if ($user->getCoach() == 1): ?>
-						<input type="text" name="dni" value="<?=i18n("Coach"); echo ' '?>" readonly="readonly"> 
+						<input type="text" name="entrenador" value="<?=i18n("Coach"); echo ' '?>" readonly="readonly"> 
 					<?php endif ?>
 					<?php if ($user->getDeportist() == 1): ?>
-						<input type="text" name="dni" value="<?=i18n("Deportist")?>" readonly="readonly">
+						<input type="text" name="deportista" value="<?=i18n("Deportist")?>" readonly="readonly">
 					<?php endif ?>
 					
 				</form>
