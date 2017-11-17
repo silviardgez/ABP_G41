@@ -206,12 +206,20 @@ class UsersController extends BaseController {
 			$user->setDateBorn($_POST["fechaNac"]);
 			$user->setEmail($_POST["email"]);
 			$user->setTlf($_POST["tel"]);
-			if($_POST["type"] == "administrador"){
+			if($_POST["administrador"] == "1"){
 				$user->setAdmin(1);
-			}else if($_POST["type"] == "deportista"){
+			}else{
+				$user->setAdmin(NULL);
+			}
+			 if($_POST["deportista"] == "1"){
 				$user->setDeportist(1);
 			}else{
+				$user->setDeportist(NULL);
+			}
+			if($_POST["entrenador"] == "1"){
 				$user->setCoach(1);
+			}else{
+				$user->setCoach(NULL);
 			}
 
 			try {
@@ -235,5 +243,80 @@ class UsersController extends BaseController {
 		$this->view->setVariable("user", $user);
 
 		$this->view->render("users", "edit");
+	}
+
+	public function viewcurrent(){
+		if (!isset($_GET["dni"])) {
+			throw new Exception("DNI is mandatory");
+		}
+
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. View User requires login");
+		}
+
+		$dni = $_GET["dni"];
+
+		// find the User object in the database
+		$user = $this->userMapper->findUserByDNI($dni);
+
+		if ($user == NULL) {
+			throw new Exception("no such user with DNI: ".$dni);
+		}
+
+		// put the user object to the view
+		$this->view->setVariable("user", $user);
+
+		// render the view (/view/users/viewcurrent.php)
+		$this->view->render("users", "viewcurrent");
+	}
+
+	public function editcurrent(){
+		if (!isset($_REQUEST["dni"])) {
+			throw new Exception("A user DNI is mandatory");
+		}
+
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Editing user requires login");
+		}
+
+		// Get the User object from the database
+		$userid = $_REQUEST["dni"];
+		$user = $this->userMapper->findUserByDNI($userid);
+
+		if ($user == NULL) {
+			throw new Exception("no such user with DNI: ".$userid);
+		}
+
+		if (isset($_POST["newpass"])) { 
+			$user->setName($_POST["nombre"]);
+			$user->setSurname($_POST["apellidos"]);
+			$user->setDateBorn($_POST["fechaNac"]);
+			$user->setEmail($_POST["email"]);
+			$user->setTlf($_POST["tel"]);
+
+			try {
+
+				//validate user object
+				$user->checkIsValidForCurrentUpdate($_POST["pass"],$_POST["newpass"],$_POST["rpass"]); // if it fails, ValidationException
+
+				$user->setPass(md5($_POST["newpass"]));
+
+				$this->userMapper->update($user);
+
+				$this->view->setFlash(sprintf(i18n("User \"%s\" successfully updated."),$user ->getUsername()));
+
+				$this->view->redirect("login", "home");
+
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+
+		$this->view->setVariable("user", $user);
+
+		$this->view->render("users", "editcurrent");
 	}
 }
