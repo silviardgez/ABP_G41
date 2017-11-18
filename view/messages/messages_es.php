@@ -66,6 +66,8 @@ array(
 	"Image not found" => "Imágen no encontrada",
 	"New Password" => "Nueva Contraseña",
 	"Incorrect password" => "Contraseña incorrecta",
+	"Forgot your password?" => "¿Olvidó su contraseña?",
+	"Click here!" => "¡Click aquí!",
 	"are you sure?" => "¿Estás seguro?",
 	"Name must be at least 5 characters length" => "El nombre debe tener 5 caracteres mínimo",
 	"DNI must be at least 8 characters length" => "El DNI debe tener 8 caracteres mínimo",
@@ -76,6 +78,7 @@ array(
 	"The phone number is wrong" => "El teléfono es incorrecto",
 	"The email is wrong" => "El email es incorrecto",
 	"The name is wrong" => "El nombre es incorrecto",
+	"DNI do not exists" => "El DNI no existe",
 	"The surname is wrong" => "Los apellidos son incorrectos",
 	"The date born is wrong" => "La fecha de nacimiento es incorrecta",
 	"DNI exists" => "El DNI ya existe",
@@ -85,5 +88,6 @@ array(
 	"Exercise \"%s\" successfully updated." => "Ejercicio \"%s\" actualizado correctamente.",
 	"Exercise \"%s\" successfully deleted." => "Ejercicio \"%s\" eliminado correctamente.",
 	"exercise \"%s\" successfully added." => "Ejercicio \"%s\" añadido correctamente.",
+	"An email was sent to \"%s\"." => "Un email fue enviado a \"%s\".",
 )
 ?>
