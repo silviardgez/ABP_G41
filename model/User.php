@@ -245,6 +245,34 @@ class User{
 		}
 	}
 
+	public function ValidRecover($dni, $email){
+		$errors = array();
+		$this->userMapper = new UserMapper();
+		$user = $this->userMapper->findUserByDNI($dni);
+		if (!isset($this->username)) {
+			$errors["DNI"] = "DNI is mandatory";
+		}
+		if(!$this->validar_username($this->username) || $this->getUsername()==NULL){
+			$errors["DNI"] = "DNI incorrect";
+		}
+		if (!isset($this->email)) {
+			$errors["email"] = "Email is mandatory";
+		}
+		if(!$this->is_valid_email($this->email)){
+			$errors["email"] = "The email is wrong";
+		}
+		if(isset($user)){
+			if($user->getEmail() != $email){
+				$errors["email"] = "The email is wrong";
+			}
+		}else{
+			$errors["DNI"] = "DNI do not exists";
+		}
+		if (sizeof($errors) > 0) {
+			throw new ValidationException($errors, "user is not valid");
+		}
+	}
+
 	public function getIdSesion(){
 		return $this->id_sesion;
 	}
@@ -253,6 +281,30 @@ class User{
 		return $this->id_table;
 	}
 	
+	public function ValidRecoverPass($dni, $pass, $rpass){
+		$errors = array();
+		$this->userMapper = new UserMapper();
+		$user = $this->userMapper->findUserByDNI($dni);
+		if (!isset($this->username)) {
+			$errors["DNI"] = "DNI is mandatory";
+		}
+		if(!$this->validar_username($this->username) || $this->getUsername()==NULL){
+			$errors["DNI"] = "DNI incorrect";
+		}
+		if (strlen($this->pass) < 5) {
+			$errors["passwd"] = "Password must be at least 5 characters length";
+		}
+		if($rpass != $pass){
+			$errors["passwd"] = "Passwords do not match";
+		}
+		if(!isset($user)){
+			$errors["DNI"] = "DNI incorrect";
+		}
+		if (sizeof($errors) > 0) {
+			throw new ValidationException($errors, "user is not valid");
+		}
+	}
+
 }
 
 
