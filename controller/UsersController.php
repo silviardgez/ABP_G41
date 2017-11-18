@@ -211,7 +211,7 @@ class UsersController extends BaseController {
 			}else{
 				$user->setAdmin(NULL);
 			}
-			 if($_POST["deportista"] == "1"){
+			if($_POST["deportista"] == "1"){
 				$user->setDeportist(1);
 			}else{
 				$user->setDeportist(NULL);
@@ -318,5 +318,113 @@ class UsersController extends BaseController {
 		$this->view->setVariable("user", $user);
 
 		$this->view->render("users", "editcurrent");
+	}
+
+	public function recover(){
+
+		$user = new User();
+
+		if(isset($_POST["submit"])) { // reaching via HTTP user...
+
+			// populate the user object with data form the form
+			$user->setUsername($_POST["dni"]);
+			$user->setEmail($_POST["email"]);
+
+			try {
+				// validate user object
+				$user->ValidRecover($_POST["dni"], $_POST["email"]); // if it fails, ValidationException
+
+				//send email to the user
+				$this->sendEmail($user);
+
+				$this->view->setFlash(sprintf(i18n("An email was sent to \"%s\"."),$user ->getEmail()));
+
+				$this->view->redirect("login", "index");
+
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+
+		// Put the user object visible to the view
+		$this->view->setVariable("user", $user);
+		// render the view (/view/login/recover.php)
+		$this->view->render("login", "recover");
+	}
+
+	public function sendEmail(User $user){
+		require_once(__DIR__."/../PHPMailer_5.2.4/class.phpmailer.php");
+
+		//Receive all the parameters of the form
+		$para = $user->getEmail();
+		$asunto = "Recuperación de Contraseña//Password Recovery";
+		$mensaje = "Puede recuperar su contraseña haciendo click en el siguiente enlace:\nYou can retrieve your password by clicking on the following link:\n\nhttp://localhost/abp/index.php?controller=users&action=newpass";
+
+		//This block is important
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = "ssl";
+		$mail->Host = "smtp.gmail.com";
+		$mail->Port = 465;
+		// Activate condification utf-8
+		$mail->CharSet = 'UTF-8';
+
+		//Our account
+		$mail->Username ='bsbasports@gmail.com';
+		$mail->Password = 'asignaturaabp'; //Su password
+
+		//Add recipient
+		$mail->AddAddress($para);
+		$mail->Subject = $asunto;
+		$mail->Body = $mensaje;
+		//To attach file
+		//$mail->AddAttachment($archivo['tmp_name'], $archivo['name']);
+		$mail->MsgHTML($mensaje);
+
+		//Send email
+		$mail->Send();
+
+	}
+
+	public function newpass(){
+		$user = new User();
+
+		if(isset($_POST["submit"])) { // reaching via HTTP user...
+
+			$dni = $_POST["dni"];
+			$pass = $_POST["pass"];
+
+			try {
+				$user->setUsername($dni);
+				$user->setPass($pass);
+				// validate user object
+				$user->ValidRecoverPass($dni, $pass, $_POST["rpass"]); // if it fails, ValidationException
+
+				$user2 = $this->userMapper->findUserByDNI($dni);
+				
+				//save the user object into the database
+				$user2->setPass(md5($pass));
+				$this->userMapper->update($user2);
+
+				$this->view->setFlash(sprintf(i18n("User \"%s\" successfully updated."),$user2 ->getName()));
+
+				$this->view->redirect("login", "index");
+
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+
+		// Put the user object visible to the view
+		//$this->view->setVariable("user", $user);
+		// render the view (/view/login/recover.php)
+		$this->view->render("login", "newpassword");
 	}
 }
