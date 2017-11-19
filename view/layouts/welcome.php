@@ -63,8 +63,8 @@ $(document).ready(function() {
 					</li>
 					<li><a href=""><?=i18n("Statistics")?></a>
 						<ul>
-							<li><a href=""><?=i18n("Athletes")?></a></li>
-							<li><a href=""><?=i18n("Activities")?></a></li>
+							<li><a href="index.php?controller=athletesstatistics&amp;action=show"><?=i18n("Athletes")?></a></li>
+							<li><a href="index.php?controller=activitiesstatistics&amp;action=show"><?=i18n("Activities")?></a></li>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Fitness")?></a>
