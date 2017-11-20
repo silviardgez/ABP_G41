@@ -186,7 +186,6 @@ h1 {
 
 input[type="text"],
 input[type="password"],
-input[type="checkbox"],
 input[type="date"],
 input[type="datetime"],
 input[type="email"],
@@ -196,6 +195,7 @@ input[type="search"],
 input[type="tel"],
 input[type="time"],
 input[type="url"],
+.checkbox-style,
 img,
 iframe,
 textarea,
@@ -214,7 +214,7 @@ select {
 }
 
 input[type="radio"],
-input[type="checkbox"] {
+.checkbox-style {
 	margin: 0 4px 8px 0;
 }
 

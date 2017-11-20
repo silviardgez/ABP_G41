@@ -185,7 +185,7 @@ CREATE TABLE `USUARIO` (
 
 INSERT INTO `USUARIO` (`DNI`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NAC`, `ADMIN`, `ENTRENADOR`, `DEPORTISTA`, `ID_SESION`, `ID_TABLA`) VALUES
 ('12345678Z', '21232f297a57a5a743894a0e4a801fc3', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL, NULL, NULL),
-('12345678S', '74d996a70f40c654f73f9b56c63fc28a', 'Pepe', 'Fernández', 'dadad@gmail.com', '2017-11-07', NULL, NULL, 1, NULL, NULL),
+('12345679S', '74d996a70f40c654f73f9b56c63fc28a', 'Pepe', 'Fernández', 'dadad@gmail.com', '2017-11-07', NULL, NULL, 1, NULL, NULL),
 ('12345670Y', 'a990ba8861d2b344810851e7e6b49104', 'Pepe', 'Glez', 'adsf@yahoo.com', '2017-11-08', NULL, 1, NULL, NULL, NULL);
 
 --

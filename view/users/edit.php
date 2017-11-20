@@ -29,17 +29,17 @@ $view->setVariable("title", "Edit User");
 				<?=i18n("DNI")?>:<?= isset($errors["DNI"])?i18n($errors["DNI"]):"" ?><input type="text" name="dni" value="<?=$user->getUsername()?>" readonly="readonly">
 
 				<?php if($user->getAdmin() == 1){ ?>
-				<?=i18n("Administrator")?><input type="checkbox" name="administrador" value="1" checked="checked"> 
+				<?=i18n("Administrator")?><input type="checkbox" class="checkbox-style" name="administrador" value="1" checked="checked"> 
 				<?php }else{ ?>
-				<?=i18n("Administrator")?><input type="checkbox" name="administrador" value="1">
+				<?=i18n("Administrator")?><input type="checkbox" class="checkbox-style" name="administrador" value="1">
 				<?php }if ($user->getCoach() == 1) { ?>
-				<?=i18n("Coach")?><input type="checkbox" name="entrenador" value="1" checked="checked">
+				<?=i18n("Coach")?><input type="checkbox" class="checkbox-style" name="entrenador" value="1" checked="checked">
 				<?php }else{ ?>
-				<?=i18n("Coach")?><input type="checkbox" name="entrenador" value="1">
+				<?=i18n("Coach")?><input type="checkbox" class="checkbox-style" name="entrenador" value="1">
 				<?php }if($user->getDeportist() == 1){ ?>
-				<?=i18n("Deportist")?><input type="checkbox" name="deportista" value="1" checked="checked">
+				<?=i18n("Deportist")?><input type="checkbox" class="checkbox-style" name="deportista" value="1" checked="checked">
 				<?php }else{ ?>
-				<?=i18n("Deportist")?><input type="checkbox" name="deportista" value="1">
+				<?=i18n("Deportist")?><input type="checkbox" class="checkbox-style" name="deportista" value="1">
 				<?php } ?>
 
 				<button type="submit" name="submit"><?=i18n("Send")?></button>

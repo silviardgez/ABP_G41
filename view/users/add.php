@@ -28,9 +28,9 @@ $errors = $view->getVariable("errors");
 					
 					<?=i18n("Repeat Password")?>:<input type="password" name="rpass">
 
-					<?=i18n("Administrator")?><input type="checkbox" name="administrador" value="1">
-					<?=i18n("Coach")?><input type="checkbox" name="entrenador" value="1">
-					<?=i18n("Deportist")?><input type="checkbox" name="deportista" value="1"> 
+					<?=i18n("Administrator")?><input type="checkbox" class="checkbox-style" name="administrador" value="1">
+					<?=i18n("Coach")?><input type="checkbox" class="checkbox-style" name="entrenador" value="1">
+					<?=i18n("Deportist")?><input type="checkbox" class="checkbox-style" name="deportista" value="1"> 
 
 					<button type="submit" name="submit"><?=i18n("Send")?></button>
 					
