@@ -19,7 +19,7 @@ class ActivityMapper {
 		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		if($activity != null) {
-			return new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["DURACION"], $activity["COLOR"]);
+			return new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["DURACION"], $activity["COLOR"], $activity["DNI_ENTR"]);
 		} else {
 			return NULL;
 		}
@@ -48,7 +48,7 @@ class ActivityMapper {
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["DURACION"], $activity["COLOR"]));
+			array_push($grupalActivities, new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["DURACION"], $activity["COLOR"], $activity["DNI_ENTR"]));
 		}
 
 		return $grupalActivities;
