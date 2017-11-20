@@ -41,7 +41,7 @@ $rows = 3;
 						}"><i class="fa fa-trash"></i></a>
 
 					</form>
-					<a href="index.php?controller=users&amp;action=edit&amp;dni=<?= $activity ?>"><i class="fa fa-pencil-square-o"></i></a>
+					<a href="index.php?controller=activity&amp;action=edit&amp;name=<?= $activity ?>"><i class="fa fa-pencil-square-o"></i></a>
 				</div></div>
 
 			<?php endforeach; ?>
