@@ -15,6 +15,7 @@ $view->setVariable("title", "Edit Activity");
 	<div id="formulario">
 		<div class="home2">
 			<form action="index.php?controller=activity&amp;action=edit" method="POST">
+				<br><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?><input type="text" name="name" value="<?=$activity->getActivityName()?>"> 
 				<br><?=i18n("Color")?>:<?= isset($errors["color"])?i18n($errors["color"]):"" ?>
 				<input type="color" name="color" value="<?=$activity->getColor()?>">
 				<br><br><br>
