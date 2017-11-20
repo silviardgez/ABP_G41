@@ -44,10 +44,10 @@ class AssistanceController extends BaseController {
 			throw new Exception("Id is mandatory");
 		}
 
-		/*if (!isset($this->currentUser)) {
+		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. View Users requires login");
-		}*/
-
+		}
+		
 		/*if($this->userMapper->findType() != "admin"){
 			throw new Exception("You aren't an admin. View an user requires be admin");
 		}*/
@@ -58,7 +58,7 @@ class AssistanceController extends BaseController {
 		$assistances = $this->assistanceMapper->findAssistance($id);
 
 		if ($assistances == NULL) {
-			throw new Exception("no such activities with ID: ".$id);
+			throw new Exception("no assistants for the activity with ID: ".$id);
 		}
 
 		// put the user object to the view

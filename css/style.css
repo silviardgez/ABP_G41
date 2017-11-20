@@ -502,6 +502,15 @@ a:visited{
 	}
 }
 
+@media(min-width: 1370px){
+	.margin{
+		margin-top: 180px;
+		margin-left: 180px;
+		margin-right: 45px;
+		margin-bottom: 45px;
+	}
+}
+
 table {     
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     font-size: 12px;    
