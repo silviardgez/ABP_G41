@@ -24,7 +24,11 @@ header {
 
 body{
 	background-image: url("../prueba.jpeg");
-	background-size: 1400px 800px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #464646;
 }
 
 footer{
@@ -182,6 +186,7 @@ h1 {
 
 input[type="text"],
 input[type="password"],
+input[type="checkbox"],
 input[type="date"],
 input[type="datetime"],
 input[type="email"],
@@ -423,11 +428,6 @@ a:visited{
 		position: relative;
 	}
 
-	body{
-		background-image: url("../prueba.jpeg");
-		background-size: 1400px 800px;
-	}
-
 	footer{
 		background-color: black;
 		position: fixed;
@@ -485,12 +485,6 @@ a:visited{
 		/*background-color: #9E9E9E;*/
 		width: 100%;
 	}
-
-	body{
-		background-image: url("../prueba.jpeg");
-		background-size: 1300px 1100px;
-	}
-
 
 	footer{
 		background-color: black;

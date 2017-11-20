@@ -94,6 +94,7 @@ $rows = 3;
 						?>
 						<div style="margin-top: <?php echo $margin?>em; height: <?php echo $activity->getDuration()*4;?>em; background-color: <?php echo $activity->getColor();?>" class="actTable_activities vertical_middle_text">
 							<?=  $activity->getActivityName() ?>
+							<i><small><?= "\n" . substr($activity->getStartTime(),0,5) . "-" . substr($activity->getEndTime(),0,5) ?></small></i>
 						</div>					
 					<?php endforeach;
 					if($pos != 6) $pos++;  ?>

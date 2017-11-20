@@ -12,8 +12,9 @@ class Activity {
 	private $duration;
 	private $day;
 	private $monitor;
+	private $color;
 
-	public function __construct($activityName=NULL, $type=NULL, $day=NULL, $startTime=NULL, $endTime=NULL, $duration=NULL, $color=NULL, $monitor=NULL){
+	public function __construct($activityName=NULL, $type=NULL, $day=NULL, $startTime=NULL, $endTime=NULL, $color=NULL, $monitor=NULL, $duration=NULL){
 		$this->activityName = $activityName;
 		$this->type = $type;
 		$this->day = $day;
@@ -86,6 +87,16 @@ class Activity {
 
 	public function getMonitor(){
 		return $this->monitor;
+	}
+
+	//Update Validate
+	public function checkIsValidForUpdate() {
+		$errors = array();
+		
+		if (!isset($this->activityName)) {
+			$errors["name"] = "Name is mandatory";
+		}
+		
 	}
 	
 }

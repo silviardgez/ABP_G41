@@ -56,7 +56,7 @@ class ActivityController extends BaseController {
 		/*if($this->userMapper->findType() != "admin"){
 			throw new Exception("You aren't an admin. Deleting an user requires be admin");
 		}*/
-	
+
 		$activityName = $_REQUEST["id"];
 		$activity = $this->activityMapper->findActivityByName($activityName);
 
@@ -83,56 +83,38 @@ class ActivityController extends BaseController {
 			throw new Exception("You aren't an admin. Editing an user requires be admin");
 		}*/
 
-		// Get the User object from the database
-		$activityName = $_REQUEST["name"];
-		$activity = $this->activityMapper->findActivityByName($activityName);
-
-		if ($activity == NULL) {
-			throw new Exception("no such activity with name: ". $activityName);
+		//Solo recogemos los datos en la primera llamada
+		if(!isset($_POST["submit"])){
+			$activityName = $_REQUEST["name"];
+			$activities = $this->activityMapper->findActivitiesByName($activityName);
+			if ($activities == NULL) {
+				throw new Exception("no such activity with name: ". $activityName);
+			}
 		}
 
-		/*if (isset($_POST["submit"])) { 
-			$user->setName($_POST["nombre"]);
-			$user->setSurname($_POST["apellidos"]);
-			$user->setDateBorn($_POST["fechaNac"]);
-			$user->setEmail($_POST["email"]);
-			$user->setTlf($_POST["tel"]);
-			if($_POST["administrador"] == "1"){
-				$user->setAdmin(1);
-			}else{
-				$user->setAdmin(NULL);
-			}
-			if($_POST["deportista"] == "1"){
-				$user->setDeportist(1);
-			}else{
-				$user->setDeportist(NULL);
-			}
-			if($_POST["entrenador"] == "1"){
-				$user->setCoach(1);
-			}else{
-				$user->setCoach(NULL);
-			}
+		if (isset($_POST["submit"])) { 
 
-			try {
+			foreach ($activities as $activity) {	
+				$activity->setColor($_POST["color"]);
+				$activity->setActivityName($_POST["name"]);
+				try {
+					$activity->checkIsValidForUpdate(); // if it fails, ValidationException
+					$this->activityMapper->update($activity);
 
-				//validate user object
-				$user->checkIsValidForUpdate(); // if it fails, ValidationException
-
-				$this->userMapper->update($user);
-
-				$this->view->setFlash(sprintf(i18n("User \"%s\" successfully updated."),$user ->getUsername()));
-
-				$this->view->redirect("users", "show");
-
-			}catch(ValidationException $ex) {
+				} catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
+					$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
+					$this->view->setVariable("errors", $errors);
+				}
 			}
-		}*/
 
-		$this->view->setVariable("activity", $activity);
+			$this->view->setFlash(sprintf(i18n("Activity \"%s\" successfully updated."), $activityName));
+			$this->view->redirect("activity", "show");
+		}
+
+
+		$this->view->setVariable("activity", $activities[0]);
 
 		$this->view->render("activity", "edit");
 	}

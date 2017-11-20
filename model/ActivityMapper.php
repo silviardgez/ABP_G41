@@ -13,16 +13,17 @@ class ActivityMapper {
 	}
 
 	//Busca una actividad por nombre
-	public function findActivityByName($name){
+	public function findActivitiesByName($name){
 		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE NOMBRE=?");
 		$stmt->execute(array($name));
-		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
-		
-		if($activity != null) {
-			return new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"]);
-		} else {
-			return NULL;
+		$grupalActivities_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$grupalActivities = array();
+
+		foreach ($grupalActivities_db as $activity) {
+			array_push($grupalActivities, new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"]));
 		}
+
+		return $grupalActivities;
 	}
 
 	//Devuelve los nombres de todas las actividades grupales
@@ -48,7 +49,7 @@ class ActivityMapper {
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["DURACION"], $activity["COLOR"], $activity["DNI_ENTR"]));
+			array_push($grupalActivities, new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["DURACION"]));
 		}
 
 		return $grupalActivities;
@@ -59,7 +60,14 @@ class ActivityMapper {
 		$stmt->execute(array($activity->getActivityName()));
 	}
 
+	//Actualizar datos en común de las actividades
 	public function update(Activity $activity){
+		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`COLOR`=? WHERE NOMBRE=?");
+		$stmt->execute(array($activity->getActivityName(), $activity->getColor(), $activity->getactivityname()));
+	}
+
+	//Actualizar datos en común de las actividades
+	public function updateCurrent(Activity $activity){
 		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`TIPO`=?,`DIA`=?,`HORA_INI`=?,`HORA_FIN`=?,`COLOR`=?,`DNI_ENTR`=? WHERE NOMBRE=?");
 		$stmt->execute(array($activity->getActivityName(), $activity->getType(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor(), $activity->getactivityname()));
 	}
