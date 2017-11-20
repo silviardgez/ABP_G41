@@ -20,25 +20,25 @@ $rows = 3;
 			<?php foreach ($activitiesName as $activity): ?>
 				
 				<div class="activity_line">
+
 					<div style="width:50%; float:left; margin-bottom: 3px">
+						<input type="checkbox" id="chk_<?= htmlentities($activity) ?>" checked="checked" onclick="filterActivities('<?= htmlentities($activity) ?>');">
 						<?= htmlentities($activity) ?>
 					</div>
 					<div style="width:50%; float:right;" class="icons">
 						<form
 						method="POST"
-						action="index.php?controller=users&amp;action=delete"
+						action="index.php?controller=activity&amp;action=delete"
 						id="delete_activity_<?= $activity; ?>"
 						style="display: inline"
 						>
 
 						<input type="hidden" name="id" value="<?= $activity ?>">
 
-						<a 
-						onclick="
+						<a onclick="
 						if (confirm('<?= i18n("are you sure?")?>')) {
-							document.getElementById('delete_user_<?= $activity ?>').submit()
-						}"
-						><i class="fa fa-trash"></i></a>
+							document.getElementById('delete_activity_<?= $activity ?>').submit()
+						}"><i class="fa fa-trash"></i></a>
 
 					</form>
 					<a href="index.php?controller=users&amp;action=edit&amp;dni=<?= $activity ?>"><i class="fa fa-pencil-square-o"></i></a>

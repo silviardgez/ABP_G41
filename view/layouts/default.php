@@ -12,8 +12,8 @@ $currentuser = $view->getVariable("currentusername");
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<!-- enable ji18n() javascript function to translate inside your scripts -->
-	<script src="index.php?controller=language&amp;action=i18njs">
-	</script>
+	<script src="index.php?controller=language&amp;action=i18njs">	</script>
+	<script type="text/javscript" src="js/manage.js"></script>
 	<?= $view->getFragment("css") ?>
 	<?= $view->getFragment("javascript") ?>
 </head>

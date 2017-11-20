@@ -44,4 +44,30 @@ class ActivityController extends BaseController {
 		$this->view->render("activity", "show");
 	}
 
+	public function delete(){
+		if (!isset($_POST["id"])) {
+			throw new Exception("DNI is mandatory");
+		}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Deleting activity requires login");
+		}
+
+		/*if($this->userMapper->findType() != "admin"){
+			throw new Exception("You aren't an admin. Deleting an user requires be admin");
+		}*/
+	
+		$activityName = $_REQUEST["id"];
+		$activity = $this->activityMapper->findActivityByName($activityName);
+
+		if ($activity == NULL) {
+			throw new Exception("no such activity with name: ". $activityName);
+		}
+
+		$this->activityMapper->delete($activity);
+
+		$this->view->setFlash(sprintf(i18n("Activity \"%s\" successfully deleted."), $activityName));
+
+		$this->view->redirect("activity", "show");
+	}
+
 }

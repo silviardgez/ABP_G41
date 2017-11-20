@@ -12,6 +12,19 @@ class ActivityMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
+	//Busca una actividad por nombre
+	public function findActivityByName($name){
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE NOMBRE=?");
+		$stmt->execute(array($name));
+		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		if($activity != null) {
+			return new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["DURACION"], $activity["COLOR"]);
+		} else {
+			return NULL;
+		}
+	}
+
 	//Devuelve los nombres de todas las actividades grupales
 	public function getGrupalActivitiesName(){
 		$stmt = $this->db->prepare("SELECT NOMBRE FROM ACTIVIDAD where TIPO='GRUPAL' GROUP BY 1");
@@ -39,5 +52,10 @@ class ActivityMapper {
 		}
 
 		return $grupalActivities;
+	}
+
+	public function delete(Activity $activity){
+		$stmt = $this->db->prepare("DELETE from ACTIVIDAD WHERE NOMBRE=?");
+		$stmt->execute(array($activity->getActivityName()));
 	}
 }
