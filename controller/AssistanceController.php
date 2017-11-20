@@ -22,11 +22,11 @@ class AssistanceController extends BaseController {
 	}
 
 	public function show(){
-		/*if(!isset($this->currentUser)){
-			throw new Exception("Not in session. Show users requires login");
-		}*/
+		if(!isset($this->currentUser)){
+			throw new Exception("Not in session. Show assistance requires login");
+		}
 
-		/*if($this->assistanceMapper->findType() != "admin"){
+		/*if($this->assistanceMapper->findType() != "entrenador"){
 			throw new Exception("You aren't an admin. See all users requires be admin");
 		}*/
 

@@ -35,11 +35,10 @@ class ActivitiesstatisticsMapper {
 		$activities = array();
 
 		foreach ($activities_db as $activity) {
-			array_push($activities, new Activitiesstatistics($activity["NOMBRE"], $activity["ID_ACT"], null, null, null));
+			array_push($activities, new Activitiesstatistics($activity["NOMBRE"], $activity["ID_ACT"], null, null, null, null, null));
 		}
 
 		return $activities;
-
 	}
 
 	public function findStatistics($id, $confirmado, $deportista){
@@ -55,11 +54,18 @@ class ActivitiesstatisticsMapper {
 		$deportistas_db = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 		$deportistas = $deportistas_db[0]["COUNT(DEPORTISTA)"];
 		
+		$stmt3 = $this->db->prepare("SELECT COUNT(DISTINCT DNI_DEP) FROM `ASISTE`");
+		$stmt3->execute(array());
+		
+		$asistentes_db = $stmt3->fetchAll(PDO::FETCH_ASSOC); 
+		$asistentes = $asistentes_db[0]["COUNT(DISTINCT DNI_DEP)"];
+		
 		$porcentajeMatriculados = ($matriculados/$deportistas)*100;
+		$porcentajeAsistentes = ($asistentes/$matriculados)*100;
 		
 		$assistances = array();
 		
-		array_push($assistances, new Activitiesstatistics(null, null, $porcentajeMatriculados, $matriculados, $deportistas));
+		array_push($assistances, new Activitiesstatistics(null, null, $porcentajeMatriculados, $matriculados, $deportistas, $asistentes, $porcentajeAsistentes));
 
 		return $assistances;
 	}

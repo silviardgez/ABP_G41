@@ -2,7 +2,6 @@
 //file: view/assistance/view.php
 
 //include "libchart/libchart.php";
-
 //$chart = new VerticalBarChart(500, 250);
 
 require_once(__DIR__."/../../core/ViewManager.php");
@@ -21,23 +20,19 @@ $chart->setDataSet($dataSet);
 
 $chart->setTitle("Monthly usage for www.example.com");
 $chart->render("libchart/demo/generated/demo1.png");*/
-
-
-print_r($statistics);
-
 ?>
 
-<section class="pagecontent">
-	<div class="users">
-		<div class="margin">
-			<div class="home2">
-				<h1><?=i18n("Assistance")?></h1><br>
-				<?php foreach ($statistics as $statistic): ?>
-					<p>Total deportistas: <?= $statistic->getDeportistas(); ?></p>
-					<p>Matriculados: <?= $statistic->getMatriculados(); ?></p>
-					<p>Porcentaje matriculados: <?= $statistic->getPorcentajeMatriculados(); ?> %</p>
-				<?php endforeach; ?>
-			</div>
+<div class="users">
+	<div class="margin">
+		<div class="home2">
+			<h1><?=i18n("Statistics")?></h1><br>
+			<?php foreach ($statistics as $statistic): ?>
+				Total deportistas: <?= $statistic->getDeportistas(); ?><br/>
+				Matriculados: <?= $statistic->getMatriculados(); ?><br/>
+				Porcentaje matriculados: <?= $statistic->getPorcentajeMatriculados(); ?> %<br/>
+				Asistentes: <?= $statistic->getAsistentes(); ?><br/>
+				Porcentaje asistentes: <?= $statistic->getPorcentajeAsistentes(); ?> %<br/>
+			<?php endforeach; ?>
 		</div>
 	</div>
-</section>
+</div>

@@ -507,3 +507,50 @@ a:visited{
 		margin-bottom: 20px;
 	}
 }
+
+table {     
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;    
+	margin: auto;     
+	width: 480px; 
+	text-align: left;    
+	border-collapse: collapse; 
+	border-radius: 30px;
+}
+
+th {     
+	font-size: 16px;     
+	font-weight: normal;     
+	padding: 8px;     
+	background: #BBB4B3;
+    border-top: 4px solid #B4B4B4;    
+	border-bottom: 1px solid #fff; 
+	color: white; 
+}
+
+td {    
+	padding: 8px;     
+	background: #e8edff;     
+	border-bottom: 1px solid #fff;
+    color: #669;    
+	border-top: 1px solid transparent; 
+}
+
+tr:hover td { 
+	background: #d0dafd; 
+	color: #339; 
+}
+
+#button2 {
+	padding: 6px 6px 6px 6px;
+	color: #FFF;
+	background-color: #4bc970;
+	font-size: 13px;
+	text-align: center;
+	font-style: normal;
+	border-radius: 5px;  
+	border: 1px solid #3ac162;
+	border-width: 1px 1px 3px;
+	box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+	margin-bottom: 10px;
+}

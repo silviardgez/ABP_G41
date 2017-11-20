@@ -12,7 +12,7 @@ class AssistanceMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
-	/*public function findType(){
+	public function findType(){
 		$user = $_SESSION["currentuser"]; 
 		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DNI=?");
 		$stmt->execute(array($user));
@@ -25,7 +25,7 @@ class AssistanceMapper {
 		}else{
 			return "deportista";
 		}
-	}*/
+	}
 
 	public function showAllActivities(){
 		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD");
@@ -58,7 +58,7 @@ class AssistanceMapper {
 	}
 
 	public function findAssistance($id){
-		$stmt = $this->db->prepare("SELECT DNI_DEP, FECHA, HORA FROM `ASISTE` WHERE ID_ACT=?");
+		$stmt = $this->db->prepare("SELECT DNI_DEP, FECHA, HORA FROM `ASISTE` WHERE ID_ACT=? ORDER BY FECHA DESC");
 		$stmt->execute(array($id));
 		
 		$assistances_db = $stmt->fetchAll(PDO::FETCH_ASSOC);

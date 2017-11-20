@@ -8,13 +8,19 @@ class Activitiesstatistics{
 	private $activityname;
 	private $activityid;
 	private $porcentajeMatriculados;
+	private $matriculados;
+	private $deportistas;
+	private $asistentes;
+	private $porcentajeAsistentes;
 	
-	public function __construct($activityname=NULL, $activityid=NULL, $porcentajeMatriculados=NULL, $matriculados=NULL, $deportistas=NULL){
+	public function __construct($activityname=NULL, $activityid=NULL, $porcentajeMatriculados=NULL, $matriculados=NULL, $deportistas=NULL, $asistentes=NULL, $porcentajeAsistentes=NULL){
 		$this->activityname = $activityname;
 		$this->activityid = $activityid;
 		$this->porcentajeMatriculados = $porcentajeMatriculados;
 		$this->matriculados = $matriculados;
 		$this->deportistas = $deportistas;
+		$this->asistentes = $asistentes;
+		$this->porcentajeAsistentes = $porcentajeAsistentes;
 	}
 
 	public function setActivityname($activityname){
@@ -33,7 +39,7 @@ class Activitiesstatistics{
 		return $this->activityid;
 	}
 	
-	public function setPorcentajeMatriculadosd($porcentajeMatriculados){
+	public function setPorcentajeMatriculados($porcentajeMatriculados){
 		$this->porcentajeMatriculados = $porcentajeMatriculados;
 	}
 
@@ -57,7 +63,21 @@ class Activitiesstatistics{
 		return $this->deportistas;
 	}
 
+	public function setAsistentes($asistentes){
+		$this->asistentes = $asistentes;
+	}
+
+	public function getAsistentes(){
+		return $this->asistentes;
+	}
 	
+	public function setPorcentajeAsistentes($porcentajeAsistentes){
+		$this->porcentajeAsistentes = $porcentajeAsistentes;
+	}
+
+	public function getPorcentajeAsistentes(){
+		return $this->porcentajeAsistentes;
+	}
 /*
 	public function checkIsValidForUpdate() {
 		$errors = array();
