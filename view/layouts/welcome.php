@@ -155,8 +155,11 @@ $(document).ready(function() {
 	</header>
 	<main>
 		<!-- flash message -->
-		<div id="flash">
-			<?= $view->popFlash() ?>
+		<div class="flash">
+		<?php $acumulador = $view->popFlash() ?>
+
+		<?php if($acumulador != "") echo "<script>alert ('$acumulador');</script>"; ?>
+			
 		</div>
 		<?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
 	</main>
