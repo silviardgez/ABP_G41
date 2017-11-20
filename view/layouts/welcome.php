@@ -67,14 +67,14 @@ $(document).ready(function() {
 							<li><a href=""><?=i18n("Activities")?></a></li>
 						</ul>
 					</li>
-					<li><a href=""><?=i18n("Fitness")?></a>
+					<li><a href=""><?=i18n("Activities")?></a>
 						<ul>
-							<li><a href=""><?=i18n("Activities")?></a></li>
+							<li><a href="index.php?controller=activity&amp;action=show"><?=i18n("Classes")?></a></li>
 							<li><a href=""><?=i18n("Reservations")?></a></li>
 							<li><a href=""><?=i18n("Assistance")?></a></li>
 						</ul>
 					</li>
-					<li><a href=""><?=i18n("Activities")?></a>
+					<li><a href=""><?=i18n("Fitness")?></a>
 						<ul>
 							<li><a href="index.php?controller=exercises&amp;action=show"><?=i18n("Exercises")?></a></li>
 							<li><a href=""><?=i18n("Workouts")?></a></li>
@@ -95,7 +95,7 @@ $(document).ready(function() {
 					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
 					<li><a><?=i18n("User")?></a>
 						<ul>
-							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
+							<li><a><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Statistics")?></a>
@@ -104,7 +104,7 @@ $(document).ready(function() {
 							<li><a href=""><?=i18n("Activities")?></a></li>
 						</ul>
 					</li>
-					<li><a href=""><?=i18n("Fitness")?></a>
+					<li><a href=""><?=i18n("Activities")?></a>
 						<ul>
 							<li><a href=""><?=i18n("Activities")?></a></li>
 							<li><a href=""><?=i18n("Reservations")?></a></li>
@@ -113,7 +113,7 @@ $(document).ready(function() {
 					</li>
 					<li><a href=""><?=i18n("Activities")?></a>
 						<ul>
-							<li><a href="index.php?controller=users&amp;action=show"><?=i18n("Exercises")?></a></li>
+							<li><a href=""><?=i18n("Exercises")?></a></li>
 							<li><a href=""><?=i18n("Workouts")?></a></li>
 							<li><a href=""><?=i18n("Tables")?></a></li>
 						</ul>
@@ -132,13 +132,13 @@ $(document).ready(function() {
 					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
 					<li><a><?=i18n("Profile")?></a>
 						<ul>
-							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
+							<li><a><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
 							<li><a href=""><?=i18n("Notifications")?></a></li>
 							<li><a href=""><?=i18n("Sesions")?></a></li>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Workouts")?></a></li>
-					<li><a href="index.php?controller=users&amp;action=show"><?=i18n("Exercises")?></a></li>
+					<li><a href=""><?=i18n("Exercises")?></a></li>
 					<li><a href=""><?=i18n("Tables")?></a></li>
 					<li><a href=""><?=i18n("Services")?></a></li>
 					<li><a><?=i18n("Language")?></a>

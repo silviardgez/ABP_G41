@@ -33,8 +33,10 @@ CREATE TABLE `ACTIVIDAD` (
   `ID_ACT` int(11) UNSIGNED NOT NULL,
   `NOMBRE` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
   `TIPO` enum('INDIVIDUAL','GRUPAL') COLLATE latin1_spanish_ci NOT NULL DEFAULT 'GRUPAL',
+  `DIA` enum('LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO','DOMINGO') NOT NULL,
   `HORA_INI` time NOT NULL DEFAULT '00:00:00',
   `HORA_FIN` time NOT NULL DEFAULT '00:00:00',
+  `COLOR` varchar(7) COLLATE latin1_spanish_ci,
   `DNI_ENTR` varchar(9) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -177,13 +179,13 @@ CREATE TABLE `USUARIO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
--- A extraer os datos da táboa `USUARIO`
+-- Inserts
 --
 
 INSERT INTO `USUARIO` (`DNI`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NAC`, `ADMIN`, `ENTRENADOR`, `DEPORTISTA`, `ID_SESION`, `ID_TABLA`) VALUES
-('44484761R', 'e3928a3bc4be46516aa33a79bbdfdb08', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL, NULL, NULL),
-('44484762E', '926e27eecdbc7a18858b3798ba99bddd', 'Pepe', 'Fernández', 'dadad@gmail.com', '2017-11-07', NULL, NULL, 1, NULL, NULL),
-('44484762P', '926e27eecdbc7a18858b3798ba99bddd', 'Pepe', 'Glez', 'adsf@yahoo.com', '2017-11-08', NULL, 1, NULL, NULL, NULL);
+('12345678A', 'e3928a3bc4be46516aa33a79bbdfdb08', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL, NULL, NULL),
+('12345678B', '926e27eecdbc7a18858b3798ba99bddd', 'Pepe', 'Fernández', 'dadad@gmail.com', '2017-11-07', NULL, NULL, 1, NULL, NULL),
+('12345678C', '926e27eecdbc7a18858b3798ba99bddd', 'Pepe', 'Glez', 'adsf@yahoo.com', '2017-11-08', NULL, 1, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -307,6 +309,21 @@ ALTER TABLE `SESION`
 --
 ALTER TABLE `TABLA`
   MODIFY `ID_TABLA` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- INSERTS
+-- 
+
+INSERT INTO `ACTIVIDAD`(`NOMBRE`, `DIA`, `HORA_INI`, `HORA_FIN`, `COLOR`, `DNI_ENTR`) VALUES 
+('Zumba','MARTES','15:00','17:15', '#F9742C', '12345678C'),
+('Zumba','JUEVES','16:00','17:00', '#F9742C', '12345678C'),
+('Pilates','MIERCOLES','09:00','10:00', '#28E52E', '12345678C'),
+('Boxeo','JUEVES','11:30','13:30', '#26D9F9', '12345678C'),
+('Boxeo','MARTES','10:30','11:45', '#26D9F9', '12345678C'),
+('GAP','VIERNES','13:45','14:45', '#F3E22D', '12345678C'),
+('GAP','LUNES','19:00','20:00', '#F3E22D', '12345678C'),
+('Fitbike','LUNES','10:00','12:45', '#FA3BDD', '12345678C');
+
 --
 -- Restricións para os envorcados das táboas
 --
@@ -373,6 +390,7 @@ ALTER TABLE `TLF_USUARIO`
 --
 ALTER TABLE `USUARIO`
   ADD CONSTRAINT `USUARIO_ibfk_2` FOREIGN KEY (`ID_TABLA`) REFERENCES `TABLA` (`ID_TABLA`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

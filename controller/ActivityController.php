@@ -26,10 +26,20 @@ class ActivityController extends BaseController {
 		if(!isset($this->currentUser)){
 			throw new Exception("Not in session. Show users requires login");
 		}
-
-		$grupalActivities = $this->activityMapper->getGrupalActivities();
+		$grupalActivitiesName = $this->activityMapper->getGrupalActivitiesName();
+		$grupalActivitiesMonday = $this->activityMapper->getGrupalActivities("LUNES");
+		$grupalActivitiesTuesday = $this->activityMapper->getGrupalActivities("MARTES");
+		$grupalActivitiesWednesday = $this->activityMapper->getGrupalActivities("MIERCOLES");
+		$grupalActivitiesThursday = $this->activityMapper->getGrupalActivities("JUEVES");
+		$grupalActivitiesFriday = $this->activityMapper->getGrupalActivities("VIERNES");
+		$grupalActivitiesSaturday = $this->activityMapper->getGrupalActivities("SABADO");
+		$grupalActivitiesSunday = $this->activityMapper->getGrupalActivities("DOMINGO");
+		$grupalActivities = array($grupalActivitiesMonday, $grupalActivitiesTuesday, $grupalActivitiesWednesday,
+			$grupalActivitiesThursday, $grupalActivitiesFriday, $grupalActivitiesSaturday, $grupalActivitiesSunday);
 		// put the users object to the view
+		$this->view->setVariable("activitiesName", $grupalActivitiesName);
 		$this->view->setVariable("grupalActivities", $grupalActivities);
+
 		// render the view (/view/users/show.php)
 		$this->view->render("activity", "show");
 	}

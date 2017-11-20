@@ -9,12 +9,15 @@ class Activity {
 	private $type;
 	private $startTime;
 	private $endTime;
+	private $duration;
 
-	public function __construct($activityName=NULL, $type=NULL, $startTime=NULL, $endTime=NULL){
+	public function __construct($activityName=NULL, $type=NULL, $startTime=NULL, $endTime=NULL, $duration=NULL, $color=NULL){
 		$this->activityName = $activityName;
 		$this->type = $type;
 		$this->startTime = $startTime;
 		$this->endTime = $endTime;
+		$this->duration = $duration;
+		$this->color = $color;
 	}
 
 	public function setActivityName($activityName){
@@ -33,6 +36,14 @@ class Activity {
 		$this->endTime = $endTime;
 	}
 
+	public function setDuration($duration){
+		$this->duration = $duration;
+	}
+
+	public function setColor($color){
+		$this->color = $color;
+	}
+
 	public function getActivityName(){
 		return $this->activityName;
 	}
@@ -47,6 +58,14 @@ class Activity {
 
 	public function getEndTime(){
 		return $this->endTime;
+	}
+
+	public function getDuration(){
+		return $this->duration;
+	}
+
+	public function getColor(){
+		return $this->color;
 	}
 	
 }
