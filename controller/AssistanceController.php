@@ -57,9 +57,9 @@ class AssistanceController extends BaseController {
 		// find the User object in the database
 		$assistances = $this->assistanceMapper->findAssistance($id);
 
-		if ($assistances == NULL) {
+		/*if ($assistances == NULL) {
 			throw new Exception("no assistants for the activity with ID: ".$id);
-		}
+		}*/
 
 		// put the user object to the view
 		$this->view->setVariable("assistances", $assistances);
@@ -70,10 +70,10 @@ class AssistanceController extends BaseController {
 
 	public function add(){
 		
-		/*if (!isset($this->currentUser)) {
+		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding users requires login");
 		}
-
+/*
 		if($this->userMapper->findType() != "admin"){
 			throw new Exception("You aren't an admin. Adding an user requires be admin");
 		}*/

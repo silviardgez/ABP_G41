@@ -3,20 +3,20 @@
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../core/I18n.php");
 
-require_once(__DIR__."/../model/Activitiesstatistics.php");
-require_once(__DIR__."/../model/ActivitiesstatisticsMapper.php");
+require_once(__DIR__."/../model/Athletesstatistics.php");
+require_once(__DIR__."/../model/AthletesstatisticsMapper.php");
 
 require_once(__DIR__."/../controller/BaseController.php");
 
 
-class ActivitiesstatisticsController extends BaseController {
+class AthletesstatisticsController extends BaseController {
 
-	private $activitiesstatisticsMapper;
+	private $athletesstatisticsMapper;
 
 	public function __construct() {
 		parent::__construct();
 
-		$this->activitiesstatisticsMapper = new ActivitiesstatisticsMapper();
+		$this->athletesstatisticsMapper = new AthletesstatisticsMapper();
 
 		$this->view->setLayout("welcome");
 	}
@@ -30,18 +30,18 @@ class ActivitiesstatisticsController extends BaseController {
 			throw new Exception("You aren't an admin. See all users requires be admin");
 		}*/
 
-		$activities = $this->activitiesstatisticsMapper->showAllActivities();
+		$deportists = $this->athletesstatisticsMapper->showAllDeportists();
 
 		// put the users object to the view
-		$this->view->setVariable("activities", $activities);
+		$this->view->setVariable("deportists", $deportists);
 
 		// render the view (/view/activitiesstatistics/show.php)
-		$this->view->render("activitiesstatistics", "show");
+		$this->view->render("athletesstatistics", "show");
 	}
 
 	public function view(){
-		if (!isset($_GET["id_act"])) {
-			throw new Exception("Id is mandatory");
+		if (!isset($_GET["dni"])) {
+			throw new Exception("Dni is mandatory");
 		}
 
 		if (!isset($this->currentUser)) {
@@ -52,12 +52,12 @@ class ActivitiesstatisticsController extends BaseController {
 			throw new Exception("You aren't an admin. View an user requires be admin");
 		}*/
 
-		$id = $_GET["id_act"];
+		$dni = $_GET["dni"];
 		$confirmado=1;
 		$deportista=1;
 
 		// find the User object in the database
-		$statistics = $this->activitiesstatisticsMapper->findStatistics($id, $confirmado, $deportista);
+		$statistics = $this->athletesstatisticsMapper->findStatistics($dni, $confirmado, $deportista);
 
 		if ($statistics == NULL) {
 			throw new Exception("no such activities with ID: ".$id);
@@ -67,7 +67,7 @@ class ActivitiesstatisticsController extends BaseController {
 		$this->view->setVariable("statistics", $statistics);
 
 		// render the view (/view/users/view.php)
-		$this->view->render("activitiesstatistics", "view");
+		$this->view->render("athletesstatistics", "view");
 	}
 /*
 	public function add(){
