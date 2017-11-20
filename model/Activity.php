@@ -10,14 +10,18 @@ class Activity {
 	private $startTime;
 	private $endTime;
 	private $duration;
+	private $day;
+	private $monitor;
 
-	public function __construct($activityName=NULL, $type=NULL, $startTime=NULL, $endTime=NULL, $duration=NULL, $color=NULL){
+	public function __construct($activityName=NULL, $type=NULL, $day=NULL, $startTime=NULL, $endTime=NULL, $duration=NULL, $color=NULL, $monitor=NULL){
 		$this->activityName = $activityName;
 		$this->type = $type;
+		$this->day = $day;
 		$this->startTime = $startTime;
 		$this->endTime = $endTime;
 		$this->duration = $duration;
 		$this->color = $color;
+		$this->monitor = $monitor;
 	}
 
 	public function setActivityName($activityName){
@@ -44,6 +48,14 @@ class Activity {
 		$this->color = $color;
 	}
 
+	public function setDay($day){
+		$this->day = $day;
+	}
+
+	public function setMonitor($monitor){
+		$this->monitor = $monitor;
+	}
+
 	public function getActivityName(){
 		return $this->activityName;
 	}
@@ -66,6 +78,14 @@ class Activity {
 
 	public function getColor(){
 		return $this->color;
+	}
+
+	public function getDay(){
+		return $this->day;
+	}
+
+	public function getMonitor(){
+		return $this->monitor;
 	}
 	
 }

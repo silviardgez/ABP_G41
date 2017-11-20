@@ -1,5 +1,5 @@
 <?php
-// file: model/UserMapper.php
+// file: model/activityMapper.php
 
 require_once(__DIR__."/../core/PDOConnection.php");
 
@@ -57,5 +57,10 @@ class ActivityMapper {
 	public function delete(Activity $activity){
 		$stmt = $this->db->prepare("DELETE from ACTIVIDAD WHERE NOMBRE=?");
 		$stmt->execute(array($activity->getActivityName()));
+	}
+
+	public function update(Activity $activity){
+		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`TIPO`=?,`DIA`=?,`HORA_INI`=?,`HORA_FIN`=?,`COLOR`=?,`DNI_ENTR`=? WHERE NOMBRE=?");
+		$stmt->execute(array($activity->getActivityName(), $activity->getType(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor(), $activity->getactivityname()));
 	}
 }
