@@ -118,13 +118,13 @@ class UsersController extends BaseController {
 			$user->setTlf($_POST["tel"]);
 			$user->setUsername($_POST["dni"]);
 			$user->setPass($_POST["pass"]);
-			if($_POST["administrador"] == "1"){
+			if(isset($_POST["administrador"]) && $_POST["administrador"] == "1"){
 				$user->setAdmin(1);
 			}
-			if($_POST["deportista"] == "1"){
+			if(isset($_POST["deportista"]) && $_POST["deportista"] == "1"){
 				$user->setDeportist(1);
 			}
-			if($_POST["entrenador"] == "1"){
+			if(isset($_POST["entrenador"]) && $_POST["entrenador"] == "1"){
 				$user->setCoach(1);
 			}
 
