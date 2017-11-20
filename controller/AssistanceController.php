@@ -3,142 +3,107 @@
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../core/I18n.php");
 
-require_once(__DIR__."/../model/User.php");
-require_once(__DIR__."/../model/UserMapper.php");
+require_once(__DIR__."/../model/Assistance.php");
+require_once(__DIR__."/../model/AssistanceMapper.php");
 
 require_once(__DIR__."/../controller/BaseController.php");
 
 
-class UsersController extends BaseController {
+class AssistanceController extends BaseController {
 
-	
-	private $userMapper;
+	private $assistanceMapper;
 
 	public function __construct() {
 		parent::__construct();
 
-		$this->userMapper = new UserMapper();
+		$this->assistanceMapper = new AssistanceMapper();
 
 		$this->view->setLayout("welcome");
 	}
 
-	public function login() {
-		if (isset($_POST["username"])){ 
-
-			if ($this->userMapper->isValidUser($_POST["username"], $_POST["passwd"])) {
-
-				$_SESSION["currentuser"]=$_POST["username"];
-
-				$this->view->redirect("login", "home");
-
-			}else{
-				$errors = array();
-				$errors["general"] = "Username is not valid";
-				$this->view->setVariable("errors", $errors);
-			}
-		}
-
-		// render the view (/view/login/login.php)
-		$this->view->render("login", "login");
-	}
-
-	public function logout() {
-		session_destroy();
-
-		$this->view->redirect("login", "index");
-
-	}
-
 	public function show(){
-		if(!isset($this->currentUser)){
+		/*if(!isset($this->currentUser)){
 			throw new Exception("Not in session. Show users requires login");
-		}
+		}*/
 
-		if($this->userMapper->findType() != "admin"){
+		/*if($this->assistanceMapper->findType() != "admin"){
 			throw new Exception("You aren't an admin. See all users requires be admin");
-		}
+		}*/
 
-		$users = $this->userMapper->showAllUsers();
+		$activities = $this->assistanceMapper->showAllActivities();
 
 		// put the users object to the view
-		$this->view->setVariable("users", $users);
+		$this->view->setVariable("activities", $activities);
 
 		// render the view (/view/users/show.php)
-		$this->view->render("users", "show");
+		$this->view->render("assistance", "show");
 	}
 
 	public function view(){
-		if (!isset($_GET["dni"])) {
-			throw new Exception("DNI is mandatory");
+		if (!isset($_GET["id_act"])) {
+			throw new Exception("Id is mandatory");
 		}
 
-		if (!isset($this->currentUser)) {
+		/*if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. View Users requires login");
-		}
+		}*/
 
-		if($this->userMapper->findType() != "admin"){
+		/*if($this->userMapper->findType() != "admin"){
 			throw new Exception("You aren't an admin. View an user requires be admin");
-		}
+		}*/
 
-		$dni = $_GET["dni"];
+		$id = $_GET["id_act"];
 
 		// find the User object in the database
-		$user = $this->userMapper->findUserByDNI($dni);
+		$assistances = $this->assistanceMapper->findAssistance($id);
 
-		if ($user == NULL) {
-			throw new Exception("no such user with DNI: ".$dni);
+		if ($assistances == NULL) {
+			throw new Exception("no such activities with ID: ".$id);
 		}
 
 		// put the user object to the view
-		$this->view->setVariable("user", $user);
+		$this->view->setVariable("assistances", $assistances);
 
 		// render the view (/view/users/view.php)
-		$this->view->render("users", "view");
+		$this->view->render("assistance", "view");
 	}
 
 	public function add(){
 		
-		if (!isset($this->currentUser)) {
+		/*if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding users requires login");
 		}
 
 		if($this->userMapper->findType() != "admin"){
 			throw new Exception("You aren't an admin. Adding an user requires be admin");
+		}*/
+		if (!isset($_GET["id_act"])) {
+			throw new Exception("Id is mandatory");
 		}
-
-		$user = new User();
+		
+		$confirmado = 1;
+		$id = $_GET["id_act"];
+		$assistants = $this->assistanceMapper->showAllAssistants($id, $confirmado);
+		
+		$assistance = new Assistance();
+		
+		$assistance->setActivityid($id);
 
 		if(isset($_POST["submit"])) { // reaching via HTTP user...
 
 			// populate the user object with data form the form
-			$user->setName($_POST["nombre"]);
-			$user->setSurname($_POST["apellidos"]);
-			$user->setDateBorn($_POST["fechaNac"]);
-			$user->setEmail($_POST["email"]);
-			$user->setTlf($_POST["tel"]);
-			$user->setUsername($_POST["dni"]);
-			$user->setPass($_POST["pass"]);
-			if(isset($_POST["administrador"]) && $_POST["administrador"] == "1"){
-				$user->setAdmin(1);
-			}
-			if(isset($_POST["deportista"]) && $_POST["deportista"] == "1"){
-				$user->setDeportist(1);
-			}
-			if(isset($_POST["entrenador"]) && $_POST["entrenador"] == "1"){
-				$user->setCoach(1);
-			}
+			$assistance->setActivityid($id);
+			$assistance->setDni($_POST["asistente"]);
+			$assistance->setDateassistance($_POST["fecha"]);
+			$assistance->setTime($_POST["hora"]);
 
 			try {
-				// validate user object
-				$user->ValidRegister($_POST["rpass"]); // if it fails, ValidationException
-
 				//save the user object into the database
-				$this->userMapper->add($user);
+				$this->assistanceMapper->add($assistance);
 
-				$this->view->setFlash(sprintf(i18n("user \"%s\" successfully added."),$user ->getUsername()));
-
-				$this->view->redirect("users", "show");
-
+				$this->view->setFlash(sprintf(i18n("assistance \"%s\" successfully added."),$assistance ->getDni()));
+				
+				//$this->view->redirect("assistance", "show");
 			}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
@@ -148,11 +113,12 @@ class UsersController extends BaseController {
 		}
 
 		// Put the user object visible to the view
-		$this->view->setVariable("user", $user);
+		$this->view->setVariable("assistance", $assistance);
+		$this->view->setVariable("assistants", $assistants);
 		// render the view (/view/users/add.php)
-		$this->view->render("users", "add");
+		$this->view->render("assistance", "add");
 	}
-
+/*
 	public function delete(){
 		if (!isset($_POST["id"])) {
 			throw new Exception("DNI is mandatory");
@@ -211,7 +177,7 @@ class UsersController extends BaseController {
 			}else{
 				$user->setAdmin(NULL);
 			}
-			if($_POST["deportista"] == "1"){
+			 if($_POST["deportista"] == "1"){
 				$user->setDeportist(1);
 			}else{
 				$user->setDeportist(NULL);
@@ -318,113 +284,5 @@ class UsersController extends BaseController {
 		$this->view->setVariable("user", $user);
 
 		$this->view->render("users", "editcurrent");
-	}
-
-	public function recover(){
-
-		$user = new User();
-
-		if(isset($_POST["submit"])) { // reaching via HTTP user...
-
-			// populate the user object with data form the form
-			$user->setUsername($_POST["dni"]);
-			$user->setEmail($_POST["email"]);
-
-			try {
-				// validate user object
-				$user->ValidRecover($_POST["dni"], $_POST["email"]); // if it fails, ValidationException
-
-				//send email to the user
-				$this->sendEmail($user);
-
-				$this->view->setFlash(sprintf(i18n("An email was sent to \"%s\"."),$user ->getEmail()));
-
-				$this->view->redirect("login", "index");
-
-			}catch(ValidationException $ex) {
-				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
-				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
-			}
-		}
-
-		// Put the user object visible to the view
-		$this->view->setVariable("user", $user);
-		// render the view (/view/login/recover.php)
-		$this->view->render("login", "recover");
-	}
-
-	public function sendEmail(User $user){
-		require_once(__DIR__."/../PHPMailer_5.2.4/class.phpmailer.php");
-
-		//Receive all the parameters of the form
-		$para = $user->getEmail();
-		$asunto = "Recuperación de Contraseña//Password Recovery";
-		$mensaje = "Puede recuperar su contraseña haciendo click en el siguiente enlace:\nYou can retrieve your password by clicking on the following link:\n\nhttp://localhost/abp/index.php?controller=users&action=newpass";
-
-		//This block is important
-		$mail = new PHPMailer();
-		$mail->IsSMTP();
-		$mail->SMTPAuth = true;
-		$mail->SMTPSecure = "ssl";
-		$mail->Host = "smtp.gmail.com";
-		$mail->Port = 465;
-		// Activate condification utf-8
-		$mail->CharSet = 'UTF-8';
-
-		//Our account
-		$mail->Username ='bsbasports@gmail.com';
-		$mail->Password = 'asignaturaabp'; //Su password
-
-		//Add recipient
-		$mail->AddAddress($para);
-		$mail->Subject = $asunto;
-		$mail->Body = $mensaje;
-		//To attach file
-		//$mail->AddAttachment($archivo['tmp_name'], $archivo['name']);
-		$mail->MsgHTML($mensaje);
-
-		//Send email
-		$mail->Send();
-
-	}
-
-	public function newpass(){
-		$user = new User();
-
-		if(isset($_POST["submit"])) { // reaching via HTTP user...
-
-			$dni = $_POST["dni"];
-			$pass = $_POST["pass"];
-
-			try {
-				$user->setUsername($dni);
-				$user->setPass($pass);
-				// validate user object
-				$user->ValidRecoverPass($dni, $pass, $_POST["rpass"]); // if it fails, ValidationException
-
-				$user2 = $this->userMapper->findUserByDNI($dni);
-				
-				//save the user object into the database
-				$user2->setPass(md5($pass));
-				$this->userMapper->update($user2);
-
-				$this->view->setFlash(sprintf(i18n("User \"%s\" successfully updated."),$user2 ->getName()));
-
-				$this->view->redirect("login", "index");
-
-			}catch(ValidationException $ex) {
-				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
-				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
-			}
-		}
-
-		// Put the user object visible to the view
-		//$this->view->setVariable("user", $user);
-		// render the view (/view/login/recover.php)
-		$this->view->render("login", "newpassword");
-	}
+	}*/
 }

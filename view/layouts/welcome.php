@@ -64,15 +64,15 @@ $(document).ready(function() {
 					</li>
 					<li><a href=""><?=i18n("Statistics")?></a>
 						<ul>
-							<li><a href=""><?=i18n("Athletes")?></a></li>
-							<li><a href=""><?=i18n("Activities")?></a></li>
+							<li><a href="index.php?controller=athletesstatistics&amp;action=show"><?=i18n("Athletes")?></a></li>
+							<li><a href="index.php?controller=activitiesstatistics&amp;action=show"><?=i18n("Activities")?></a></li>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Activities")?></a>
 						<ul>
 							<li><a href="index.php?controller=activity&amp;action=show"><?=i18n("Classes")?></a></li>
 							<li><a href=""><?=i18n("Reservations")?></a></li>
-							<li><a href=""><?=i18n("Assistance")?></a></li>
+							<li><a href="index.php?controller=assistance&amp;action=show"><?=i18n("Assistance")?></a></li>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Fitness")?></a>
