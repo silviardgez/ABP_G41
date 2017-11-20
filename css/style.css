@@ -24,7 +24,11 @@ header {
 
 body{
 	background-image: url("../prueba.jpeg");
-	background-size: 1400px 800px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #464646;
 }
 
 footer{
@@ -122,19 +126,6 @@ ul, ol {
 	border-radius: 8px;
 }
 
-.activitiesBody{
-	width: 700px;
-	margin: 5em 0em 5em 0em;
-	padding: 10px 20px;
-	background: #f4f7f8;
-	border-radius: 8px;
-	float: left;
-}
-
-.activity_line{
-	height: 2.5em;
-}
-
 .users{
 	display: flex;
 	flex-direction: row;
@@ -184,6 +175,7 @@ input[type="text"],
 input[type="password"],
 input[type="date"],
 input[type="datetime"],
+input[type="checkbox"],
 input[type="email"],
 input[type="file"],
 input[type="number"],
@@ -203,7 +195,7 @@ select {
 	padding: 6px;
 	width: 100%;
 	background-color: #e8eeef;
-	color: #4b4747;
+	color: #8a97a0;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	margin-bottom: 30px;
 }
@@ -231,63 +223,6 @@ button {
 	border-width: 1px 1px 3px;
 	box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
 	margin-bottom: 10px;
-}
-
-.actTable_container {
-	font: .9em Arial, Helvetica, sans-serif;
-	text-align: center;
-	width:100%;
-	align-content: top;
-}
-
-.actTable_header {
-	background: #8D8B8B;
-	padding: 0 .3em;
-	font-weight: bold;
-	border: 1px solid #333;
-	margin-bottom: 1px;
-}
-
-.activitiesMenu{
-margin: 9em 5em auto 5em;
-width: 18em;
-}
-
-.actTable_hour {
-	background: #B2CFEA;
-	border: 1px solid #333;
-	font-weight: bold;
-	height: 4em;
-}
-
-.actTable_activities {
-	background: #B2CFEA;
-	border: 1px solid #333;
-	font-weight: bold;
-	height: 4em;
-	border-radius: 10%;
-	margin-left: 1px;
-}
-
-.vertical_middle_text{
-	display: flex;
-	justify-content: center;
-	align-content: center;
-	flex-direction: column;
-}
-
-#actTable_col_hours{
-	width: 9%;
-}
-.actTable_col {
-	width: 13%;
-	display:inline-block;
-	float: left;
-
-}
-
-table td:hover {
-	background: #FFFF66 !important;
 }
 
 #login{
@@ -327,12 +262,6 @@ table td:hover {
 .btn-group .btn-fab{
 	position: fixed !important;
 	right: 20px;
-}
-
-.btn-group-act .btn-fab{
-	position: fixed;
-	left: 8.7em;
-	top: 12em;
 }
 
 a:link  {   
@@ -423,11 +352,6 @@ a:visited{
 		position: relative;
 	}
 
-	body{
-		background-image: url("../prueba.jpeg");
-		background-size: 1400px 800px;
-	}
-
 	footer{
 		background-color: black;
 		position: fixed;
@@ -485,12 +409,6 @@ a:visited{
 		/*background-color: #9E9E9E;*/
 		width: 100%;
 	}
-
-	body{
-		background-image: url("../prueba.jpeg");
-		background-size: 1300px 1100px;
-	}
-
 
 	footer{
 		background-color: black;
