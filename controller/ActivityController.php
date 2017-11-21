@@ -93,8 +93,9 @@ class ActivityController extends BaseController {
 		}
 
 		if (isset($_POST["submit"])) { 
-
+			echo "JAJAJAJAJAJ";
 			foreach ($activities as $activity) {	
+				echo "LALALA " . $activity->getActivityName();
 				$activity->setColor($_POST["color"]);
 				$activity->setActivityName($_POST["name"]);
 				try {

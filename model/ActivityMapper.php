@@ -63,7 +63,8 @@ class ActivityMapper {
 	//Actualizar datos en común de las actividades
 	public function update(Activity $activity){
 		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`COLOR`=? WHERE NOMBRE=?");
-		$stmt->execute(array($activity->getActivityName(), $activity->getColor(), $activity->getactivityname()));
+		echo "HOLA " . $stmt;
+		$stmt->execute(array($activity->getActivityName(), $activity->getColor(), $activity->getActivityName()));
 	}
 
 	//Actualizar datos en común de las actividades
