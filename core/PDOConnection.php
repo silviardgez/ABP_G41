@@ -4,7 +4,7 @@
 class PDOConnection {
 	private static $dbhost = "localhost";
 	private static $dbname = "BSBASports";
-	private static $dbuser = ""; //Colocar usuario de la bd
+	private static $dbuser = "root"; //Colocar usuario de la bd
 	private static $dbpass = ""; //Colocar password de la bd
 	private static $db_singleton = null;
 

@@ -10,14 +10,18 @@ class Assistance{
 	private $dni;
 	private $dateassistance;
 	private $timeassistance;
+	private $dia;
+	private $horainicio;
 
 	
-	public function __construct($activityname=NULL, $activityid=NULL, $dni=NULL, $dateassistance=NULL, $timeassistance=NULL){
+	public function __construct($activityname=NULL, $activityid=NULL, $dia=NULL, $horainicio=NULL, $dni=NULL, $dateassistance=NULL, $timeassistance=NULL){
 		$this->activityname = $activityname;
 		$this->activityid = $activityid;
 		$this->dni = $dni;
 		$this->dateassistance = $dateassistance;
 		$this->timeassistance = $timeassistance;
+		$this->dia = $dia;
+		$this->horainicio = $horainicio;
 	}
 
 	public function setActivityname($activityname){
@@ -44,7 +48,6 @@ class Assistance{
 		return $this->dni;
 	}
 	
-	
 	public function setDateassistance($dateassistance){
 		$this->dateassistance = $dateassistance;
 	}
@@ -59,6 +62,22 @@ class Assistance{
 
 	public function getTime(){
 		return $this->timeassistance;
+	}
+	
+	public function setDia($dia){
+		$this->dia = $dia;
+	}
+
+	public function getDia(){
+		return $this->dia;
+	}
+	
+	public function setHorainicio($horainicio){
+		$this->horainicio = $horainicio;
+	}
+
+	public function getHorainicio(){
+		return $this->horainicio;
 	}
 
 	

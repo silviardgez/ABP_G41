@@ -35,7 +35,7 @@ class AssistanceMapper {
 		$activities = array();
 
 		foreach ($activities_db as $activity) {
-			array_push($activities, new Assistance($activity["NOMBRE"], $activity["ID_ACT"], null, null, null));
+			array_push($activities, new Assistance($activity["NOMBRE"], $activity["ID_ACT"], $activity["DIA"], $activity["HORA_INI"], null, null, null));
 		}
 
 		return $activities;
@@ -50,7 +50,7 @@ class AssistanceMapper {
 		$assistants = array();
 
 		foreach ($assistants_db as $assistant) {
-			array_push($assistants, new Assistance(null, null, $assistant["DNI_DEP"], null, null));
+			array_push($assistants, new Assistance(null, null, null, null, $assistant["DNI_DEP"], null, null));
 		}
 
 		return $assistants;
@@ -66,7 +66,7 @@ class AssistanceMapper {
 		$assistances = array();
 
 		foreach ($assistances_db as $assistance) {
-			array_push($assistances, new Assistance(null, null, $assistance["DNI_DEP"], $assistance["FECHA"], $assistance["HORA"]));
+			array_push($assistances, new Assistance(null, null, null, null, $assistance["DNI_DEP"], $assistance["FECHA"], $assistance["HORA"]));
 		}
 
 		return $assistances;
