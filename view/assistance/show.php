@@ -14,7 +14,7 @@ $view->setVariable("title", "Show Activities");
 		<h1><?=i18n("Activities")?></h1><br>
 			<table>
 				<tr>
-					<th><?=i18n("Activity")?></th>
+					<th><?=i18n("View assistance")?></th>
 					<th><?=i18n("Day")?></th>
 					<th><?=i18n("Time")?></th>
 					<th></th>

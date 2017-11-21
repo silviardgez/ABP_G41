@@ -14,8 +14,8 @@ $view->setVariable("title", "Show deportists");
 		<h1><?=i18n("Deportists")?></h1><br>
 			<table>
 				<tr>
-					<th><?=i18n("Dni")?></th>
-					<th><?=i18n("Name")?></th>
+					<th><?=i18n("View user")?></th>
+					<th><?=i18n("View statistic")?></th>
 				</tr>
 				<?php foreach ($deportists as $deportist): ?>
 				
