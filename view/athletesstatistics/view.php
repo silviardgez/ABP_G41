@@ -27,8 +27,6 @@ $chart->render("libchart/demo/generated/demo1.png");*/
 		<div class="home2">
 			<h1><?=i18n("Statistics")?></h1><br>
 			<?php foreach ($statistics as $statistic): ?>
-				
-				
 				Asiste a: <?= $statistic->getAsistenciaActividades(); ?> actividades<br/>
 				Está matriculado en: <?= $statistic->getMatriculas(); ?> actividades<br/>
 				Ha asistido: <?= $statistic->getAsistenciasTotales(); ?> veces al gimnasio<br/>

@@ -12,21 +12,6 @@ class ActivitiesstatisticsMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
-	/*public function findType(){
-		$user = $_SESSION["currentuser"]; 
-		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DNI=?");
-		$stmt->execute(array($user));
-		$array = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		if($array["ADMIN"] == 1) {
-			return "admin";
-		} else if($array["ENTRENADOR"] == 1){
-			return "entrenador";
-		}else{
-			return "deportista";
-		}
-	}*/
-
 	public function showAllActivities(){
 		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD");
 		$stmt->execute();
@@ -35,7 +20,7 @@ class ActivitiesstatisticsMapper {
 		$activities = array();
 
 		foreach ($activities_db as $activity) {
-			array_push($activities, new Activitiesstatistics($activity["NOMBRE"], $activity["ID_ACT"], null, null, null, null, null));
+			array_push($activities, new Activitiesstatistics($activity["NOMBRE"], $activity["ID_ACT"], $activity["DIA"], $activity["HORA_INI"], null, null, null, null, null));
 		}
 
 		return $activities;
@@ -65,7 +50,7 @@ class ActivitiesstatisticsMapper {
 		
 		$assistances = array();
 		
-		array_push($assistances, new Activitiesstatistics(null, null, $porcentajeMatriculados, $matriculados, $deportistas, $asistentes, $porcentajeAsistentes));
+		array_push($assistances, new Activitiesstatistics(null, null, null, null, $porcentajeMatriculados, $matriculados, $deportistas, $asistentes, $porcentajeAsistentes));
 
 		return $assistances;
 	}

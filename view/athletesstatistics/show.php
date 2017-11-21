@@ -11,16 +11,24 @@ $view->setVariable("title", "Show deportists");
 
 <div class="users">
 	<div class="margin">
-		<div class="home2">
 		<h1><?=i18n("Deportists")?></h1><br>
-			<?php foreach ($deportists as $deportist): ?>
-				<a href="index.php?controller=users&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><?= $deportist->getDni(); ?> </a>
-				<a href="index.php?controller=athletesstatistics&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>">
-					<?= $deportist->getDeportistname(); ?> 
-					<?= $deportist->getDeportistsurname(); ?>
-				</a>
-				<br/>
-			<?php endforeach; ?>
+			<table>
+				<tr>
+					<th><?=i18n("Dni")?></th>
+					<th><?=i18n("Name")?></th>
+				</tr>
+				<?php foreach ($deportists as $deportist): ?>
+				
+					<tr>
+						<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><?= $deportist->getDni(); ?> </a></td>
+						<td><a href="index.php?controller=athletesstatistics&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>">
+								<?= $deportist->getDeportistname(); ?> 
+								<?= $deportist->getDeportistsurname(); ?>
+							</a>
+						</td>
+					<tr/>
+				<?php endforeach; ?>
+			</table>
 		</div>
 	</div>
 </div>

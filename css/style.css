@@ -509,6 +509,11 @@ a:visited{
 		margin-right: 45px;
 		margin-bottom: 45px;
 	}
+	
+	.btn-group-sm .btn-fab{
+		position: fixed !important;
+		right: 29px;
+	}
 }
 
 table {     
