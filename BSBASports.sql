@@ -185,8 +185,11 @@ CREATE TABLE `USUARIO` (
 
 INSERT INTO `USUARIO` (`DNI`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NAC`, `ADMIN`, `ENTRENADOR`, `DEPORTISTA`, `ID_SESION`, `ID_TABLA`) VALUES
 ('12345678Z', '21232f297a57a5a743894a0e4a801fc3', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL, NULL, NULL),
-('12345679S', '74d996a70f40c654f73f9b56c63fc28a', 'Pepe', 'Fernández', 'dadad@gmail.com', '2017-11-07', NULL, NULL, 1, NULL, NULL),
-('12345670Y', 'a990ba8861d2b344810851e7e6b49104', 'Pepe', 'Glez', 'adsf@yahoo.com', '2017-11-08', NULL, 1, NULL, NULL, NULL);
+('12345679S', '74d996a70f40c654f73f9b56c63fc28a', 'Pepe', 'Fernández', 'rosilvia@hotmail.com', '2017-11-07', NULL, NULL, 1, NULL, NULL),
+('11111111H', 'e77a37f64e93e3e3e0211e76bfe512b7', 'Brais', 'Domínguez', 'braisda@gmail.com', '1991-07-10', NULL, 1, 1, NULL, NULL),
+('22222222J', 'e5cb7c411f1d9a67f68deff4a954cfbc', 'Silvia', 'Rodríguez', 'silviardguez@gmail.com', '1995-08-17', NULL, NULL, 1, NULL, NULL),
+('33333333P', 'c5e3539121c4944f2bbe097b425ee774', 'Marcos', 'Arias', 'srigleisas@esei.uvigo.es', '2017-11-07', NULL, 1, 1, NULL, NULL),
+('12345670Y', 'a990ba8861d2b344810851e7e6b49104', 'Pepe', 'Glez', 'panocadas@gmail.com', '2017-11-08', NULL, 1, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -295,16 +298,53 @@ INSERT INTO `ACTIVIDAD`(`NOMBRE`, `DIA`, `HORA_INI`, `HORA_FIN`, `COLOR`, `DNI_E
 ('GAP','LUNES','19:00','20:00', '#F3E22D', '12345670Y'),
 ('Fitbike','LUNES','10:00','12:45', '#FA3BDD', '12345670Y');
 
+
 --
 -- AUTO_INCREMENT for table `ASISTE`
 --
 ALTER TABLE `ASISTE`
   MODIFY `ID_ACT` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+INSERT INTO `ASISTE`(`ID_ACT`, `DNI_DEP`, `FECHA`, `HORA`) VALUES 
+(1,"22222222J","2017-11-07","15:00"),
+(1,"22222222J","2017-11-14","15:00"),
+(1,"22222222J","2017-11-21","15:00"),
+(1,"11111111H","2017-11-07","15:00"),
+(1,"11111111H","2017-11-14","15:00"),
+(3,"12345679S","2017-11-08","09:00"),
+(3,"12345679S","2017-11-15","09:00"),
+(3,"12345679S","2017-11-22","09:00"),
+(7,"33333333P","2017-11-06","19:00"),
+(7,"12345679S","2017-11-06","19:00"),
+(7,"12345679S","2017-11-13","19:00");
 --
 -- AUTO_INCREMENT for table `EJERCICIO`
 --
 ALTER TABLE `EJERCICIO`
   MODIFY `ID_EJERCICIO` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+
+INSERT INTO `EJERCICIO`(`NOMBRE`, `TIPO`, `IMAGEN`, `VIDEO`) VALUES 
+("Elíptica","CARDIO","src/eliptica.jpg",NULL),
+("Cinta de correr","CARDIO","src/cinta.jpg",NULL),
+("Bicicleta","CARDIO","src/bici.jpg",NULL),
+("Remo","CARDIO","src/remo.jpg",NULL),
+("Dominadas","MUSCULAR","src/dominadas.jpg",NULL),
+("Sentadillas","MUSCULAR","src/sentadillas.jpg",NULL),
+("Flexiones","MUSCULAR","src/flexiones.jpg",NULL),
+("Press banca de pecho","MUSCULAR","src/presspecho.jpg",NULL),
+("Curl de antebrazos","MUSCULAR","src/curlantebrazo.jpg",NULL),
+("Curl de piernas acostado","MUSCULAR","src/curlpiernasacostado.jpg",NULL),
+("Abdominales superiores","MUSCULAR","src/abdominales.jpg",NULL),
+("Press de pierna","MUSCULAR","src/presspierna.jpg",NULL),
+("Abducción de cadera","MUSCULAR","src/abduccioncadera.jpg",NULL),
+("Cuádriceps","ESTIRAMIENTO","src/cuadriceps.jpg",NULL),
+("Gemelos","ESTIRAMIENTO","src/gemelo.jpg",NULL),
+("Glúteo","ESTIRAMIENTO","src/gluteo.jpg",NULL),
+("Cadera","ESTIRAMIENTO","src/cadera.jpg",NULL),
+("Aductor","ESTIRAMIENTO","src/aductor.jpg",NULL);
+
+
 --
 -- AUTO_INCREMENT for table `ENTRENAMIENTO`
 --
@@ -315,6 +355,16 @@ ALTER TABLE `ENTRENAMIENTO`
 --
 ALTER TABLE `RESERVA`
   MODIFY `ID_ACT` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+INSERT INTO `RESERVA`(`ID_ACT`,`DNI_DEP`, `FECHA`, `HORA`, `CONFIRMADO`) VALUES 
+(1,"22222222J","2017-11-08","18:00",1),
+(1,"11111111H","2017-11-10","18:00",1),
+(3,"12345679S","2017-11-08","18:00",1),
+(7,"33333333P","2017-11-08","18:00",0),
+(2,"22222222J","2017-11-18","18:00",1),
+(7,"12345679S","2017-11-08","18:00",0),
+(6,"33333333P","2017-11-08","18:00",1);
+
 --
 -- AUTO_INCREMENT for table `SESION`
 --
