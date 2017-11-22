@@ -9,22 +9,26 @@ $activities = $view->getVariable("activities");
 $view->setVariable("title", "Show Activities");
 ?>
 
-<div class="users">
-	<div class="margin">
-		<h1><?=i18n("Activities")?></h1><br>
-		<table>
-			<tr>
-				<th><?=i18n("View statistic")?></th>
-				<th><?=i18n("Day")?></th>
-				<th><?=i18n("Time")?></th>
-			</tr>
-			<?php foreach ($activities as $activity): ?>
+<section class="pagecontent full-width">
+	<div class="users">
+		<div class="home2 title-style">
+			<h1><?=i18n("Activities")?></h1><br>
+		</div>
+		<div class="home2 bloques">
+			<table class="full-width">
 				<tr>
-					<td><a href="index.php?controller=activitiesstatistics&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><?= $activity->getActivityname(); ?></a></td>
-					<td><?= $activity->getDia(); ?></td>
-					<td><?= $activity->getHorainicio(); ?></td>
+					<th><?=i18n("View statistic")?></th>
+					<th><?=i18n("Day")?></th>
+					<th><?=i18n("Time")?></th>
 				</tr>
-			<?php endforeach; ?>
-		</table>
+				<?php foreach ($activities as $activity): ?>
+					<tr>
+						<td><a href="index.php?controller=activitiesstatistics&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><?= $activity->getActivityname(); ?></a></td>
+						<td><?= $activity->getDia(); ?></td>
+						<td><?= $activity->getHorainicio(); ?></td>
+					</tr>
+				<?php endforeach; ?>
+			</table>
+		</div>
 	</div>
-</div>
+</section>
