@@ -76,8 +76,8 @@ class UsersController extends BaseController {
 			throw new Exception("Not in session. View Users requires login");
 		}
 
-		if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. View an user requires be admin");
+		if($this->userMapper->findType() == "deportista"){
+			throw new Exception("You aren't an admin or a coach. View an user requires be admin or coach");
 		}
 
 		$dni = $_GET["dni"];
