@@ -26,10 +26,6 @@ class AssistanceController extends BaseController {
 			throw new Exception("Not in session. Show assistance requires login");
 		}
 
-		/*if($this->assistanceMapper->findType() != "entrenador"){
-			throw new Exception("You aren't an admin. See all users requires be admin");
-		}*/
-
 		$activities = $this->assistanceMapper->showAllActivities();
 
 		// put the users object to the view
@@ -47,19 +43,11 @@ class AssistanceController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. View Users requires login");
 		}
-		
-		/*if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. View an user requires be admin");
-		}*/
 
 		$id = $_GET["id_act"];
 
 		// find the User object in the database
 		$assistances = $this->assistanceMapper->findAssistance($id);
-
-		/*if ($assistances == NULL) {
-			throw new Exception("no assistants for the activity with ID: ".$id);
-		}*/
 
 		// put the user object to the view
 		$this->view->setVariable("assistances", $assistances);
@@ -73,10 +61,7 @@ class AssistanceController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding users requires login");
 		}
-/*
-		if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Adding an user requires be admin");
-		}*/
+		
 		if (!isset($_GET["id_act"])) {
 			throw new Exception("Id is mandatory");
 		}
@@ -133,145 +118,4 @@ class AssistanceController extends BaseController {
 
 		$this->view->redirect("assistance", "show");
 	}
-/*
-	public function edit(){
-		if (!isset($_REQUEST["dni"])) {
-			throw new Exception("A user DNI is mandatory");
-		}
-
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing user requires login");
-		}
-
-		if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Editing an user requires be admin");
-		}
-
-		// Get the User object from the database
-		$userid = $_REQUEST["dni"];
-		$user = $this->userMapper->findUserByDNI($userid);
-
-		if ($user == NULL) {
-			throw new Exception("no such user with DNI: ".$userid);
-		}
-
-		if (isset($_POST["submit"])) { 
-			$user->setName($_POST["nombre"]);
-			$user->setSurname($_POST["apellidos"]);
-			$user->setDateBorn($_POST["fechaNac"]);
-			$user->setEmail($_POST["email"]);
-			$user->setTlf($_POST["tel"]);
-			if($_POST["administrador"] == "1"){
-				$user->setAdmin(1);
-			}else{
-				$user->setAdmin(NULL);
-			}
-			 if($_POST["deportista"] == "1"){
-				$user->setDeportist(1);
-			}else{
-				$user->setDeportist(NULL);
-			}
-			if($_POST["entrenador"] == "1"){
-				$user->setCoach(1);
-			}else{
-				$user->setCoach(NULL);
-			}
-
-			try {
-
-				//validate user object
-				$user->checkIsValidForUpdate(); // if it fails, ValidationException
-
-				$this->userMapper->update($user);
-
-				$this->view->setFlash(sprintf(i18n("User \"%s\" successfully updated."),$user ->getUsername()));
-
-				$this->view->redirect("users", "show");
-
-			}catch(ValidationException $ex) {
-				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
-				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
-			}
-		}
-		$this->view->setVariable("user", $user);
-
-		$this->view->render("users", "edit");
-	}
-
-	public function viewcurrent(){
-		if (!isset($_GET["dni"])) {
-			throw new Exception("DNI is mandatory");
-		}
-
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. View User requires login");
-		}
-
-		$dni = $_GET["dni"];
-
-		// find the User object in the database
-		$user = $this->userMapper->findUserByDNI($dni);
-
-		if ($user == NULL) {
-			throw new Exception("no such user with DNI: ".$dni);
-		}
-
-		// put the user object to the view
-		$this->view->setVariable("user", $user);
-
-		// render the view (/view/users/viewcurrent.php)
-		$this->view->render("users", "viewcurrent");
-	}
-
-	public function editcurrent(){
-		if (!isset($_REQUEST["dni"])) {
-			throw new Exception("A user DNI is mandatory");
-		}
-
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing user requires login");
-		}
-
-		// Get the User object from the database
-		$userid = $_REQUEST["dni"];
-		$user = $this->userMapper->findUserByDNI($userid);
-
-		if ($user == NULL) {
-			throw new Exception("no such user with DNI: ".$userid);
-		}
-
-		if (isset($_POST["newpass"])) { 
-			$user->setName($_POST["nombre"]);
-			$user->setSurname($_POST["apellidos"]);
-			$user->setDateBorn($_POST["fechaNac"]);
-			$user->setEmail($_POST["email"]);
-			$user->setTlf($_POST["tel"]);
-
-			try {
-
-				//validate user object
-				$user->checkIsValidForCurrentUpdate($_POST["pass"],$_POST["newpass"],$_POST["rpass"]); // if it fails, ValidationException
-
-				$user->setPass(md5($_POST["newpass"]));
-
-				$this->userMapper->update($user);
-
-				$this->view->setFlash(sprintf(i18n("User \"%s\" successfully updated."),$user ->getUsername()));
-
-				$this->view->redirect("login", "home");
-
-			}catch(ValidationException $ex) {
-				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
-				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
-			}
-		}
-
-		$this->view->setVariable("user", $user);
-
-		$this->view->render("users", "editcurrent");
-	}*/
 }

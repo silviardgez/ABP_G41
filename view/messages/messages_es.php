@@ -114,5 +114,11 @@ array(
 	"An email was sent." => "Se ha enviado un email.",
 	"Subject" => "Asunto",
 	"Message" => "Mensaje",
+	"View user" => "Ver usuario",
+	"View statistic" => "Ver estadística",
+	"Athlete" => "Deportista",
+	"Date" => "Fecha",
+	"Time" => "Hora",
+	"Day" => "Día"
 )
 ?>

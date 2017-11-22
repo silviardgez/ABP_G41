@@ -1,5 +1,5 @@
 <?php
-// file: model/UserMapper.php
+// file: model/AssistanceMapper.php
 
 require_once(__DIR__."/../core/PDOConnection.php");
 
@@ -72,8 +72,6 @@ class AssistanceMapper {
 		return $assistances;
 	}
 
-
-
 	public function add($assistance){
 		$stmt = $this->db->prepare("INSERT INTO ASISTE(ID_ACT, DNI_DEP, FECHA, HORA) values (?,?,?,?)");
 		$stmt->execute(array($assistance->getActivityid(), $assistance->getDni(), $assistance->getDateassistance(), $assistance->getTime()));
@@ -85,12 +83,4 @@ class AssistanceMapper {
 		$stmt = $this->db->prepare("DELETE from ASISTE WHERE DNI_DEP=? AND FECHA=? AND HORA=?");
 		$stmt->execute(array($dni, $date, $time));
 	}
-/*
-	public function update(User $user){
-		$stmt = $this->db->prepare("UPDATE USUARIO set DNI=?, CONTRASEÑA=?, NOMBRE=?, APELLIDOS=?, EMAIL=?, FECHA_NAC=?, ADMIN=?, ENTRENADOR=?, DEPORTISTA=? where DNI=?");
-		$stmt->execute(array($user->getUsername(), $user->getPass(), $user->getName(), $user->getSurname(), $user->getEmail(), $user->getDateBorn(), $user->getAdmin(), $user->getCoach(), $user->getDeportist(), $user->getUsername()));
-
-		$stmt2 = $this->db->prepare("UPDATE TLF_USUARIO set TELEFONO=? where DNI=?");
-		$stmt2->execute(array($user->getTlf(), $user->getUsername()));
-	}*/
 }

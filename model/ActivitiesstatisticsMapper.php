@@ -1,8 +1,7 @@
 <?php
-// file: model/UserMapper.php
+// file: model/ActivitiesstatisticsMapper.php
 
 require_once(__DIR__."/../core/PDOConnection.php");
-
 
 class ActivitiesstatisticsMapper {
 
@@ -54,19 +53,5 @@ class ActivitiesstatisticsMapper {
 
 		return $assistances;
 	}
-/*
-	public function delete(User $user){
-		$stmt = $this->db->prepare("DELETE from USUARIO WHERE DNI=?");
-		$stmt->execute(array($user->getUsername()));
-		$stmt2 = $this->db->prepare("DELETE from TLF_USUARIO WHERE DNI=?");
-		$stmt2->execute(array($user->getUsername()));
-	}
-
-	public function update(User $user){
-		$stmt = $this->db->prepare("UPDATE USUARIO set DNI=?, CONTRASEÑA=?, NOMBRE=?, APELLIDOS=?, EMAIL=?, FECHA_NAC=?, ADMIN=?, ENTRENADOR=?, DEPORTISTA=? where DNI=?");
-		$stmt->execute(array($user->getUsername(), $user->getPass(), $user->getName(), $user->getSurname(), $user->getEmail(), $user->getDateBorn(), $user->getAdmin(), $user->getCoach(), $user->getDeportist(), $user->getUsername()));
-
-		$stmt2 = $this->db->prepare("UPDATE TLF_USUARIO set TELEFONO=? where DNI=?");
-		$stmt2->execute(array($user->getTlf(), $user->getUsername()));
-	}*/
 }
+?>
