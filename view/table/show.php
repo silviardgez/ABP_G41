@@ -2,144 +2,80 @@
 //file: view/users/show.php
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
-//$view->setLayout("welcome");
-$grupalTrainings = $view->getVariable("grupalTrainings");
+$tables = $view->getVariable("tables");
 
-$view->setVariable("title", "Show Trainings");
+$view->setVariable("title", "Show Tables");
 ?>
 
+<?php 
+$cardioPhotos = array();
+$cardioNames = array();
+$muscularPhotos = array();
+$muscularNames = array();
+$estPhotos = array();
+$estNames = array();
+foreach ($tables as $key => $values){
+	foreach ($values as $array){ 
+		if($array[4] == "CARDIO" && $array[2]->getTableId() == '0') {
+			array_push($cardioPhotos, $array[1]);
+			array_push($cardioNames, $array[0]);
+		}
+		if($array[4] == "MUSCULAR") {
+			array_push($muscularPhotos, $array[1]);
+			array_push($muscularNames, $array[0]);
+		}
+		if($array[4] == "ENTRENAMIENTO" && $array[2]->getTableId()==0) {
+			array_push($estPhotos, $array[1]);
+			array_push($estNames, $array[0]);
+		}
+	}
+}?> 
+
 <section class="pagecontent full-width">
-	<div class="users">
-		<div class="home2 title-style">
-			<h1><?=i18n("Workouts")?></h1><br>
-		</div>
-		<div class="home2 bloques">
-			<h1 style="margin-bottom: 6px;"><?=i18n("Cardio")?></h1><br>
-			<table class="full-width">
-				<tr>
-					<th><strong><?=i18n("Exercise")?></strong></th>
-					<th style="text-align: center"><strong><?=i18n("Repeats")?></strong></th>
-					<th style="text-align: center"><strong><?=i18n("Duration")?></strong></th>
-					<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
-				</tr>
-				<?php foreach ($grupalTrainings[0] as $trainings): ?>
-					<tr>
-						<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>" style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
-						<td style="text-align: center"><?php echo $trainings[1]->getRepeats(); ?></td>
-						<?php 
-						$duracion = substr($trainings[1]->getTime(),3);
-						if($duracion == "00:00") {
-							$duracion = "-";
-						}
-						?>
-						<td style="text-align: center"><?php echo $duracion; ?></td>
-						<td class="icons"><a href="index.php?controller=training&amp;action=edit&amp;id=<?= $trainings[1]->getTrainingId() ?>"><i class="fa fa-pencil-square-o"></i></a>
-							<form
-							method="POST"
-							action="index.php?controller=training&amp;action=delete"
-							id="delete_training_<?= $trainings[1]->getTrainingId(); ?>"
-							style="display: inline"
-							>
+	<div class="home2">
+		<h1><?=i18n("Table")?></h1><br>
 
-							<input type="hidden" name="id" value="<?= $trainings[1]->getTrainingId() ?>">
-
-							<a 
-							onclick="
-							if (confirm('<?= i18n("are you sure?")?>')) {
-								document.getElementById('delete_training_<?= $trainings[1]->getTrainingId() ?>').submit()
-							}"
-							><i class="fa fa-trash"></i></a>
-
-							</form></td>
-					</tr>
+		<table class="full-width">
+			<tr>
+				<?php foreach ($cardioPhotos as $photo) : ?>						
+					<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $array[3] ?>" style="color: #669"><img src="<?=$photo?>" alt="<?=i18n("Image not found")?>" /></a></td>
 				<?php endforeach; ?>
-			</table>
-		</div>	
-
-		<div class="home2 bloques">
-			<h1 style="margin-bottom: 6px;"><?=i18n("Muscular")?></h1><br>
-			<table class="full-width">
-				<tr>
-					<th><strong><?=i18n("Exercise")?></strong></th>
-					<th style="text-align: center"><strong><?=i18n("Repeats")?></strong></th>
-					<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
-				</tr>
-				<?php foreach ($grupalTrainings[1] as $trainings): ?>
-					<tr>
-						<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>" style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
-						<td style="text-align: center"><?php echo $trainings[1]->getRepeats(); ?></td>	
-						<td class="icons"><a href="index.php?controller=training&amp;action=edit&amp;id=<?= $trainings[1]->getTrainingId() ?>"><i class="fa fa-pencil-square-o"></i></a>
-							<form
-							method="POST"
-							action="index.php?controller=training&amp;action=delete"
-							id="delete_training_<?= $trainings[1]->getTrainingId(); ?>"
-							style="display: inline"
-							>
-
-							<input type="hidden" name="id" value="<?= $trainings[1]->getTrainingId() ?>">
-
-							<a 
-							onclick="
-							if (confirm('<?= i18n("are you sure?")?>')) {
-								document.getElementById('delete_training_<?= $trainings[1]->getTrainingId() ?>').submit()
-							}"
-							><i class="fa fa-trash"></i></a>
-
-						</form></td>					
-					</tr>
+			</tr>
+			<tr>
+				<?php foreach ($cardioNames as $name) : ?>
+					<td><?php echo $name;?></td>
 				<?php endforeach; ?>
-			</table>
-		</div>
+			</tr>
 
-		<div class="home2 bloques">
-			<h1 style="margin-bottom: 6px;"><?=i18n("Stretch")?></h1><br>
-			<table class="full-width">
-				<tr>
-					<th><strong><?=i18n("Exercise")?></strong></th>
-					<th style="text-align: center"><strong><?=i18n("Repeats")?></strong></th>
-					<th style="text-align: center"><strong><?=i18n("Duration")?></strong></th>
-					<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
-				</tr>
-				<?php foreach ($grupalTrainings[2] as $trainings): ?>
-					<tr>
-						<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>" style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
-						<td style="text-align: center"><?php echo $trainings[1]->getRepeats(); ?></td>
-						<?php 
-						$duracion = substr($trainings[1]->getTime(),3);
-						if($duracion == "00:00") {
-							$duracion = "-";
-						}
-						?>
-						<td style="text-align: center"><?php echo $duracion; ?></td>
-						<td class="icons"><a href="index.php?controller=training&amp;action=edit&amp;id=<?= $trainings[1]->getTrainingId() ?>"><i class="fa fa-pencil-square-o"></i></a>
-							<form
-							method="POST"
-							action="index.php?controller=training&amp;action=delete"
-							id="delete_training_<?= $trainings[1]->getTrainingId(); ?>"
-							style="display: inline"
-							>
-
-							<input type="hidden" name="id" value="<?= $trainings[1]->getTrainingId() ?>">
-
-							<a 
-							onclick="
-							if (confirm('<?= i18n("are you sure?")?>')) {
-								document.getElementById('delete_training_<?= $trainings[1]->getTrainingId() ?>').submit()
-							}"
-							><i class="fa fa-trash"></i></a>
-
-						</form></td>
-					</tr>
+			<tr>
+				<?php foreach ($muscularPhotos as $photo) : ?>	
+					<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $array[3] ?>" style="color: #669"><img src="<?=$photo?>" alt="<?=i18n("Image not found")?>" /></a></td>
 				<?php endforeach; ?>
-			</table>
+			</tr>
+			<tr>
+				<?php foreach ($muscularNames as $name) : ?>
+					<td><?php echo $name;?></td>
+				<?php endforeach; ?>
+			</tr>
+
+			<tr>
+				<?php foreach ($estPhotos as $photo) : ?>
+					<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $array[3] ?>" style="color: #669"><img src="<?=$photo?>" alt="<?=i18n("Image not found")?>" /></a></td>
+				<?php endforeach; ?>
+			</tr>
+			<tr>
+				<?php foreach ($estNames as $name) : ?>
+					<td><?php echo $name;?></td>
+				<?php endforeach;?>
+			</tr>
+		</table>
+	</div>	
+
+	<div class="row">
+		<div class="btn-group">
+			<a href="index.php?controller=training&amp;action=add" class="btn-fab circulo" id="add">
+				<i class="fa fa-plus"></i>
+			</a>
 		</div>
 	</div>
-
-<div class="row">
-	<div class="btn-group">
-		<a href="index.php?controller=training&amp;action=add" class="btn-fab circulo" id="add">
-			<i class="fa fa-plus"></i>
-		</a>
-	</div>
-</div>
 </section>

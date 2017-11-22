@@ -79,7 +79,7 @@ $(document).ready(function() {
 						<ul>
 							<li><a href="index.php?controller=exercises&amp;action=show"><?=i18n("Exercises")?></a></li>
 							<li><a href="index.php?controller=training&amp;action=show"><?=i18n("Workouts")?></a></li>
-							<li><a href=""><?=i18n("Tables")?></a></li>
+							<li><a href="index.php?controller=table&amp;action=show"><?=i18n("Tables")?></a></li>
 						</ul>
 					</li>
 					<li><a><?=i18n("Language")?></a>

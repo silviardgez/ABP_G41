@@ -44,10 +44,6 @@ class Activity {
 		$this->endTime = $endTime;
 	}
 
-	public function setDuration($duration){
-		$this->duration = $duration;
-	}
-
 	public function setColor($color){
 		$this->color = $color;
 	}

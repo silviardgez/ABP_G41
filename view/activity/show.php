@@ -14,7 +14,6 @@ $rows = 3;
 
 <section class="pagecontent">
 	<div class="users">
-		
 		<div class="home2 activitiesMenu">
 			<h1 style=" margin-bottom: 10px;"><?=i18n("Activities")?></h1><br>
 			<?php foreach ($activitiesName as $activity): ?>
@@ -109,7 +108,7 @@ $rows = 3;
 
 		<div class="row">
 			<div class="btn-group-act">
-				<a href="index.php?controller=users&amp;action=add" class="btn-fab circulo" id="add">
+				<a href="index.php?controller=activity&amp;action=add" class="btn-fab circulo" id="add">
 					<i class="fa fa-plus"></i>
 				</a>
 			</div>

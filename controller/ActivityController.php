@@ -196,4 +196,47 @@ class ActivityController extends BaseController {
 		$this->view->render("activity", "editcurrent");
 	}
 
+	public function add(){
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Adding activities requires login.");
+		}
+
+		/*if($this->userMapper->findType() != "admin" && $this->userMapper->findType() != "entrenador"){
+			throw new Exception("You aren't an admin or a coach. Adding an exercise requires be admin or coach");
+		}*/
+
+		$activity = new Activity();
+
+		$monitors = $this->userMapper->getCoaches();
+
+		if(isset($_POST["submit"])) { 
+
+			$activity->setActivityName($_POST["name"]);
+			$activity->setStartTime($_POST["startTime"]);
+			$activity->setEndTime($_POST["endTime"]);
+			$activity->setDay($_POST["day"]);
+			$activity->setMonitor($_POST["monitor"]);
+			$activity->setColor($_POST["color"]);
+
+			try {
+				//save the exercise object into the database
+				$this->activityMapper->add($activity);
+
+				$this->view->setFlash(sprintf(i18n("Activity \"%s\" successfully added."),$activity ->getActivityName()));
+
+				$this->view->redirect("activity", "show");
+
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+
+		$this->view->setVariable("activity", $activity);
+		$this->view->setVariable("monitors", $monitors);
+		$this->view->render("activity", "add");
+	}
+
 }

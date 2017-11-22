@@ -9,7 +9,7 @@ class Table {
 	private $type;
 	private $trainingId;
 
-	public function __construct($tableId=NULL, $type=NULL, $trainingId=NULL,){
+	public function __construct($tableId=NULL, $type=NULL, $trainingId=NULL){
 		$this->tableId = $tableId;
 		$this->type = $type;
 		$this->trainingId = $trainingId;

@@ -89,4 +89,10 @@ class ActivityMapper {
 		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`TIPO`=?,`DIA`=?,`HORA_INI`=?,`HORA_FIN`=?,`COLOR`=?,`DNI_ENTR`=? WHERE ID_ACT=?");
 		$stmt->execute(array($activity->getActivityName(), $activity->getType(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor(), $activity->getActivityId()));
 	}
+
+	public function add(Activity $activity){
+		$stmt = $this->db->prepare("INSERT INTO ACTIVIDAD(NOMBRE,DIA,HORA_INI,HORA_FIN,COLOR,DNI_ENTR) values (?,?,?,?,?,?)");
+		$stmt->execute(array($activity->getActivityName(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor()));
+		return $this->db->lastInsertId();
+	}
 }
