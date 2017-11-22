@@ -92,6 +92,13 @@ array(
 	"Activity \"%s\" successfully deleted." => "Actividad \"%s\" eliminada correctamente.",
 	"Activity \"%s\" successfully added." => "Actividad \"%s\" añadida correctamente.",
 	"An email was sent to \"%s\"." => "Un email fue enviado a \"%s\".",
+	"MONDAY" => "LUNES",
+	"TUESDAY" => "MARTES",
+	"WEDNESDAY" => "MIERCOLES",
+	"THURSDAY" => "JUEVES",
+	"FRIDAY" => "VIERNES",
+	"SATURDAY" => "SABADO",
+	"SUNDAY" => "DOMINGO",
 	"Monday" => "Lunes",
 	"Tuesday" => "Martes",
 	"Wednesday" => "Miércoles",
@@ -102,5 +109,7 @@ array(
 	"Classes" => "Clases",
 	"Hours" => "Horas",
 	"Day" => "Día",
+	"Start Time" => "Hora de inicio",
+	"End Time" => "Hora de fin",
 )
 ?>

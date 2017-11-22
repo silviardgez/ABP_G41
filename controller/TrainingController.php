@@ -42,11 +42,11 @@ class TrainingController extends BaseController {
 			$exerciseName = $this->exerciseMapper->findExerciseNameById($exerciseId);
 
 			if($exerciseType == "CARDIO") {
-				array_push($cardio, array($exerciseName, $training));
+				array_push($cardio, array($exerciseName, $training, $exerciseId));
 			} else if ($exerciseType == "MUSCULAR") {
-				array_push($muscular, array($exerciseName, $training));
+				array_push($muscular, array($exerciseName, $training, $exerciseId));
 			} else {
-				array_push($est, array($exerciseName, $training));
+				array_push($est, array($exerciseName, $training, $exerciseId));
 			}
 			
 		}

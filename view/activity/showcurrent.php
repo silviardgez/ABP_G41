@@ -24,8 +24,14 @@ $view->setVariable("title", "Show Current Activity");
 				<input id="time" type="time" value="<?=$activity->getStartTime()?>" readonly>
 				<br><?=i18n("End Time")?>:<?= isset($errors["endTime"])?i18n($errors["endTime"]):"" ?>
 				<input id="time" type="time" value="<?=$activity->getEndTime()?>" readonly>
+				<br><?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
+				<select name="tipo" disabled="disabled">
+					<option value="<?= $activity->getMonitor()?>" selected="selected" readonly><?= $activity->getMonitorName() ?></option>
+				</select>
 
-				<div class="icons" style="width: 100%">
+				
+		</form>
+		<div class="icons" style="margin-bottom: 10px">
 					<form
 					method="POST"
 					action="index.php?controller=activity&amp;action=deletecurrent"
@@ -39,10 +45,9 @@ $view->setVariable("title", "Show Current Activity");
 						document.getElementById('delete_activity_<?= $activity->getActivityId() ?>').submit()
 					}"><i class="fa fa-trash" style="margin-right: 12px; margin-bottom: : 10px"></i></a>
 
-				</form>
+					</form>
 				<a href="index.php?controller=activity&amp;action=editcurrent&amp;id=<?= $activity->getActivityId() ?>"><i class="fa fa-pencil-square-o"></i></a>
 			</div>
-		</form>
 	</div>
 </div>
 </div>

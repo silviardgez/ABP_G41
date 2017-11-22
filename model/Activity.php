@@ -2,6 +2,7 @@
 
 require_once(__DIR__."/../core/ValidationException.php");
 require_once(__DIR__."/../model/ActivityMapper.php");
+require_once(__DIR__."/../model/UserMapper.php");
 
 class Activity {
 
@@ -93,6 +94,11 @@ class Activity {
 
 	public function getMonitor(){
 		return $this->monitor;
+	}
+
+	public function getMonitorName(){
+		$userMapper = new UserMapper();
+		return $userMapper->getNameByDNI($this->monitor);
 	}
 
 	//Update Validate

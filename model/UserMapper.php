@@ -110,4 +110,31 @@ class UserMapper {
 		$stmt2 = $this->db->prepare("UPDATE TLF_USUARIO set TELEFONO=? where DNI=?");
 		$stmt2->execute(array($user->getTlf(), $user->getUsername()));
 	}
+
+	//Devolver nombre de usuario dado un dni
+	public function getNameByDNI($dni){
+		$stmt = $this->db->prepare("SELECT NOMBRE, APELLIDOS FROM USUARIO WHERE DNI=?");
+		$stmt->execute(array($dni));
+		$user = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		if($user != null) {
+			return $user["NOMBRE"] . " ". $user["APELLIDOS"];
+		} else {
+			return NULL;
+		}
+	}
+
+	//Devolver todos los nombres de los entrenadores
+	public function getCoaches(){
+		$stmt = $this->db->prepare("SELECT DNI, NOMBRE, APELLIDOS FROM USUARIO WHERE ENTRENADOR=1");
+		$stmt->execute();
+		$users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$coaches = array();
+
+		foreach ($users_db as $user) {
+			$coaches[$user["DNI"]] = $user["NOMBRE"] . " ". $user["APELLIDOS"];
+		}
+
+		return $coaches;
+	}
 }

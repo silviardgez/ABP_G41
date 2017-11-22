@@ -13,7 +13,7 @@ class ActivityMapper {
 	}
 
 	//Busca una actividad por nombre
-	public function findActivitiesByName($name){
+	public function getActivitiesByName($name){
 		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE NOMBRE=?");
 		$stmt->execute(array($name));
 		$grupalActivities_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -68,16 +68,20 @@ class ActivityMapper {
 		return $grupalActivities;
 	}
 
-	public function delete(Activity $activity){
+	public function delete($activityName){
 		$stmt = $this->db->prepare("DELETE from ACTIVIDAD WHERE NOMBRE=?");
-		$stmt->execute(array($activity->getActivityName()));
+		$stmt->execute(array($activityName));
+	}
+
+	public function deleteCurrent(Activity $activity){
+		$stmt = $this->db->prepare("DELETE from ACTIVIDAD WHERE ID_ACT=?");
+		$stmt->execute(array($activity->getActivityId()));
 	}
 
 	//Actualizar datos en común de las actividades
 	public function update(Activity $activity){
-		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`COLOR`=? WHERE NOMBRE=?");
-		echo "HOLA " . $stmt;
-		$stmt->execute(array($activity->getActivityName(), $activity->getColor(), $activity->getActivityName()));
+		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`COLOR`=? WHERE ID_ACT=?");
+		$stmt->execute(array($activity->getActivityName(), $activity->getColor(), $activity->getActivityId()));
 	}
 
 	//Actualizar datos en común de las actividades
