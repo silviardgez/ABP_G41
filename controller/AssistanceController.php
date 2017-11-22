@@ -118,33 +118,22 @@ class AssistanceController extends BaseController {
 		// render the view (/view/users/add.php)
 		$this->view->render("assistance", "add");
 	}
-/*
+
 	public function delete(){
-		if (!isset($_POST["id"])) {
+		if (!isset($_POST["dni"])) {
 			throw new Exception("DNI is mandatory");
 		}
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Deleting user requires login");
 		}
-		if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Deleting an user requires be admin");
-		}
-
 		
-		$userdni = $_REQUEST["id"];
-		$user = $this->userMapper->findUserByDNI($userdni);
+		$this->assistanceMapper->delete($_POST["dni"],$_POST["date"],$_POST["time"]);
 
-		if ($user == NULL) {
-			throw new Exception("no such user with DNI: ".$userdni);
-		}
+		$this->view->setFlash(sprintf(i18n("Assistance successfully deleted.")));
 
-		$this->userMapper->delete($user);
-
-		$this->view->setFlash(sprintf(i18n("User \"%s\" successfully deleted."),$user ->getUsername()));
-
-		$this->view->redirect("users", "show");
+		$this->view->redirect("assistance", "show");
 	}
-
+/*
 	public function edit(){
 		if (!isset($_REQUEST["dni"])) {
 			throw new Exception("A user DNI is mandatory");

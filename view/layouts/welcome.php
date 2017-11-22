@@ -96,7 +96,7 @@ $(document).ready(function() {
 					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
 					<li><a><?=i18n("User")?></a>
 						<ul>
-							<li><a><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
+							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Statistics")?></a>
@@ -133,7 +133,7 @@ $(document).ready(function() {
 					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
 					<li><a><?=i18n("Profile")?></a>
 						<ul>
-							<li><a><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
+							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
 							<li><a href=""><?=i18n("Notifications")?></a></li>
 							<li><a href=""><?=i18n("Sesions")?></a></li>
 						</ul>

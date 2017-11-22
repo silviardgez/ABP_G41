@@ -17,12 +17,32 @@ $view->setVariable("title", "View Assistance");
 				<th><?=i18n("Deportista")?></th>
 				<th><?=i18n("Date")?></th>
 				<th><?=i18n("Time")?></th>
+				<th></th>
 			</tr>
 			<?php foreach ($assistances as $assistance): ?>
 				<tr>
 					<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistance->getDni(); ?>"><?= $assistance->getDni(); ?></a></td>
 					<td><?= $assistance->getDateassistance(); ?></td>
 					<td><?= $assistance->getTime(); ?></td>
+					<td><form
+							method="POST"
+							action="index.php?controller=assistance&amp;action=delete"
+							id="delete_user_<?= $assistance->getDni(); ?>"
+							style="display: inline"
+							>
+
+							<input type="hidden" name="dni" value="<?= $assistance->getDni() ?>">
+							<input type="hidden" name="date" value="<?= $assistance->getDateassistance() ?>">
+							<input type="hidden" name="time" value="<?= $assistance->getTime() ?>">
+
+							<a 
+							onclick="
+							if (confirm('<?= i18n("are you sure?")?>')) {
+								document.getElementById('delete_user_<?= $assistance->getDni() ?>').submit()
+							}"
+							><i class="fa fa-trash"></i></a>
+
+						</form></td>
 				</tr>
 			<?php endforeach; ?>
 		</table>
