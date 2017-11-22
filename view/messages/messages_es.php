@@ -111,5 +111,8 @@ array(
 	"Day" => "Día",
 	"Start Time" => "Hora de inicio",
 	"End Time" => "Hora de fin",
+	"An email was sent." => "Se ha enviado un email.",
+	"Subject" => "Asunto",
+	"Message" => "Mensaje",
 )
 ?>
