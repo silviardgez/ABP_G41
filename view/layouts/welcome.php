@@ -58,7 +58,7 @@ $(document).ready(function() {
 					</li>
 					<li><a href=""><?=i18n("Administration")?></a>
 						<ul>
-							<li><a href=""><?=i18n("Notifications")?></a></li>
+							<li><a href="index.php?controller=notifications&amp;action=show"><?=i18n("Notifications")?></a></li>
 							<li><a href="index.php?controller=users&amp;action=show"><?=i18n("Users")?></a></li>
 						</ul>
 					</li>
