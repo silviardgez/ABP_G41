@@ -62,4 +62,30 @@ class ExerciseMapper {
 		return $this->db->lastInsertId();
 	}
 
+	//Devolver nombre de ejercicio dado un id
+	public function findExerciseNameById($id){
+		$stmt = $this->db->prepare("SELECT NOMBRE FROM EJERCICIO WHERE ID_EJERCICIO=?");
+		$stmt->execute(array($id));
+		$exercise = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		if($exercise != null) {
+			return $exercise["NOMBRE"];
+		} else {
+			return NULL;
+		}
+	}
+
+	//Devolver tipo de ejercicio dado un id
+	public function getTypeById($id){
+		$stmt = $this->db->prepare("SELECT TIPO FROM EJERCICIO WHERE ID_EJERCICIO=?");
+		$stmt->execute(array($id));
+		$exercise = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		if($exercise != null) {
+			return $exercise["TIPO"];
+		} else {
+			return NULL;
+		}
+	}
+
 }

@@ -20,10 +20,23 @@ class ActivityMapper {
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"]));
+			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"]));
 		}
 
 		return $grupalActivities;
+	}
+
+	//Busca una actividad por id
+	public function getActivityById($id){
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE ID_ACT=?");
+		$stmt->execute(array($id));
+		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		if($activity != null) {
+			return new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"]);
+		} else {
+			return NULL;
+		}
 	}
 
 	//Devuelve los nombres de todas las actividades grupales
@@ -49,7 +62,7 @@ class ActivityMapper {
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["DURACION"]));
+			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["DURACION"]));
 		}
 
 		return $grupalActivities;

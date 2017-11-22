@@ -78,7 +78,7 @@ $(document).ready(function() {
 					<li><a href=""><?=i18n("Fitness")?></a>
 						<ul>
 							<li><a href="index.php?controller=exercises&amp;action=show"><?=i18n("Exercises")?></a></li>
-							<li><a href=""><?=i18n("Workouts")?></a></li>
+							<li><a href="index.php?controller=training&amp;action=show"><?=i18n("Workouts")?></a></li>
 							<li><a href=""><?=i18n("Tables")?></a></li>
 						</ul>
 					</li>
