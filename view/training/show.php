@@ -50,7 +50,7 @@ $view->setVariable("title", "Show Trainings");
 							}"
 							><i class="fa fa-trash"></i></a>
 
-						</form></td>
+							</form></td>
 					</tr>
 				<?php endforeach; ?>
 			</table>
