@@ -31,7 +31,9 @@ $currentuser = $view->getVariable("currentusername");
 
 	<main>
 		<div id="flash">
-			<?= $view->popFlash() ?>
+		<?php $acumulador = $view->popFlash() ?>
+
+		<?php if($acumulador != "") echo "<script>alert ('$acumulador');</script>"; ?>
 		</div>
 
 		<?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
