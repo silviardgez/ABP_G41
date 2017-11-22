@@ -17,7 +17,8 @@ $view->setVariable("title", "Edit Current Activity");
 		<div class="home2">
 			<form action="index.php?controller=activity&amp;action=editcurrent" method="POST">
 				<input type="hidden" name="id" value="<?=$activity->getActivityId()?>">
-				<!--<br><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?><input type="text" name="name" value="<?=$activity->getActivityName()?>"> -->
+				<br><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
+				<input type="text" name="name" value="<?=$activity->getActivityName()?>" readonly>
 				<br><?=i18n("Start Time")?>:<?= isset($errors["startTime"])?i18n($errors["startTime"]):"" ?>
 				<input type="time" name="startTime" value="<?=$activity->getStartTime()?>">
 				<br><?=i18n("End Time")?>:<?= isset($errors["endTime"])?i18n($errors["endTime"]):"" ?>
@@ -41,6 +42,10 @@ $view->setVariable("title", "Edit Current Activity");
 					<option value="<?=$activity->getMonitor()?>" selected="selected"><?=$activity->getMonitorName()?></option>
 				</select>
 				<button type="submit" name="submit"><?=i18n("Send")?></button>
+				<form method="POST" action="index.php?controller=activity&amp;action=delete" id="delete_activity_<?= $activity->getActivityId(); ?>" style="display: inline">
+					<button type="submit" name="delete"><?=i18n("Delete")?></button>
+				</form>
+				
 
 			</form>
 		</div>

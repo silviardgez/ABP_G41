@@ -196,28 +196,4 @@ class ActivityController extends BaseController {
 		$this->view->render("activity", "editcurrent");
 	}
 
-	public function showcurrent(){
-		if (!isset($_GET["id"])) {
-			throw new Exception("Id is mandatory");
-		}
-
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. View Activity requires login.");
-		}
-
-		$activityId = $_GET["id"];
-
-		// find the User object in the database
-		$activity = $this->activityMapper->getActivityById($activityId);
-
-		if ($activity == NULL) {
-			throw new Exception("no such activity with id: ".$activityId);
-		}
-
-		// put the user object to the view
-		$this->view->setVariable("activity", $activity);
-
-		$this->view->render("activity", "showcurrent");
-	}
-
 }
