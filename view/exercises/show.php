@@ -102,14 +102,13 @@ $view->setVariable("title", "Show Exercises");
 			</div>
 		<?php endif ?>
 	<?php endforeach; ?>
-</div>	
-</div>
-</div>
-<div class="row">
 	<div class="btn-group">
 		<a href="index.php?controller=exercises&amp;action=add" class="btn-fab circulo" id="add">
 			<i class="fa fa-plus"></i>
 		</a>
 	</div>
+</div>	
 </div>
+</div>	
+
 </section>
