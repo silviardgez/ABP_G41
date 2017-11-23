@@ -47,16 +47,19 @@ class TableController extends BaseController {
 			$est = array();
 
 			foreach ($tables_db as $table) {
-				$exerciseId = $this->trainingMapper->getTrainingById($table->getTrainingId())->getExerciseId();
+				$training = $this->trainingMapper->getTrainingById($table->getTrainingId());
+				$exerciseId = $training->getExerciseId();
+				$repeats = $training->getRepeats();
+				$time = $training->getTime();
 				$exerciseType = $this->exerciseMapper->getTypeById($exerciseId);
 				$exercisePhoto = $this->exerciseMapper->findPhotoById($exerciseId);
 				$exerciseName = $this->exerciseMapper->getNameById($exerciseId);
 				if($exerciseType == "CARDIO"){
-					array_push($cardio, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType));
+					array_push($cardio, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType, $repeats, $time));
 				} elseif ($exerciseType == "MUSCULAR") {
-					array_push($muscular, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType));
+					array_push($muscular, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType, $repeats, $time));
 				} elseif ($exerciseType == "ESTIRAMIENTO") {
-					array_push($est, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType));
+					array_push($est, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType, $repeats, $time));
 				}
 			}
 
@@ -71,41 +74,92 @@ class TableController extends BaseController {
 	}
 
 
-	/*public function edit(){
+	//Elimina todas las actividades con el mismo nombre
+	public function delete(){
+		if (!isset($_POST["id"])) {
+			throw new Exception("Table id is mandatory");
+		}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Deleting activity requires login");
+		}
+
+		/*if($this->userMapper->findType() != "admin"){
+			throw new Exception("You aren't an admin. Deleting an user requires be admin");
+		}*/
+
+		$tableId = $_REQUEST["id"];
+		$table = $this->tableMapper->getTableById($tableId);
+
+		if ($table == NULL) {
+			throw new Exception("no such table with id: ". $tableId);
+		}
+
+		$this->tableMapper->delete($tableId);
+
+		$this->view->setFlash(sprintf(i18n("Tabla \"%s\" successfully deleted."), $tableId));
+		$this->view->redirect("table", "show");
+	}
+
+	public function deletecurrent(){
+		if (!isset($_POST["id"])) {
+			throw new Exception("Table id is mandatory");
+		}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Deleting activity requires login");
+		}
+
+		/*if($this->userMapper->findType() != "admin"){
+			throw new Exception("You aren't an admin. Deleting an user requires be admin");
+		}*/
+
+		$trainingId = $_REQUEST["id"];
+		$tableId = $_REQUEST["idtable"];
+		$table = $this->tableMapper->getTableById($tableId);
+
+		if ($table == NULL) {
+			throw new Exception("no such table with id: ". $tableId);
+		}
+		$this->tableMapper->deletecurrent($tableId, $trainingId);
+
+		$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully deleted."), $tableId));
+		//$this->view->redirect("table", "edit");
+	}
+
+	public function edit(){
 		if (!isset($_REQUEST["id"])) {
-			throw new Exception("A id is mandatory");
+			throw new Exception("A table id is mandatory");
 		}
 
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing training requires login");
-		}
-
-		/*if($this->userMapper->findType() != "admin" || $this->userMapper->findType() != "entrenador"){
-			throw new Exception("You aren't an admin or coach. Editing a training requires be admin or coach.");
+			throw new Exception("Not in session. Editing user requires login");
 		}
 
 		// Get the User object from the database
-		$trainingId = $_REQUEST["id"];
-		$training = $this->trainingMapper->getTrainingById($trainingId);
+		$tableId = $_REQUEST["id"];
+		$table = $this->tableMapper->getTableById($tableId);
 
-		if ($training == NULL) {
-			throw new Exception("no such training with id: ". $trainingId);
+		if ($table == NULL) {
+			throw new Exception("no such table with id: ". $activityId);
+		}
+
+		$trainings_db = $this->tableMapper->getTables($tableId);
+		$trainings = array();
+
+		foreach ($trainings_db as $table) {
+			$training = $this->trainingMapper->getTrainingById($table->getTrainingId());
+			array_push($trainings, array($training->getTrainingId(), $this->exerciseMapper->getNameById($training->getExerciseId()), $training->getRepeats(), $training->getTime()));
 		}
 
 		if (isset($_POST["submit"])) { 
-			$training->setExerciseId($_POST["exerciseId"]);
-			$training->setRepeats($_POST["repeats"]);
-			$training->setTime($_POST["time"]);
+			$table->setType($_POST["type"]);
 
 			try {
-				//validate user object
-				//$training->checkIsValidForUpdate(); // if it fails, ValidationException
 
-				$this->trainingMapper->update($training);
+				$this->tableMapper->update($table);
 
-				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully updated."), $training->getTrainingId() . " " 							. $this->exerciseMapper->findExerciseNameById($training->getTrainingId())));
+				$this->view->setFlash(sprintf(i18n("Table \"%s\" successfully updated."), $table->getTableId()));
 
-				$this->view->redirect("training", "show");
+				$this->view->redirect("table", "show");
 
 			}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
@@ -114,34 +168,11 @@ class TableController extends BaseController {
 				$this->view->setVariable("errors", $errors);
 			}
 		}
-		$this->view->setVariable("training", $training);
 
-		$this->view->render("training", "edit");
+		$this->view->setVariable("table", $table);
+		$this->view->setVariable("trainings", $trainings);
+
+		$this->view->render("table", "edit");
 	}
-
-	public function delete(){
-		if (!isset($_POST["id"])) {
-			throw new Exception("Training id is mandatory");
-		}
-		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Deleting training requires login");
-		}
-
-		if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Deleting an user requires be admin");
-		}
-
-		$trainingId = $_REQUEST["id"];
-		$training = $this->trainingMapper->getTrainingById($trainingId);
-
-		if ($training == NULL) {
-			throw new Exception("no such training with id: ". $trainingId);
-		}
-
-		$this->trainingMapper->delete($training);
-
-		$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully deleted."), $trainingId));
-		$this->view->redirect("training", "show");
-	}*/
 
 }

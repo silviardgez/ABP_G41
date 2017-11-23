@@ -114,4 +114,18 @@ class ExerciseMapper {
 		}
 	}
 
+	//Devolver todos los nombres de los ejercicios
+	public function getExercises(){
+		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO");
+		$stmt->execute();
+		$exercises_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$exercises = array();
+
+		foreach ($exercises_db as $exercise) {
+			$exercises[$exercise["ID_EJERCICIO"]] = $exercise["NOMBRE"];
+		}
+
+		return $exercises;
+	}
+
 }

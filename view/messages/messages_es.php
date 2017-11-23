@@ -132,5 +132,8 @@ array(
 	"Id activity" => "Id actividad",
 	"Id athlete" => "Id deportista",
 	"Booking \"%s\" successfully added." => "Reserva \"%s\" añadida correctamente.",
+	"Repeats" => "Repeticiones",
+	"Duration" => "Duración",
+	"Table" => "Tabla"
 )
 ?>

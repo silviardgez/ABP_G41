@@ -48,5 +48,11 @@ class TrainingMapper {
 		$stmt = $this->db->prepare("UPDATE ENTRENAMIENTO set ID_EJERCICIO=?, NUM_REP=?, TIEMPO=? WHERE ID_ENTRENA=?");
 		$stmt->execute(array($training->getExerciseId(), $training->getRepeats(), $training->getTime(), $training->getTrainingId()));
 	}
+
+	public function add(Training $training){
+		$stmt = $this->db->prepare("INSERT INTO ENTRENAMIENTO(ID_EJERCICIO,NUM_REP,TIEMPO) values (?,?,?)");
+		$stmt->execute(array($training->getExerciseId(), $training->getRepeats(), $training->getTime()));
+		return $this->db->lastInsertId();
+	}
 	
 }

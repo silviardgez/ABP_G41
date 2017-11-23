@@ -39,7 +39,7 @@ $view->setVariable("title", "Add Activity");
 				</select>
 				<br><?=i18n("Color")?>:
 				<input type="color" name="color">
-
+				<br><br>
 				<button type="submit" name="submit"><?=i18n("Send")?></button>
 
 			</form>

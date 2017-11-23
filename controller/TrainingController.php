@@ -136,4 +136,44 @@ class TrainingController extends BaseController {
 		$this->view->redirect("training", "show");
 	}
 
+	public function add(){
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Adding activities requires login.");
+		}
+
+		/*if($this->userMapper->findType() != "admin" && $this->userMapper->findType() != "entrenador"){
+			throw new Exception("You aren't an admin or a coach. Adding an exercise requires be admin or coach");
+		}*/
+
+		$training = new Training();
+
+		$exercises = $this->exerciseMapper->getExercises();
+
+		if(isset($_POST["submit"])) { 
+
+			$training->setExerciseId($_POST["exerciseId"]);
+			$training->setRepeats($_POST["repeats"]);
+			$training->setTime($_POST["time"]);
+
+			try {
+				//save the exercise object into the database
+				$this->trainingMapper->add($training);
+
+				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully added."), $training->getTrainingId()));
+
+				$this->view->redirect("training", "show");
+
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+
+		$this->view->setVariable("training", $training);
+		$this->view->setVariable("exercises", $exercises);
+		$this->view->render("training", "add");
+	}
+
 }

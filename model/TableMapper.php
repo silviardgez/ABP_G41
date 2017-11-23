@@ -39,14 +39,32 @@ class TableMapper {
 		return $tables;
 	}
 
-	public function delete(Table $table){
-		$stmt = $this->db->prepare("DELETE from ENTRENAMIENTO WHERE ID_ENTRENA=?");
-		$stmt->execute(array($training->getTrainingId()));
+	//Busca una tabla por id
+	public function getTableById($id){
+		$stmt = $this->db->prepare("SELECT * FROM TABLA WHERE ID_TABLA=?");
+		$stmt->execute(array($id));
+		$table = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		if($table != null) {
+			return new Table($table["ID_TABLA"], $table["TIPO"]);
+		} else {
+			return NULL;
+		}
 	}
 
-	public function update(Training $training){
-		$stmt = $this->db->prepare("UPDATE ENTRENAMIENTO set ID_EJERCICIO=?, NUM_REP=?, TIEMPO=? WHERE ID_ENTRENA=?");
-		$stmt->execute(array($training->getExerciseId(), $training->getRepeats(), $training->getTime(), $training->getTrainingId()));
+	public function delete($id){
+		$stmt = $this->db->prepare("DELETE from TABLA WHERE ID_TABLA=?");
+		$stmt->execute(array($id));
+	}
+
+	public function deletecurrent($id, $idEntr){
+		$stmt = $this->db->prepare("DELETE from INCLUYE WHERE ID_TABLA=? AND ID_ENTRENA=?");
+		$stmt->execute(array($id,$idEntr));
+	}
+
+	public function update(Table $table){
+		$stmt = $this->db->prepare("UPDATE TABLA set TIPO=? WHERE ID_TABLA=?");
+		$stmt->execute(array($table->getType(), $table->getTableId()));
 	}
 	
 }

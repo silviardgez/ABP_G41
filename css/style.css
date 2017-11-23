@@ -126,6 +126,15 @@ ul, ol {
 	border-radius: 8px;
 }
 
+.home3{
+	width: 30%;
+	margin: 0px auto;
+	margin-top: 85px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+}
+
 .home4{
 	width: 70%;
 	margin: 0px auto;
@@ -133,7 +142,7 @@ ul, ol {
 	padding: 10px 20px;
 	background: #f4f7f8;
 	border-radius: 8px;
-	margin-bottom: 10%;
+	max-width: 1000px;
 }
 
 .activitiesBody{
@@ -181,6 +190,24 @@ ul, ol {
 	margin-top: 170px; 
 	width: 27.5%;
 	margin-bottom: 8%;
+}
+
+.min-margin{
+	margin-top: -36px;
+}
+
+.margin-tables {
+	margin-top: 170px; 
+}
+
+.end-file {
+	margin-bottom: 10%
+}
+
+.btn-training {
+	margin-top: -4%;
+	margin-right: 2%;
+	position: relative;
 }
 
 .reduce-height {
@@ -595,6 +622,7 @@ table td:hover {
     background-color: transparent;
    	padding: 3px;
    	margin: 2px;
+   	margin-bottom: 3px;
 }
 
 .img-height {
