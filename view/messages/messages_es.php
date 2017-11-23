@@ -120,5 +120,17 @@ array(
 	"Date" => "Fecha",
 	"Time" => "Hora",
 	"Day" => "Día"
+	"Sessions" => "Sesiones",
+	"Session \"%s\" successfully updated." => "Sesión \"%s\" actualizado correctamente.",
+	"Show all" => "Mostrar todas",
+	"Session \"%s\" successfully added." => "Sesión \"%s\" añadida correctamente.",
+	"Observations" => "Observaciones",
+	"Date" => "Fecha",
+	"Hour" => "Hora",
+	"Bookings" => "Reservas",
+	"Confirmed" => "Confirmado",
+	"Id activity" => "Id actividad",
+	"Id athlete" => "Id deportista",
+	"Booking \"%s\" successfully added." => "Reserva \"%s\" añadida correctamente.",
 )
 ?>
