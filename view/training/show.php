@@ -25,6 +25,7 @@ $view->setVariable("title", "Show Trainings");
 				<table class="full-width">
 					<tr>
 						<th><strong><?=i18n("Exercise")?></strong></th>
+						<th style="text-align: center"><strong><?=i18n("Reps")?></strong></th>
 						<th style="text-align: center"><strong><?=i18n("Duration")?></strong></th>
 						<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
 					</tr>
@@ -70,6 +71,7 @@ $view->setVariable("title", "Show Trainings");
 				<table class="full-width">
 					<tr>
 						<th><strong><?=i18n("Exercise")?></strong></th>
+						<th style="text-align: center"><strong><?=i18n("Reps")?></strong></th>
 						<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
 					</tr>
 					<?php foreach ($grupalTrainings[1] as $trainings): ?>
@@ -106,6 +108,7 @@ $view->setVariable("title", "Show Trainings");
 				<table class="full-width">
 					<tr>
 						<th><strong><?=i18n("Exercise")?></strong></th>
+						<th style="text-align: center"><strong><?=i18n("Reps")?></strong></th>
 						<th style="text-align: center"><strong><?=i18n("Duration")?></strong></th>
 						<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
 					</tr>
