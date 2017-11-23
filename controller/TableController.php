@@ -35,30 +35,38 @@ class TableController extends BaseController {
 			throw new Exception("Not in session. Show users requires login");
 		}
 
-		$tables_db = $this->tableMapper->getTables();
-		$cardio = array();
-		$muscular = array();
-		$est = array();
+		$tables_id = $this->tableMapper->getIdTablesWithExercises();
+		
 		$tables = array();
 		
-		//Creamos 3 array para cada tipo de ejercicio
-		foreach ($tables_db as $table) {
-			$exerciseId = $this->trainingMapper->getTrainingById($table->getTrainingId())->getExerciseId();
-			$exerciseType = $this->exerciseMapper->getTypeById($exerciseId);
-			$exercisePhoto = $this->exerciseMapper->findPhotoById($exerciseId);
-			$exerciseName = $this->exerciseMapper->getNameById($exerciseId);
+		//Clasificamos según el tipo de tabla
+		foreach ($tables_id as $id) {
+			$tables_db = $this->tableMapper->getTables($id);
+			$cardio = array();
+			$muscular = array();
+			$est = array();
 
-			if(!array_key_exists($table->getTableId(), $tables)){
-				$tables[$table->getTableId()] = array();
+			foreach ($tables_db as $table) {
+				$exerciseId = $this->trainingMapper->getTrainingById($table->getTrainingId())->getExerciseId();
+				$exerciseType = $this->exerciseMapper->getTypeById($exerciseId);
+				$exercisePhoto = $this->exerciseMapper->findPhotoById($exerciseId);
+				$exerciseName = $this->exerciseMapper->getNameById($exerciseId);
+				if($exerciseType == "CARDIO"){
+					array_push($cardio, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType));
+				} elseif ($exerciseType == "MUSCULAR") {
+					array_push($muscular, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType));
+				} elseif ($exerciseType == "ESTIRAMIENTO") {
+					array_push($est, array($exerciseId, $exercisePhoto, $exerciseName, $exerciseType));
+				}
 			}
 
-			array_push($tables[$table->getTableId()], array($exerciseName, $exercisePhoto, $table, $exerciseId, $exerciseType));
+			array_push($tables, array($cardio,$muscular,$est));
 
 		}
 
 		// put the users object to the view
 		$this->view->setVariable("tables", $tables);
-
+		$this->view->setVariable("tables_id", $tables_id);
 		$this->view->render("table", "show");
 	}
 

@@ -11,15 +11,28 @@ class TableMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
-	//Devuelve todos los entrenamientos
-	public function getTables(){
-		$stmt = $this->db->prepare("SELECT T1.ID_TABLA, T1.TIPO, T2.ID_ENTRENA FROM TABLA T1 JOIN INCLUYE T2 WHERE T1.ID_TABLA = T2.ID_TABLA"); 
-		$stmt->execute();
+	//Devuelve todas las tablas
+	public function getTables($id){
+		$stmt = $this->db->prepare("SELECT T1.ID_TABLA, T1.TIPO, T2.ID_ENTRENA FROM TABLA T1 JOIN INCLUYE T2 WHERE T1.ID_TABLA = T2.ID_TABLA AND T1.ID_TABLA = ?"); 
 		$tables_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$tables = array();
 
 		foreach ($tables_db as $table) {
 			array_push($tables, new Table($table["ID_TABLA"], $table["TIPO"], $table["ID_ENTRENA"]));
+		}
+
+		return $tables;
+	}
+
+	//Devuelve el id de las tablas que tienen asociado algun ejercicio
+	public function getIdTablesWithExercises(){
+		$stmt = $this->db->prepare("SELECT DISTINCT ID_TABLA FROM `INCLUYE` WHERE 1"); 
+		$stmt->execute();
+		$tables_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$tables = array();
+
+		foreach ($tables_db as $table) {
+			array_push($tables, $table["ID_TABLA"]);
 		}
 
 		return $tables;

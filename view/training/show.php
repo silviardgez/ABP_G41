@@ -13,7 +13,9 @@ $view->setVariable("title", "Show Trainings");
 		<div class="home2 title-style">
 			<h1><?=i18n("Workouts")?></h1><br>
 		</div>
-		<div class="home2 bloques">
+
+		<div class="bloques">
+		<div class="home2 full-width reduce-height">
 			<h1 style="margin-bottom: 6px;"><?=i18n("Cardio")?></h1><br>
 			<table class="full-width">
 				<tr>
@@ -38,6 +40,7 @@ $view->setVariable("title", "Show Trainings");
 							method="POST"
 							action="index.php?controller=training&amp;action=delete"
 							id="delete_training_<?= $trainings[1]->getTrainingId(); ?>"
+							class="none-styles"
 							style="display: inline"
 							>
 
@@ -55,8 +58,10 @@ $view->setVariable("title", "Show Trainings");
 				<?php endforeach; ?>
 			</table>
 		</div>	
+	</div>
 
-		<div class="home2 bloques">
+		<div class="bloques">
+		<div class="home2 full-width reduce-height">
 			<h1 style="margin-bottom: 6px;"><?=i18n("Muscular")?></h1><br>
 			<table class="full-width">
 				<tr>
@@ -73,6 +78,7 @@ $view->setVariable("title", "Show Trainings");
 							method="POST"
 							action="index.php?controller=training&amp;action=delete"
 							id="delete_training_<?= $trainings[1]->getTrainingId(); ?>"
+							class="none-styles"
 							style="display: inline"
 							>
 
@@ -90,8 +96,9 @@ $view->setVariable("title", "Show Trainings");
 				<?php endforeach; ?>
 			</table>
 		</div>
-
-		<div class="home2 bloques">
+	</div>
+		<div class="bloques">
+		<div class="home2 full-width reduce-height">
 			<h1 style="margin-bottom: 6px;"><?=i18n("Stretch")?></h1><br>
 			<table class="full-width">
 				<tr>
@@ -116,6 +123,7 @@ $view->setVariable("title", "Show Trainings");
 							method="POST"
 							action="index.php?controller=training&amp;action=delete"
 							id="delete_training_<?= $trainings[1]->getTrainingId(); ?>"
+							class="none-styles"
 							style="display: inline"
 							>
 
@@ -133,6 +141,7 @@ $view->setVariable("title", "Show Trainings");
 				<?php endforeach; ?>
 			</table>
 		</div>
+	</div>
 	</div>
 
 <div class="row">

@@ -3,73 +3,39 @@
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $tables = $view->getVariable("tables");
+$tables_id = $view->getVariable("tables_id");
 
 $view->setVariable("title", "Show Tables");
 ?>
 
-<?php 
-$cardioPhotos = array();
-$cardioNames = array();
-$muscularPhotos = array();
-$muscularNames = array();
-$estPhotos = array();
-$estNames = array();
-foreach ($tables as $key => $values){
-	foreach ($values as $array){ 
-		if($array[4] == "CARDIO" && $array[2]->getTableId() == '0') {
-			array_push($cardioPhotos, $array[1]);
-			array_push($cardioNames, $array[0]);
-		}
-		if($array[4] == "MUSCULAR") {
-			array_push($muscularPhotos, $array[1]);
-			array_push($muscularNames, $array[0]);
-		}
-		if($array[4] == "ENTRENAMIENTO" && $array[2]->getTableId()==0) {
-			array_push($estPhotos, $array[1]);
-			array_push($estNames, $array[0]);
-		}
-	}
-}?> 
 
 <section class="pagecontent full-width">
-	<div class="home2">
-		<h1><?=i18n("Table")?></h1><br>
+	<?php $j=0; ?>
+	<?php foreach ($tables as $table) : ?>
+			<div class="home4">
+				<h1><?=i18n("Table") . " " . $tables_id[$j]; $j++; ?></h1><br>
 
-		<table class="full-width">
-			<tr>
-				<?php foreach ($cardioPhotos as $photo) : ?>						
-					<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $array[3] ?>" style="color: #669"><img src="<?=$photo?>" alt="<?=i18n("Image not found")?>" /></a></td>
-				<?php endforeach; ?>
-			</tr>
-			<tr>
-				<?php foreach ($cardioNames as $name) : ?>
-					<td><?php echo $name;?></td>
-				<?php endforeach; ?>
-			</tr>
+				<table class="full-width">
+					<?php foreach ($table as $type) : ?>
+						<tr><th colspan="<?php echo sizeof($type) ?>"><strong><?php echo $type[0][3] ?></strong></th></tr>
+						<tr>
 
-			<tr>
-				<?php foreach ($muscularPhotos as $photo) : ?>	
-					<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $array[3] ?>" style="color: #669"><img src="<?=$photo?>" alt="<?=i18n("Image not found")?>" /></a></td>
-				<?php endforeach; ?>
-			</tr>
-			<tr>
-				<?php foreach ($muscularNames as $name) : ?>
-					<td><?php echo $name;?></td>
-				<?php endforeach; ?>
-			</tr>
+							<?php for ($i=0; $i < sizeof($type); $i++) : ?>
+								<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $type[$i][0] ?>"><img class="img-height" src="<?=$type[$i][1]?>" alt="<?=i18n("Image not found")?>" /></a></td>
+							<?php endfor; ?>
 
-			<tr>
-				<?php foreach ($estPhotos as $photo) : ?>
-					<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $array[3] ?>" style="color: #669"><img src="<?=$photo?>" alt="<?=i18n("Image not found")?>" /></a></td>
-				<?php endforeach; ?>
-			</tr>
-			<tr>
-				<?php foreach ($estNames as $name) : ?>
-					<td><?php echo $name;?></td>
-				<?php endforeach;?>
-			</tr>
-		</table>
-	</div>	
+						</tr>
+
+						<tr>
+							<?php for ($i=0; $i < sizeof($type); $i++) : ?>
+								<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $type[$i][0] ?>"><?php echo $type[$i][2];?></a></td>
+							<?php endfor; ?>
+						</tr>
+						<tr><td class="none-styles"></td></tr>
+					<?php endforeach; ?>
+				</table>
+			</div>	
+	<?php endforeach; ?>
 
 	<div class="row">
 		<div class="btn-group">

@@ -77,6 +77,8 @@ class TrainingController extends BaseController {
 		// Get the User object from the database
 		$trainingId = $_REQUEST["id"];
 		$training = $this->trainingMapper->getTrainingById($trainingId);
+		$exerciseId = $training->getExerciseId();
+		$exerciseName = $this->exerciseMapper->findExerciseNameById($exerciseId);
 
 		if ($training == NULL) {
 			throw new Exception("no such training with id: ". $trainingId);
@@ -105,7 +107,7 @@ class TrainingController extends BaseController {
 			}
 		}
 		$this->view->setVariable("training", $training);
-
+		$this->view->setVariable("exerciseName", $exerciseName);
 		$this->view->render("training", "edit");
 	}
 
@@ -118,7 +120,7 @@ class TrainingController extends BaseController {
 		}
 
 		/*if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Deleting an user requires be admin");
+			throw new Exception("You aren't an admin. Deleting an training requires be admin");
 		}*/
 
 		$trainingId = $_REQUEST["id"];
