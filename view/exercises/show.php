@@ -82,22 +82,22 @@ $view->setVariable("title", "Show Exercises");
 				<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>"><?= htmlentities($exercise->getName()) ?></a>
 				<div class="icons">
 					<form
-					method="POST"
-					action="index.php?controller=exercises&amp;action=delete"
-					id="delete_exercise_<?= $exercise->getName(); ?>"
-					style="display: inline"
-					>
+						method="POST"
+						action="index.php?controller=exercises&amp;action=delete"
+						id="delete_exercise_<?= $exercise->getName(); ?>"
+						style="display: inline"
+						>
 
-					<input type="hidden" name="id" value="<?= $exercise->getId() ?>">
+						<input type="hidden" name="id" value="<?= $exercise->getId() ?>">
 
-					<a 
-					onclick="
-					if (confirm('<?= i18n("are you sure?")?>')) {
-						document.getElementById('delete_exercise_').submit()
-					}"
-					><i class="fa fa-trash"></i></a>
+						<a 
+						onclick="
+						if (confirm('<?= i18n("are you sure?")?>')) {
+							document.getElementById('delete_exercise_<?= $exercise->getName(); ?>').submit()
+						}"
+						><i class="fa fa-trash"></i></a>
 
-				</form>
+					</form>
 				<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o"></i></a>
 			</div>
 		<?php endif ?>
