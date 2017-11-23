@@ -119,7 +119,7 @@ array(
 	"Athlete" => "Deportista",
 	"Date" => "Fecha",
 	"Time" => "Hora",
-	"Day" => "Día"
+	"Day" => "Día",
 	"Sessions" => "Sesiones",
 	"Session \"%s\" successfully updated." => "Sesión \"%s\" actualizado correctamente.",
 	"Show all" => "Mostrar todas",
