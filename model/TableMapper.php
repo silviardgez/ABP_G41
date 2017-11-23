@@ -14,6 +14,7 @@ class TableMapper {
 	//Devuelve todas las tablas
 	public function getTables($id){
 		$stmt = $this->db->prepare("SELECT T1.ID_TABLA, T1.TIPO, T2.ID_ENTRENA FROM TABLA T1 JOIN INCLUYE T2 WHERE T1.ID_TABLA = T2.ID_TABLA AND T1.ID_TABLA = ?"); 
+		$stmt->execute(array($id));
 		$tables_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$tables = array();
 
