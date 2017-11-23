@@ -66,5 +66,10 @@ class TableMapper {
 		$stmt = $this->db->prepare("UPDATE TABLA set TIPO=? WHERE ID_TABLA=?");
 		$stmt->execute(array($table->getType(), $table->getTableId()));
 	}
+
+	public function add(Table $table){
+		$stmt = $this->db->prepare("INSERT INTO TABLA(TIPO) VALUES(?)");
+		$stmt->execute(array($table->getType()));
+	}
 	
 }

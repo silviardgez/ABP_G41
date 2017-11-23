@@ -175,4 +175,34 @@ class TableController extends BaseController {
 		$this->view->render("table", "edit");
 	}
 
+	public function add(){
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Editing user requires login");
+		}
+		$table = new Table();
+
+		if (isset($_POST["submit"])) { 
+			$table->setType($_POST["type"]);
+
+			try {
+
+				$this->tableMapper->add($table);
+
+				$this->view->setFlash(sprintf(i18n("Table \"%s\" successfully added."), $table->getTableId()));
+
+				$this->view->redirect("table", "show");
+
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+
+		$this->view->setVariable("table", $table);
+
+		$this->view->render("table", "add");
+	}
+
 }

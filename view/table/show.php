@@ -14,7 +14,7 @@ $view->setVariable("title", "Show Tables");
 		<div class="home2 title-style">
 			<h1><?=i18n("Tables")?></h1><br>
 			<div class="btn-group">
-				<a href="index.php?controller=training&amp;action=add" class="btn-fab circulo btn-training" id="add">
+				<a href="index.php?controller=table&amp;action=add" class="btn-fab circulo btn-training" id="add">
 					<i class="fa fa-plus"></i>
 				</a>
 			</div>
