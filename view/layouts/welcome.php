@@ -58,7 +58,7 @@ $(document).ready(function() {
 					</li>
 					<li><a href=""><?=i18n("Administration")?></a>
 						<ul>
-							<li><a href=""><?=i18n("Notifications")?></a></li>
+							<li><a href="index.php?controller=notifications&amp;action=show"><?=i18n("Notifications")?></a></li>
 							<li><a href="index.php?controller=users&amp;action=show"><?=i18n("Users")?></a></li>
 						</ul>
 					</li>
@@ -71,7 +71,7 @@ $(document).ready(function() {
 					<li><a href=""><?=i18n("Activities")?></a>
 						<ul>
 							<li><a href="index.php?controller=activity&amp;action=show"><?=i18n("Classes")?></a></li>
-							<li><a href=""><?=i18n("Reservations")?></a></li>
+							<li><a href="index.php?controller=book&amp;action=show"><?=i18n("Reservations")?></a></li>
 							<li><a href="index.php?controller=assistance&amp;action=show"><?=i18n("Assistance")?></a></li>
 						</ul>
 					</li>
@@ -108,7 +108,7 @@ $(document).ready(function() {
 					<li><a href=""><?=i18n("Activities")?></a>
 						<ul>
 							<li><a href=""><?=i18n("Activities")?></a></li>
-							<li><a href=""><?=i18n("Reservations")?></a></li>
+							<li><a href="index.php?controller=book&amp;action=show"><?=i18n("Reservations")?></a></li>
 							<li><a href="index.php?controller=assistance&amp;action=show"><?=i18n("Assistance")?></a></li>
 						</ul>
 					</li>
@@ -135,7 +135,7 @@ $(document).ready(function() {
 						<ul>
 							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
 							<li><a href=""><?=i18n("Notifications")?></a></li>
-							<li><a href=""><?=i18n("Sesions")?></a></li>
+							<li><a href="index.php?controller=sesion&amp;action=show&amp;lang=en"><?=i18n("Sessions")?></a></li>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Workouts")?></a></li>

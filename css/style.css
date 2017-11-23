@@ -333,6 +333,10 @@ button {
 	margin-top: 18%;
 }
 
+#login > a{
+	color: red;
+}
+
 .icons{
 	padding-right: 5px;
 	text-align: right;

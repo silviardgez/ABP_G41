@@ -95,4 +95,34 @@ class ActivityMapper {
 		$stmt->execute(array($activity->getActivityName(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor()));
 		return $this->db->lastInsertId();
 	}
+	
+	//Devuelve todas las actividades
+	public function selectAllActivities(){
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD");
+		$stmt->execute();
+
+		$activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $activities;
+	}
+
+	//Devuelve los emails de los usuarios anotados en una actividad
+	public function selectEmail($id_act){
+		$stmt = $this->db->prepare("SELECT EMAIL FROM USUARIO, RESERVA WHERE USUARIO.DNI=RESERVA.DNI_DEP AND ID_ACT=?");
+		$stmt->execute(array($id_act));
+
+		$email_bd = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$resul = "";
+
+		foreach ($email_bd as $email) {
+			if ($email === end($email_bd)) {
+				$resul .= $email["EMAIL"];
+			}else{
+				$resul .= $email["EMAIL"] . ", ";
+			}
+		}
+
+		return $resul;
+	}
 }

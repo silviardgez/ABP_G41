@@ -16,7 +16,7 @@ $view->setVariable("title", "View Assistance");
 		<div class="home2 bloques">
 			<table class="full-width">
 				<tr>
-					<th><?=i18n("Deportista")?></th>
+					<th><?=i18n("Athlete")?></th>
 					<th><?=i18n("Date")?></th>
 					<th><?=i18n("Time")?></th>
 					<th></th>

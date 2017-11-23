@@ -12,21 +12,6 @@ class AthletesstatisticsMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
-	/*public function findType(){
-		$user = $_SESSION["currentuser"]; 
-		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DNI=?");
-		$stmt->execute(array($user));
-		$array = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		if($array["ADMIN"] == 1) {
-			return "admin";
-		} else if($array["ENTRENADOR"] == 1){
-			return "entrenador";
-		}else{
-			return "deportista";
-		}
-	}*/
-
 	public function showAllDeportists(){
 		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DEPORTISTA=1");
 		$stmt->execute();
@@ -75,19 +60,4 @@ class AthletesstatisticsMapper {
 
 		return $assistances;
 	}
-/*
-	public function delete(User $user){
-		$stmt = $this->db->prepare("DELETE from USUARIO WHERE DNI=?");
-		$stmt->execute(array($user->getUsername()));
-		$stmt2 = $this->db->prepare("DELETE from TLF_USUARIO WHERE DNI=?");
-		$stmt2->execute(array($user->getUsername()));
-	}
-
-	public function update(User $user){
-		$stmt = $this->db->prepare("UPDATE USUARIO set DNI=?, CONTRASEÑA=?, NOMBRE=?, APELLIDOS=?, EMAIL=?, FECHA_NAC=?, ADMIN=?, ENTRENADOR=?, DEPORTISTA=? where DNI=?");
-		$stmt->execute(array($user->getUsername(), $user->getPass(), $user->getName(), $user->getSurname(), $user->getEmail(), $user->getDateBorn(), $user->getAdmin(), $user->getCoach(), $user->getDeportist(), $user->getUsername()));
-
-		$stmt2 = $this->db->prepare("UPDATE TLF_USUARIO set TELEFONO=? where DNI=?");
-		$stmt2->execute(array($user->getTlf(), $user->getUsername()));
-	}*/
 }
