@@ -134,6 +134,7 @@ array(
 	"Booking \"%s\" successfully added." => "Reserva \"%s\" añadida correctamente.",
 	"Repeats" => "Repeticiones",
 	"Duration" => "Duración",
-	"Table" => "Tabla"
+	"Table" => "Tabla",
+	"Home" => "Inicio",
 )
 ?>

@@ -137,4 +137,46 @@ class UserMapper {
 
 		return $coaches;
 	}
+
+	//Comprueba si es admin
+	public function isAdmin(){
+		$user = $_SESSION["currentuser"]; 
+		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DNI=?");
+		$stmt->execute(array($user));
+		$array = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($array["ADMIN"] == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//Comprueba si es deportista
+	public function isAthlete(){
+		$user = $_SESSION["currentuser"]; 
+		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DNI=?");
+		$stmt->execute(array($user));
+		$array = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($array["DEPORTISTA"] == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	//Comprueba si es deportista
+	public function isCoach(){
+		$user = $_SESSION["currentuser"]; 
+		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DNI=?");
+		$stmt->execute(array($user));
+		$array = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($array["ENTRENADOR"] == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

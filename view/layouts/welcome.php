@@ -48,77 +48,61 @@ $(document).ready(function() {
 <body>
 	<header>
 		<?php if (isset($_SESSION["currentuser"])): ?>
-			<?php if ($_SESSION["type"] == "admin"): ?>
 				<ul class="navAdmin">
-					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
-					<li><a><?=i18n("User")?></a>
+					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Home")?></a></li>
+					<li><a><?=i18n("Profile")?></a>
 						<ul>
 							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
+							<?php if ($_SESSION["deportista"]): ?>
+							<li><a href=""><?=i18n("Notifications")?></a></li>
+							<?php endif; ?>
 						</ul>
 					</li>
+					<?php if ($_SESSION["admin"] || $_SESSION["entrenador"]): ?>
 					<li><a href=""><?=i18n("Administration")?></a>
 						<ul>
 							<li><a href="index.php?controller=notifications&amp;action=show"><?=i18n("Notifications")?></a></li>
+							<?php if ($_SESSION["admin"]): ?>
 							<li><a href="index.php?controller=users&amp;action=show"><?=i18n("Users")?></a></li>
+							<?php endif; ?>
 						</ul>
 					</li>
-					<li><a href=""><?=i18n("Statistics")?></a>
-						<ul>
-							<li><a href="index.php?controller=athletesstatistics&amp;action=show"><?=i18n("Athletes")?></a></li>
-							<li><a href="index.php?controller=activitiesstatistics&amp;action=show"><?=i18n("Activities")?></a></li>
-						</ul>
-					</li>
+					<?php endif; ?>
 					<li><a href=""><?=i18n("Activities")?></a>
 						<ul>
 							<li><a href="index.php?controller=activity&amp;action=show"><?=i18n("Classes")?></a></li>
+							<?php if($_SESSION["admin"]): ?>
 							<li><a href="index.php?controller=book&amp;action=show"><?=i18n("Reservations")?></a></li>
+							<?php endif; ?>
+							<?php if($_SESSION["entrenador"]): ?>
 							<li><a href="index.php?controller=assistance&amp;action=show"><?=i18n("Assistance")?></a></li>
+							<?php endif; ?>
+							<?php if($_SESSION["deportista"] && !$_SESSION["entrenador"]): ?>
+							<li><a href="index.php?controller=activitiesstatistics&amp;action=show"><?=i18n("Statistics")?></a></li>
+							<?php endif; ?>
 						</ul>
 					</li>
 					<li><a href=""><?=i18n("Fitness")?></a>
 						<ul>
+							<?php if ($_SESSION["admin"] || $_SESSION["entrenador"]): ?>
 							<li><a href="index.php?controller=exercises&amp;action=show"><?=i18n("Exercises")?></a></li>
 							<li><a href="index.php?controller=training&amp;action=show"><?=i18n("Workouts")?></a></li>
+							<?php endif; ?>
 							<li><a href="index.php?controller=table&amp;action=show"><?=i18n("Tables")?></a></li>
+							<?php if($_SESSION["deportista"] || $_SESSION["entrenador"]): ?>
+							<li><a href="index.php?controller=sesion&amp;action=show"><?=i18n("Sessions")?></a></li>
+							<?php endif; ?>
+
 						</ul>
 					</li>
-					<li><a><?=i18n("Language")?></a>
-						<ul>
-							<li><a href="index.php?controller=language&amp;action=change&amp;lang=es"><?= i18n("Spanish") ?></a></li>
-							<li><a href="index.php?controller=language&amp;action=change&amp;lang=en"><?= i18n("English") ?></a></li>
-						</ul>
-					</li>
-					<li><a id="logout" href="index.php?controller=users&amp;action=logout"><?= i18n("Logout")?></a></li>
-				</ul>
-			<?php endif ?>
-			<?php if ($_SESSION["type"] == "entrenador"): ?>
-				<ul class="navEn">
-					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
-					<li><a><?=i18n("User")?></a>
-						<ul>
-							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
-						</ul>
-					</li>
+					<?php if ($_SESSION["admin"] || $_SESSION["entrenador"]): ?>
 					<li><a href=""><?=i18n("Statistics")?></a>
 						<ul>
 							<li><a href="index.php?controller=athletesstatistics&amp;action=show"><?=i18n("Athletes")?></a></li>
 							<li><a href="index.php?controller=activitiesstatistics&amp;action=show"><?=i18n("Activities")?></a></li>
 						</ul>
 					</li>
-					<li><a href=""><?=i18n("Activities")?></a>
-						<ul>
-							<li><a href=""><?=i18n("Activities")?></a></li>
-							<li><a href="index.php?controller=book&amp;action=show"><?=i18n("Reservations")?></a></li>
-							<li><a href="index.php?controller=assistance&amp;action=show"><?=i18n("Assistance")?></a></li>
-						</ul>
-					</li>
-					<li><a href=""><?=i18n("Activities")?></a>
-						<ul>
-							<li><a href=""><?=i18n("Exercises")?></a></li>
-							<li><a href=""><?=i18n("Workouts")?></a></li>
-							<li><a href=""><?=i18n("Tables")?></a></li>
-						</ul>
-					</li>
+					<?php endif; ?>
 					<li><a><?=i18n("Language")?></a>
 						<ul>
 							<li><a href="index.php?controller=language&amp;action=change&amp;lang=es"><?= i18n("Spanish") ?></a></li>
@@ -128,30 +112,7 @@ $(document).ready(function() {
 					<li><a id="logout" href="index.php?controller=users&amp;action=logout"><?= i18n("Logout")?></a></li>
 				</ul>
 			<?php endif ?>
-			<?php if ($_SESSION["type"] == "deportista"): ?>
-				<ul class="navDep">
-					<li><a href="index.php?controller=login&amp;action=home"><?= i18n("Start")?></a></li>
-					<li><a><?=i18n("Profile")?></a>
-						<ul>
-							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
-							<li><a href=""><?=i18n("Notifications")?></a></li>
-							<li><a href="index.php?controller=sesion&amp;action=show&amp;lang=en"><?=i18n("Sessions")?></a></li>
-						</ul>
-					</li>
-					<li><a href=""><?=i18n("Workouts")?></a></li>
-					<li><a href=""><?=i18n("Exercises")?></a></li>
-					<li><a href=""><?=i18n("Tables")?></a></li>
-					<li><a href=""><?=i18n("Services")?></a></li>
-					<li><a><?=i18n("Language")?></a>
-						<ul>
-							<li><a href="index.php?controller=language&amp;action=change&amp;lang=es"><?= i18n("Spanish") ?></a></li>
-							<li><a href="index.php?controller=language&amp;action=change&amp;lang=en"><?= i18n("English") ?></a></li>
-						</ul>
-					</li>
-					<li><a id="logout" href="index.php?controller=users&amp;action=logout"><?= i18n("Logout")?></a></li>
-				</ul>
-			<?php endif ?>
-		<?php endif ?>
+			
 	</header>
 	<main>
 		<!-- flash message -->

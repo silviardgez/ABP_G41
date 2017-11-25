@@ -38,13 +38,14 @@ $view->setVariable("title", "Edit Training");
 						<td class="icons">
 								<form
 								method="POST"
-								action="index.php?controller=table&amp;action=deletecurrent&amp;idtable=<?=$table->getTableId()?>"
+								action="index.php?controller=table&amp;action=deletecurrent"
 								id="delete_trainingintable_<?=$training[0]?>"
 								class="none-styles"
 								style="display: inline"
 								>
 
 								<input type="hidden" name="id" value="<?=$training[0]?>">
+								<input type="hidden" name="idtable" value="<?=$table->getTableId()?>">
 
 								<a 
 								onclick="
