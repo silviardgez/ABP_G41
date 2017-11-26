@@ -6,7 +6,7 @@ $exercise = $view->getVariable("exercise");
 $view->setVariable("title", "View exercise");
 ?>
 
-<h1>Ver Ejercicio</h1>
+<h1><?=i18n("View Exercice")?></h1>
 <form class="form-horizontal col-md-12" >
 	<br><div class="form-group">
 		<label class="col-lg-5 control-label"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
