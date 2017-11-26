@@ -11,7 +11,7 @@ $view->setVariable("title", "Edit User");
 
 ?>
 
-<h1>Modificar Usuario</h1>
+<h1><?=i18n("Edit User")?></h1>
 <form action="index.php?controller=users&amp;action=edit" method="POST" class="form-horizontal col-md-12" >
   <br><div class="form-group">
     <label class="col-lg-6 control-label"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
