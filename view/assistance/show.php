@@ -9,28 +9,37 @@ $activities = $view->getVariable("activities");
 $view->setVariable("title", "Show Activities");
 ?>
 
-<section class="pagecontent full-width">
-	<div class="users">
-		<div class="home2 title-style">
-			<h1><?=i18n("Activities")?></h1><br>
+<div class="col-md-12">
+	<div class="col-md-4"></div>
+		<div class="container">
+			<div class="table-responsive col-md-4">
+					<table class="table">
+						<thead>
+							<tr>
+								<th></th>
+								<th class="tittle"><?=i18n("Activities")?></th>
+								<th></th>
+								<th></th>
+							</tr>
+							<tr class="active">
+								<th><?=i18n("View assistance")?></th>
+								<th><?=i18n("Day")?></th>
+								<th><?=i18n("Time")?></th>
+								<th></th>
+							</tr>
+						<thead>
+						<tbody>
+							<?php foreach ($activities as $activity): ?>
+								<tr class="success">
+									<td><a href="index.php?controller=assistance&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><?= $activity->getActivityname(); ?></a></td>
+									<td><?= $activity->getDia(); ?></td>
+									<td><?= $activity->getHorainicio(); ?></td>
+									<td><a href="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $activity->getActivityid(); ?>"><button id="button2" type="submit" name="submit"><?=i18n("Add")?></button></a></td>
+								<tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+			</div>
 		</div>
-		<div class="home2 bloques">
-			<table class="full-width">
-				<tr>
-					<th><?=i18n("View assistance")?></th>
-					<th><?=i18n("Day")?></th>
-					<th><?=i18n("Time")?></th>
-					<th></th>
-				</tr>
-				<?php foreach ($activities as $activity): ?>
-					<tr>
-						<td><a href="index.php?controller=assistance&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><?= $activity->getActivityname(); ?></a></td>
-						<td><?= $activity->getDia(); ?></td>
-						<td><?= $activity->getHorainicio(); ?></td>
-							<td><a href="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $activity->getActivityid(); ?>"><button id="button2" type="submit" name="submit"><?=i18n("Add")?></button></a></td>
-					<tr>
-				<?php endforeach; ?>
-			</table>
-		</div>
-	</div>
-</section>
+	<div class="col-md-4"></div>
+</div>

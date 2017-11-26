@@ -27,14 +27,13 @@ $view->setVariable("title", "Show deportists");
 				</thead>
 				<tbody>
 					<?php foreach ($deportists as $deportist): ?>
-							<tr class="success">
-								<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><?= $deportist->getDni(); ?> </a></td>
-								<td></td>
-								<td><a href="index.php?controller=athletesstatistics&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>">
-										<?= $deportist->getDeportistname(); ?>
-										<?= $deportist->getDeportistsurname(); ?>
-									</a></td>
-							</tr>
+						<tr class="success">
+							<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><?= $deportist->getDni(); ?> </a></td>
+							<td></td>
+							<td><a href="index.php?controller=athletesstatistics&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>">
+								<?= $deportist->getDeportistname(); ?>									<?= $deportist->getDeportistsurname(); ?>
+								</a></td>
+						</tr>
 					<?php endforeach; ?>
 				</tbody>
 			</table>

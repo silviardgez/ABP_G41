@@ -88,7 +88,7 @@ class AssistanceController extends BaseController {
 
 				$this->view->setFlash(sprintf(i18n("assistance \"%s\" successfully added."),$assistance ->getDni()));
 				
-				//$this->view->redirect("assistance", "show");
+				$this->view->redirect("assistance", "show");
 			}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
