@@ -4,24 +4,28 @@
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $view->setVariable("title", "New Password");
-//$view->setLayout("default");
+$view->setLayout("default");
 $errors = $view->getVariable("errors");
 ?>
-<div class="recuadro">
-	<div id="formulario">
-
-		<div id="login">
-			<form action="index.php?controller=users&amp;action=newpass" method="POST">
-
-				<?=i18n("DNI")?>:<?= isset($errors["DNI"])?i18n($errors["DNI"]):"" ?><input type="text" name="dni">
-
-				<?=i18n("Password")?>:<?= isset($errors["passwd"])?i18n($errors["passwd"]):"" ?><input type="password" name="pass">
-					
-				<?=i18n("Repeat Password")?>:<input type="password" name="rpass">
-
-				<button type="submit" name="submit"><?=i18n("Send")?></button>
-
+<div class="login-clean">
+	<form action="index.php?controller=users&amp;action=newpass" method="post">
+		<div class="illustration">
+			<i class="fa fa-paper-plane" aria-hidden="true"></i>
+		</div>
+			<div class="form-group">
+				<?=i18n("DNI")?>:<?= isset($errors["DNI"])?i18n($errors["DNI"]):"" ?>
+				<input class="form-control" type="text" name="dni" placeholder="<?= i18n("DNI")?>" />
+			</div>
+			<div class="form-group">
+				<?=i18n("Password")?>:<?= isset($errors["passwd"])?i18n($errors["passwd"]):"" ?>
+			<input class="form-control" type="password" name="rpass" placeholder="<?= i18n("Password")?>" />
+		</div>
+		<div class="form-group">
+			<?=i18n("Repeat Password")?>:
+		<input class="form-control" type="password" name="pass" placeholder="<?= i18n("Repeat Password")?>" />
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary btn-block" type="submit" name="submit"><?=i18n("Send")?></button>
+		</div>
 			</form>
 		</div>
-	</div>
-</div>
