@@ -10,7 +10,21 @@ $currentuser = $view->getVariable("currentusername");
 	<title><?= $view->getVariable("title", "WorldNote®") ?></title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<!--<link rel="stylesheet" href="css/style.css" type="text/css">-->
+	<!-- Versión compilada y comprimida del CSS de Bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+	<!-- Tema opcional -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+
+	<!-- Versión compilada y comprimida del JavaScript de Bootstrap -->
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="bootstrap.min.css"/>
+
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
 	<!-- enable ji18n() javascript function to translate inside your scripts -->
 	<script src="index.php?controller=language&amp;action=i18njs">	</script>
 	<script type="text/javscript" src="js/manage.js"></script>
@@ -19,15 +33,36 @@ $currentuser = $view->getVariable("currentusername");
 </head>
 <body>
 
-	<header>
-		<ul class="navAdmin" id="nav">
-			<li><a><?= i18n("Language:") ?></a></li>
-			<?php
-			include(__DIR__."/language_select_element.php");
-			?>
-			<li><a href="#">Contacto</a></li>
-		</ul>
-	</header>
+	<div>
+		<nav class="navbar navbar-default navigation-clean-search">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand"> BSBASports</a>
+						<button class="navbar-toggle collapsed" data-target="navcol-1" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div id="navcol-1" class="collapsew navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li role="presentation">
+								<a href="#">Contacto</a>
+							</li>
+							<li role="presentation">
+								<a> <?= i18n("Language:") ?></a>
+							</li>
+							<?php
+							include(__DIR__."/language_select_element.php");
+							?>
+						</ul>
+						<a class="btn btn-default navbar-btn navbar-rigth action-button" role="button" href="index.php?controller=users&amp;action=login"><?= i18n("Start") ?></a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
 
 	<main>
 		<div id="flash">

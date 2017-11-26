@@ -8,28 +8,31 @@ $view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
 ?>
 
-
-<div class="recuadro">
-	<div id="formulario">
-
-		<div id="login">
-			<form action="index.php?controller=users&amp;action=login" method="POST">
-				<?= i18n("DNI")?>: <input class="typetext" type="text" name="username">
-				<?= i18n("Password")?>: <input class="typetext" type="password" name="passwd">
-
-				<button type="submit" name="submit" class="cancel"><i class="button fa fa-sign-in"></i></button>
-			</form>
-			<?= i18n("Forgot your password?")?> <a href="index.php?controller=users&amp;action=recover"><?= i18n("Click here!")?></a>
+<div class="login-clean">
+	<form action="index.php?controller=users&amp;action=login" method="post">
+		<h2 class="sr-only">Login Form</h2>
+		<div class="illustration">
+			<i class="" aria-hidden="true"><img class="login-icon" src="src/BSBA.png" alt="<?=i18n("BSBASports")?>" /></i>
 		</div>
-	</div>
-</div>
+			<div class="form-group">
+				<input class="form-control" type="text" name="username" placeholder="<?= i18n("DNI")?>" />
+			</div>
+			<div class="form-group">
+			<input class="form-control" type="password" name="passwd" placeholder="<?= i18n("Password")?>" />
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary btn-block" type="submit">Logg In</button>
+			</div>
+				<a class="forgot" href="index.php?controller=users&amp;action=recover"><?= i18n("Forgot your password?")?></a>
+			</form>
+		</div>
 <!-- flash message -->
 		<div class="flash">
 			<?php if(isset($errors["general"])){
 				$acumulador = $errors["general"];
 				echo "<script>alert ('$acumulador');</script>";
 			} ?>
-			
+
 		</div>
 
 <?php $view->moveToFragment("css");?>
