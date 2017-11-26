@@ -150,5 +150,11 @@ array(
 	"Duration" => "Duración",
 	"Table" => "Tabla",
 	"Home" => "Inicio",
+	"Add User" => "Añadir Usuario",
+	"Edit User" => "Modificar Usuario",
+	"View User" => "Ver Usuario",
+	"Show Users" => "Mostrar Usuarios",
+	"Edit Profile" => "Modificar Perfil",
+	"View Profile" => "Ver Perfil",
 )
 ?>
