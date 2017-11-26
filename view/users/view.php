@@ -5,7 +5,7 @@ $view = ViewManager::getInstance();
 $user = $view->getVariable("user");
 $view->setVariable("title", "View User");
 ?>
-	<h1>Ver Usuario</h1>
+	<h1><?=i18n("View User")?></h1>
 	<form action="index.php?controller=users&amp;action=view" method="POST" class="form-horizontal col-md-12" >
 		<br><div class="form-group">
 			<label class="col-lg-6 control-label"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
