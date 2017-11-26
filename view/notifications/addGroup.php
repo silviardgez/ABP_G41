@@ -6,7 +6,7 @@ $view->setVariable("title", "Add Group Notification");
 $id = $view->getVariable("id");
 ?>
 
-<h1>Añadir Notificación Grupal</h1>
+<h1><?=i18n("Add Group Notification")?></h1>
 <form action="index.php?controller=notifications&amp;action=add" method="POST" class="form-horizontal col-md-12" >
 	<br><div class="form-group">
 		<div class="col-lg-6">
