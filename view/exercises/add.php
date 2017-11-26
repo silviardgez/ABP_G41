@@ -7,7 +7,7 @@ $view->setVariable("title", "Add Exercise");
 $errors = $view->getVariable("errors");
 ?>
 
-<h1>Añadir Ejercicio</h1>
+<h1><?=i18n("Add Exercice")?></h1>
 <form action="index.php?controller=exercises&amp;action=add" method="POST" class="form-horizontal col-md-12" >
 	<br><div class="form-group">
 		<label class="col-lg-5 control-label"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
