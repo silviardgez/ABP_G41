@@ -10,7 +10,7 @@ $errors = $view->getVariable("errors");
 $view->setVariable("title", "Edit Currentuser");
 ?>
 
-<h1>Modificar Perfil</h1>
+<h1><?=i18n("Edit Profile")?></h1>
 <form action="index.php?controller=users&amp;action=editcurrent" method="POST" class="form-horizontal col-md-12" >
   <br><div class="form-group">
     <label class="col-lg-6 control-label"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
