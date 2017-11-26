@@ -161,6 +161,7 @@ array(
 	"Edit Exercice" => "Modificar Ejercicio",
 	"Add Individual Notification" => "Añadir Notificación Individual",
 	"Add Group Notification" => "Añadir Notificación Grupal",
+	"Exercise" => "Ejercicio",
 	
 )
 ?>
