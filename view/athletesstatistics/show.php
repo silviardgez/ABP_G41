@@ -8,31 +8,37 @@ $view = ViewManager::getInstance();
 $deportists = $view->getVariable("deportists");
 $view->setVariable("title", "Show deportists");
 ?>
-
-<section class="pagecontent full-width">
-	<div class="users">
-		<div class="home2 title-style">
-			<h1><?=i18n("Athlete")?></h1><br>
-		</div>
-		<div class="home2 bloques">
-				<table class="full-width">
+<div class="col-md-12">
+	<div class="col-md-4"></div>
+	<div class="container">
+		<div class="table-responsive col-md-4">
+			<table class="table">
+				<thead>
 					<tr>
+						<th></th>
+						<th class="tittle"><?=i18n("Athletes")?></th>
+						<th></th>
+					</tr>
+					<tr class="active">
 						<th><?=i18n("View user")?></th>
+						<th></th>
 						<th><?=i18n("View statistic")?></th>
 					</tr>
+				</thead>
+				<tbody>
 					<?php foreach ($deportists as $deportist): ?>
-					
-						<tr>
-							<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><?= $deportist->getDni(); ?> </a></td>
-							<td><a href="index.php?controller=athletesstatistics&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>">
-									<?= $deportist->getDeportistname(); ?> 
-									<?= $deportist->getDeportistsurname(); ?>
-								</a>
-							</td>
-						<tr/>
+							<tr class="success">
+								<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><?= $deportist->getDni(); ?> </a></td>
+								<td></td>
+								<td><a href="index.php?controller=athletesstatistics&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>">
+										<?= $deportist->getDeportistname(); ?>
+										<?= $deportist->getDeportistsurname(); ?>
+									</a></td>
+							</tr>
 					<?php endforeach; ?>
-				</table>
-			</div>
+				</tbody>
+			</table>
 		</div>
 	</div>
-<section class="pagecontent full-width">
+<div class="col-md-4"></div>
+</div>
