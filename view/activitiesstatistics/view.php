@@ -22,17 +22,19 @@ $chart->setTitle("Monthly usage for www.example.com");
 $chart->render("libchart/demo/generated/demo1.png");*/
 ?>
 
-<div class="users">
-	<div class="margin">
-		<div class="home2">
-			<h1><?=i18n("Statistics")?></h1><br>
-			<?php foreach ($statistics as $statistic): ?>
-				Total deportistas: <?= $statistic->getDeportistas(); ?><br/>
-				Matriculados: <?= $statistic->getMatriculados(); ?><br/>
-				Porcentaje matriculados: <?= $statistic->getPorcentajeMatriculados(); ?> %<br/>
-				Asistentes: <?= $statistic->getAsistentes(); ?><br/>
-				Porcentaje asistentes: <?= $statistic->getPorcentajeAsistentes(); ?> %<br/>
-			<?php endforeach; ?>
-		</div>
+<div class="col-md-12">
+	<div class="col-md-4"></div>
+	<div class="list-group col-md-4">
+	  <p class="list-group-item active tittle col-md-12">
+	    <?=i18n("Statistics")?>
+	  </p>
+		<?php foreach ($statistics as $statistic): ?>
+	  <p class="list-group-item col-md-12">Total deportistas: <?= $statistic->getDeportistas(); ?></p>
+	  <p class="list-group-item col-md-12">Matriculados: <?= $statistic->getMatriculados(); ?></p>
+	  <p class="list-group-item col-md-12">Porcentaje matriculados: <?= $statistic->getPorcentajeMatriculados(); ?> %</p>
+	  <p class="list-group-item col-md-12">Asistentes: <?= $statistic->getAsistentes(); ?></p>
+		<p class="list-group-item col-md-12">Porcentaje asistentes: <?= $statistic->getPorcentajeAsistentes(); ?> %</p>
+		<?php endforeach; ?>
 	</div>
+	<div class="col-md-4"></div>
 </div>
