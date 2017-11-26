@@ -162,6 +162,19 @@ array(
 	"Add Individual Notification" => "Añadir Notificación Individual",
 	"Add Group Notification" => "Añadir Notificación Grupal",
 	"Exercise" => "Ejercicio",
-	
+	"He attends" => "Asiste a",
+	"activities" => "actividades",
+	"He is enroller in" => "Está matriculado en",
+	"He has attend" => "Ha asistido",
+	"He attends to" => "Asiste al",
+	"times to the gym" => "veces al gimnasio",
+	"% of the activities in which you are enrolled" => "% de las actividades en las que está matriculado",
+	"Total of athletes in the gym" => "Total de deportistas en el gimnasio",
+	"Enrolled" => "Matriculados",
+	"Percentage of enrolled" => "Porcentaje de matriculados",
+	"Percentage of assistants" => "Porcentaje de asistentes",
+	"" => "",
+	"" => "",
+	"" => "",
 )
 ?>

@@ -29,10 +29,10 @@ $chart->render("libchart/demo/generated/demo1.png");*/
 	    <?=i18n("Statistics")?>
 	  </p>
 		<?php foreach ($statistics as $statistic): ?>
-	  <p class="list-group-item col-md-12">Asiste a: <?= $statistic->getAsistenciaActividades(); ?> actividades</p>
-	  <p class="list-group-item col-md-12">Está matriculado en: <?= $statistic->getMatriculas(); ?> actividades</p>
-	  <p class="list-group-item col-md-12">Ha asistido: <?= $statistic->getAsistenciasTotales(); ?> veces al gimnasio</p>
-	  <p class="list-group-item col-md-12">Asiste al: <?= $statistic->getporcentajeAsistencias(); ?> % de las actividades en las que está matriculado</p>
+	  <p class="list-group-item col-md-12"><?=i18n("He attends")?> <?= $statistic->getAsistenciaActividades(); ?> <?=i18n("activities")?></p>
+	  <p class="list-group-item col-md-12"><?=i18n("He is enroller in")?> <?= $statistic->getMatriculas(); ?> <?=i18n("activities")?></p>
+	  <p class="list-group-item col-md-12"><?=i18n("He has attend")?> <?= $statistic->getAsistenciasTotales(); ?> <?=i18n("times to the gym")?></p>
+	  <p class="list-group-item col-md-12"><?=i18n("He attends to")?> <?= $statistic->getporcentajeAsistencias(); ?> <?=i18n("% of the activities in which you are enrolled")?></p>
 		<?php endforeach; ?>
 	</div>
 	<div class="col-md-4"></div>
