@@ -14,26 +14,26 @@ $errors = $view->getVariable("errors");
 		<div class="illustration">
 			<i class="" aria-hidden="true"><img class="login-icon" src="src/BSBA.png" alt="<?=i18n("BSBASports")?>" /></i>
 		</div>
-			<div class="form-group">
-				<input class="form-control" type="text" name="username" placeholder="<?= i18n("DNI")?>" />
-			</div>
-			<div class="form-group">
+		<div class="form-group">
+			<input class="form-control" type="text" name="username" placeholder="<?= i18n("DNI")?>" />
+		</div>
+		<div class="form-group">
 			<input class="form-control" type="password" name="passwd" placeholder="<?= i18n("Password")?>" />
 		</div>
 		<div class="form-group">
 			<button class="btn btn-primary btn-block" type="submit">Logg In</button>
-			</div>
-				<a class="forgot" href="index.php?controller=users&amp;action=recover"><?= i18n("Forgot your password?")?></a>
-			</form>
 		</div>
+		<a class="forgot" href="index.php?controller=users&amp;action=recover"><?= i18n("Forgot your password?")?></a>
+	</form>
+</div>
 <!-- flash message -->
-		<div class="flash">
-			<?php if(isset($errors["general"])){
-				$acumulador = $errors["general"];
-				echo "<script>alert ('$acumulador');</script>";
-			} ?>
+<div class="flash">
+	<?php if(isset($errors["general"])){
+		$acumulador = $errors["general"];
+		echo "<script>alert ('$acumulador');</script>";
+	} ?>
 
-		</div>
+</div>
 
 <?php $view->moveToFragment("css");?>
 <link rel="stylesheet" type="text/css" src="css/style.css">
