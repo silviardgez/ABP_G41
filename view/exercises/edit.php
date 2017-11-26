@@ -10,7 +10,7 @@ $errors = $view->getVariable("errors");
 $view->setVariable("title", "Edit Exercise");
 ?>
 
-<h1>Editar Ejercicio</h1>
+<h1><?=i18n("Edit Exercice")?></h1>
 <form action="index.php?controller=exercises&amp;action=edit" method="POST" class="form-horizontal col-md-12" >
 	<br><div class="form-group">
 		<div class="col-lg-6">
