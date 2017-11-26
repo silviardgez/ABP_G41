@@ -7,7 +7,7 @@ $dni = $view->getVariable("dni");
 $email = $view->getVariable("email");
 ?>
 
-<h1>Añadir Notificación Individual</h1>
+<h1><?=i18n("Add Individual Notification")?></h1>
 <form action="index.php?controller=notifications&amp;action=add" method="POST" class="form-horizontal col-md-12" >
 	<br><div class="form-group">
 		<label class="col-lg-6 control-label"><?=i18n("Email")?>:</label>
