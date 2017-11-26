@@ -361,7 +361,7 @@ class UsersController extends BaseController {
 		//Receive all the parameters of the form
 		$para = $user->getEmail();
 		$asunto = "Recuperación de Contraseña//Password Recovery";
-		$mensaje = "Puede recuperar su contraseña haciendo click en el siguiente enlace:\nYou can retrieve your password by clicking on the following link:\n\nhttp://localhost/abp/index.php?controller=users&action=newpass";
+		$mensaje = "Puede recuperar su contraseña haciendo click en el siguiente enlace:\nYou can retrieve your password by clicking on the following link:\n\nhttp://localhost/ABP_G41/index.php?controller=users&action=newpass";
 
 		//This block is important
 		$mail = new PHPMailer();

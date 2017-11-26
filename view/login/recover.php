@@ -10,7 +10,7 @@ $errors = $view->getVariable("errors");
 <div class="login-clean">
 	<form action="index.php?controller=users&amp;action=recover" method="post">
 		<div class="illustration">
-			<i class="fa fa-paper-plane" aria-hidden="true"></i>
+			<i class="" aria-hidden="true"><img class="login-icon" src="src/BSBA.png" alt="<?=i18n("BSBASports")?>" /></i>
 		</div>
 			<div class="form-group">
 				<?=i18n("DNI")?>:<?= isset($errors["DNI"])?i18n($errors["DNI"]):"" ?>
