@@ -156,5 +156,8 @@ array(
 	"Show Users" => "Mostrar Usuarios",
 	"Edit Profile" => "Modificar Perfil",
 	"View Profile" => "Ver Perfil",
+	"Add Exercice" => "Añadir Ejercicio",
+	"View Exercice" => "Ver Ejercicio",
+	"Edit Exercice" => "Modificar Ejercicio",
 )
 ?>
