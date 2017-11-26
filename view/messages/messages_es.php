@@ -159,5 +159,8 @@ array(
 	"Add Exercice" => "Añadir Ejercicio",
 	"View Exercice" => "Ver Ejercicio",
 	"Edit Exercice" => "Modificar Ejercicio",
+	"Add Individual Notification" => "Añadir Notificación Individual",
+	"Add Group Notification" => "Añadir Notificación Grupal",
+	
 )
 ?>
