@@ -29,11 +29,11 @@ $chart->render("libchart/demo/generated/demo1.png");*/
 	    <?=i18n("Statistics")?>
 	  </p>
 		<?php foreach ($statistics as $statistic): ?>
-	  <p class="list-group-item col-md-12">Total deportistas: <?= $statistic->getDeportistas(); ?></p>
-	  <p class="list-group-item col-md-12">Matriculados: <?= $statistic->getMatriculados(); ?></p>
-	  <p class="list-group-item col-md-12">Porcentaje matriculados: <?= $statistic->getPorcentajeMatriculados(); ?> %</p>
-	  <p class="list-group-item col-md-12">Asistentes: <?= $statistic->getAsistentes(); ?></p>
-		<p class="list-group-item col-md-12">Porcentaje asistentes: <?= $statistic->getPorcentajeAsistentes(); ?> %</p>
+	  <p class="list-group-item col-md-12"><?=i18n("Total of athletes in the gym")?> <?= $statistic->getDeportistas(); ?></p>
+	  <p class="list-group-item col-md-12"><?=i18n("Enrolled")?> <?= $statistic->getMatriculados(); ?></p>
+	  <p class="list-group-item col-md-12"><?=i18n("Percentage of enrolled")?> <?= $statistic->getPorcentajeMatriculados(); ?> %</p>
+	  <p class="list-group-item col-md-12"><?=i18n("Assistants")?> <?= $statistic->getAsistentes(); ?></p>
+		<p class="list-group-item col-md-12"><?=i18n("Percentage of assistants")?> <?= $statistic->getPorcentajeAsistentes(); ?> %</p>
 		<?php endforeach; ?>
 	</div>
 	<div class="col-md-4"></div>
