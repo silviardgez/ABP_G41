@@ -36,14 +36,21 @@ $view->setVariable("title", "Add Assistance");
 									<input type="hidden" name="id_act" value="<?= $assistance->getActivityid(); ?>">
 									<input type="hidden" name="asistente" value="<?= $assistant->getDni(); ?>">
 									<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistant->getDni(); ?>"><?= $assistant->getDni(); ?> </a></td>
-									<td><input type="date" id="fecha" name="fecha"></td>
+									<td><input type="date" id="" name="fecha"></td>
 									<td><input type="time" id="hora" name="hora"></td>
 									
 									<td><button id="button2" type="submit" name="submit"><?=i18n("Add")?></button></td>
 								</form>
 							</tr>
 						<?php endforeach; ?>
-			</table>
+					</tbody>
+				</table>
+			</div>
+			<div class="form-group">
+				<div class="col-lg-offset-6 col-lg-6">
+				<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
+				</div>
+			</div>
 		</div>
-	</div>
+	<div class="col-md-4"></div>
 </div>

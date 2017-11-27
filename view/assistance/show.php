@@ -41,5 +41,10 @@ $view->setVariable("title", "Show Activities");
 					</table>
 			</div>
 		</div>
+		<div class="form-group">
+		<div class="col-lg-offset-6 col-lg-6">
+			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
+		</div>
+	</div>
 	<div class="col-md-4"></div>
 </div>

@@ -35,21 +35,18 @@ $chart->render("libchart/demo/generated/demo1.png");*/
 	  <p class="list-group-item col-md-12"><?=i18n("He attends to")?> <?= $statistic->getporcentajeAsistencias(); ?> <?=i18n("% of the activities in which you are enrolled")?></p>
 		<?php endforeach; ?>
 	</div>
+	<div class="form-group">
+		<div class="col-lg-offset-6 col-lg-6">
+			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-lg-offset-6 col-lg-6">
+			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
+		</div>
+	</div>
 	<div class="col-md-4"></div>
 </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
