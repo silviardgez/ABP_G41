@@ -1,10 +1,11 @@
 body {
 	background-image: url("box.jpg");
 	background-position: center center;
-	background-repeat: no-repeat; 
+	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 	background-color: #464646;
+	height: 100%;
 }
 
 .exercise-tables-head {
@@ -38,17 +39,46 @@ body {
 	margin: 12px 0px 6px 0px;
 }
 
+#edit-view {
+	background: #FBFBFB;
+	float: none;
+	border-radius:2%;
+	border: 1px solid #e7e7e7;
+}
+
+#edit-form {
+	padding: 30px 20px 10px 12px;
+}
+
+#btn-styles{
+	font-weight: bold;
+	margin: auto;
+	display:table;
+}
+
+.text-size {
+	font-size: 15px;
+}
+
+.stroke {
+text-align: center;
+font-weight: bold;
+color: #5D93C3;
+text-shadow: -1px -1px 1px #FFF, 1px 1px 1px #FFF, -1px 1px 1px #FFF, 1px -1px 1px #FFF;
+/*-webkit-text-stroke: 1px black;*/
+}
+
 table {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 13px;
 	margin: auto;
 	width: 65%;
-	text-align: left;
 	border-collapse: collapse;
 	border-radius: 30px;
 }
 
 th {
+	text-align: center;
 	font-size: 15px;
 	font-weight: normal;
 	padding: 8px;
@@ -237,19 +267,27 @@ h1 {
 
 .{
 color
+
+
 :
+
  
+
 #313437
-;
 
-  
+
+;
 background-color
+
+
 :
+
  
+
 #eef4f7
+
+
 ;
-
-
 }
 h2 {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;

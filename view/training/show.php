@@ -21,16 +21,17 @@ $view->setVariable ( "title", "Show Trainings" );
 
 <div class="container-fluid">
 	<div class="row features">
-		<div class="col-md-4 col-sm-6 item">
+		<div class="table-responsive col-md-4 col-sm-6 item">
 			<div class="exercise-tables-background">
-				<h1><?=i18n("Cardio")?></h1>
-				<br>
-				<table class="full-width">
+				<table class="table">
+					<tr>
+						<th rowspan="2" colspan="4"><strong><?=i18n("Cardio")?></strong></th>
+					<tr>
 					<tr>
 						<th><strong><?=i18n("Exercise")?></strong></th>
-						<th style="text-align: center"><strong><?=i18n("Reps")?></strong></th>
-						<th style="text-align: center"><strong><?=i18n("Duration")?></strong></th>
-						<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
+						<th><strong><?=i18n("Reps")?></strong></th>
+						<th><strong><?=i18n("Duration")?></strong></th>
+						<th><strong><?=i18n("Options")?></strong></th>
 					</tr>
 					<?php foreach ($grupalTrainings[0] as $trainings): ?>
 						<tr>
@@ -68,11 +69,11 @@ $view->setVariable ( "title", "Show Trainings" );
 			</div>
 		</div>
 
-		<div class="col-md-4 col-sm-6 item">
+		<div class="table-responsive col-md-4 col-sm-6 item">
 			<div class="exercise-tables-background">
 				<h1 style="margin-bottom: 6px;"><?=i18n("Muscular")?></h1>
 				<br>
-				<table class="full-width">
+				<table class="table">
 					<tr>
 						<th><strong><?=i18n("Exercise")?></strong></th>
 						<th style="text-align: center"><strong><?=i18n("Reps")?></strong></th>
@@ -106,11 +107,11 @@ $view->setVariable ( "title", "Show Trainings" );
 			</div>
 		</div>
 
-		<div class="col-md-4 col-sm-6 item">
+		<div class="table-responsive col-md-4 col-sm-6 item">
 			<div class="exercise-tables-background">
 				<h2><?=i18n("Stretch")?></h2>
 				<br>
-				<table class="full-width">
+				<table class="table">
 					<tr>
 						<th><strong><?=i18n("Exercise")?></strong></th>
 						<th style="text-align: center"><strong><?=i18n("Reps")?></strong></th>

@@ -95,7 +95,8 @@ class TrainingController extends BaseController {
 
 				$this->trainingMapper->update($training);
 
-				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully updated."), $training->getTrainingId() . " " 							. $this->exerciseMapper->findExerciseNameById($training->getTrainingId())));
+				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully updated."), 
+						$training->getTrainingId() . " " . $this->exerciseMapper->findExerciseNameById($training->getExerciseId())));
 
 				$this->view->redirect("training", "show");
 
