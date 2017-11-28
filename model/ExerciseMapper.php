@@ -127,5 +127,47 @@ class ExerciseMapper {
 
 		return $exercises;
 	}
+	
+	//Devolver todos los nombres de los ejercicios de cardio
+	public function getCardioExercises(){
+		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='CARDIO'");
+		$stmt->execute();
+		$exercises_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$exercises = array();
+		
+		foreach ($exercises_db as $exercise) {
+			$exercises[$exercise["ID_EJERCICIO"]] = $exercise["NOMBRE"];
+		}
+		
+		return $exercises;
+	}
+	
+	//Devolver todos los nombres de los ejercicios de cardio
+	public function getMuscularExercises(){
+		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='MUSCULAR'");
+		$stmt->execute();
+		$exercises_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$exercises = array();
+		
+		foreach ($exercises_db as $exercise) {
+			$exercises[$exercise["ID_EJERCICIO"]] = $exercise["NOMBRE"];
+		}
+		
+		return $exercises;
+	}
+	
+	//Devolver todos los nombres de los ejercicios de cardio
+	public function getEstExercises(){
+		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='ESTIRAMIENTO'");
+		$stmt->execute();
+		$exercises_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$exercises = array();
+		
+		foreach ($exercises_db as $exercise) {
+			$exercises[$exercise["ID_EJERCICIO"]] = $exercise["NOMBRE"];
+		}
+		
+		return $exercises;
+	}
 
 }

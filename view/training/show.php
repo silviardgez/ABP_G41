@@ -8,8 +8,8 @@ $grupalTrainings = $view->getVariable ( "grupalTrainings" );
 $view->setVariable ( "title", "Show Trainings" );
 ?>
 
-<div class="home2 title-style">
-	<h1><?=i18n("Workouts")?></h1>
+<div>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Workouts")?></h1>
 	<br>
 	<div class="btn-group">
 		<a href="index.php?controller=training&amp;action=add"
@@ -20,32 +20,31 @@ $view->setVariable ( "title", "Show Trainings" );
 
 
 <div class="container-fluid">
-	<div class="row features">
-		<div class="table-responsive col-md-4 col-sm-6 item">
+	<div class="row features margin-rows">
+		<div class="col-md-4 col-sm-6 item">
 			<div class="exercise-tables-background">
-				<table class="table">
+			<h1 id="font-title"><?=i18n("Cardio")?></h1>
+			<br>
+				<table id="table-margin" class="table">
 					<tr>
-						<th rowspan="2" colspan="4"><strong><?=i18n("Cardio")?></strong></th>
-					<tr>
-					<tr>
-						<th><strong><?=i18n("Exercise")?></strong></th>
-						<th><strong><?=i18n("Reps")?></strong></th>
-						<th><strong><?=i18n("Duration")?></strong></th>
-						<th><strong><?=i18n("Options")?></strong></th>
+						<th><?=i18n("Exercise")?></th>
+						<th id="center-text"><?=i18n("Reps")?></th>
+						<th id="center-text"><?=i18n("Duration")?></th>
+						<th id="center-text"><?=i18n("Options")?></th>
 					</tr>
 					<?php foreach ($grupalTrainings[0] as $trainings): ?>
 						<tr>
 						<td><a
 							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
 							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
-						<td style="text-align: center"><?php echo $trainings[1]->getRepeats(); ?></td>
+						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>
 							<?php
 						$duracion = substr ( $trainings [1]->getTime (), 3 );
 						if ($duracion == "00:00") {
 							$duracion = "-";
 						}
 						?>
-							<td style="text-align: center"><?php echo $duracion; ?></td>
+							<td id="center-text"><?php echo $duracion; ?></td>
 						<td class="icons"><a
 							href="index.php?controller=training&amp;action=edit&amp;id=<?= $trainings[1]->getTrainingId() ?>"><i
 								class="fa fa-pencil-square-o"></i></a>
@@ -69,22 +68,22 @@ $view->setVariable ( "title", "Show Trainings" );
 			</div>
 		</div>
 
-		<div class="table-responsive col-md-4 col-sm-6 item">
+		<div class="col-md-4 col-sm-6 item">
 			<div class="exercise-tables-background">
-				<h1 style="margin-bottom: 6px;"><?=i18n("Muscular")?></h1>
+				<h1 id="font-title"><?=i18n("Muscular")?></h1>
 				<br>
-				<table class="table">
+				<table id="table-margin" class="table">
 					<tr>
-						<th><strong><?=i18n("Exercise")?></strong></th>
-						<th style="text-align: center"><strong><?=i18n("Reps")?></strong></th>
-						<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
+						<th><?=i18n("Exercise")?></th>
+						<th id="center-text"><?=i18n("Reps")?></th>
+						<th id="center-text"><?=i18n("Options")?></th>
 					</tr>
 					<?php foreach ($grupalTrainings[1] as $trainings): ?>
 						<tr>
 						<td><a
 							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
 							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
-						<td style="text-align: center"><?php echo $trainings[1]->getRepeats(); ?></td>
+						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>
 						<td class="icons"><a
 							href="index.php?controller=training&amp;action=edit&amp;id=<?= $trainings[1]->getTrainingId() ?>"><i
 								class="fa fa-pencil-square-o"></i></a>
@@ -107,30 +106,30 @@ $view->setVariable ( "title", "Show Trainings" );
 			</div>
 		</div>
 
-		<div class="table-responsive col-md-4 col-sm-6 item">
+		<div class="col-md-4 col-sm-6 item">
 			<div class="exercise-tables-background">
-				<h2><?=i18n("Stretch")?></h2>
+				<h1 id="font-title"><?=i18n("Stretch")?></h1>
 				<br>
-				<table class="table">
+				<table id="table-margin" class="table">
 					<tr>
-						<th><strong><?=i18n("Exercise")?></strong></th>
-						<th style="text-align: center"><strong><?=i18n("Reps")?></strong></th>
-						<th style="text-align: center"><strong><?=i18n("Duration")?></strong></th>
-						<th style="text-align: center"><strong><?=i18n("Options")?></strong></th>
+						<th><?=i18n("Exercise")?></th>
+						<th id="center-text"><?=i18n("Reps")?></th>
+						<th id="center-text"><?=i18n("Duration")?></th>
+						<th id="center-text"><?=i18n("Options")?></th>
 					</tr>
 					<?php foreach ($grupalTrainings[2] as $trainings): ?>
 						<tr>
 						<td><a
 							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
 							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
-						<td style="text-align: center"><?php echo $trainings[1]->getRepeats(); ?></td>
+						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>
 							<?php
 						$duracion = substr ( $trainings [1]->getTime (), 3 );
 						if ($duracion == "00:00") {
 							$duracion = "-";
 						}
 						?>
-							<td style="text-align: center"><?php echo $duracion; ?></td>
+							<td id="center-text"><?php echo $duracion; ?></td>
 						<td class="icons"><a
 							href="index.php?controller=training&amp;action=edit&amp;id=<?= $trainings[1]->getTrainingId() ?>"><i
 								class="fa fa-pencil-square-o"></i></a>

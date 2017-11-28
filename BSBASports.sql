@@ -75,6 +75,7 @@ CREATE TABLE `EJERCICIO` (
 --
 
 CREATE TABLE `ENGLOBA` (
+  `ID_ENGLOBA` int(10) UNSIGNED NOT NULL,
   `ID_TABLA` int(11) UNSIGNED NOT NULL,
   `DNI` varchar(9) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -125,6 +126,7 @@ CREATE TABLE `RESERVA` (
 
 CREATE TABLE `SESION` (
   `ID_SESION` int(11) NOT NULL,
+  `ID_ENGLOBA` int(10) UNSIGNED NOT NULL,
   `OBSERVACIONES` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
   `FECHA` date NOT NULL,
   `HORA` time NOT NULL DEFAULT '00:00:00'
@@ -182,13 +184,13 @@ CREATE TABLE `USUARIO` (
 -- Inserts
 --
 
-INSERT INTO `USUARIO` (`DNI`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NAC`, `ADMIN`, `ENTRENADOR`, `DEPORTISTA`, `ID_SESION`) VALUES
-('12345678Z', '21232f297a57a5a743894a0e4a801fc3', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL, NULL),
-('12345679S', '74d996a70f40c654f73f9b56c63fc28a', 'Pepe', 'Fernández', 'rosilvia@hotmail.com', '2017-11-07', NULL, NULL, 1, NULL),
-('11111111H', 'e77a37f64e93e3e3e0211e76bfe512b7', 'Brais', 'Domínguez', 'braisda@gmail.com', '1991-07-10', NULL, 1, 1, NULL),
-('22222222J', 'e5cb7c411f1d9a67f68deff4a954cfbc', 'Silvia', 'Rodríguez', 'silviardguez@gmail.com', '1995-08-17', NULL, NULL, 1, NULL),
-('33333333P', 'c5e3539121c4944f2bbe097b425ee774', 'Marcos', 'Arias', 'srigleisas@esei.uvigo.es', '2017-11-07', NULL, 1, 1, NULL),
-('12345670Y', 'a990ba8861d2b344810851e7e6b49104', 'Pepe', 'Glez', 'panocadas@gmail.com', '2017-11-08', NULL, 1, NULL, NULL);
+INSERT INTO `USUARIO` (`DNI`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NAC`, `ADMIN`, `ENTRENADOR`, `DEPORTISTA`) VALUES
+('12345678Z', '21232f297a57a5a743894a0e4a801fc3', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL),
+('12345679S', '74d996a70f40c654f73f9b56c63fc28a', 'Pepe', 'Fernández', 'rosilvia@hotmail.com', '2017-11-07', NULL, NULL, 1),
+('11111111H', 'e77a37f64e93e3e3e0211e76bfe512b7', 'Brais', 'Domínguez', 'braisda@gmail.com', '1991-07-10', NULL, 1, 1),
+('22222222J', 'e5cb7c411f1d9a67f68deff4a954cfbc', 'Silvia', 'Rodríguez', 'silviardguez@gmail.com', '1995-08-17', NULL, NULL, 1),
+('33333333P', 'c5e3539121c4944f2bbe097b425ee774', 'Marcos', 'Arias', 'srigleisas@esei.uvigo.es', '2017-11-07', NULL, 1, 1),
+('12345670Y', 'a990ba8861d2b344810851e7e6b49104', 'Pepe', 'Glez', 'panocadas@gmail.com', '2017-11-08', NULL, 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -205,7 +207,7 @@ ALTER TABLE `ACTIVIDAD`
 -- Indexes for table `ASISTE`
 --
 ALTER TABLE `ASISTE`
-  ADD PRIMARY KEY (`ID_ACT`,`DNI_DEP`,`FECHA`,`HORA`),
+  ADD PRIMARY KEY (`ID_ACT`,`DNI_DEP`,`FECHA`),
   ADD KEY `ID_ACT` (`ID_ACT`),
   ADD KEY `DNI_DEP` (`DNI_DEP`);
 
@@ -219,9 +221,7 @@ ALTER TABLE `EJERCICIO`
 -- Indexes for table `ENGLOBA`
 --
 ALTER TABLE `ENGLOBA`
-  ADD PRIMARY KEY (`ID_TABLA`,`DNI`),
-  ADD KEY `ID_TABLA` (`ID_TABLA`),
-  ADD KEY `DNI` (`DNI`);
+  ADD PRIMARY KEY (`ID_ENGLOBA`);
 
 --
 -- Indexes for table `ENTRENAMIENTO`
@@ -269,8 +269,7 @@ ALTER TABLE `TLF_USUARIO`
 -- Indexes for table `USUARIO`
 --
 ALTER TABLE `USUARIO`
-  ADD PRIMARY KEY (`DNI`),
-  ADD KEY `ID_SESION` (`ID_SESION`);
+  ADD PRIMARY KEY (`DNI`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -343,6 +342,21 @@ INSERT INTO `EJERCICIO`(`NOMBRE`, `TIPO`, `IMAGEN`, `VIDEO`) VALUES
 ("Aductor","ESTIRAMIENTO","src/aductor.jpg",NULL);
 
 
+--
+-- AUTO_INCREMENT for table `ENGLOBA`
+--
+ALTER TABLE `ENGLOBA`
+  MODIFY `ID_ENGLOBA` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  
+INSERT INTO `ENGLOBA` (`ID_TABLA`,`DNI`) VALUES
+(1,"22222222J"),
+(2,"22222222J"),
+(1,"11111111H"),
+(2,"11111111H"),
+(1,"12345679S"),
+(2,"12345679S");
+
+  
 --
 -- AUTO_INCREMENT for table `ENTRENAMIENTO`
 --
@@ -421,6 +435,16 @@ INSERT INTO `RESERVA`(`ID_ACT`,`DNI_DEP`, `FECHA`, `HORA`, `CONFIRMADO`) VALUES
 --
 ALTER TABLE `SESION`
   MODIFY `ID_SESION` int(11) NOT NULL AUTO_INCREMENT;
+  
+ INSERT INTO `SESION` (`ID_ENGLOBA`,`OBSERVACIONES`,`FECHA`,`HORA`) VALUES
+ (1,"Realizada correctamente", "2017-11-08","18:00"),
+ (2,"No se pudo terminar", "2017-11-10","19:00"),
+ (1,"Realizadas más repeticiones en los ejercicios musculares.", "2017-11-11","18:00"),
+ (3,"Realizada correctamente", "2017-11-08","18:00"),
+ (4,"Realizada correctamente", "2017-11-10","19:00"),
+ (5,"Realizada correctamente", "2017-11-11","10:00"),
+ (6,"Realizada correctamente", "2017-11-08","12:00");
+ 
 --
 -- AUTO_INCREMENT for table `TABLA`
 --
@@ -493,7 +517,7 @@ ALTER TABLE `RESERVA`
 -- Restricións para a táboa `SESION`
 --
 ALTER TABLE `SESION`
-  ADD CONSTRAINT `SESION_ibfk_1` FOREIGN KEY (`ID_SESION`) REFERENCES `USUARIO` (`ID_SESION`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `SESION_ibfk_1` FOREIGN KEY (`ID_ENGLOBA`) REFERENCES `ENGLOBA` (`ID_ENGLOBA`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Restricións para a táboa `ENGLOBA`
@@ -508,11 +532,6 @@ ALTER TABLE `ENGLOBA`
 ALTER TABLE `TLF_USUARIO`
   ADD CONSTRAINT `TLF_USUARIO_ibfk_1` FOREIGN KEY (`DNI`) REFERENCES `USUARIO` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Restricións para a táboa `USUARIO`
---
-ALTER TABLE `USUARIO`
-  ADD CONSTRAINT `USUARIO_ibfk_2` FOREIGN KEY (`ID_SESION`) REFERENCES `SESION` (`ID_SESION`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,6 +5,7 @@ $view = ViewManager::getInstance ();
 
 $training = $view->getVariable ( "training" );
 $exerciseName = $view->getVariable ( "exerciseName" );
+$exerciseType = $view->getVariable ( "exerciseType" );
 $errors = $view->getVariable ( "errors" );
 
 $view->setVariable ( "title", "Edit Training" );
@@ -38,19 +39,22 @@ $view->setVariable ( "title", "Edit Training" );
 						value="<?=$training->getRepeats()?>">
 				</div>
 			</div>
+			<?php if($exerciseType != "MUSCULAR"):?>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-						<?=i18n("Duration")?>:<?= isset($errors["repeats"])?i18n($errors["repeats"]):"" ?>
-					</label>
+						<?=i18n("Duration")?>:<?= isset($errors["duration"])?i18n($errors["duration"]):"" ?>
+				</label>
 				<div class="col-sm-8">
-					<input class="form-control" name="time" type="time"
+					<input class="form-control" name="time" type="time" step="1"
 						value="<?=$training->getTime()?>">
 				</div>
 			</div>
+			<?php endif;?>
 			<br>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<button id="btn-styles" type="submit" name="submit" class="btn btn-success btn-lg"><?=i18n("Send")?></button>
+					<button id="btn-styles" type="submit" name="submit"
+						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 				</div>
 			</div>
 		</form>

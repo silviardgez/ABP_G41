@@ -46,6 +46,7 @@ $view = ViewManager::getInstance();
       	autoclose: true,
       };
       date_input.datepicker(options);
+      $('.selectpicker').selectpicker();
   })
 </script>
 </head>
@@ -107,7 +108,7 @@ $view = ViewManager::getInstance();
 							<?php endif; ?>
 							<li><a href="index.php?controller=table&amp;action=show"><?=i18n("Tables")?></a></li>
 							<?php if($_SESSION["deportista"] || $_SESSION["entrenador"]): ?>
-								<li><a href="index.php?controller=sesion&amp;action=show"><?=i18n("Sessions")?></a></li>
+								<li><a href="index.php?controller=session&amp;action=show"><?=i18n("Sessions")?></a></li>
 							<?php endif; ?>
 
 						</ul>

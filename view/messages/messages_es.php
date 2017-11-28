@@ -174,8 +174,8 @@ array(
 	"Enrolled" => "Matriculados",
 	"Percentage of enrolled" => "Porcentaje de matriculados",
 	"Percentage of assistants" => "Porcentaje de asistentes",
-	"" => "",
-	"" => "",
-	"" => "",
+	"Stretching" => "Estiramiento",
+	"Add Training" => "Añadir Entrenamiento",
+	"Number of repeats" => "Número de repeticiones",
 )
 ?>
