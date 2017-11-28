@@ -1,5 +1,4 @@
 <?php
-// file: model/SesionMapper.php
 require_once (__DIR__ . "/../core/PDOConnection.php");
 class SessionMapper {
 	private $db;
@@ -16,7 +15,7 @@ class SessionMapper {
 		$sesions = array ();
 		
 		foreach ( $sesions_db as $sesion ) {
-			array_push ( $sesions, new Sesion ( $sesion ["ID_SESION"], $sesion ["FECHA"], $sesion ["HORA"], $sesion ["OBSERVACIONES"] ) );
+			array_push ( $sesions, new Session ( $sesion ["ID_SESION"], $sesion ["FECHA"], $sesion ["HORA"], $sesion ["OBSERVACIONES"] ) );
 		}
 		return $sesions;
 	}
