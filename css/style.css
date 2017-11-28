@@ -118,6 +118,7 @@ td {
 	border-bottom: 1px solid #fff;
 	color: #669;
 	border-top: 1px solid transparent;
+	width: 40%;
 }
 
 tr:hover td {
@@ -135,6 +136,10 @@ table td:hover {
 
 .full-width {
 	width: 100%;
+}
+
+.icons {
+	font-size: 25px;
 }
 
 .navigation-clean-search {

@@ -7,16 +7,20 @@ class Session {
 	private $sessionHour;
 	private $idSession;
 	private $idClientTable;
+	private $dni;
+	private $idTable;
 	
-	public function __construct($idSession = NULL, $dateSession = NULL, $hour = NULL, $observation = NULL, $idClientTable = NULL) {
+	public function __construct($idSession = NULL, $dateSession = NULL, $hour = NULL, $observation = NULL, $idClientTable = NULL, $dni = NULL, $idTable = NULL) {
 		$this->idSession = $idSession;
 		$this->observation = $observation;
 		$this->sessionDay = $dateSession;
 		$this->sessionHour = $hour;
 		$this->idClientTable = $idClientTable;
+		$this->dni = $dni;
+		$this->idTable = $idTable;
 	}
 	
-	public function setObservation($observation) {
+	public function setObservations($observation) {
 		$this->observation = $observation;
 	}
 	
@@ -32,7 +36,7 @@ class Session {
 		$this->idClientTable = $idClientTable;
 	}
 	
-	public function getObservation() {
+	public function getObservations() {
 		return $this->observation;
 	}
 	
@@ -50,6 +54,14 @@ class Session {
 	
 	public function getIdClientTable() {
 		return $this->idClientTable;
+	}
+	
+	public function getDNIUser() {
+		return $this->dni;
+	}
+	
+	public function getIdTable() {
+		return $this->idTable;
 	}
 }
 

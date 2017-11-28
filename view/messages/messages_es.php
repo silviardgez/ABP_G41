@@ -177,5 +177,8 @@ array(
 	"Stretching" => "Estiramiento",
 	"Add Training" => "Añadir Entrenamiento",
 	"Number of repeats" => "Número de repeticiones",
+	"Sessions of the user: " => "Sesiones del usuario: ",
+	"Add Session" => "Añadir Sesión",
+	"Edit Session" => "Editar Sesión",
 )
 ?>

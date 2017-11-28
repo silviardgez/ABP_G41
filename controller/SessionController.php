@@ -28,15 +28,11 @@ class SessionController extends BaseController {
 			throw new Exception("Not in session. Show users requires login");
 		}
 		
-		$personalSessions = NULL;
-		
-		if($_SESSION["entrenador"]) {
-			$sessions = $this->sessionMapper->showAllSesions();
-			if($_SESSION["deportista"]) {
-				$personalSessions = $this->sessionMapper->showAllClientSesions($_SESSION["currentuser"]);
-			}
-		} else if($_SESSION["deportista"]){
-			$sessions = $this->sessionMapper->showAllClientSesions($_SESSION["currentuser"]);
+		//Cambios a la vista de entrenador
+		if($_SESSION["deportista"] && !isset($_REQUEST["entrena"])){
+			$sessions = $this->sessionMapper->showAllClientSessions($_SESSION["currentuser"]);
+		} else if(isset($_REQUEST["entrena"]) && $_REQUEST["entrena"] == "true" && $_SESSION["entrenador"]){
+			$sessions = $this->sessionMapper->showAllSessions();
 		} else {
 			throw new Exception("You aren't an athlete or coach. View sessions requires be athlete or coach.");
 		}
@@ -44,52 +40,51 @@ class SessionController extends BaseController {
 		
 		// put the users object to the view
 		$this->view->setVariable("sessions", $sessions);
-		$this->view->setVariable("personalSessions", $personalSessions);
 		
 		// render the view (/view/users/show.php)
 		$this->view->render("session", "show");
 	}
 	
-	/*
 	public function edit(){
 		if (!isset($_REQUEST["id"])) {
 			throw new Exception("A id is mandatory");
 		}
 		
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing training requires login");
+			throw new Exception("Not in session.");
+		}
+
+		if(!$_SESSION["deportista"]){
+		 	throw new Exception("You aren't an athlete. Edit a session requires be athlete");
 		}
 		
-		/*if($this->userMapper->findType() != "admin" || $this->userMapper->findType() != "entrenador"){
-		 throw new Exception("You aren't an admin or coach. Editing a training requires be admin or coach.");
-		 }*/
+		$dni = $this->sessionMapper->getUserById($_REQUEST["id"]);
+		if ($_SESSION["currentuser"] != $dni) {
+			throw new Exception("You aren't the user" . $dni . ".");
+		}
 		
-		/*// Get the User object from the database
-		$trainingId = $_REQUEST["id"];
-		$training = $this->trainingMapper->getTrainingById($trainingId);
-		$exerciseId = $training->getExerciseId();
-		$exerciseName = $this->exerciseMapper->findExerciseNameById($exerciseId);
-		$exerciseType = $this->exerciseMapper->getTypeById($exerciseId);
+		$sessionId = $_REQUEST["id"];
+		$session = $this->sessionMapper->getSessionById($sessionId);
+		$tables = $this->sessionMapper->getTablesByUser($dni);
 		
-		if ($training == NULL) {
-			throw new Exception("no such training with id: ". $trainingId);
+		
+		if ($session == NULL) {
+			throw new Exception("no such session with id: ". $sessionId);
 		}
 		
 		if (isset($_POST["submit"])) {
-			$training->setExerciseId($_POST["exerciseId"]);
-			$training->setRepeats($_POST["repeats"]);
-			$training->setTime($_POST["time"]);
+			$session->setIdClientTable($_POST["table"]);
+			$session->setSessionDay($_POST["date"]);
+			$session->setSessionHour($_POST["hours"]);
+			$session->setObservations($_POST["observations"]);
 			
 			try {
-				//validate user object
-				//$training->checkIsValidForUpdate(); // if it fails, ValidationException
+				$this->sessionMapper->update($session);
 				
-				$this->trainingMapper->update($training);
+				$this->view->setFlash(sprintf(i18n("Session \"%s\" successfully updated."),
+						$session->getSessionId()));
 				
-				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully updated."),
-						$training->getTrainingId() . " " . $this->exerciseMapper->findExerciseNameById($training->getExerciseId())));
-				
-				$this->view->redirect("training", "show");
+				$this->view->redirect("session", "show");
 				
 			}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
@@ -98,35 +93,41 @@ class SessionController extends BaseController {
 				$this->view->setVariable("errors", $errors);
 			}
 		}
-		$this->view->setVariable("training", $training);
-		$this->view->setVariable("exerciseName", $exerciseName);
-		$this->view->setVariable("exerciseType", $exerciseType);
-		$this->view->render("training", "edit");
-	}
+		
+		$this->view->setVariable("session", $session);
+		$this->view->setVariable("tables", $tables);
+
+		$this->view->render("session", "edit");
+	} 
 	
 	public function delete(){
 		if (!isset($_POST["id"])) {
-			throw new Exception("Training id is mandatory");
+			throw new Exception("Session id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Deleting training requires login");
+			throw new Exception("Not in session.");
 		}
 		
-		/*if($this->userMapper->findType() != "admin"){
-		 throw new Exception("You aren't an admin. Deleting an training requires be admin");
-		 }*/
-		
-		/*$trainingId = $_REQUEST["id"];
-		$training = $this->trainingMapper->getTrainingById($trainingId);
-		
-		if ($training == NULL) {
-			throw new Exception("no such training with id: ". $trainingId);
+		if(!$_SESSION["deportista"]){
+		 	throw new Exception("You aren't an athlete. Deleting a session requires be athlete");
 		}
 		
-		$this->trainingMapper->delete($training);
+		$dni = $this->sessionMapper->getUserById($_POST["id"]);
+		if ($_SESSION["currentuser"] != $dni) {
+			throw new Exception("You aren't the user" . $dni . ".");
+		}
 		
-		$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully deleted."), $trainingId));
-		$this->view->redirect("training", "show");
+		$sessionId = $_REQUEST["id"];
+		$session = $this->sessionMapper->getSessionById($sessionId);
+		
+		if ($session == NULL) {
+			throw new Exception("no such session with id: " . $sessionId);
+		}
+		
+		$this->sessionMapper->delete($session);
+		
+		$this->view->setFlash(sprintf(i18n("Session \"%s\" successfully deleted."), $sessionId));
+		$this->view->redirect("session", "show");
 	}
 	
 	public function add(){
@@ -134,32 +135,27 @@ class SessionController extends BaseController {
 			throw new Exception("Not in session. Adding activities requires login.");
 		}
 		
-		/*if($this->userMapper->findType() != "admin" && $this->userMapper->findType() != "entrenador"){
-		 throw new Exception("You aren't an admin or a coach. Adding an exercise requires be admin or coach");
-		 }*/
+		if(!$_SESSION["deportista"]){
+			throw new Exception("You aren't an athlete. Add a session requires be athlete");
+		}
 		
-		/*$training = new Training();
+		$tables = $this->sessionMapper->getTablesByUser($_SESSION["currentuser"]);
 		
-		$cardio = $this->exerciseMapper->getCardioExercises();
-		$muscular = $this->exerciseMapper->getMuscularExercises();
-		$est = $this->exerciseMapper->getEstExercises();
+		$session = new Session();
 		
-		$exercises = array($cardio,$muscular,$est);
-		
+	
 		if(isset($_POST["submit"])) {
-			
-			$training->setExerciseId($_POST["exerciseId"]);
-			$training->setRepeats($_POST["repeats"]);
-			$training->setTime($_POST["time"]);
+			$session->setIdClientTable($_POST["table"]);
+			$session->setSessionDay($_POST["date"]);
+			$session->setSessionHour($_POST["hours"]);
+			$session->setObservations($_POST["observations"]);
 			
 			try {
-				//save the exercise object into the database
-				$this->trainingMapper->add($training);
+				$this->sessionMapper->add($session);
 				
-				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully added."), $training->getTrainingId()));
+				$this->view->setFlash(sprintf(i18n("Session \"%s\" successfully added."), $session->getSessionId()));
 				
-				$this->view->redirect("training", "show");
-				
+				$this->view->redirect("session", "show");	
 			}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
@@ -168,9 +164,9 @@ class SessionController extends BaseController {
 			}
 		}
 		
-		$this->view->setVariable("training", $training);
-		$this->view->setVariable("exercises", $exercises);
-		$this->view->render("training", "add");
-	} */
+		$this->view->setVariable("session", $session);
+		$this->view->setVariable("tables", $tables);
+		$this->view->render("session", "add");
+	}
 	
 }
