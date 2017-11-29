@@ -185,6 +185,8 @@ array(
 	"Options" => "Opciones",
 	"Add Activity" => "Añadir Actividad",
 	"End" => "Fin",
-	"Edit Activity" => "Editar Actividad"
+	"Edit Activity" => "Editar Actividad",
+	"Reservation" => "Reserva",
+	"To reserve" => "Reservar",
 )
 ?>

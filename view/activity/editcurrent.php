@@ -1,86 +1,128 @@
 <?php
-//file: view/users/edit.php
-
-require_once(__DIR__."/../../core/ViewManager.php");
-$view = ViewManager::getInstance();
-
-$activity = $view->getVariable("activity");
-$coaches = $view->getVariable("monitors");
-$errors = $view->getVariable("errors");
-
-$view->setVariable("title", "Edit Current Activity");
-
+// file: view/users/edit.php
+require_once (__DIR__ . "/../../core/ViewManager.php");
+$view = ViewManager::getInstance ();
+$activity = $view->getVariable ( "activity" );
+$coaches = $view->getVariable ( "monitors" );
+$errors = $view->getVariable ( "errors" );
+$view->setVariable ( "title", "Edit Current Activity" );
 ?>
 
-<div class="recuadro">
-	<div id="formulario">
-		<div class="home2">
-			<?php if ($user->getCoach() == 1 || $user->getAdmin() == 1): ?>
-			<form action="index.php?controller=activity&amp;action=editcurrent" method="POST">
-				<input type="hidden" name="id" value="<?=$activity->getActivityId()?>">
-				<br><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
-				<input type="text" name="name" value="<?=$activity->getActivityName()?>" readonly>
-				<br><?=i18n("Start Time")?>:<?= isset($errors["startTime"])?i18n($errors["startTime"]):"" ?>
-				<input type="time" name="startTime" value="<?=$activity->getStartTime()?>">
-				<br><?=i18n("End Time")?>:<?= isset($errors["endTime"])?i18n($errors["endTime"]):"" ?>
-				<input type="time" name="endTime" value="<?=$activity->getEndTime()?>">
-				<br><?=i18n("Day")?>:<?= isset($errors["day"])?i18n($errors["day"]):"" ?>
-				<select name="day">
-					<option value="LUNES"><?=i18n("MONDAY")?></option>
-					<option value="MARTES"><?=i18n("TUESDAY")?></option>
-					<option value="MIERCOLES"><?=i18n("WEDNESDAY")?></option>
-					<option value="JUEVES"><?=i18n("THURSDAY")?></option>
-					<option value="VIERNES"><?=i18n("FRIDAY")?></option>
-					<option value="SABADO"><?=i18n("SATURDAY")?></option>
-					<option value="DOMINGO"><?=i18n("SUNDAY")?></option>
-					<option value="<?=$activity->getDay()?>" selected="selected"><?=i18n($activity->getDay())?></option>
-				</select>
-				<br><?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
-				<select name="monitor">
+<div class="container-fluid">
+	<?php if(!$_SESSION["deportista"]):?>
+	<h1 class="stroke"><?=i18n("Edit Activity")?></h1>
+	<?php endif;?>
+	<?php if($_SESSION["deportista"]):?>
+	<h1 class="stroke"><?=i18n("Reservation")?></h1>
+	<?php endif;?>
+	<br>
+	<div id="edit-view" class="center-block col-xs-6 col-lg-4">
+	<?php if(!$_SESSION["deportista"]):?>
+		<form id="edit-form" class="center-block form-horizontal"
+			action="index.php?controller=activity&amp;action=editcurrent"
+			method="POST">
+	<?php elseif($_SESSION["deportista"]):?>
+		<form id="edit-form" class="center-block form-horizontal"
+			action="index.php?controller=book&amp;action=addBook"
+			method="POST">
+	<?php endif;?>
+			
+			<input type="hidden" name="id"
+				value="<?=$activity->getActivityId()?>">
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="name"
+						value="<?=$activity->getActivityName()?>" readonly>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Start")?>:<?= isset($errors["startTime"])?i18n($errors["startTime"]):"" ?>
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="time" name="startTime"
+						value="<?=$activity->getStartTime()?>" <?php if($_SESSION["deportista"]):?> readonly <?php endif;?>>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("End")?>:<?= isset($errors["endTime"])?i18n($errors["endTime"]):"" ?>
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="time" name="endTime"
+						value="<?=$activity->getEndTime()?>" <?php if($_SESSION["deportista"]):?> readonly <?php endif;?>>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Day")?>:<?= isset($errors["day"])?i18n($errors["day"]):"" ?>
+				</label>
+				<div class="col-sm-8">
+					<select class="form-control" name="day" <?php if($_SESSION["deportista"]):?> readonly <?php endif;?>>
+						<option value="LUNES"><?=i18n("MONDAY")?></option>
+						<option value="MARTES"><?=i18n("TUESDAY")?></option>
+						<option value="MIERCOLES"><?=i18n("WEDNESDAY")?></option>
+						<option value="JUEVES"><?=i18n("THURSDAY")?></option>
+						<option value="VIERNES"><?=i18n("FRIDAY")?></option>
+						<option value="SABADO"><?=i18n("SATURDAY")?></option>
+						<option value="DOMINGO"><?=i18n("SUNDAY")?></option>
+						<option value="<?=$activity->getDay()?>" selected="selected"><?=i18n($activity->getDay())?></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
+				</label>
+				<div class="col-sm-8">
+					<select class="form-control" name="monitor" <?php if($_SESSION["deportista"]):?> readonly <?php endif;?>>
 					<?php foreach ($coaches as $coach => $coachName): ?> 
 					 	<option value="<?=$coach?>"><?=$coachName?></option>
 					<?php endforeach; ?>
 					<option value="<?=$activity->getMonitor()?>" selected="selected"><?=$activity->getMonitorName()?></option>
-				</select>
-				<button type="submit" name="submit"><?=i18n("Send")?></button>
-				<form method="POST" action="index.php?controller=activity&amp;action=delete" id="delete_activity_<?= $activity->getActivityId(); ?>" style="display: inline">
-					<button type="submit" name="delete"><?=i18n("Delete")?></button>
+					</select>
+				</div>
+			</div>
+			<br>
+			
+			<?php if(!$_SESSION["deportista"]):?>
+			<div class="row">
+			<div class="form-group col-xs-6">
+					<button id="btn-styles" type="submit" name="submit"
+						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
+			</div>
+
+			<div class="form-group col-xs-6">
+				<form method="POST"
+					action="index.php?controller=activity&amp;action=delete"
+					id="delete_activity_<?= $activity->getActivityId(); ?>"
+					style="display: inline">
+					<input type="hidden" name="id"
+							value="<?= $activity->getActivityId() ?>">
 				</form>
-			</form>
-			<?php endif;
-		 if ($user->getDeportist()): ?>
-		<form action="index.php?controller=book&amp;action=addBook" method="POST">
-			<input type="hidden" name="id" value="<?=$activity->getActivityId()?>" readonly>
-			<br><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
-			<input type="text" name="name" value="<?=$activity->getActivityName()?>" readonly>
-			<br><?=i18n("Start Time")?>:<?= isset($errors["startTime"])?i18n($errors["startTime"]):"" ?>
-			<input type="time" name="startTime" value="<?=$activity->getStartTime()?>" readonly>
-			<br><?=i18n("End Time")?>:<?= isset($errors["endTime"])?i18n($errors["endTime"]):"" ?>
-			<input type="time" name="endTime" value="<?=$activity->getEndTime()?>" readonly>
-			<br><?=i18n("Day")?>:<?= isset($errors["day"])?i18n($errors["day"]):"" ?>
-			<select name="day" readonly>
-				<option value="LUNES"><?=i18n("MONDAY")?></option>
-				<option value="MARTES"><?=i18n("TUESDAY")?></option>
-				<option value="MIERCOLES"><?=i18n("WEDNESDAY")?></option>
-				<option value="JUEVES"><?=i18n("THURSDAY")?></option>
-				<option value="VIERNES"><?=i18n("FRIDAY")?></option>
-				<option value="SABADO"><?=i18n("SATURDAY")?></option>
-				<option value="DOMINGO"><?=i18n("SUNDAY")?></option>
-				<option value="<?=$activity->getDay()?>" selected="selected"><?=i18n($activity->getDay())?></option>
-			</select>
-			<br><?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
-			<select name="monitor" readonly>
-				<?php foreach ($coaches as $coach => $coachName): ?>
-					<option value="<?=$coach?>"><?=$coachName?></option>
-				<?php endforeach; ?>
-				<option value="<?=$activity->getMonitor()?>" selected="selected"><?=$activity->getMonitorName()?></option>
-			</select>
-			<button type="submit" name="submit"><?=i18n("Book")?></button>
 
+					<button id="btn-styles" class="btn btn-danger btn-lg"
+						onclick="
+								if (confirm('<?= i18n("are you sure?")?>')) {
+									document.getElementById('delete_activity_<?=$activity->getActivityId()?>').submit()
+								}"
+						form="delete_activity_<?= $activity->getActivityId(); ?>"><?=i18n("Delete")?></button>
+				</div>
+			</div>
+			<?php endif;?>
+			
+			<!-- BOTÓN DEL DEPORTISTA PARA REALIZAR LA RESERVA -->
+			<?php if($_SESSION["deportista"]):?>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<button id="btn-styles" type="submit" name="submit"
+						class="btn btn-success btn-lg"><?=i18n("To reserve")?></button>
+				</div>
+			</div>
+			<?php endif;?>
 			</form>
-
-		</form>
-		<?php endif ?>
-		</div>
 	</div>
 </div>
