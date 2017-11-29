@@ -56,9 +56,9 @@ class ActivityController extends BaseController {
 			throw new Exception("Not in session. Deleting activity requires login");
 		}
 
-		/*if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Deleting an user requires be admin");
-		}*/
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+			throw new Exception("You aren't an admin or coach. Delete an activity requires be admin or coach.");
+		}
 
 		$activityName = $_REQUEST["id"];
 		$activities = $this->activityMapper->getActivitiesByName($activityName);
@@ -82,9 +82,9 @@ class ActivityController extends BaseController {
 			throw new Exception("Not in session. Deleting activity requires login");
 		}
 
-		/*if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Deleting an user requires be admin");
-		}*/
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+			throw new Exception("You aren't an admin or coach. Delete an activity requires be admin or coach.");
+		}
 
 		$activityId = $_REQUEST["id"];
 		$activity = $this->activityMapper->getActivityById($activityId);
@@ -109,9 +109,9 @@ class ActivityController extends BaseController {
 			throw new Exception("Not in session. Editing activity requires login");
 		}
 
-		/*if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Editing an user requires be admin");
-		}*/
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+			throw new Exception("You aren't an admin or coach. Edit an activity requires be admin or coach.");
+		}
 
 		$activityName = $_REQUEST["name"];
 
@@ -162,6 +162,10 @@ class ActivityController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Editing user requires login");
 		}
+		
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+			throw new Exception("You aren't an admin or coach. Edit an activity requires be admin or coach.");
+		}
 
 		// Get the User object from the database
 		$activityId = $_REQUEST["id"];
@@ -206,9 +210,9 @@ class ActivityController extends BaseController {
 			throw new Exception("Not in session. Adding activities requires login.");
 		}
 
-		/*if($this->userMapper->findType() != "admin" && $this->userMapper->findType() != "entrenador"){
-			throw new Exception("You aren't an admin or a coach. Adding an exercise requires be admin or coach");
-		}*/
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+			throw new Exception("You aren't an admin or coach. Add an activity requires be admin or coach.");
+		}
 
 		$activity = new Activity();
 

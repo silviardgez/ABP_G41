@@ -90,11 +90,10 @@ $view->setVariable ( "title", "Edit Current Activity" );
 			
 			<?php if(!$_SESSION["deportista"]):?>
 			<div class="row">
-			<div class="form-group col-xs-6">
+			<div style="margin-left:4.5%" class="form-group col-xs-6">
 					<button id="btn-styles" type="submit" name="submit"
 						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 			</div>
-
 			<div class="form-group col-xs-6">
 				<form method="POST"
 					action="index.php?controller=activity&amp;action=delete"
