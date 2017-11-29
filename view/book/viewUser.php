@@ -3,22 +3,43 @@
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 //$view->setLayout("welcome");
-$bookings = $view->getVariable("bookings");
+$books = $view->getVariable("books");
 $users = $view->getVariable("user");
 $view->setVariable("title", "Bookings");
 ?>
 
 
-<section class="pagecontent">
-	<div class="users">
-		<div class="margin">
-			<div class="home2">
-        <a href="index.php?controller=book&amp;action=add"><i class="fa fa-plus"></i></a>
-				<h1><?=i18n("Bookings")?></h1><br>
-				<?php foreach ($bookings as $booking): ?>
-        <a href="index.php?controller=book&amp;action=viewUser&amp;id_act=<?= $booking->getIdAct() ?>"><?= htmlentities($booking->getConfirmed()) ?></a>
-			<?php endforeach; ?>
-		</div>
-	</div>
+<div class="container">
+	<div class="table-responsive col-md-6">
+		<table class="table">
+			<thead><tr>
+				<th class="tittle" colspan="5" colspan="5"><?=i18n("Bookings confirmed")?></th>
+			</tr>
+				<tr class="active">
+					<th><?=i18n("Name user")?></th>
+					<th><?=i18n("Name activity")?></th>
+					<th><?=i18n("Date of reservation")?></th>
+					<th><?=i18n("Hour of reservation")?></th>
+					<th><?=i18n("Confirmed")?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				foreach ($books as $book):?>
+						<tr class = "success">
 
-</section>
+							<td><?= $book['userName'] ?></td> <!-- Devuelve el nombre del usuario-->
+							<td><?= $book['actName'] ?></td> <!-- Devuelve el nombre de la actividad-->
+							<td><?= $book['dateBook'] ?></td>
+							<td><?= $book['hour'] ?></td>
+							<td>
+								<input disabled type="checkbox" name="confirmed" value="<?= $book['confirmed'] ?>" checked>
+									Confirmed
+
+							</td>
+						</tr>
+			<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>
