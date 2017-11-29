@@ -32,7 +32,7 @@ class BookMapper{
     $book = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($book != null){
-      return new Sesion(
+      return new Book(
         $book["ID_ACT"],
         $book["DNI_DEP"],
         $book["FECHA"],
@@ -46,10 +46,23 @@ class BookMapper{
   public function findBookByIdDep($id){
     $stmt = $this->db->prepare("SELECT * FROM RESERVA WHERE DNI_DEP=?");
     $stmt->execute(array($id));
+    $books_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $books = array();
+
+    foreach ($books_db as $book) {
+      array_push($books, new Book($book["ID_ACT"], $book["DNI_DEP"], $book["FECHA"], $book["HORA"], $book["CONFIRMADO"]));
+    }
+    return $books;
+  }
+
+  public function findBookByIds($idAct, $idAthl){
+    $stmt = $this->db->prepare("SELECT * FROM RESERVA WHERE DNI_DEP=? AND ID_ACT=?");
+    $stmt->execute([$idAthl,$idAct]);
     $book = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($book != null){
-      return new Sesion(
+      return new Book(
         $book["ID_ACT"],
         $book["DNI_DEP"],
         $book["FECHA"],
@@ -61,8 +74,8 @@ class BookMapper{
   }
 
   public function update(Book $book){
-    $stmt = $this->db->prepare("UPDATE RESERVA set FECHA=?, HORA=?, CONFIRMADO=? where ID_ACT=?");
-		$stmt->execute(array($book->getDateSesion(), $book->getHour(), $book->getConfirmed(), $book->getIdAct()));
+    $stmt = $this->db->prepare("UPDATE RESERVA set FECHA=?, HORA=?, CONFIRMADO=? where ID_ACT=? AND DNI_DEP=?");
+		$stmt->execute([$book->getDateBook(), $book->getHour(), $book->getConfirmed(), $book->getIdAct(), $book->getIdAthl()]);
 	}
 
 
