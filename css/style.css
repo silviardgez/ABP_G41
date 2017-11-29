@@ -437,10 +437,6 @@ p {
 	color: #7d8285;
 }
 
-thead>tr>th {
-	background-color: #ec7063;
-}
-
 thead>tr>th, tbody {
 	text-align: center;
 }
