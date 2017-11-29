@@ -188,5 +188,14 @@ array(
 	"Edit Activity" => "Editar Actividad",
 	"Reservation" => "Reserva",
 	"To reserve" => "Reservar",
+	"View assistance" => "Ver asistencia",
+	"Activity assistance" => "Asistencia de la actividad",
+	"Add" => "Añadir",
+	"Add assistance" => "Añadir asistencia",
+	"Activity Statistics" => "Estadísticas de la actividad",
+	"Athlete Statistics" => "Estadísticas del deportista",
+	"" => "",
+	"" => ""
+	
 )
 ?>

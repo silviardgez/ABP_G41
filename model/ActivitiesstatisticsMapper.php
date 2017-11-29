@@ -38,8 +38,8 @@ class ActivitiesstatisticsMapper {
 		$deportistas_db = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 		$deportistas = $deportistas_db[0]["COUNT(DEPORTISTA)"];
 		
-		$stmt3 = $this->db->prepare("SELECT COUNT(DISTINCT DNI_DEP) FROM `ASISTE`");
-		$stmt3->execute(array());
+		$stmt3 = $this->db->prepare("SELECT COUNT(DISTINCT DNI_DEP) FROM `ASISTE` WHERE ID_ACT=?");
+		$stmt3->execute(array($id));
 		
 		$asistentes_db = $stmt3->fetchAll(PDO::FETCH_ASSOC); 
 		$asistentes = $asistentes_db[0]["COUNT(DISTINCT DNI_DEP)"];

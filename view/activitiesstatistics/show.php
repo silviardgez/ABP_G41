@@ -9,17 +9,19 @@ $activities = $view->getVariable("activities");
 $view->setVariable("title", "Show Activities");
 ?>
 
-<div class="col-md-12">
-	<div class="col-md-4"></div>
-	<div class="container">
-		<div class="table-responsive col-md-4">
-			<table class="table">
+<div>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Statistics")?></h1>
+	<br>
+</div>
+
+<div class="col-md-4"></div>
+	<div class="row features margin-rows">
+		<div class="col-md-4 col-sm-6 item">
+			<div class="exercise-tables-background">
+		<h1 id="font-title"><?=i18n("Activities")?></h1>
+		<br>
+			<table id="table-margin" class="table">
 				<thead>
-					<tr>
-						<th></th>
-						<th class="tittle"><?=i18n("Activities")?></th>
-						<th></th>
-					</tr>
 					<tr class="active">
 						<th><?=i18n("View statistic")?></th>
 						<th><?=i18n("Day")?></th>
@@ -38,10 +40,10 @@ $view->setVariable("title", "Show Activities");
 			</table>
 		</div>
 	</div>
+	</div>
 	<div class="form-group">
 		<div class="col-lg-offset-6 col-lg-6">
 			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
 		</div>
 	</div>
 <div class="col-md-4"></div>
-</div>

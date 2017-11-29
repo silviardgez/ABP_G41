@@ -8,19 +8,20 @@ $assistances = $view->getVariable("assistances");
 $view->setVariable("title", "View Assistance");
 ?>
 
-<div class="col-md-12">
-	<div class="col-md-4"></div>
-		<div class="container">
-			<div class="table-responsive col-md-4">
-				<table class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th class="tittle"><?=i18n("Assistance")?></th>
-							<th></th>
-							<th></th>
-						</tr>
-						<tr class="active">
+<div>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Assistance")?></h1>
+	<br>
+</div>
+
+<div class="col-md-4"></div>
+	<div class="row features margin-rows">
+		<div class="col-md-4 col-sm-6 item">
+			<div class="exercise-tables-background">
+		<h1 id="font-title"><?=i18n("Activity assistance")?></h1>
+		<br>
+			<table id="table-margin" class="table">
+				<thead>
+					<tr class="active">
 							<th><?=i18n("Athlete")?></th>
 							<th><?=i18n("Date")?></th>
 							<th><?=i18n("Time")?></th>
@@ -46,13 +47,13 @@ $view->setVariable("title", "View Assistance");
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
-				</table>
-			</div>
+			</table>
 		</div>
-		<div class="form-group">
+	</div>
+	</div>
+	<div class="form-group">
 		<div class="col-lg-offset-6 col-lg-6">
 			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
 		</div>
 	</div>
-	<div class="col-md-4"></div>
-</div>
+<div class="col-md-4"></div>
