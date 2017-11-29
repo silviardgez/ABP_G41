@@ -32,7 +32,7 @@ $view->setVariable("title", "Add Assistance");
 					</thead>
 					<tbody>
 						<?php foreach ($assistants as $assistant): ?>
-							<tr class="success">
+							<tr>
 								<form action="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $assistance->getActivityid(); ?>" method="POST">
 									<input type="hidden" name="id_act" value="<?= $assistance->getActivityid(); ?>">
 									<input type="hidden" name="asistente" value="<?= $assistant->getDni(); ?>">

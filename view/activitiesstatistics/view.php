@@ -41,19 +41,19 @@ $chart->render("libchart/demo/generated/demo1.png");*/
 				</thead>
 				<tbody>
 					<?php foreach ($statistics as $statistic): ?>
-						<tr class="success">
+						<tr>
 							<td><?=i18n("Total of athletes in the gym")?> <?= $statistic->getDeportistas(); ?></td>
 						</tr>
-						<tr class="success">
+						<tr>
 							<td><?=i18n("Enrolled")?> <?= $statistic->getMatriculados(); ?></td>
 						</tr>
-						<tr class="success">
+						<tr>
 							<td><?=i18n("Percentage of enrolled")?> <?= $statistic->getPorcentajeMatriculados(); ?> %</td>
 						</tr>
-						<tr class="success">
+						<tr>
 							<td><?=i18n("Assistants")?> <?= $statistic->getAsistentes(); ?></p>
 						</tr>
-						<tr class="success">
+						<tr>
 							<td><?=i18n("Percentage of assistants")?> <?= $statistic->getPorcentajeAsistentes(); ?> %</td>
 						</tr>
 					<?php endforeach; ?>

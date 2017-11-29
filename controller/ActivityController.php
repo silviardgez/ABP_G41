@@ -163,9 +163,6 @@ class ActivityController extends BaseController {
 			throw new Exception("Not in session. Editing user requires login");
 		}
 		
-		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
-			throw new Exception("You aren't an admin or coach. Edit an activity requires be admin or coach.");
-		}
 
 		// Get the User object from the database
 		$activityId = $_REQUEST["id"];

@@ -30,7 +30,7 @@ $id = $view->getVariable("id");
 			</thead>
 			<tbody>
 				<?php foreach ($users as $user): ?>
-						<tr class="success">
+						<tr>
 							<td><a href="index.php?controller=notifications&amp;action=add&amp;dni=<?= $user->getUsername() ?>&amp;email=<?= $user->getEmail() ?>"><?= htmlentities($user->getName())?></a></td>
 							<td><?= htmlentities($user->getSurname()) ?></td>
 							<td><?= htmlentities($user->getUsername()) ?></td>
@@ -54,7 +54,7 @@ $id = $view->getVariable("id");
 			</thead>
 			<tbody>
 				<?php foreach ($activities as $activity): ?>
-						<tr class="success">
+						<tr>
 							<td><a href="index.php?controller=notifications&amp;action=addGroup&amp;id=<?= $activity["ID_ACT"] ?>"><?= htmlentities($activity["NOMBRE"])?></a></td>
 							<td><?= htmlentities($activity["TIPO"]) ?></td>
 							<td><?= htmlentities($activity["DIA"]) ?></td>

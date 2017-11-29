@@ -30,7 +30,7 @@ $view->setVariable("title", "View Assistance");
 					</thead>
 					<tbody>
 						<?php foreach ($assistances as $assistance): ?>
-							<tr class="success">
+							<tr>
 								<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistance->getDni(); ?>"><?= $assistance->getDni(); ?></a></td>
 								<td><?= $assistance->getDateassistance(); ?></td>
 								<td><?= $assistance->getTime(); ?></td>

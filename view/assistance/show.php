@@ -22,7 +22,7 @@ $view->setVariable("title", "Show Activities");
 		<br>
 			<table id="table-margin" class="table">
 				<thead>
-							<tr class="active">
+							<tr>
 								<th><?=i18n("View assistance")?></th>
 								<th><?=i18n("Day")?></th>
 								<th><?=i18n("Time")?></th>
@@ -31,7 +31,7 @@ $view->setVariable("title", "Show Activities");
 						<thead>
 						<tbody>
 							<?php foreach ($activities as $activity): ?>
-								<tr class="success">
+								<tr>
 									<td><a href="index.php?controller=assistance&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><?= $activity->getActivityname(); ?></a></td>
 									<td><?= $activity->getDia(); ?></td>
 									<td><?= $activity->getHorainicio(); ?></td>

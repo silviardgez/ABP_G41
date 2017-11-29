@@ -20,18 +20,16 @@ $view->setVariable("title", "Show Exercises");
 		<br>
 		<table id="table-margin" class="table">
 			<thead>
-				<tr class="active">
+				<tr>
 					<th><?=i18n("Name")?></th>
-					<th><?=i18n("")?></th>
 					<th><?=i18n("Actions")?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ($exercises as $exercice): ?>
 					<?php if ($exercice->getType() == "CARDIO"): ?>
-						<tr class="success">
+						<tr>
 							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>"><?= htmlentities($exercice->getName())?></a></td>
-							<td></td>
 							<td class="icons"><form
 							method="POST"
 							action="index.php?controller=exercises&amp;action=delete"
@@ -63,18 +61,16 @@ $view->setVariable("title", "Show Exercises");
 			<br>
 			<table id="table-margin" class="table">
 			<thead>
-				<tr class="active">
+				<tr>
 					<th><?=i18n("Name")?></th>
-					<th></th>
 					<th><?=i18n("Actions")?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ($exercises as $exercise): ?>
 					<?php if ($exercise->getType() == "MUSCULAR"): ?>
-						<tr class="success">
+						<tr>
 							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>"><?= htmlentities($exercise->getName()) ?></a></td>
-							<td></td>
 							<td class="icons"><form
 							method="POST"
 							action="index.php?controller=exercises&amp;action=delete"
@@ -106,18 +102,16 @@ $view->setVariable("title", "Show Exercises");
 		<br>
 		<table id="table-margin" class="table">
 			<thead>
-				<tr class="active">
+				<tr>
 					<th><?=i18n("Name")?></th>
-					<th></th>
 					<th><?=i18n("Actions")?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ($exercises as $exercise): ?>
 					<?php if ($exercise->getType() == "ESTIRAMIENTO"): ?>
-						<tr class="success">
+						<tr>
 							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>"><?= htmlentities($exercise->getName()) ?></a></td>
-							<td></td>
 							<td class="icons"><form
 								method="POST"
 								action="index.php?controller=exercises&amp;action=delete"
