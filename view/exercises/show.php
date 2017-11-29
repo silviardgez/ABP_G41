@@ -7,15 +7,19 @@ $exercises = $view->getVariable("exercises");
 $view->setVariable("title", "Show Exercises");
 ?>
 
-<div class="container">
-	<div class="table-responsive col-md-4">
-		<table class="table">
+<div>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Exercises")?></h1>
+	<br>
+</div>
+
+<div class="container-fluid">
+	<div class="row features margin-rows">
+		<div class="col-md-4 col-sm-6 item">
+			<div class="exercise-tables-background">
+		<h1 id="font-title"><?=i18n("Cardio")?></h1>
+		<br>
+		<table id="table-margin" class="table">
 			<thead>
-				<tr>
-					<th></th>
-					<th class="tittle"><?=i18n("Cardio")?></th>
-					<th></th>
-				</tr>
 				<tr class="active">
 					<th><?=i18n("Name")?></th>
 					<th><?=i18n("")?></th>
@@ -28,7 +32,7 @@ $view->setVariable("title", "Show Exercises");
 						<tr class="success">
 							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>"><?= htmlentities($exercice->getName())?></a></td>
 							<td></td>
-							<td><form
+							<td class="icons"><form
 							method="POST"
 							action="index.php?controller=exercises&amp;action=delete"
 							id="delete_exercise_<?= $exercice->getName(); ?>"
@@ -52,14 +56,13 @@ $view->setVariable("title", "Show Exercises");
 			</tbody>
 		</table>
 	</div>
-	<div class="table-responsive col-md-4">
-		<table class="table">
+</div>
+<div class="col-md-4 col-sm-6 item">
+	<div class="exercise-tables-background">
+		<h1 id="font-title"><?=i18n("Muscular")?></h1>
+			<br>
+			<table id="table-margin" class="table">
 			<thead>
-				<tr>
-					<th></th>
-					<th class="tittle"><?=i18n("Muscular")?></th>
-					<th></th>
-				</tr>
 				<tr class="active">
 					<th><?=i18n("Name")?></th>
 					<th></th>
@@ -72,7 +75,7 @@ $view->setVariable("title", "Show Exercises");
 						<tr class="success">
 							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>"><?= htmlentities($exercise->getName()) ?></a></td>
 							<td></td>
-							<td><form
+							<td class="icons"><form
 							method="POST"
 							action="index.php?controller=exercises&amp;action=delete"
 							id="delete_exercise_<?= $exercise->getName(); ?>"
@@ -96,14 +99,13 @@ $view->setVariable("title", "Show Exercises");
 			</tbody>
 		</table>
 	</div>
-	<div class="table-responsive col-md-4">
-		<table class="table">
+</div>
+<div class="col-md-4 col-sm-6 item">
+	<div class="exercise-tables-background">
+	<h1 id="font-title"><?=i18n("Stretch")?></h1>
+		<br>
+		<table id="table-margin" class="table">
 			<thead>
-				<tr>
-					<th></th>
-					<th class="tittle"><?=i18n("Stretch")?></th>
-					<th></th>
-				</tr>
 				<tr class="active">
 					<th><?=i18n("Name")?></th>
 					<th></th>
@@ -116,7 +118,7 @@ $view->setVariable("title", "Show Exercises");
 						<tr class="success">
 							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>"><?= htmlentities($exercise->getName()) ?></a></td>
 							<td></td>
-							<td><form
+							<td class="icons"><form
 								method="POST"
 								action="index.php?controller=exercises&amp;action=delete"
 								id="delete_exercise_<?= $exercise->getName(); ?>"
@@ -140,6 +142,8 @@ $view->setVariable("title", "Show Exercises");
 			</tbody>
 		</table>
 	</div>
+</div>
+</div>
 </div>
 <div class="row">
 	<div class="btn-group">

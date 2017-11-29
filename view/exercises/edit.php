@@ -10,21 +10,26 @@ $errors = $view->getVariable("errors");
 $view->setVariable("title", "Edit Exercise");
 ?>
 
-<h1><?=i18n("Edit Exercice")?></h1>
-<form action="index.php?controller=exercises&amp;action=edit" method="POST" class="form-horizontal col-md-12" >
+<div>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Edit Exercise")?></h1>
+	<br>
+</div>
+
+<div id="edit-view" class="center-block col-xs-6 col-lg-4">
+<form action="index.php?controller=exercises&amp;action=edit" method="POST" class="center-block form-horizontal">
 	<br><div class="form-group">
 		<div class="col-lg-6">
 			<input type="hidden" name="id" value="<?=$exercise->getId()?>">
 		</div>
 	</div>
 	<br><div class="form-group">
-		<label class="col-lg-5 control-label"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
 		<div class="col-lg-7">
 			<input type="text" name="nombre" value="<?=$exercise->getName()?>">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-lg-5 control-label"><?=i18n("Type")?>:</label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Type")?>:</label>
 		<div class="col-lg-7">
 			<select name="tipo">
 				<?php if($exercise->getType() == "CARDIO"){ ?>
@@ -44,20 +49,21 @@ $view->setVariable("title", "Edit Exercise");
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-lg-5 control-label"><?=i18n("Image")?>:</label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Image")?>:</label>
 		<div class="col-lg-7">
 			<input type="file" name="imagen" value="<?=$exercise->getImage()?>">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-lg-5 control-label"><?=i18n("Video")?>:</label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Video")?>:</label>
 		<div class="col-lg-7">
 			<input type="file" name="video" value="<?=$exercise->getVideo()?>">
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-lg-offset-5 col-lg-7s">
-			<button type="submit" name="submit"><?=i18n("Send")?></button>
-		</div>
-	</div>
+    <div class="col-sm-12">
+      <button id="btn-styles" type="submit" name="submit" class="btn btn-success btn-lg"><?=i18n("Send")?></button>
+    </div>
+  </div>
 </form>
+</div>

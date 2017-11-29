@@ -7,16 +7,21 @@ $view->setVariable("title", "Add Exercise");
 $errors = $view->getVariable("errors");
 ?>
 
-<h1><?=i18n("Add Exercice")?></h1>
-<form action="index.php?controller=exercises&amp;action=add" method="POST" class="form-horizontal col-md-12" >
+<div>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Add Exercice")?></h1>
+	<br>
+</div>
+
+<div id="edit-view" class="center-block col-xs-6 col-lg-4">
+<form action="index.php?controller=exercises&amp;action=add" method="POST" class="center-block form-horizontal" >
 	<br><div class="form-group">
-		<label class="col-lg-5 control-label"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
 		<div class="col-lg-7">
 			<input type="text" name="nombre">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-lg-5 control-label"><?=i18n("Type")?>:</label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Type")?>:</label>
 		<div class="col-lg-7">
 			<select name="type">
 				<option value="CARDIO"><?=i18n("Cardio")?></option>
@@ -26,20 +31,21 @@ $errors = $view->getVariable("errors");
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-lg-5 control-label"><?=i18n("Image")?>:</label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Image")?>:</label>
 		<div class="col-lg-7">
 			<input type="file" name="image">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-lg-5 control-label"><?=i18n("Video")?>:</label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Video")?>:</label>
 		<div class="col-lg-7">
 			<input type="file" name="video">
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-lg-offset-5 col-lg-7">
-			<button type="submit" name="submit"><?=i18n("Send")?></button>
+		<div class="col-sm-12">
+			<button id="btn-styles" type="submit" name="submit" class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 		</div>
 	</div>
 </form>
+</div>
