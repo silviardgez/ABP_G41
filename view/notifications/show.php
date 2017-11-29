@@ -9,16 +9,20 @@ $activities = $view->getVariable("activities");
 $id = $view->getVariable("id");
 ?>
 
-<div class="container">
-	<div class="table-responsive col-md-6">
-		<table class="table">
-			<thead>
+<div>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Notifications")?></h1>
+	<br>
+</div>
+
+<div class="container-fluid">
+	<div class="row features margin-rows">
+		<div class="col-md-6 col-sm-6 item">
+			<div class="exercise-tables-background">
+				<h1 id="font-title"><?=i18n("Users")?></h1>
+				<br>
+				<table id="table-margin" class="table">
+				<thead>
 				<tr>
-					<th></th>
-					<th class="tittle"><?=i18n("Users")?></th>
-					<th></th>
-				</tr>
-				<tr class="active">
 					<th><?=i18n("Name")?></th>
 					<th><?=i18n("Surname")?></th>
 					<th><?=i18n("DNI")?></th>
@@ -35,15 +39,14 @@ $id = $view->getVariable("id");
 			</tbody>
 		</table>
 	</div>
-	<div class="table-responsive col-md-6">
-		<table class="table">
+</div>
+<div class="col-md-6 col-sm-6 item">
+	<div class="exercise-tables-background">
+	<h1 id="font-title"><?=i18n("Classes")?></h1>
+		<br>
+		<table id="table-margin" class="table">
 			<thead>
 				<tr>
-					<th></th>
-					<th class="tittle"><?=i18n("Classes")?></th>
-					<th></th>
-				</tr>
-				<tr class="active">
 					<th><?=i18n("Name")?></th>
 					<th><?=i18n("Type")?></th>
 					<th><?=i18n("Day")?></th>
@@ -60,4 +63,6 @@ $id = $view->getVariable("id");
 			</tbody>
 		</table>
 	</div>
+</div>
+</div>
 </div>
