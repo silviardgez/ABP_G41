@@ -29,7 +29,11 @@ class TrainingController extends BaseController {
 		if(!isset($this->currentUser)){
 			throw new Exception("Not in session. Show users requires login");
 		}
-
+		
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+		 throw new Exception("You aren't an admin or coach. Show trainings requires be admin or coach.");
+		 }
+		
 		$grupalTrainings_db = $this->trainingMapper->getTrainings();
 		$cardio = array();
 		$muscular = array();
@@ -70,9 +74,9 @@ class TrainingController extends BaseController {
 			throw new Exception("Not in session. Editing training requires login");
 		}
 
-		/*if($this->userMapper->findType() != "admin" || $this->userMapper->findType() != "entrenador"){
-			throw new Exception("You aren't an admin or coach. Editing a training requires be admin or coach.");
-		}*/
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+		 throw new Exception("You aren't an admin or coach. Edit a training requires be admin or coach.");
+		 }
 
 		// Get the User object from the database
 		$trainingId = $_REQUEST["id"];
@@ -80,6 +84,12 @@ class TrainingController extends BaseController {
 		$exerciseId = $training->getExerciseId();
 		$exerciseName = $this->exerciseMapper->findExerciseNameById($exerciseId);
 		$exerciseType = $this->exerciseMapper->getTypeById($exerciseId);
+		
+		$cardio = $this->exerciseMapper->getCardioExercises();
+		$muscular = $this->exerciseMapper->getMuscularExercises();
+		$est = $this->exerciseMapper->getEstExercises();
+		
+		$exercises = array($cardio,$muscular,$est);
 
 		if ($training == NULL) {
 			throw new Exception("no such training with id: ". $trainingId);
@@ -108,6 +118,7 @@ class TrainingController extends BaseController {
 				$this->view->setVariable("errors", $errors);
 			}
 		}
+		$this->view->setVariable("exercises", $exercises);
 		$this->view->setVariable("training", $training);
 		$this->view->setVariable("exerciseName", $exerciseName);
 		$this->view->setVariable("exerciseType", $exerciseType);
@@ -122,9 +133,9 @@ class TrainingController extends BaseController {
 			throw new Exception("Not in session. Deleting training requires login");
 		}
 
-		/*if($this->userMapper->findType() != "admin"){
-			throw new Exception("You aren't an admin. Deleting an training requires be admin");
-		}*/
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+		 throw new Exception("You aren't an admin or coach. Delete a training requires be admin or coach.");
+		 }
 
 		$trainingId = $_REQUEST["id"];
 		$training = $this->trainingMapper->getTrainingById($trainingId);
@@ -144,9 +155,9 @@ class TrainingController extends BaseController {
 			throw new Exception("Not in session. Adding activities requires login.");
 		}
 
-		/*if($this->userMapper->findType() != "admin" && $this->userMapper->findType() != "entrenador"){
-			throw new Exception("You aren't an admin or a coach. Adding an exercise requires be admin or coach");
-		}*/
+		if(!$_SESSION["admin"] && !$_SESSION["entrenador"]){
+		 throw new Exception("You aren't an admin or coach. Add a training requires be admin or coach.");
+		 }
 
 		$training = new Training();
 		

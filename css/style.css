@@ -73,6 +73,7 @@ body {
 
 #center-text {
 	text-align: center;
+	vertical-align:middle;
 }
 
 #bigger-size {
@@ -140,6 +141,73 @@ table td:hover {
 
 .icons {
 	font-size: 25px;
+}
+
+#activitiesBody{
+	margin: 1em 0em 2em 0em;
+	padding: 10px 20px;
+	background: rgba(244,247,248,0.8);
+	border-radius: 8px;
+	float: left;
+}
+
+.activity_line{
+	height: 2.5em;
+}
+
+.actTable_container {
+	font: .9em Arial, Helvetica, sans-serif;
+	text-align: center;
+	width:100%;
+	align-content: top;
+}
+
+.actTable_header {
+	background: #8D8B8B;
+	padding: 0 .3em;
+	font-weight: bold;
+	border: 1px solid #333;
+	margin-bottom: 1px;
+}
+
+.activitiesMenu{
+	margin: 9em 5em auto 5em;
+	width: 18em;
+}
+
+.actTable_hour {
+	background: #B2CFEA;
+	border: 1px solid #333;
+	font-weight: bold;
+	height: 4em;
+}
+
+.actTable_activities {
+	background: #B2CFEA;
+	border: 1px solid #333;
+	font-weight: bold;
+	height: 4em;
+	border-radius: 10%;
+	margin-left: 1px;
+}
+
+.vertical_middle_text{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+}
+
+
+#actTable_col_hours{
+	width: 9%;
+}
+
+.actTable_col {
+	width: 13%;
+	display:inline-block;
+	float: left;
+
 }
 
 .navigation-clean-search {

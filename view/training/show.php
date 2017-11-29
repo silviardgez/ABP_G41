@@ -34,7 +34,7 @@ $view->setVariable ( "title", "Show Trainings" );
 					</tr>
 					<?php foreach ($grupalTrainings[0] as $trainings): ?>
 						<tr>
-						<td><a
+						<td id="center-text"><a
 							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
 							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
 						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>
@@ -80,7 +80,7 @@ $view->setVariable ( "title", "Show Trainings" );
 					</tr>
 					<?php foreach ($grupalTrainings[1] as $trainings): ?>
 						<tr>
-						<td><a
+						<td id="center-text"><a
 							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
 							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
 						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>
@@ -119,7 +119,7 @@ $view->setVariable ( "title", "Show Trainings" );
 					</tr>
 					<?php foreach ($grupalTrainings[2] as $trainings): ?>
 						<tr>
-						<td><a
+						<td id="center-text"><a
 							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
 							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
 						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>

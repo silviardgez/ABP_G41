@@ -4,11 +4,15 @@ require_once (__DIR__ . "/../../core/ViewManager.php");
 $view = ViewManager::getInstance ();
 
 $training = $view->getVariable ( "training" );
+$exercises = $view->getVariable ( "exercises" );
 $exerciseName = $view->getVariable ( "exerciseName" );
 $exerciseType = $view->getVariable ( "exerciseType" );
 $errors = $view->getVariable ( "errors" );
 
 $view->setVariable ( "title", "Edit Training" );
+
+$type = array("Cardio","Muscular","Stretching");
+$i=0;
 
 ?>
 
@@ -26,8 +30,16 @@ $view->setVariable ( "title", "Edit Training" );
 					</label> <input type="hidden" name="exerciseId"
 					value="<?=$training->getExerciseId()?>">
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="exerciseName"
-						value="<?=$exerciseName?>">
+					<select class="form-control" name="exerciseId">
+					<?php foreach ($exercises as $exerciseType):?>
+						<optgroup label="<?=i18n($type[$i])?>">
+					<?php foreach ($exerciseType as $exercise => $exerciseName): ?> 
+							<option value="<?=$exercise?>"><?=$exerciseName?></option>
+					<?php endforeach; 
+					$i++;?>
+						</optgroup>
+					<?php endforeach; ?>
+					</select>
 				</div>
 			</div>
 			<div class="form-group">
