@@ -12,6 +12,19 @@ class ActivityMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
+	//Devuelve el nombre de la actividad en función del id de la misma.
+	public function getActNameById($id){
+		$stmt = $this->db->prepare("SELECT NOMBRE FROM ACTIVIDAD WHERE ID_ACT=?");
+		$stmt->execute(array($id));
+		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($activity != null) {
+			return $activity["NOMBRE"];
+		} else {
+			return NULL;
+		}
+	}
+
 	//Busca una actividad por nombre
 	public function getActivitiesByName($name){
 		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE NOMBRE=?");
