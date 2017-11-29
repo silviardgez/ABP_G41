@@ -180,5 +180,8 @@ array(
 	"Sessions of the user: " => "Sesiones del usuario: ",
 	"Add Session" => "Añadir Sesión",
 	"Edit Session" => "Editar Sesión",
+	"Go to: Client View" => "Ir a: Vista de Cliente",
+	"Go to: Coach View" => "Ir a: Vista de Entrenador",
+	"Options" => "Opciones",
 )
 ?>

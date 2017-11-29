@@ -21,8 +21,9 @@ body {
 
 .exercise-tables-background {
 	background: white;
-	border-radius: 1%;
+	border-radius: 2%;
 	padding: 15px;
+	margin-bottom: 3%;
 }
 
 .exercise-tables-content {
@@ -119,7 +120,7 @@ td {
 	border-bottom: 1px solid #fff;
 	color: #669;
 	border-top: 1px solid transparent;
-	width: 40%;
+	width: 20%;
 }
 
 tr:hover td {
@@ -444,6 +445,21 @@ thead>tr>th, tbody {
 .tittle {
 	font-size: 20px;
 	text-align: center;
+}
+
+#link-view {
+	float: right;
+    margin-right: 2%;
+    margin-top: -1%;
+    font-size: large;
+    font-weight: bolder;
+    text-decoration: none;
+    color: white;
+}
+
+#link-activity {
+	color: black;
+	text-decoration: none;
 }
 
 td>a:link, td>a:visited, td>a:hover {
