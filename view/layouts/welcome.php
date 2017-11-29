@@ -73,6 +73,7 @@ $view = ViewManager::getInstance();
 							<li><a href="index.php?controller=users&amp;action=viewcurrent&amp;dni=<?= $_SESSION['currentuser'] ?>"><?=i18n("Connected as:")?> <?= $_SESSION["currentuser"]?></a></li>
 							<?php if ($_SESSION["deportista"]): ?>
 								<li><a href=""><?=i18n("Notifications")?></a></li>
+								<li><a href="index.php?controller=book&amp;action=viewUser"><?=i18n("Bookings")?></a></li>
 							<?php endif; ?>
 						</ul>
 					</li>
@@ -90,7 +91,7 @@ $view = ViewManager::getInstance();
 						<ul class="dropdown-menu">
 							<li><a href="index.php?controller=activity&amp;action=show"><?=i18n("Classes")?></a></li>
 							<?php if($_SESSION["admin"]): ?>
-								<li><a href="index.php?controller=book&amp;action=show"><?=i18n("Reservations")?></a></li>
+								<li><a href="index.php?controller=book&amp;action=show"><?=i18n("Bookings")?></a></li>
 							<?php endif; ?>
 							<?php if($_SESSION["entrenador"]): ?>
 								<li><a href="index.php?controller=assistance&amp;action=show"><?=i18n("Assistance")?></a></li>
