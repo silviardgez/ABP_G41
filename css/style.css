@@ -48,6 +48,7 @@ body {
 	float: none;
 	border-radius:2%;
 	border: 1px solid #e7e7e7;
+	margin-bottom: 4%;
 }
 
 #center-view {
@@ -483,8 +484,12 @@ i {
 
 .btn-group-act .btn-fab {
 	position: fixed;
-	left: 8.7em;
+	left: 8.5em;
 	top: 12em;
+}
+
+#activities-box {
+	max-width:22em;
 }
 
 .circulo {

@@ -183,5 +183,8 @@ array(
 	"Go to: Client View" => "Ir a: Vista de Cliente",
 	"Go to: Coach View" => "Ir a: Vista de Entrenador",
 	"Options" => "Opciones",
+	"Add Activity" => "Añadir Actividad",
+	"End" => "Fin",
+	"Edit Activity" => "Editar Actividad"
 )
 ?>

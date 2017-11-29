@@ -39,11 +39,11 @@ $hours = array (
 
 <div class="container-fluid">
 	<div class="row">
-		<div id="activitiesList" class="col-xs-12 col-md-4">
+		<div class="col-xs-12 col-md-4">
 			<h1 id="bigger-size" class="stroke"><?= i18n("Activities") ?></h1>
 			<br>
 
-			<div class="container-fluid exercise-tables-background">
+			<div id="activities-box" class="container-fluid exercise-tables-background">
 				<?php foreach ($activitiesName as $activity): ?>
 
 					<div class="row">
@@ -56,7 +56,8 @@ $hours = array (
 					<div class="col-xs-7">
 							<?= htmlentities($activity) ?>
 						</div>
-
+			
+					<?php if($_SESSION["admin"] || $_SESSION["entrenador"]):?>
 					<div class="icons col-xs-1">
 						<form method="POST"
 							action="index.php?controller=activity&amp;action=delete"
@@ -76,6 +77,7 @@ $hours = array (
 							href="index.php?controller=activity&amp;action=edit&amp;name=<?= $activity ?>"><i
 							class="fa fa-pencil-square-o"></i></a>
 					</div>
+					<?php endif;?>
 				</div>
 			<?php endforeach; ?>
 		</div>
@@ -139,7 +141,7 @@ $hours = array (
 	</div>
 </div>
 
-
+<?php if($_SESSION["admin"] || $_SESSION["entrenador"]):?>
 <div class="row">
 	<div class="btn-group-act">
 		<a href="index.php?controller=activity&amp;action=add"
@@ -147,3 +149,4 @@ $hours = array (
 		</a>
 	</div>
 </div>
+<?php endif;?>

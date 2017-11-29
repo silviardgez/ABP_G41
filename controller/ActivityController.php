@@ -125,11 +125,16 @@ class ActivityController extends BaseController {
 
 		if (isset($_POST["submit"])) { 
 			$activities = $_POST["activities"];
-			foreach ($activities as $activity) {
-				$activity->setActivityName($_POST["name"]);	
+			
+			$tmp = stripslashes($activities);
+			$tmp = urldecode($tmp);
+			$tmp = unserialize($tmp); 
+
+			foreach ($tmp as $activity) {
+				$activity->setActivityName($_POST["name"]);
 				$activity->setColor($_POST["color"]);
 				try {
-					$activity->checkIsValidForUpdate(); // if it fails, ValidationException
+					
 					$this->activityMapper->update($activity);
 
 				} catch(ValidationException $ex) {

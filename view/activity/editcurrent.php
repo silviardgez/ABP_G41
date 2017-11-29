@@ -47,7 +47,7 @@ $view->setVariable("title", "Edit Current Activity");
 					<button type="submit" name="delete"><?=i18n("Delete")?></button>
 				</form>
 			</form>
-			<?php endif
+			<?php endif;
 		 if ($user->getDeportist()): ?>
 		<form action="index.php?controller=book&amp;action=addBook" method="POST">
 			<input type="hidden" name="id" value="<?=$activity->getActivityId()?>" readonly>

@@ -1,48 +1,89 @@
 <?php
-//file: view/users/edit.php
+// file: view/users/edit.php
+require_once (__DIR__ . "/../../core/ViewManager.php");
+$view = ViewManager::getInstance ();
 
-require_once(__DIR__."/../../core/ViewManager.php");
-$view = ViewManager::getInstance();
+$coaches = $view->getVariable ( "monitors" );
+$errors = $view->getVariable ( "errors" );
 
-$coaches = $view->getVariable("monitors");
-$errors = $view->getVariable("errors");
-
-$view->setVariable("title", "Add Activity");
+$view->setVariable ( "title", "Add Activity" );
 
 ?>
 
-<div class="recuadro">
-	<div id="formulario">
-		<div class="home2">
-			<form action="index.php?controller=activity&amp;action=add" method="POST">
-				<br><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
-				<input type="text" name="name">
-				<br><?=i18n("Start Time")?>:
-				<input type="time" name="startTime">
-				<br><?=i18n("End Time")?>:
-				<input type="time" name="endTime">
-				<br><?=i18n("Day")?>:
-				<select name="day">
-					<option value="LUNES"><?=i18n("MONDAY")?></option>
-					<option value="MARTES"><?=i18n("TUESDAY")?></option>
-					<option value="MIERCOLES"><?=i18n("WEDNESDAY")?></option>
-					<option value="JUEVES"><?=i18n("THURSDAY")?></option>
-					<option value="VIERNES"><?=i18n("FRIDAY")?></option>
-					<option value="SABADO"><?=i18n("SATURDAY")?></option>
-					<option value="DOMINGO"><?=i18n("SUNDAY")?></option>
-				</select>
-				<br><?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
-				<select name="monitor">
+<div class="container-fluid">
+	<h1 class="stroke"><?=i18n("Add Activity")?></h1>
+	<br>
+	<div id="edit-view" class="center-block col-xs-6 col-lg-4">
+		<form id="edit-form" class="center-block form-horizontal"
+			action="index.php?controller=activity&amp;action=add" method="POST">
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Start")?>:
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="time" name="startTime">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("End")?>:
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="time" name="endTime">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Day")?>:
+				</label>
+				<div class="col-sm-8">
+					<select class="form-control" name="day">
+						<option value="LUNES"><?=i18n("MONDAY")?></option>
+						<option value="MARTES"><?=i18n("TUESDAY")?></option>
+						<option value="MIERCOLES"><?=i18n("WEDNESDAY")?></option>
+						<option value="JUEVES"><?=i18n("THURSDAY")?></option>
+						<option value="VIERNES"><?=i18n("FRIDAY")?></option>
+						<option value="SABADO"><?=i18n("SATURDAY")?></option>
+						<option value="DOMINGO"><?=i18n("SUNDAY")?></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
+				</label>
+				<div class="col-sm-8">
+					<select class="form-control" name="monitor">
 					<?php foreach ($coaches as $coach => $coachName): ?> 
 					 	<option value="<?=$coach?>"><?=$coachName?></option>
 					<?php endforeach; ?>
 				</select>
-				<br><?=i18n("Color")?>:
-				<input type="color" name="color">
-				<br><br>
-				<button type="submit" name="submit"><?=i18n("Send")?></button>
-
-			</form>
-		</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Color")?>:
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="color" name="color">
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<button id="btn-styles" type="submit" name="submit"
+						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
+
