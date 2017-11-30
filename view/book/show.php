@@ -40,8 +40,8 @@ $activities = $view->getVariable("activities");
 								<td><?= $book['hour'] ?></td>
 								<td>
 									<input disabled type="checkbox" name="confirmed" value="<?= $book['confirmed'] ?>" checked>
-										Confirmed
-									<a href="index.php?controller=book&action=changeConfirmedStatus&idAct=<?= $book['idAct'] ?>&idAthl=<?= $book['idAthl'] ?>&status=0">Decline</a>
+										<?=i18n("Confirmed")?>
+									<a href="index.php?controller=book&action=changeConfirmedStatus&idAct=<?= $book['idAct'] ?>&idAthl=<?= $book['idAthl'] ?>&status=0"><?=i18n("Decline")?></a>
 
 								</td>
 							</tr>
@@ -65,8 +65,8 @@ $activities = $view->getVariable("activities");
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($books as $book):?>
-						<?php if ($book['confirmed']==0): ?>
+					<?php foreach ($books as $book):
+						 if ($book['confirmed']==0): ?>
 							<tr class = "success">
 								<td><?= $book['userName'] ?></td> <!-- Devuelve el nombre del usuario-->
 								<td><?= $book['actName'] ?></td> <!-- Devuelve el nombre de la actividad-->
@@ -74,8 +74,14 @@ $activities = $view->getVariable("activities");
 								<td><?= $book['hour'] ?></td>
 								<td>
 									<input disabled type="checkbox" name="confirmed" value="<?= $book['confirmed'] ?>">
-									Not confirmed
-									<a href="index.php?controller=book&action=changeConfirmedStatus&idAct=<?= $book['idAct'] ?>&idAthl=<?= $book['idAthl'] ?>&status=1">Confirm</a>
+									<?=i18n("Not confirmed")?>
+									<a href="index.php?controller=book&action=changeConfirmedStatus&idAct=<?= $book['idAct'] ?>&idAthl=<?= $book['idAthl'] ?>&status=1"><?=i18n("Confirm")?></a>
+								</td>
+								<td class="icons">
+									<form method="POST" action="index.php?controller=book&amp;action=delete" id="delete_book_<?=$book['idAct']?>-<?=$book['idAthl']?>" style="display: inline">
+										<input type="hidden" name="ids" value="<?=$book['idAct']?>-<?=$book['idAthl']?>">
+										<a onclick="if (confirm('<?= i18n("are you sure?")?>')) {document.getElementById('delete_book_<?=$book['idAct']?>-<?=$book['idAthl']?>').submit()}"><i class="fa fa-trash col-md-6"></i></a>
+									</form>
 								</td>
 							</tr>
 					<?php endif ?>
