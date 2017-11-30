@@ -20,12 +20,11 @@ $view->setVariable("title", "Bookings");
 					<th><?=i18n("Name activity")?></th>
 					<th><?=i18n("Date of reservation")?></th>
 					<th><?=i18n("Hour of reservation")?></th>
-					<th><?=i18n("Confirmed")?></th>
+					<th><?=i18n("Status")?></th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php
-				foreach ($books as $book):?>
+				<?php foreach ($books as $book):?>
 						<tr class = "success">
 
 							<td><?= $book['userName'] ?></td> <!-- Devuelve el nombre del usuario-->
@@ -33,8 +32,12 @@ $view->setVariable("title", "Bookings");
 							<td><?= $book['dateBook'] ?></td>
 							<td><?= $book['hour'] ?></td>
 							<td>
-								<input disabled type="checkbox" name="confirmed" value="<?= $book['confirmed'] ?>" checked>
-									Confirmed
+								<?php if ($book['confirmed']==1):
+										echo i18n("Confirmed");
+								elseif ($book['confirmed']==0):
+										echo i18n("Not confirmed");
+									endif
+									?>
 
 							</td>
 						</tr>
