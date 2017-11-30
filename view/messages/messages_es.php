@@ -194,8 +194,8 @@ array(
 	"Add assistance" => "Añadir asistencia",
 	"Activity Statistics" => "Estadísticas de la actividad",
 	"Athlete Statistics" => "Estadísticas del deportista",
-	"" => "",
-	"" => ""
+	"Assign table to user" => "Asignar tabla a usuario",
+	" Assign" => " Asignar",
 	
 )
 ?>

@@ -8,6 +8,8 @@ require_once(__DIR__."/../model/TableMapper.php");
 require_once(__DIR__."/../model/ExerciseMapper.php");
 require_once(__DIR__."/../model/TrainingMapper.php");
 require_once(__DIR__."/../model/Training.php");
+require_once(__DIR__."/../model/UserMapper.php");
+require_once(__DIR__."/../model/User.php");
 
 
 require_once(__DIR__."/../controller/BaseController.php");
@@ -18,6 +20,7 @@ class TableController extends BaseController {
 	private $trainingMapper;
 	private $exerciseMapper;
 	private $tableMapper;
+	private $userMapper;
 
 	public function __construct() {
 		parent::__construct();
@@ -25,6 +28,7 @@ class TableController extends BaseController {
 		$this->tableMapper = new TableMapper();
 		$this->exerciseMapper = new ExerciseMapper();
 		$this->trainingMapper = new TrainingMapper();
+		$this->userMapper = new UserMapper();
 
 		$this->view->setLayout("welcome");
 	}
@@ -80,7 +84,7 @@ class TableController extends BaseController {
 			throw new Exception("Table id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Deleting activity requires login");
+			throw new Exception("Not in session. Delete a table requires login");
 		}
 
 		/*if($this->userMapper->findType() != "admin"){
@@ -105,7 +109,7 @@ class TableController extends BaseController {
 			throw new Exception("Table id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Deleting activity requires login");
+			throw new Exception("Not in session. Delete a table requires login");
 		}
 
 		/*if($this->userMapper->findType() != "admin"){
@@ -119,10 +123,11 @@ class TableController extends BaseController {
 		if ($table == NULL) {
 			throw new Exception("no such table with id: ". $tableId);
 		}
+		
 		$this->tableMapper->deletecurrent($tableId, $trainingId);
 
-		$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully deleted."), $tableId));
-		//$this->view->redirect("table", "edit");
+		$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully deleted."), $trainingId));
+		$this->view->redirect("table", "edit");
 	}
 
 	public function edit(){
@@ -203,6 +208,43 @@ class TableController extends BaseController {
 		$this->view->setVariable("table", $table);
 
 		$this->view->render("table", "add");
+	}
+	
+	public function adduser(){
+		if (!isset($_REQUEST["id"])) {
+			throw new Exception("A table id is mandatory");
+		}
+		
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Editing user requires login");
+		}
+		
+		$table = $_REQUEST["id"];
+		$athletes = $this->userMapper->getAthletesWithoutTable($table);
+		
+		if (isset($_POST["submit"])) {
+			$user = $_REQUEST["athlete"];
+			$table = $_REQUEST["id"];
+			
+			try {
+							
+				$this->tableMapper->addUser($table, $user);
+				
+				$this->view->setFlash(sprintf(i18n("User \"%s\" successfully added to table \"%s\"."), $user, $table));
+				
+				$this->view->redirect("table", "show");
+				
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+		
+		$this->view->setVariable("athletes", $athletes);
+		$this->view->setVariable("table", $table);
+		$this->view->render("table", "adduser");
 	}
 
 }

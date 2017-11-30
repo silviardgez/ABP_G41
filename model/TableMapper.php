@@ -72,4 +72,9 @@ class TableMapper {
 		$stmt->execute(array($table->getType()));
 	}
 	
+	public function addUser($table, $user){
+		$stmt = $this->db->prepare("INSERT INTO ENGLOBA(ID_TABLA, DNI) VALUES(?,?)");
+		$stmt->execute(array($table,$user));
+	}
+	
 }

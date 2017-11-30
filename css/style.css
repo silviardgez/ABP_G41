@@ -133,6 +133,11 @@ table td:hover {
 	background: #98aefa !important;
 }
 
+.ubica-right {
+	float: right;
+	margin-right: -4%;
+}
+
 #table-margin {
 	margin-bottom: 0px;
 }
