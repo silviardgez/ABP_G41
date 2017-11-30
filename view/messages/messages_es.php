@@ -200,6 +200,19 @@ array(
 	"Trainings" => "Entrenamientos",
 	"Users assigned to table" => "Usuarios asignados a la tabla",
 	"Add Table" => "Añadir Tabla",
-	
+	"Bookings confirmed" => "Reservas confirmadas",
+	"Name user" => "Nombre usuario",
+	"Name activity" => "Nombre actividad",
+	"Date of reservation" => " Fecha de la reserva",
+	"Hour of reservation" => "Hora de la reserva",
+	"Book \"%s\" successfully added." => "Reserva \"%s\" añadida correctamente.",
+	"Decline" => "Quitar confirmación",
+	"Confirmed" => "Confirmado",
+	"Not confirmed" => "No confirmado",
+	"Confirm" => "Confirmar",
+	"Bookings confirmed" => "Reservas confirmadas",
+	"Bookings not confirmed" => "Reservas no confirmadas",
+	"Confirmation status" =>"Estado de la confirmación",
+	"Status"=>"Estado"
 )
 ?>
