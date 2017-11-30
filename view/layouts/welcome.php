@@ -47,6 +47,7 @@ $view = ViewManager::getInstance();
       };
       date_input.datepicker(options);
       $('.selectpicker').selectpicker();
+      var value = $("#myDate input").datepicker("getDate");
   })
 </script>
 </head>

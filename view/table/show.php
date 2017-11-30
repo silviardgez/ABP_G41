@@ -4,6 +4,7 @@ require_once (__DIR__ . "/../../core/ViewManager.php");
 $view = ViewManager::getInstance ();
 $tables = $view->getVariable ( "tables" );
 $tables_id = $view->getVariable ( "tables_id" );
+$tableswithoutid = $view->getVariable ( "tableswithoutid" );
 
 $view->setVariable ( "title", "Show Tables" );
 ?>
@@ -53,7 +54,9 @@ $view->setVariable ( "title", "Show Tables" );
 										class="fa fa-pencil-square-o"></i></a>
 								</div>
 								<div class="col-xs-2">
-									<a href="index.php?controller=table&amp;action=showusers&amp;id=<?= $tables_id[$j] ?>"> <i class="glyphicon glyphicon-list-alt"></i>
+									<a
+										href="index.php?controller=table&amp;action=showusers&amp;id=<?= $tables_id[$j] ?>">
+										<i class="glyphicon glyphicon-list-alt"></i>
 									</a>
 								</div>
 								<div class="col-xs-2">
@@ -109,8 +112,60 @@ $view->setVariable ( "title", "Show Tables" );
 			</div>
 			</div>
 		</div>
-	
 
 	<?php endforeach; ?>
+	
+
+	<?php for ($j=0; $j<sizeof($tableswithoutid); $j++) : ?>
+	<div class="col-xs-12 col-lg-6">
+			<div id="tableExercises" class="exercise-tables-background">
+				<div class="container-fluid">
+					<?php if(!$_SESSION["deportista"]):?>
+					<div class="row">
+						<form method="POST"
+							action="index.php?controller=table&amp;action=delete"
+							id="delete_table_<?= $tableswithoutid[$j] ?>" class="none-styles"
+							style="display: inline">
+							<input type="hidden" name="id"
+								value="<?= $tableswithoutid[$j] ?>">
+							<div class="col-xs-12">
+								<h1><?=i18n("Table") . " " . $tableswithoutid[$j]; ?></h1>
+								<br>
+							</div>
+							<div class="icons ubica-right">
+								<div class="col-xs-2">
+									<a
+										onclick="
+								if (confirm('<?= i18n("are you sure?")?>')) {
+									document.getElementById('delete_table_<?= $tableswithoutid[$j] ?>').submit()
+								}"><i class="fa fa-trash"></i></a>
+								</div>
+								<div class="col-xs-2">
+									<a
+										href="index.php?controller=table&amp;action=edit&amp;id=<?= $tableswithoutid[$j] ?>"><i
+										class="fa fa-pencil-square-o"></i></a>
+								</div>
+								<div class="col-xs-2">
+									<a
+										href="index.php?controller=table&amp;action=showusers&amp;id=<?= $tableswithoutid[$j] ?>">
+										<i class="glyphicon glyphicon-list-alt"></i>
+									</a>
+								</div>
+								<div class="col-xs-2">
+									<a
+										href="index.php?controller=table&amp;action=adduser&amp;id=<?= $tableswithoutid[$j] ?>"
+										class="btn btn-info"> <span class="glyphicon glyphicon-plus"></span><?= i18n(" Assign")?>
+								</a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<?php endif;?>
+					</div>
+			</div>
+		</div>
+
+	<?php endfor; ?>
 	</div>
 </div>
+

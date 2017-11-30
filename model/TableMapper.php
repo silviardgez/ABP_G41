@@ -38,6 +38,21 @@ class TableMapper {
 
 		return $tables;
 	}
+	
+	//Devuelve el id de las tablas que NO tienen asociado algun ejercicio
+	public function getIdTablesWithoutExercises(){
+		$stmt = $this->db->prepare("SELECT DISTINCT ID_TABLA FROM TABLA WHERE ID_TABLA NOT IN (SELECT DISTINCT ID_TABLA FROM `INCLUYE`)");
+		$stmt->execute();
+		$tables_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$tables = array();
+		
+		foreach ($tables_db as $table) {
+			array_push($tables, $table["ID_TABLA"]);
+		}
+		
+		return $tables;
+	}
+	
 
 	//Busca una tabla por id
 	public function getTableById($id){

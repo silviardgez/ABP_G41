@@ -96,7 +96,7 @@ class SessionMapper {
 	//Añade una sesión
 	public function add(Session $session) {
 		$stmt = $this->db->prepare ( "INSERT INTO SESION(ID_ENGLOBA, OBSERVACIONES,FECHA,HORA) values (?,?,?,?)" );
-		echo "INSERT INTO SESION(ID_ENGLOBA, OBSERVACIONES,FECHA,HORA) values (".$session->getIdClientTable().",".$session->getObservations().",".$session->getSessionDay().",".$session->getSessionHour().")" . "CACACACACA";
+		echo "INSERT INTO SESION(ID_ENGLOBA, OBSERVACIONES,FECHA,HORA) values (".$session->getIdClientTable().",".$session->getObservations().",".$session->getSessionDay().",".$session->getSessionHour().")";
 		$stmt->execute ( array (
 				$session->getIdClientTable(),
 				$session->getObservations(),

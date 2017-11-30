@@ -40,6 +40,7 @@ class TableController extends BaseController {
 		}
 
 		$tables_id = $this->tableMapper->getIdTablesWithExercises();
+		$tables_withoutid = $this->tableMapper->getIdTablesWithoutExercises();
 		
 		$tables = array();
 		
@@ -74,6 +75,7 @@ class TableController extends BaseController {
 		// put the users object to the view
 		$this->view->setVariable("tables", $tables);
 		$this->view->setVariable("tables_id", $tables_id);
+		$this->view->setVariable("tableswithoutid", $tables_withoutid);
 		$this->view->render("table", "show");
 	}
 	
@@ -183,7 +185,7 @@ class TableController extends BaseController {
 		$table = $this->tableMapper->getTableById($tableId);
 
 		if ($table == NULL) {
-			throw new Exception("no such table with id: ". $activityId);
+			throw new Exception("no such table with id: ". $tableId);
 		}
 
 		$trainings_db = $this->tableMapper->getTables($tableId);

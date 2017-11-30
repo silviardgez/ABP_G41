@@ -81,8 +81,7 @@ $view->setVariable ( "title", "Edit Table" );
 					method="POST">
 					<div class="col-sm-8">
 
-							<input type="hidden" name="id" value="<?=$training[0]?>"> <input
-								type="hidden" name="idtable" value="<?=$table->getTableId()?>">
+							<input type="hidden" name="idtable" value="<?=$table->getTableId()?>">
 								
 								
 							<select class="col-sm-4 form-control" name="training">
@@ -95,7 +94,7 @@ $view->setVariable ( "title", "Edit Table" );
 						class="btn btn-info"><span style="margin-right:5%"
 								class="glyphicon glyphicon-plus"></span><?= i18n("Add")?></button>
 					</div>
-						</form>
+				</form>
 	
 			</div>
 
