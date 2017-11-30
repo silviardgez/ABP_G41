@@ -196,6 +196,10 @@ array(
 	"Athlete Statistics" => "Estadísticas del deportista",
 	"Assign table to user" => "Asignar tabla a usuario",
 	" Assign" => " Asignar",
+	"Edit Table" => "Editar Tabla",
+	"Trainings" => "Entrenamientos",
+	"Users assigned to table" => "Usuarios asignados a la tabla",
+	"Add Table" => "Añadir Tabla",
 	
 )
 ?>

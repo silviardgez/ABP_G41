@@ -219,4 +219,18 @@ class UserMapper {
 			return false;
 		}
 	}
+	
+	//Devuelve todos los usuarios asignados a una tabla
+	public function showUsers($idTable) {
+		$stmt = $this->db->prepare ( "SELECT DNI, NOMBRE, APELLIDOS FROM USUARIO WHERE DNI IN (SELECT DNI FROM ENGLOBA WHERE ID_TABLA=?);" );
+		$stmt->execute (array($idTable));
+		$users_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
+		$athletes = array ();
+		
+		foreach ( $users_db as $user ) {
+			$athletes [$user ["DNI"]] = $user ["NOMBRE"] . " " . $user ["APELLIDOS"];
+		}
+		
+		return $athletes;
+	}
 }

@@ -14,7 +14,7 @@ $view->setVariable ( "title", "Show Tables" );
 	<br>
 	<?php if(!$_SESSION["deportista"]):?>
 	<div class="btn-group">
-		<a href="index.php?controller=training&amp;action=add"
+		<a href="index.php?controller=table&amp;action=add"
 			class="btn-fab circulo btn-training" id="add"> <i class="fa fa-plus"></i>
 		</a>
 	</div>
@@ -53,7 +53,7 @@ $view->setVariable ( "title", "Show Tables" );
 										class="fa fa-pencil-square-o"></i></a>
 								</div>
 								<div class="col-xs-2">
-									<a href="#"> <i class="glyphicon glyphicon-list-alt"></i>
+									<a href="index.php?controller=table&amp;action=showusers&amp;id=<?= $tables_id[$j] ?>"> <i class="glyphicon glyphicon-list-alt"></i>
 									</a>
 								</div>
 								<div class="col-xs-2">

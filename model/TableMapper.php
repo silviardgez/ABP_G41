@@ -61,6 +61,11 @@ class TableMapper {
 		$stmt = $this->db->prepare("DELETE from INCLUYE WHERE ID_TABLA=? AND ID_ENTRENA=?");
 		$stmt->execute(array($id,$idEntr));
 	}
+	
+	public function deleteUserFromTable($id, $dni){
+		$stmt = $this->db->prepare("DELETE from ENGLOBA WHERE ID_TABLA=? AND DNI=?");
+		$stmt->execute(array($id,$dni));
+	}
 
 	public function update(Table $table){
 		$stmt = $this->db->prepare("UPDATE TABLA set TIPO=? WHERE ID_TABLA=?");
@@ -72,9 +77,28 @@ class TableMapper {
 		$stmt->execute(array($table->getType()));
 	}
 	
+	public function addTraining($training, $tableId){
+		$stmt = $this->db->prepare("INSERT INTO INCLUYE(ID_ENTRENA,ID_TABLA) VALUES(?,?)");
+		$stmt->execute(array($training, $tableId));
+	}
+	
 	public function addUser($table, $user){
 		$stmt = $this->db->prepare("INSERT INTO ENGLOBA(ID_TABLA, DNI) VALUES(?,?)");
 		$stmt->execute(array($table,$user));
+	}
+	
+	//Devuelve los entrenamientos que no están asociados a una tabla dada
+	public function getTrainings($id){
+		$stmt = $this->db->prepare("SELECT * FROM ENTRENAMIENTO WHERE ID_ENTRENA NOT IN (SELECT T2.ID_ENTRENA FROM ENTRENAMIENTO T1 JOIN INCLUYE T2 WHERE T1.ID_ENTRENA = T2.ID_ENTRENA AND T2.ID_TABLA = ?)");
+		$stmt->execute(array($id));
+		$grupalTrainings_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$grupalTrainings = array();
+		
+		foreach ($grupalTrainings_db as $training) {
+			array_push($grupalTrainings, new Training($training["ID_ENTRENA"], $training["ID_EJERCICIO"], $training["NUM_REP"], $training["TIEMPO"]));
+		}
+		
+		return $grupalTrainings;
 	}
 	
 }

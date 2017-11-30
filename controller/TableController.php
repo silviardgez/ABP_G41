@@ -76,6 +76,22 @@ class TableController extends BaseController {
 		$this->view->setVariable("tables_id", $tables_id);
 		$this->view->render("table", "show");
 	}
+	
+	//Enseña los usuarios asignados a una tabla
+	public function showusers(){
+		if(!isset($this->currentUser)){
+			throw new Exception("Not in session. Show users requires login");
+		}
+		
+		$tableId = $_REQUEST["id"];
+		$users = $this->userMapper->showUsers($tableId);
+		
+		// put the users object to the view
+		$this->view->setVariable("users", $users);
+		$this->view->setVariable("tableId", $tableId);
+
+		$this->view->render("table", "showusers");
+	}
 
 
 	//Elimina todas las actividades con el mismo nombre
@@ -103,6 +119,29 @@ class TableController extends BaseController {
 		$this->view->setFlash(sprintf(i18n("Tabla \"%s\" successfully deleted."), $tableId));
 		$this->view->redirect("table", "show");
 	}
+	
+	//Elimina todas las actividades con el mismo nombre
+	public function deleteuser(){
+		if (!isset($_POST["id"])) {
+			throw new Exception("DNI is mandatory");
+		}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Delete a table requires login");
+		}
+		
+		/*if($this->userMapper->findType() != "admin"){
+		 throw new Exception("You aren't an admin. Deleting an user requires be admin");
+		 }*/
+		
+		$tableId = $_REQUEST["idtable"];
+		$dni = $_REQUEST["id"];
+		
+		
+		$this->tableMapper->deleteUserFromTable($tableId, $dni);
+		
+		$this->view->setFlash(sprintf(i18n("User \"%s\" successfully deleted to table \"%s\."), $tableId, $dni));
+		$this->view->redirect("table", "showusers", "id=$tableId");
+	}
 
 	public function deletecurrent(){
 		if (!isset($_POST["id"])) {
@@ -127,7 +166,7 @@ class TableController extends BaseController {
 		$this->tableMapper->deletecurrent($tableId, $trainingId);
 
 		$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully deleted."), $trainingId));
-		$this->view->redirect("table", "edit");
+		$this->view->redirect("table", "edit", "id=$tableId");
 	}
 
 	public function edit(){
@@ -154,6 +193,14 @@ class TableController extends BaseController {
 			$training = $this->trainingMapper->getTrainingById($table->getTrainingId());
 			array_push($trainings, array($training->getTrainingId(), $this->exerciseMapper->getNameById($training->getExerciseId()), $training->getRepeats(), $training->getTime()));
 		}
+		
+		$totalTrainings_db = $this->tableMapper->getTrainings($tableId);
+		$totalTrainings = array();
+		
+		foreach($totalTrainings_db as $training) {
+		$exerciseId = $training->getExerciseId();
+		$totalTrainings[$training->getTrainingId()] = $this->exerciseMapper->getNameById($exerciseId) . " (" . $training->getRepeats() . ", " . substr($training->getTime(), 3) .")";
+		}
 
 		if (isset($_POST["submit"])) { 
 			$table->setType($_POST["type"]);
@@ -176,7 +223,7 @@ class TableController extends BaseController {
 
 		$this->view->setVariable("table", $table);
 		$this->view->setVariable("trainings", $trainings);
-
+		$this->view->setVariable("totaltrainings", $totalTrainings);
 		$this->view->render("table", "edit");
 	}
 
@@ -208,6 +255,31 @@ class TableController extends BaseController {
 		$this->view->setVariable("table", $table);
 
 		$this->view->render("table", "add");
+	}
+	
+	public function addtraining(){
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Editing user requires login");
+		}
+		
+		if (isset($_POST["addtraining"])) {
+			$training = $_REQUEST["training"];
+			$tableId = $_REQUEST["idtable"];
+			try {
+				
+				$this->tableMapper->addTraining($training, $tableId);
+				
+				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully added."), $training));
+				
+				$this->view->redirect("table", "edit", "id=$tableId");
+				
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
 	}
 	
 	public function adduser(){
