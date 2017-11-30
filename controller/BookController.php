@@ -148,15 +148,16 @@ class BookController extends BaseController {
 
 		// populate the exercise object with data form the form
 		$book->setIdAct($_POST["id"]);
-		$book->setIdAthl($_SESSION["id_userActual"]);
-		$book->setDateBook(date("d-m-Y"));
+		$book->setIdAthl($_SESSION["currentuser"]);
+		$book->setDateBook(date("Y-m-d"));
 		$book->setHour(date("H:i:s"));
 		$book->setConfirmed(0);
+		$this->bookMapper->add($book);
 		try {
 
 		$this->view->setFlash(sprintf(i18n("Booking \"%s\" successfully added."),$book ->getIdAct()));
 
-		$this->view->redirect("book", "show");
+		$this->view->redirect("book", "viewUser");
 
 		}catch(ValidationException $ex) {
 		// Get the errors array inside the exepction...
@@ -164,12 +165,34 @@ class BookController extends BaseController {
 		// And put it to the view as "errors" variable
 		$this->view->setVariable("errors", $errors);
 		}
+
 		}
 
 		// Put the exercise object visible to the view
 		$this->view->setVariable("book", $book);
 		// render the view (/view/exercises/add.php)
-		$this->view->render("book", "add");
+		$this->view->render("book", "viewUser");
 }
+
+		public function delete(){
+			if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Deleting activity requires login");
+		}
+
+		$ids= $_REQUEST["ids"];
+		$aux=explode("-",$ids);
+		$bookActID=$aux[0];
+		$bookDepID=$aux[1];
+		$book = $this->bookMapper->findBookByIds($bookActID,$bookDepID);
+
+		if ($book == NULL) {
+			throw new Exception("no such book with ids: ". $bookActID ." ".$bookDepID);
+		}
+
+		$this->bookMapper->delete($book);
+
+		$this->view->setFlash(sprintf(i18n("Book \"%s\" successfully deleted."), $bookActID,(", "),$bookDepID));
+		$this->view->redirect("book", "show");
+			}
 
   }
