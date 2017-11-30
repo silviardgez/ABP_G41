@@ -80,12 +80,12 @@ class BookMapper{
 
 
   public function delete($book){
-		$stmt = $this->db->prepare("DELETE from RESERVA WHERE ID_ACT=?");
-		$stmt->execute(array($book->getIdAct()));
+		$stmt = $this->db->prepare("DELETE from RESERVA WHERE ID_ACT=? AND DNI_DEP=?");
+		$stmt->execute(array($book->getIdAct(), $book->getIdAthl()));
 	}
 
 
-  public function add(Sesion $sesion){
+  public function add($book){
    $stmt = $this->db->prepare("INSERT INTO RESERVA(ID_ACT,DNI_DEP,FECHA,HORA,CONFIRMADO) values (?,?,?,?,?)");
    $stmt->execute(array($book->getIdAct(), $book->getIdAthl(), $book->getDateBook(), $book->getHour(), $book->getConfirmed()));
    return $this->db->lastInsertId();
