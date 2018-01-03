@@ -84,7 +84,16 @@ $errors = $view->getVariable("errors");
 				    <div class="col-sm-12">
 				      <div class="checkbox">
 				        <label class="control-label text-size text-muted col-sm-8">
-				          	<input type="checkbox" name="deportista" value="1"> <?=i18n("Athlete")?>
+				          	<input type="checkbox" name="deportista_tdu" value="1"> <?=i18n("Athlete"); echo " TDU"?>
+				        </label>
+				      </div>
+				    </div>
+				  </div>
+					<div class="form-group">
+				    <div class="col-sm-12">
+				      <div class="checkbox">
+				        <label class="control-label text-size text-muted col-sm-8">
+				          	<input type="checkbox" name="deportista_pef" value="1"> <?=i18n("Athlete"); echo " PEF"?>
 				        </label>
 				      </div>
 				    </div>
