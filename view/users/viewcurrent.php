@@ -66,10 +66,18 @@ $view->setVariable("title", "View CurrentUser");
 			<?php }?>
 	  </div>
 		<div class="form-group">
-			<?php if($user->getDeportist() == 1){ ?>
-	    <label class="control-label text-size text-muted col-sm-4"><?=i18n("Athlete");?>:</label>
+			<?php if($user->getDeportistTdu() == 1){ ?>
+	    <label class="control-label text-size text-muted col-sm-4"><?=i18n("Athlete"); echo " TDU"?>:</label>
 			<div class="col-lg-6">
-	        <input type="text" name="deportista" value="<?=i18n("Athlete");?>" readonly="readonly">
+	        <input type="text" name="deportista_tdu" value="<?=i18n("Athlete"); echo " TDU"?>" readonly="readonly">
+	    </div>
+			<?php }?>
+	  </div>
+		<div class="form-group">
+			<?php if($user->getDeportistPef() == 1){ ?>
+	    <label class="control-label text-size text-muted col-sm-4"><?=i18n("Athlete"); echo " PEF"?>:</label>
+			<div class="col-lg-6">
+	        <input type="text" name="deportista_pef" value="<?=i18n("Athlete"); echo " PEF"?>" readonly="readonly">
 	    </div>
 			<?php }?>
 	  </div>
