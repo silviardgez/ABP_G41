@@ -109,7 +109,7 @@ class UserMapper {
 		) );
 	}
 	public function update(User $user) {
-		$stmt = $this->db->prepare ( "UPDATE USUARIO set DNI=?, CONTRASEÑA=?, NOMBRE=?, APELLIDOS=?, EMAIL=?, FECHA_NAC=?, ADMIN=?, ENTRENADOR=?, DEPORTISTA=? where DNI=?" );
+		$stmt = $this->db->prepare ( "UPDATE USUARIO set DNI=?, CONTRASEÑA=?, NOMBRE=?, APELLIDOS=?, EMAIL=?, FECHA_NAC=?, ADMIN=?, ENTRENADOR=?, DEPORTISTA_TDU=?, DEPORTISTA_PEF=? where DNI=?" );
 		$stmt->execute ( array (
 				$user->getUsername (),
 				$user->getPass (),
@@ -119,7 +119,8 @@ class UserMapper {
 				$user->getDateBorn (),
 				$user->getAdmin (),
 				$user->getCoach (),
-				$user->getDeportist (),
+				$user->getDeportistTdu (),
+				$user->getDeportistPef (),
 				$user->getUsername ()
 		) );
 
