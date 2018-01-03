@@ -84,7 +84,7 @@ $errors = $view->getVariable("errors");
 				    <div class="col-sm-12">
 				      <div class="checkbox">
 				        <label class="control-label text-size text-muted col-sm-8">
-				          	<input type="checkbox" name="deportista_tdu" value="1"> <?=i18n("Athlete"); echo " TDU"?>
+				          	<input type="checkbox" name="deportista_tdu" value="1"> <?=i18n("Athlete"); echo " TDU"?>:<?= isset($errors["athlete"])?i18n($errors["athlete"]):"" ?>
 				        </label>
 				      </div>
 				    </div>
