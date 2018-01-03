@@ -205,6 +205,9 @@ class User{
 		if(!$this->is_valid_email($this->email)){
 			$errors["email"] = "The email is wrong";
 		}
+		if($this->getDeportistTdu() == 1 && $this->getDeportistPef() == 1){
+			$errors["athlete"] = "Athlete can not be TDU and PEF";
+		}
 		if($this->getName()==NULL){
 			$errors["name"] = "The name is wrong";
 		}
