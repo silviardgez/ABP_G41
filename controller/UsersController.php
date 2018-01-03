@@ -214,10 +214,15 @@ class UsersController extends BaseController {
 			}else{
 				$user->setAdmin(NULL);
 			}
-			if($_POST["deportista"] == "1"){
-				$user->setDeportist(1);
+			if($_POST["deportista_tdu"] == "1"){
+				$user->setDeportistTdu(1);
 			}else{
-				$user->setDeportist(NULL);
+				$user->setDeportistTdu(NULL);
+			}
+			if($_POST["deportista_pef"] == "1"){
+				$user->setDeportistPef(1);
+			}else{
+				$user->setDeportistPef(NULL);
 			}
 			if($_POST["entrenador"] == "1"){
 				$user->setCoach(1);
