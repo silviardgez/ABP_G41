@@ -80,6 +80,7 @@ $view->setVariable("title", "Edit User");
       </div>
     </div>
   </div>
+	<?= isset($errors["athlete"])?i18n($errors["athlete"]):"" ?>
 	<div class="form-group">
     <div class="col-sm-12">
       <div class="checkbox">
