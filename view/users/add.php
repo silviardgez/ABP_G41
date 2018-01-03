@@ -13,7 +13,7 @@ $errors = $view->getVariable("errors");
 </div>
 
 <div id="edit-view" class="center-block col-xs-6 col-lg-4">
-				<form action="index.php?controller=users&amp;action=edit" method="POST" class="center-block form-horizontal" >
+				<form action="index.php?controller=users&amp;action=add" method="POST" class="center-block form-horizontal" >
 				  <br><div class="form-group">
 				    <label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
 				    <div class="col-sm-8">
@@ -83,8 +83,9 @@ $errors = $view->getVariable("errors");
 					<div class="form-group">
 				    <div class="col-sm-12">
 				      <div class="checkbox">
+								<?= isset($errors["athlete"])?i18n($errors["athlete"]):"" ?>
 				        <label class="control-label text-size text-muted col-sm-8">
-				          	<input type="checkbox" name="deportista_tdu" value="1"> <?=i18n("Athlete"); echo " TDU"?>:<?= isset($errors["athlete"])?i18n($errors["athlete"]):"" ?>
+				          	<input type="checkbox" name="deportista_tdu" value="1"> <?=i18n("Athlete"); echo " TDU"?>
 				        </label>
 				      </div>
 				    </div>
