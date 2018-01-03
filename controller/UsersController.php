@@ -209,22 +209,22 @@ class UsersController extends BaseController {
 			$user->setDateBorn($_POST["fechaNac"]);
 			$user->setEmail($_POST["email"]);
 			$user->setTlf($_POST["tel"]);
-			if($_POST["administrador"] == "1"){
+			if(isset($_POST["administrador"]) && $_POST["administrador"] == "1"){
 				$user->setAdmin(1);
 			}else{
 				$user->setAdmin(NULL);
 			}
-			if($_POST["deportista_tdu"] == "1"){
+			if(isset($_POST["deportista_tdu"]) && $_POST["deportista_tdu"] == "1"){
 				$user->setDeportistTdu(1);
 			}else{
 				$user->setDeportistTdu(NULL);
 			}
-			if($_POST["deportista_pef"] == "1"){
+			if(isset($_POST["deportista_pef"]) && $_POST["deportista_pef"] == "1"){
 				$user->setDeportistPef(1);
 			}else{
 				$user->setDeportistPef(NULL);
 			}
-			if($_POST["entrenador"] == "1"){
+			if(isset($_POST["entrenador"]) && $_POST["entrenador"] == "1"){
 				$user->setCoach(1);
 			}else{
 				$user->setCoach(NULL);
