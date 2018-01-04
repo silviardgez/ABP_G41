@@ -214,6 +214,21 @@ array(
 	"Bookings confirmed" => "Reservas confirmadas",
 	"Bookings not confirmed" => "Reservas no confirmadas",
 	"Confirmation status" =>"Estado de la confirmación",
-	"Status"=>"Estado"
+	"Status"=>"Estado",
+	"January"=>"Enero",
+	"February"=>"Febrero",
+	"March"=>"Marzo",
+	"April"=>"Abril",
+	"May"=>"Mayo",
+	"June"=>"Junio",
+	"July"=>"Julio",
+	"Agoust"=>"Agosto",
+	"September"=>"Septiembre",
+	"October"=>"Octubre",
+	"November"=>"Noviembre",
+	"December"=>"Diciembre",
+	"Assistances"=>"Asistencias",
+	"Times"=>"Veces",
+	""=>"",
 )
 ?>
