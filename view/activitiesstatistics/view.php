@@ -10,7 +10,7 @@ $view = ViewManager::getInstance();
 $statistics = $view->getVariable("statistics");
 $view->setVariable("title", "View Statistics");
 
-require_once ('C:\xampp\htdocs\ABP_G41\GoogChart.class.php');
+require_once (__DIR__."/../../GoogChart.class.php");
 //require_once ('C:\xampp\htdocs\ABP_G41\jpgraph-4.1.1\src\jpgraph_line.php');
 
 ?>
