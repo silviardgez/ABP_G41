@@ -49,7 +49,10 @@ $errors = $view->getVariable("errors");
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-12">
+		<div class="col-sm-6">
+      <button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
+    </div>
+		<div class="col-sm-6">
 			<button id="btn-styles" type="submit" name="submit" class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 		</div>
 	</div>
