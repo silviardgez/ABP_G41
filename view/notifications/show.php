@@ -23,6 +23,7 @@ $id = $view->getVariable("id");
 				<table id="table-margin" class="table">
 				<thead>
 				<tr>
+					<th><?=i18n("Send")?></th>
 					<th><?=i18n("Name")?></th>
 					<th><?=i18n("Surname")?></th>
 					<th><?=i18n("DNI")?></th>
@@ -31,7 +32,8 @@ $id = $view->getVariable("id");
 			<tbody>
 				<?php foreach ($users as $user): ?>
 						<tr>
-							<td><a href="index.php?controller=notifications&amp;action=add&amp;dni=<?= $user->getUsername() ?>&amp;email=<?= $user->getEmail() ?>"><?= htmlentities($user->getName())?></a></td>
+							<td><a href="index.php?controller=notifications&amp;action=add&amp;dni=<?= $user->getUsername() ?>&amp;email=<?= $user->getEmail() ?>"><span class="glyphicon glyphicon-send"></span></a></td>
+							<td><?= htmlentities($user->getName())?></td>
 							<td><?= htmlentities($user->getSurname()) ?></td>
 							<td><?= htmlentities($user->getUsername()) ?></td>
 						</tr>
@@ -47,17 +49,21 @@ $id = $view->getVariable("id");
 		<table id="table-margin" class="table">
 			<thead>
 				<tr>
+					<th><?=i18n("Send")?></th>
 					<th><?=i18n("Name")?></th>
 					<th><?=i18n("Type")?></th>
 					<th><?=i18n("Day")?></th>
+					<th><?=i18n("Time")?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ($activities as $activity): ?>
 						<tr>
-							<td><a href="index.php?controller=notifications&amp;action=addGroup&amp;id=<?= $activity["ID_ACT"] ?>"><?= htmlentities($activity["NOMBRE"])?></a></td>
+							<td><a href="index.php?controller=notifications&amp;action=addGroup&amp;id=<?= $activity["ID_ACT"] ?>"><span class="glyphicon glyphicon-send"></span></a></td>
+							<td><?= htmlentities($activity["NOMBRE"])?></td>
 							<td><?= htmlentities($activity["TIPO"]) ?></td>
 							<td><?= htmlentities($activity["DIA"]) ?></td>
+							<td><?= htmlentities($activity["HORA_INI"])?></td>
 						</tr>
 				<?php endforeach; ?>
 			</tbody>
