@@ -15,9 +15,14 @@ class LoginController extends BaseController {
 		//$this->loginMapper = new loginMapper();
 	}
 
-	
+
 	public function index() {
-		$this->view->render("login","login");
+		if (isset($_SESSION['currentuser'])){
+			$this->view->render("login","home");
+		}else{
+			$this->view->render("login","login");
+		}
+
 	}
 
 	public function register() {
