@@ -4,6 +4,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $exercise = $view->getVariable("exercise");
 $view->setVariable("title", "View exercise");
+$errors = $view->getVariable ( "errors" );
 ?>
 <div>
 	<h1 id="bigger-size" class="stroke"><?=i18n("View Exercice")?></h1>
@@ -27,7 +28,7 @@ $view->setVariable("title", "View exercise");
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
 		<div class="col-lg-7">
-			<textarea class="form-control" rows="10" cols="40" name="descripcion" readonly="readonly"><?=$exercise->getDescription()?></textarea>
+			<textarea class="form-control" rows="20" cols="40" name="descripcion" readonly="readonly"><?=$exercise->getDescription()?></textarea>
 		</div>
 	</div>
 	<div class="form-group">
