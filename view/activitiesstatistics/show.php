@@ -31,7 +31,7 @@ $view->setVariable("title", "Show Activities");
 				<tbody>
 					<?php foreach ($activities as $activity): ?>
 							<tr>
-								<td><a href="index.php?controller=activitiesstatistics&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><?= $activity->getActivityname(); ?></a></td>
+								<td><?= $activity->getActivityname(); ?><a href="index.php?controller=activitiesstatistics&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><i class="fa fa-search col-md-3"></i></a></td>
 								<td><?= $activity->getDia(); ?></td>
 								<td><?= $activity->getHorainicio(); ?></td>
 							</tr>

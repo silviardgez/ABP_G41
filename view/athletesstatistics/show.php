@@ -22,7 +22,7 @@ $view->setVariable("title", "Show deportists");
 		<br>
 			<table id="table-margin" class="table">
 				<thead>
-					<tr class="active">
+					<tr>
 						<th><?=i18n("View user")?></th>
 						<th></th>
 						<th><?=i18n("View statistic")?></th>
@@ -31,11 +31,11 @@ $view->setVariable("title", "Show deportists");
 				<tbody>
 					<?php foreach ($deportists as $deportist): ?>
 						<tr>
-							<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><?= $deportist->getDni(); ?> </a></td>
-							<td></td>
-							<td><a href="index.php?controller=athletesstatistics&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>">
-								<?= $deportist->getDeportistname(); ?>									<?= $deportist->getDeportistsurname(); ?>
-								</a></td>
+							<td><?= $deportist->getDni(); ?><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><i class="fa fa-search col-md-3"></i> </a></td>
+							<td class="col-md-1"></td>
+							<td><?= $deportist->getDeportistname();?> <?= $deportist->getDeportistsurname();?>
+								<a href="index.php?controller=athletesstatistics&amp;action=view&amp;dni=<?= $deportist->getDni(); ?>"><i class="fa fa-search col-md-3"></i></a>
+							</td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
