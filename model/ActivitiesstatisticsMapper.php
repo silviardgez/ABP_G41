@@ -32,11 +32,21 @@ class ActivitiesstatisticsMapper {
 		$matriculados_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$matriculados = $matriculados_db[0]["COUNT(ID_ACT)"];
 		
-		$stmt2 = $this->db->prepare("SELECT COUNT(DEPORTISTA) FROM `USUARIO` WHERE DEPORTISTA=?");
-		$stmt2->execute(array($deportista));
+		$stmt2a = $this->db->prepare("SELECT COUNT(DEPORTISTA_TDU) FROM `USUARIO` WHERE DEPORTISTA_TDU=?");
+		$stmt2a->execute(array($deportista));
 		
-		$deportistas_db = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-		$deportistas = $deportistas_db[0]["COUNT(DEPORTISTA)"];
+		$deportistas_dba = $stmt2a->fetchAll(PDO::FETCH_ASSOC);
+		$deportistasa = $deportistas_dba[0]["COUNT(DEPORTISTA_TDU)"];
+		
+		$stmt2b = $this->db->prepare("SELECT COUNT(DEPORTISTA_PEF) FROM `USUARIO` WHERE DEPORTISTA_PEF=?");
+		$stmt2b->execute(array($deportista));
+		
+		$deportistas_dbb = $stmt2b->fetchAll(PDO::FETCH_ASSOC);
+		$deportistasb = $deportistas_dbb[0]["COUNT(DEPORTISTA_PEF)"];
+		
+		$deportistas = $deportistasa + $deportistasb;
+		
+		
 		
 		$stmt3 = $this->db->prepare("SELECT COUNT(DISTINCT DNI_DEP) FROM `ASISTE` WHERE ID_ACT=?");
 		$stmt3->execute(array($id));

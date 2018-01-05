@@ -13,7 +13,7 @@ class AthletesstatisticsMapper {
 	}
 
 	public function showAllDeportists(){
-		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DEPORTISTA=1");
+		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DEPORTISTA_TDU=1 OR DEPORTISTA_PEF=1");
 		$stmt->execute();
 		$deportists_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -33,7 +33,7 @@ class AthletesstatisticsMapper {
 		$asistenciaActividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$asistenciaActividades = $asistenciaActividades_db[0]["COUNT(DISTINCT ID_ACT)"];
 		
-		$stmt2 = $this->db->prepare("SELECT COUNT(DISTINCT ID_ACT) FROM `RESERVA` WHERE DNI_DEP=? AND CONFIRMADO=?");
+		$stmt2 = $this->db->prepare("SELECT COUNT(DISTINCT ID_ACT) FROM `RESERVA` WHERE DNI_DEP=? OR CONFIRMADO=?");
 		$stmt2->execute(array($dni, $confirmado));
 		
 		$matriculas_db = $stmt2->fetchAll(PDO::FETCH_ASSOC);
