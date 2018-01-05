@@ -44,7 +44,7 @@ $hours = array (
 				<h1 id="bigger-size" class="stroke"><?= i18n("Activities") ?></h1>
 				<br>
 
-				<div id="activities-box" class="container-fluid exercise-tables-background">
+				<div id="activities-box" class="container-fluid activities-tables-background">
 					<?php foreach ($activitiesName as $activity): ?>
 
 						<div class="row">
