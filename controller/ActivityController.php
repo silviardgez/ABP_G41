@@ -30,13 +30,13 @@ class ActivityController extends BaseController {
 			throw new Exception("Not in session. Show users requires login");
 		}
 		$grupalActivitiesName = $this->activityMapper->getGrupalActivitiesName();
-		$grupalActivitiesMonday = $this->activityMapper->getGrupalActivities("LUNES");
-		$grupalActivitiesTuesday = $this->activityMapper->getGrupalActivities("MARTES");
-		$grupalActivitiesWednesday = $this->activityMapper->getGrupalActivities("MIERCOLES");
-		$grupalActivitiesThursday = $this->activityMapper->getGrupalActivities("JUEVES");
-		$grupalActivitiesFriday = $this->activityMapper->getGrupalActivities("VIERNES");
-		$grupalActivitiesSaturday = $this->activityMapper->getGrupalActivities("SABADO");
-		$grupalActivitiesSunday = $this->activityMapper->getGrupalActivities("DOMINGO");
+		$grupalActivitiesMonday = $this->activityMapper->getGrupalActivities("MONDAY");
+		$grupalActivitiesTuesday = $this->activityMapper->getGrupalActivities("TUESDAY");
+		$grupalActivitiesWednesday = $this->activityMapper->getGrupalActivities("WEDNESDAY");
+		$grupalActivitiesThursday = $this->activityMapper->getGrupalActivities("THURSDAY");
+		$grupalActivitiesFriday = $this->activityMapper->getGrupalActivities("FRIDAY");
+		$grupalActivitiesSaturday = $this->activityMapper->getGrupalActivities("SATURDAY");
+		$grupalActivitiesSunday = $this->activityMapper->getGrupalActivities("SUNDAY");
 		$grupalActivities = array($grupalActivitiesMonday, $grupalActivitiesTuesday, $grupalActivitiesWednesday,
 			$grupalActivitiesThursday, $grupalActivitiesFriday, $grupalActivitiesSaturday, $grupalActivitiesSunday);
 		// put the users object to the view
