@@ -21,37 +21,37 @@ $view->setVariable("title", "Edit User");
   <br><div class="form-group">
     <label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
     <div class="col-lg-6">
-      <input type="text" name="nombre" value="<?=$user->getName()?>">
+      <input class="form-control" type="text" name="nombre" value="<?=$user->getName()?>">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label text-size text-muted col-sm-4"><?=i18n("Surname")?>:<?= isset($errors["surname"])?i18n($errors["surname"]):"" ?></label>
     <div class="col-lg-6">
-      <input type="text" name="apellidos" value="<?=$user->getSurname()?>">
+      <input class="form-control" type="text" name="apellidos" value="<?=$user->getSurname()?>">
     </div>
   </div>
 	<div class="form-group">
     <label class="control-label text-size text-muted col-sm-4"><?=i18n("Date Born")?>:<?= isset($errors["dateborn"])?i18n($errors["dateborn"]):"" ?></label>
     <div class="col-lg-6">
-      <input type="text" id="fecha" name="fechaNac" value="<?=$user->getDateBorn()?>">
+      <input class="form-control" type="text" id="fecha" name="fechaNac" value="<?=$user->getDateBorn()?>">
     </div>
   </div>
 	<div class="form-group">
     <label class="control-label text-size text-muted col-sm-4"><?=i18n("Email")?>:<?= isset($errors["email"])?i18n($errors["email"]):"" ?></label>
     <div class="col-lg-6">
-      <input type="email" name="email" value="<?=$user->getEmail()?>">
+      <input class="form-control" type="email" name="email" value="<?=$user->getEmail()?>">
     </div>
   </div>
 	<div class="form-group">
     <label class="control-label text-size text-muted col-sm-4"><?=i18n("Telephone")?>:<?= isset($errors["tlf"])?i18n($errors["tlf"]):"" ?></label>
     <div class="col-lg-6">
-      <input type="text" name="tel" value="<?=$user->getTlf()?>">
+      <input class="form-control" type="text" name="tel" value="<?=$user->getTlf()?>">
     </div>
   </div>
 	<div class="form-group">
     <label class="control-label text-size text-muted col-sm-4"><?=i18n("DNI")?>:<?= isset($errors["DNI"])?i18n($errors["DNI"]):"" ?></label>
     <div class="col-lg-6">
-    	<input type="text" name="dni" value="<?=$user->getUsername()?>" readonly="readonly">
+    	<input class="form-control" type="text" name="dni" value="<?=$user->getUsername()?>" readonly="readonly">
     </div>
   </div>
   <div class="form-group">

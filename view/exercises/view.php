@@ -15,13 +15,13 @@ $view->setVariable("title", "View exercise");
 	<br><div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
 		<div class="col-lg-7">
-			<input type="text" name="nombre" value="<?=$exercise->getName()?>" readonly="readonly">
+			<input class="form-control" type="text" name="nombre" value="<?=$exercise->getName()?>" readonly="readonly">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Type")?>:</label>
 		<div class="col-lg-7">
-			<input type="text" name="tipo" value="<?=$exercise->getType()?>" readonly="readonly">
+			<input class="form-control" type="text" name="tipo" value="<?=$exercise->getType()?>" readonly="readonly">
 		</div>
 	</div>
 	<div class="form-group">
