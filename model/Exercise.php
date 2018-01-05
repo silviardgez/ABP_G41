@@ -52,6 +52,9 @@ class Exercise{
 		if (strlen($this->name) < 5 ) {
 			$errors["name"] = "Name must be at least 5 characters length";
 		}
+		if (strlen($this->description) > 255 ) {
+			$errors["description"] = "The description must have less than 256 characters";
+		}
 		if (sizeof($errors)>0){
 			throw new ValidationException($errors, "Exercise is not valid");
 		}
