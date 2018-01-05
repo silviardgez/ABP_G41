@@ -12,7 +12,7 @@ class ActivitiesstatisticsMapper {
 	}
 
 	public function showAllActivities(){
-		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD");
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD ORDER BY NOMBRE ASC");
 		$stmt->execute();
 		$activities_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

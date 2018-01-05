@@ -28,7 +28,7 @@ class AssistanceMapper {
 	}
 
 	public function showAllActivities(){
-		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE DNI_ENTR=?");
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE DNI_ENTR=? ORDER BY NOMBRE ASC");
 		$stmt->execute(array($_SESSION["currentuser"]));
 		$activities_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

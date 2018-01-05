@@ -13,7 +13,7 @@ class AthletesstatisticsMapper {
 	}
 
 	public function showAllDeportists(){
-		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DEPORTISTA_TDU=1 OR DEPORTISTA_PEF=1");
+		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DEPORTISTA_TDU=1 OR DEPORTISTA_PEF=1 ORDER BY NOMBRE ASC");
 		$stmt->execute();
 		$deportists_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
