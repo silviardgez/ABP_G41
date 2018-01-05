@@ -29,8 +29,11 @@ $view->setVariable("title", "Show Exercises");
 				<?php foreach ($exercises as $exercice): ?>
 					<?php if ($exercice->getType() == "CARDIO"): ?>
 						<tr>
-							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>"><?= htmlentities($exercice->getName())?></a></td>
-							<td class="icons"><form
+							<td><?= htmlentities($exercice->getName())?></td>
+							<td class="icons">
+							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>">
+								<i class="fa fa-search col-md-4"></i></a>
+							<form
 							method="POST"
 							action="index.php?controller=exercises&amp;action=delete"
 							id="delete_exercise_<?= $exercice->getName(); ?>"
@@ -44,10 +47,10 @@ $view->setVariable("title", "Show Exercises");
 							if (confirm('<?= i18n("are you sure?")?>')) {
 								document.getElementById('delete_exercise_<?= $exercice->getName() ?>').submit()
 							}"
-							><i class="fa fa-trash col-md-6"></i></a>
+							><i class="fa fa-trash col-md-4"></i></a>
 
 						</form>
-						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercice->getId() ?>"><i class="fa fa-pencil-square-o col-md-6"></i></a>
+						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercice->getId() ?>"><i class="fa fa-pencil-square-o col-md-4"></i></a>
 						</tr>
 					<?php endif ?>
 				<?php endforeach; ?>
@@ -70,8 +73,11 @@ $view->setVariable("title", "Show Exercises");
 				<?php foreach ($exercises as $exercise): ?>
 					<?php if ($exercise->getType() == "MUSCULAR"): ?>
 						<tr>
-							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>"><?= htmlentities($exercise->getName()) ?></a></td>
-							<td class="icons"><form
+							<td><?= htmlentities($exercise->getName()) ?></td>
+							<td class="icons">
+							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>">
+									<i class="fa fa-search col-md-4"></i></a>
+							<form
 							method="POST"
 							action="index.php?controller=exercises&amp;action=delete"
 							id="delete_exercise_<?= $exercise->getName(); ?>"
@@ -85,10 +91,10 @@ $view->setVariable("title", "Show Exercises");
 							if (confirm('<?= i18n("are you sure?")?>')) {
 								document.getElementById('delete_exercise_<?= $exercise->getName(); ?>').submit()
 							}"
-							><i class="fa fa-trash col-md-6"></i></a>
+							><i class="fa fa-trash col-md-4"></i></a>
 
 						</form>
-						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o col-md-6"></i></a></td>
+						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o col-md-4"></i></a></td>
 						</tr>
 					<?php endif ?>
 				<?php endforeach; ?>
@@ -111,8 +117,11 @@ $view->setVariable("title", "Show Exercises");
 				<?php foreach ($exercises as $exercise): ?>
 					<?php if ($exercise->getType() == "ESTIRAMIENTO"): ?>
 						<tr>
-							<td><a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>"><?= htmlentities($exercise->getName()) ?></a></td>
-							<td class="icons"><form
+							<td><?= htmlentities($exercise->getName()) ?></td>
+							<td class="icons">
+							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>">
+									<i class="fa fa-search col-md-4"></i></a>
+							<form
 								method="POST"
 								action="index.php?controller=exercises&amp;action=delete"
 								id="delete_exercise_<?= $exercise->getName(); ?>"
@@ -126,10 +135,10 @@ $view->setVariable("title", "Show Exercises");
 								if (confirm('<?= i18n("are you sure?")?>')) {
 									document.getElementById('delete_exercise_<?= $exercise->getName(); ?>').submit()
 								}"
-								><i class="fa fa-trash col-md-6"></i></a>
+								><i class="fa fa-trash col-md-4"></i></a>
 
 							</form>
-						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o col-md-6"></i></a></td>
+						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o col-md-4"></i></a></td>
 						</tr>
 					<?php endif ?>
 				<?php endforeach; ?>
