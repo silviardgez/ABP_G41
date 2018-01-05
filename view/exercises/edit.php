@@ -19,19 +19,19 @@ $view->setVariable("title", "Edit Exercise");
 <form action="index.php?controller=exercises&amp;action=edit" method="POST" class="center-block form-horizontal">
 	<br><div class="form-group">
 		<div class="col-lg-6">
-			<input type="hidden" name="id" value="<?=$exercise->getId()?>">
+			<input class="form-control" type="hidden" name="id" value="<?=$exercise->getId()?>">
 		</div>
 	</div>
 	<br><div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
 		<div class="col-lg-7">
-			<input type="text" name="nombre" value="<?=$exercise->getName()?>">
+			<input class="form-control" type="text" name="nombre" value="<?=$exercise->getName()?>">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Type")?>:</label>
 		<div class="col-lg-7">
-			<select name="tipo">
+			<select name="tipo" class="form-control">
 				<?php if($exercise->getType() == "CARDIO"){ ?>
 				<option value="CARDIO" selected="selected"><?=i18n("Cardio")?></option>
 				<option value="MUSCULAR"><?=i18n("Muscular")?></option>
@@ -51,7 +51,7 @@ $view->setVariable("title", "Edit Exercise");
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
 		<div class="col-lg-7">
-			<textarea type="text" rows="20" cols="20" name="description"><?=$exercise->getDescription()?></textarea>
+			<textarea class="form-control" type="text" rows="20" cols="20" name="description"><?=$exercise->getDescription()?></textarea>
 		</div>
 	</div>
 	<div class="form-group">
