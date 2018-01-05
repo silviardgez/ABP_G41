@@ -15,7 +15,7 @@ $view->setVariable ( "title", "Show PEF Users" );
 <div class="container-fluid">
 	<div class="row features margin-rows">
 
-    <div class="col-md-8 col-sm-12 item">
+    <div class="col-md-8 col-sm-8 item">
 			<div class="exercise-tables-background">
 			<h1 id="font-title"><?=i18n("Athletes"); echo " TDU"?></h1>
 				<br>
