@@ -17,7 +17,7 @@ $errors = $view->getVariable("errors");
 	<br><div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
 		<div class="col-lg-7">
-			<input type="text" name="nombre">
+			<input type="text" name="name">
 		</div>
 	</div>
 	<div class="form-group">
@@ -28,6 +28,12 @@ $errors = $view->getVariable("errors");
 				<option value="MUSCULAR"><?=i18n("Muscular")?></option>
 				<option value="ESTIRAMIENTO"><?=i18n("Stretch")?></option>
 			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
+		<div class="col-lg-7">
+			<textarea type="text" name="description"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
