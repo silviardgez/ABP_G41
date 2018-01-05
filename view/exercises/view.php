@@ -27,7 +27,7 @@ $view->setVariable("title", "View exercise");
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
 		<div class="col-lg-7">
-			<textarea class="form-control" name="descripcion" readonly="readonly"><?=$exercise->getDescription()?></textarea>
+			<textarea class="form-control" rows="10" cols="40" name="descripcion" readonly="readonly"><?=$exercise->getDescription()?></textarea>
 		</div>
 	</div>
 	<div class="form-group">
