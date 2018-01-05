@@ -51,7 +51,7 @@ $view->setVariable("title", "Edit Exercise");
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
 		<div class="col-lg-7">
-			<textarea type="text" rows="10" cols="20" name="description"><?=$exercise->getDescription()?></textarea>
+			<textarea type="text" rows="20" cols="20" name="description"><?=$exercise->getDescription()?></textarea>
 		</div>
 	</div>
 	<div class="form-group">
