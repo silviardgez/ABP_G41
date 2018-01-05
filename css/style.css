@@ -196,6 +196,9 @@ table td:hover {
 	height: 4em;
 	border-radius: 10%;
 	margin-left: 1px;
+	-webkit-box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
+  -moz-box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
+  box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
 }
 
 .vertical_middle_text{

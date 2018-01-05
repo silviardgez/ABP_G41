@@ -35,7 +35,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 			</label>
 			<div class="col-sm-8">
 				<input class="form-control" type="text" name="name"
-				value="<?=$activity->getActivityName()?>" readonly>
+				value="<?=$activity->getActivityName()?>">
 			</div>
 		</div>
 		<div class="form-group">
