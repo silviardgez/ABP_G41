@@ -39,6 +39,7 @@ class ExerciseMapper {
 				$exercise["ID_EJERCICIO"],
 				$exercise["NOMBRE"],
 				$exercise["TIPO"],
+				$exercise["DESCRIPCION"],
 				$exercise["IMAGEN"],
 				$exercise["VIDEO"]);
 		} else {
@@ -47,8 +48,8 @@ class ExerciseMapper {
 	}
 
 	public function update(Exercise $exercise){
-		$stmt = $this->db->prepare("UPDATE EJERCICIO set NOMBRE=?, TIPO=?, IMAGEN=?, VIDEO=? where ID_EJERCICIO=?");
-		$stmt->execute(array($exercise->getName(), $exercise->getType(), $exercise->getImage(), $exercise->getVideo(), $exercise->getId()));
+		$stmt = $this->db->prepare("UPDATE EJERCICIO set NOMBRE=?, TIPO=?, DESCRIPCION=?, IMAGEN=?, VIDEO=? where ID_EJERCICIO=?");
+		$stmt->execute(array($exercise->getName(), $exercise->getType(), $exercise->getDescription(), $exercise->getImage(), $exercise->getVideo(), $exercise->getId()));
 	}
 
 	public function delete($exercise){
@@ -57,8 +58,8 @@ class ExerciseMapper {
 	}
 
 	public function add(Exercise $exercise){
-		$stmt = $this->db->prepare("INSERT INTO EJERCICIO(NOMBRE,TIPO,IMAGEN,VIDEO) values (?,?,?,?)");
-		$stmt->execute(array($exercise->getName(), $exercise->getType(), $exercise->getImage(), $exercise->getVideo()));
+		$stmt = $this->db->prepare("INSERT INTO EJERCICIO(NOMBRE,TIPO,DESCRIPCION,IMAGEN,VIDEO) values (?,?,?,?,?)");
+		$stmt->execute(array($exercise->getName(), $exercise->getType(), $exercise->getDescription(), $exercise->getImage(), $exercise->getVideo()));
 		return $this->db->lastInsertId();
 	}
 
