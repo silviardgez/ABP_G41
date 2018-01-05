@@ -506,6 +506,10 @@ i {
 	max-width:24.2em;
 }
 
+.editactivity_box{
+	max-width: 450px;
+}
+
 .right-ubication {
 	float: right;
 }

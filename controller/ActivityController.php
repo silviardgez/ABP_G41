@@ -213,6 +213,12 @@ class ActivityController extends BaseController {
 
 		$activity = new Activity();
 
+		if(isset($_GET["name"])){
+			$activityName = $_GET["name"];
+		} else {
+			$activityName = "";
+		}
+
 		$monitors = $this->userMapper->getCoaches();
 
 		if(isset($_POST["submit"])) { 
@@ -242,6 +248,7 @@ class ActivityController extends BaseController {
 
 		$this->view->setVariable("activity", $activity);
 		$this->view->setVariable("monitors", $monitors);
+		$this->view->setVariable("activityName", $activityName);
 		$this->view->render("activity", "add");
 	}
 

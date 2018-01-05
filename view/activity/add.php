@@ -5,6 +5,7 @@ $view = ViewManager::getInstance ();
 
 $coaches = $view->getVariable ( "monitors" );
 $errors = $view->getVariable ( "errors" );
+$activityName = $view->getVariable("activityName");
 
 $view->setVariable ( "title", "Add Activity" );
 
@@ -21,7 +22,11 @@ $view->setVariable ( "title", "Add Activity" );
 				<?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
 				</label>
 				<div class="col-sm-8">
+					<?php if($activityName == ""){ ?>
 					<input class="form-control" type="text" name="name">
+					<?php }else{ ?>
+					<input class="form-control" type="text" name="name" value="<?=$activityName?>" readonly>
+					<?php } ?>
 				</div>
 			</div>
 			<div class="form-group">

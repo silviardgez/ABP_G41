@@ -54,11 +54,16 @@ $hours = array (
 								checked="checked"
 								onclick="filterActivities('<?= htmlentities($activity) ?>');">
 							</div>
-							<div class="col-xs-7">
+							<div class="col-xs-6">
 								<?= htmlentities($activity) ?>
 							</div>
 
 							<?php if($_SESSION["admin"] || $_SESSION["entrenador"]):?>
+								<div class="icons col-xs-1">
+									<a
+									href="index.php?controller=activity&amp;action=add&amp;name=<?= $activity ?>"><i
+									class="fa fa-plus"></i></a>
+								</div>
 								<div class="icons col-xs-1">
 									<form method="POST"
 									action="index.php?controller=activity&amp;action=delete"
