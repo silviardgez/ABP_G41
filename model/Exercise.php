@@ -8,13 +8,15 @@ class Exercise{
 	private $id_exercise;
 	private $name;
 	private $type;
+	private $desciption;
 	private $image;
 	private $video;
 
-	public function __construct($id_exercise=NULL, $name=NULL, $type=NULL, $image=NULL, $video=NULL){
+	public function __construct($id_exercise=NULL, $name=NULL, $type=NULL, $description=NULL, $image=NULL, $video=NULL){
 		$this->id_exercise = $id_exercise;
 		$this->type = $type;
 		$this->name = $name;
+		$this->description = $description;
 		$this->image = $image;
 		$this->video = $video;
 	}
@@ -22,6 +24,10 @@ class Exercise{
 	//Setters
 	public function setId($id_exercise){
 		$this->id_exercise = $id_exercise;
+	}
+
+	public function setDescription($description){
+		$this->description = $description;
 	}
 
 	public function setImage($image){
@@ -56,6 +62,10 @@ class Exercise{
 		return $this->id_exercise;
 	}
 
+	public function getDescription(){
+		return $this->description;
+	}
+
 	public function getType(){
 		return $this->type;
 	}
@@ -75,7 +85,7 @@ class Exercise{
 	//Update Validate
 	public function checkIsValidForUpdate() {
 		$errors = array();
-		
+
 		if (!isset($this->name)) {
 			$errors["name"] = "Name is mandatory";
 		}
@@ -83,7 +93,7 @@ class Exercise{
 			$errors["id"] = "Id is mandatory";
 		}
 	}
-	
+
 }
 
 ?>
