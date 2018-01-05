@@ -104,9 +104,9 @@ class User{
 		if (strlen($this->username) < 8 ) {
 			$errors["DNI"] = "DNI must be at least 8 characters length";
 		}
-		if(!$this->userMapper->is_valid_DNI($this->getUsername())){
+		/*if(!$this->userMapper->is_valid_DNI($this->getUsername())){
 			$errors["DNI"] = "DNI exists";
-		}
+		}*/
 		if(!$this->validar_username($this->username) || $this->getUsername()==NULL){
 			$errors["DNI"] = "DNI incorrect";
 		}
