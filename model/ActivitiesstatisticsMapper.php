@@ -55,7 +55,11 @@ class ActivitiesstatisticsMapper {
 		$asistentes = $asistentes_db[0]["COUNT(DISTINCT DNI_DEP)"];
 		
 		$porcentajeMatriculados = ($matriculados/$deportistas)*100;
-		$porcentajeAsistentes = ($asistentes/$matriculados)*100;
+		if($matriculados==0){
+			$porcentajeAsistentes = 0;
+		}else{
+			$porcentajeAsistentes = ($asistentes/$matriculados)*100;
+		}
 		
 		//sacamos el año actual
 		$stmt17 = $this->db->prepare("SELECT YEAR(FECHA) FROM asiste WHERE FECHA = (SELECT MAX(FECHA) FROM ASISTE)");

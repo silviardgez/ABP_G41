@@ -231,7 +231,7 @@ array(
 	"October"=>"Octubre",
 	"November"=>"Noviembre",
 	"December"=>"Diciembre",
-	""=>"",
+	"Assistants"=>"Asistentes",
 	""=>"",
 	""=>"",
 	""=>"",
