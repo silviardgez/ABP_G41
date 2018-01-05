@@ -67,6 +67,42 @@ class UsersController extends BaseController {
 		$this->view->render("users", "show");
 	}
 
+	public function showPef(){
+		if(!isset($this->currentUser)){
+			throw new Exception("Not in session. Show users requires login");
+		}
+
+		if($this->userMapper->findType() != "admin"){
+			throw new Exception("You aren't an admin. See all users requires be admin");
+		}
+
+		$users = $this->userMapper->showAllUsers();
+
+		// put the users object to the view
+		$this->view->setVariable("users", $users);
+
+		// render the view (/view/users/show.php)
+		$this->view->render("users", "showPef");
+	}
+
+	public function showTdu(){
+		if(!isset($this->currentUser)){
+			throw new Exception("Not in session. Show users requires login");
+		}
+
+		if($this->userMapper->findType() != "admin"){
+			throw new Exception("You aren't an admin. See all users requires be admin");
+		}
+
+		$users = $this->userMapper->showAllUsers();
+
+		// put the users object to the view
+		$this->view->setVariable("users", $users);
+
+		// render the view (/view/users/show.php)
+		$this->view->render("users", "showTdu");
+	}
+
 	public function view(){
 		if (!isset($_GET["dni"])) {
 			throw new Exception("DNI is mandatory");
