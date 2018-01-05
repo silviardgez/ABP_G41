@@ -44,7 +44,7 @@ class ActivityMapper {
 		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE ID_ACT=?");
 		$stmt->execute(array($id));
 		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
-		
+
 		if($activity != null) {
 			return new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"]);
 		} else {
@@ -65,9 +65,9 @@ class ActivityMapper {
 
 		return $grupalActivities;
 	}
-	
 
-	//Devuelve todas las actividades grupales 
+
+	//Devuelve todas las actividades grupales
 	public function getGrupalActivities($weekDay){
 		$stmt = $this->db->prepare("SELECT *, (hour(HORA_FIN) - hour(HORA_INI)) + (minute(HORA_FIN) - minute(HORA_INI))/60 AS 'DURACION' FROM ACTIVIDAD where TIPO='GRUPAL' && DIA = ? ORDER BY HORA_INI");
 		$stmt->execute(array($weekDay));
@@ -108,10 +108,10 @@ class ActivityMapper {
 		$stmt->execute(array($activity->getActivityName(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor()));
 		return $this->db->lastInsertId();
 	}
-	
+
 	//Devuelve todas las actividades
 	public function selectAllActivities(){
-		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD");
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD ORDER BY NOMBRE");
 		$stmt->execute();
 
 		$activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
