@@ -17,19 +17,19 @@ $email = $view->getVariable("email");
 	<br><div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Email")?>:</label>
 		<div class="col-lg-6">
-			<input type="text" name="email" value="<?= $email ?>" readonly="readonly">
+			<input class="form-control" type="text" name="email" value="<?= $email ?>" readonly="readonly">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Subject")?>:</label>
 		<div class="col-lg-6">
-			<input type="text" name="subject">
+			<input class="form-control" type="text" name="subject">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Message")?>:</label>
 		<div class="col-lg-6">
-			<textarea rows="3" name="message"></textarea>
+			<textarea class="form-control" rows="3" name="message"></textarea>
 		</div>
 	</div>
 	<div class="form-group">

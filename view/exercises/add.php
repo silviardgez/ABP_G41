@@ -17,13 +17,13 @@ $errors = $view->getVariable("errors");
 	<br><div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
 		<div class="col-lg-7">
-			<input type="text" name="name">
+			<input class="form-control" type="text" name="name">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Type")?>:</label>
 		<div class="col-lg-7">
-			<select name="type">
+			<select name="type" class="form-control">
 				<option value="CARDIO"><?=i18n("Cardio")?></option>
 				<option value="MUSCULAR"><?=i18n("Muscular")?></option>
 				<option value="ESTIRAMIENTO"><?=i18n("Stretch")?></option>
@@ -33,7 +33,7 @@ $errors = $view->getVariable("errors");
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:<?= isset($errors["description"])?i18n($errors["description"]):"" ?></label>
 		<div class="col-lg-7">
-			<textarea type="text" rows="20" cols="20" name="description"></textarea>
+			<textarea class="form-control" type="text" rows="20" cols="20" name="description"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
