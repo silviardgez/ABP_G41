@@ -7,7 +7,7 @@ class UserMapper {
 		$this->db = PDOConnection::getInstance ();
 	}
 	public function isValidUser($username, $pass) {
-		$stmt = $this->db->prepare ( "SELECT count(DNI) FROM USUARIO where DNI=? and CONTRASEÑA=?" );
+		$stmt = $this->db->prepare ( "SELECT count(DNI) FROM USUARIO where DNI=? and CONTRASEÑA=? and ACTIVO=1" );
 		$stmt->execute ( array (
 				$username,
 				md5 ( $pass )
@@ -34,7 +34,7 @@ class UserMapper {
 		}
 	}
 	public function showAllUsers() {
-		$stmt = $this->db->prepare ( "SELECT * FROM USUARIO ORDER BY APELLIDOS" );
+		$stmt = $this->db->prepare ( "SELECT * FROM USUARIO WHERE ACTIVO = 1 ORDER BY APELLIDOS" );
 		$stmt->execute ();
 		$users_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 
@@ -99,17 +99,24 @@ class UserMapper {
 		return $this->db->lastInsertId ();
 	}
 	public function delete(User $user) {
-		$stmt = $this->db->prepare ( "DELETE from USUARIO WHERE DNI=?" );
+		//Borrado físico
+		/*$stmt = $this->db->prepare ( "DELETE from USUARIO WHERE DNI=?" );
 		$stmt->execute ( array (
 				$user->getUsername ()
 		) );
 		$stmt2 = $this->db->prepare ( "DELETE from TLF_USUARIO WHERE DNI=?" );
 		$stmt2->execute ( array (
 				$user->getUsername ()
+		) );*/
+		//Borrado lógico
+		$stmt = $this->db->prepare ( "UPDATE USUARIO set ACTIVO=? where DNI=?" );
+		$stmt->execute ( array (
+				0,
+				$user->getUsername ()
 		) );
 	}
 	public function update(User $user) {
-		$stmt = $this->db->prepare ( "UPDATE USUARIO set DNI=?, CONTRASEÑA=?, NOMBRE=?, APELLIDOS=?, EMAIL=?, FECHA_NAC=?, ADMIN=?, ENTRENADOR=?, DEPORTISTA_TDU=?, DEPORTISTA_PEF=? where DNI=?" );
+		$stmt = $this->db->prepare ( "UPDATE USUARIO set DNI=?, CONTRASEÑA=?, NOMBRE=?, APELLIDOS=?, EMAIL=?, FECHA_NAC=?, ADMIN=?, ENTRENADOR=?, DEPORTISTA_TDU=?, DEPORTISTA_PEF=?, ACTIVO=? where DNI=?" );
 		$stmt->execute ( array (
 				$user->getUsername (),
 				$user->getPass (),
@@ -121,6 +128,7 @@ class UserMapper {
 				$user->getCoach (),
 				$user->getDeportistTdu (),
 				$user->getDeportistPef (),
+				1,
 				$user->getUsername ()
 		) );
 
