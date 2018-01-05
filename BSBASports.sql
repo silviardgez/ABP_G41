@@ -64,7 +64,7 @@ CREATE TABLE `EJERCICIO` (
   `ID_EJERCICIO` int(10) UNSIGNED NOT NULL,
   `NOMBRE` varchar(255) COLLATE latin1_spanish_ci NOT NULL,
   `TIPO` enum('ESTIRAMIENTO','MUSCULAR','CARDIO') COLLATE latin1_spanish_ci DEFAULT 'CARDIO',
-  `DESCRIPCION` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `DESCRIPCION` varchar(800) COLLATE latin1_spanish_ci DEFAULT NULL,
   `IMAGEN` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
   `VIDEO` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
