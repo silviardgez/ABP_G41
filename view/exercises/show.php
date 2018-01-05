@@ -75,7 +75,7 @@ $view->setVariable("title", "Show Exercises");
 						<tr>
 							<td><?= htmlentities($exercise->getName()) ?></td>
 							<td class="icons">
-							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>">
+							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>">
 									<i class="fa fa-search col-md-4"></i></a>
 							<form
 							method="POST"
@@ -119,7 +119,7 @@ $view->setVariable("title", "Show Exercises");
 						<tr>
 							<td><?= htmlentities($exercise->getName()) ?></td>
 							<td class="icons">
-							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>">
+							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>">
 									<i class="fa fa-search col-md-4"></i></a>
 							<form
 								method="POST"
