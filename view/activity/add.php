@@ -46,13 +46,13 @@ $view->setVariable ( "title", "Add Activity" );
 				</label>
 				<div class="col-sm-8">
 					<select class="form-control" name="day">
-						<option value="LUNES"><?=i18n("MONDAY")?></option>
-						<option value="MARTES"><?=i18n("TUESDAY")?></option>
-						<option value="MIERCOLES"><?=i18n("WEDNESDAY")?></option>
-						<option value="JUEVES"><?=i18n("THURSDAY")?></option>
-						<option value="VIERNES"><?=i18n("FRIDAY")?></option>
-						<option value="SABADO"><?=i18n("SATURDAY")?></option>
-						<option value="DOMINGO"><?=i18n("SUNDAY")?></option>
+						<option value="MONDAY"><?=i18n("MONDAY")?></option>
+						<option value="TUESDAY"><?=i18n("TUESDAY")?></option>
+						<option value="WEDNESDAY"><?=i18n("WEDNESDAY")?></option>
+						<option value="THURSDAY"><?=i18n("THURSDAY")?></option>
+						<option value="FRIDAY"><?=i18n("FRIDAY")?></option>
+						<option value="SATURDAY"><?=i18n("SATURDAY")?></option>
+						<option value="SUNDAY"><?=i18n("SUNDAY")?></option>
 					</select>
 				</div>
 			</div>

@@ -62,13 +62,13 @@ $view->setVariable ( "title", "Edit Current Activity" );
 				</label>
 				<div class="col-sm-8">
 					<select class="form-control" name="day" <?php if($_SESSION["deportista"]):?> readonly <?php endif;?>>
-						<option value="LUNES"><?=i18n("MONDAY")?></option>
-						<option value="MARTES"><?=i18n("TUESDAY")?></option>
-						<option value="MIERCOLES"><?=i18n("WEDNESDAY")?></option>
-						<option value="JUEVES"><?=i18n("THURSDAY")?></option>
-						<option value="VIERNES"><?=i18n("FRIDAY")?></option>
-						<option value="SABADO"><?=i18n("SATURDAY")?></option>
-						<option value="DOMINGO"><?=i18n("SUNDAY")?></option>
+						<option value="MONDAY"><?=i18n("MONDAY")?></option>
+						<option value="THURSDAY"><?=i18n("TUESDAY")?></option>
+						<option value="WEDNESDAY"><?=i18n("WEDNESDAY")?></option>
+						<option value="THURSDAY"><?=i18n("THURSDAY")?></option>
+						<option value="FRIDAY"><?=i18n("FRIDAY")?></option>
+						<option value="SATURDAY"><?=i18n("SATURDAY")?></option>
+						<option value="SUNDAY"><?=i18n("SUNDAY")?></option>
 						<option value="<?=$activity->getDay()?>" selected="selected"><?=i18n($activity->getDay())?></option>
 					</select>
 				</div>
@@ -90,11 +90,12 @@ $view->setVariable ( "title", "Edit Current Activity" );
 			
 			<?php if(!$_SESSION["deportista"]):?>
 			<div class="row">
-			<div style="margin-left:4.5%" class="form-group col-xs-6">
+			<div class="col-xs-0 col-sm-2 col-xl-3"></div>
+			<div id="null_margin" class="form-group col-sm-4 col-xs-12 col-xl-3">
 					<button id="btn-styles" type="submit" name="submit"
 						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 			</div>
-			<div class="form-group col-xs-6">
+			<div id="null_margin" class="form-group col-xs-12 col-sm-4 col-xl-3">
 				<form method="POST"
 					action="index.php?controller=activity&amp;action=delete"
 					id="delete_activity_<?= $activity->getActivityId(); ?>"
@@ -111,6 +112,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 						form="delete_activity_<?= $activity->getActivityId(); ?>"><?=i18n("Delete")?></button>
 				</div>
 			</div>
+			<div class="col-xs-0 col-sm-2 col-xl-3"></div>
 			<?php endif;?>
 			
 			<!-- BOTÓN DEL DEPORTISTA PARA REALIZAR LA RESERVA -->

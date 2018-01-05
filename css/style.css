@@ -453,6 +453,11 @@ thead>tr>th, tbody {
 	text-align: center;
 }
 
+#null_margin {
+	margin-right: 0%;
+	margin-left: 0%;
+}
+
 #link-view {
 	float: right;
     margin-right: 2%;
@@ -495,6 +500,14 @@ i {
 
 #activities-box {
 	max-width:22em;
+}
+
+#activities-button-box {
+	max-width:24.2em;
+}
+
+.right-ubication {
+	float: right;
 }
 
 .circulo {
