@@ -89,6 +89,7 @@ array(
 	"Name must be at least 5 characters length" => "El nombre debe tener 5 caracteres mínimo",
 	"DNI must be at least 8 characters length" => "El DNI debe tener 8 caracteres mínimo",
 	"DNI incorrect" => "DNI incorrecto",
+	"The description must have less than 256 characters" => "La descripción debe tener menos de 256 caracteres",
 	"Athlete can not be TDU and PEF" => "El deportista no puede ser TDU y PEF",
 	"Password must be at least 5 characters length" => "La contraseña debe tener al menos 5 caracteres",
 	"Passwords do not match" => "Las contraseñas no coinciden",
