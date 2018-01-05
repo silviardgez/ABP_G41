@@ -34,7 +34,7 @@ class UserMapper {
 		}
 	}
 	public function showAllUsers() {
-		$stmt = $this->db->prepare ( "SELECT * FROM USUARIO" );
+		$stmt = $this->db->prepare ( "SELECT * FROM USUARIO ORDER BY APELLIDOS" );
 		$stmt->execute ();
 		$users_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 
