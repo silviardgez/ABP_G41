@@ -33,7 +33,7 @@ $errors = $view->getVariable("errors");
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
 		<div class="col-lg-7">
-			<textarea type="text" name="description"></textarea>
+			<textarea type="text" rows="10" cols="20" name="description"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
