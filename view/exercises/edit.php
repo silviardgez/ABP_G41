@@ -49,6 +49,12 @@ $view->setVariable("title", "Edit Exercise");
 		</div>
 	</div>
 	<div class="form-group">
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
+		<div class="col-lg-7">
+			<textarea type="text" name="description"><?=$exercise->getDescription()?></textarea>
+		</div>
+	</div>
+	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Image")?>:</label>
 		<div class="col-lg-7">
 			<input type="file" name="imagen" value="<?=$exercise->getImage()?>">
