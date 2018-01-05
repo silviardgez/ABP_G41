@@ -11,7 +11,7 @@ require_once(__DIR__."/../controller/BaseController.php");
 
 class UsersController extends BaseController {
 
-	
+
 	private $userMapper;
 
 	public function __construct() {
@@ -23,7 +23,7 @@ class UsersController extends BaseController {
 	}
 
 	public function login() {
-		if (isset($_POST["username"])){ 
+		if (isset($_POST["username"])){
 
 			if ($this->userMapper->isValidUser($_POST["username"], $_POST["passwd"])) {
 
@@ -97,7 +97,7 @@ class UsersController extends BaseController {
 	}
 
 	public function add(){
-		
+
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding users requires login");
 		}
@@ -121,8 +121,11 @@ class UsersController extends BaseController {
 			if(isset($_POST["administrador"]) && $_POST["administrador"] == "1"){
 				$user->setAdmin(1);
 			}
-			if(isset($_POST["deportista"]) && $_POST["deportista"] == "1"){
-				$user->setDeportist(1);
+			if(isset($_POST["deportista_tdu"]) && $_POST["deportista_tdu"] == "1"){
+				$user->setDeportistTdu(1);
+			}
+			if(isset($_POST["deportista_pef"]) && $_POST["deportista_pef"] == "1"){
+				$user->setDeportistPef(1);
 			}
 			if(isset($_POST["entrenador"]) && $_POST["entrenador"] == "1"){
 				$user->setCoach(1);
@@ -164,7 +167,7 @@ class UsersController extends BaseController {
 			throw new Exception("You aren't an admin. Deleting an user requires be admin");
 		}
 
-		
+
 		$userdni = $_REQUEST["id"];
 		$user = $this->userMapper->findUserByDNI($userdni);
 
@@ -200,23 +203,28 @@ class UsersController extends BaseController {
 			throw new Exception("no such user with DNI: ".$userid);
 		}
 
-		if (isset($_POST["submit"])) { 
+		if (isset($_POST["submit"])) {
 			$user->setName($_POST["nombre"]);
 			$user->setSurname($_POST["apellidos"]);
 			$user->setDateBorn($_POST["fechaNac"]);
 			$user->setEmail($_POST["email"]);
 			$user->setTlf($_POST["tel"]);
-			if($_POST["administrador"] == "1"){
+			if(isset($_POST["administrador"]) && $_POST["administrador"] == "1"){
 				$user->setAdmin(1);
 			}else{
 				$user->setAdmin(NULL);
 			}
-			if($_POST["deportista"] == "1"){
-				$user->setDeportist(1);
+			if(isset($_POST["deportista_tdu"]) && $_POST["deportista_tdu"] == "1"){
+				$user->setDeportistTdu(1);
 			}else{
-				$user->setDeportist(NULL);
+				$user->setDeportistTdu(NULL);
 			}
-			if($_POST["entrenador"] == "1"){
+			if(isset($_POST["deportista_pef"]) && $_POST["deportista_pef"] == "1"){
+				$user->setDeportistPef(1);
+			}else{
+				$user->setDeportistPef(NULL);
+			}
+			if(isset($_POST["entrenador"]) && $_POST["entrenador"] == "1"){
 				$user->setCoach(1);
 			}else{
 				$user->setCoach(NULL);
@@ -287,7 +295,7 @@ class UsersController extends BaseController {
 			throw new Exception("no such user with DNI: ".$userid);
 		}
 
-		if (isset($_POST["newpass"])) { 
+		if (isset($_POST["newpass"])) {
 			$user->setName($_POST["nombre"]);
 			$user->setSurname($_POST["apellidos"]);
 			$user->setDateBorn($_POST["fechaNac"]);
@@ -405,7 +413,7 @@ class UsersController extends BaseController {
 				$user->ValidRecoverPass($dni, $pass, $_POST["rpass"]); // if it fails, ValidationException
 
 				$user2 = $this->userMapper->findUserByDNI($dni);
-				
+
 				//save the user object into the database
 				$user2->setPass(md5($pass));
 				$this->userMapper->update($user2);

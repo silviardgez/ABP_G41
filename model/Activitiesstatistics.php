@@ -14,8 +14,9 @@ class Activitiesstatistics{
 	private $porcentajeAsistentes;
 	private $dia;
 	private $horainicio;
+	private $arrayAsistentesAño;
 	
-	public function __construct($activityname=NULL, $activityid=NULL, $dia=null, $horainicio=null, $porcentajeMatriculados=NULL,  $matriculados=NULL, $deportistas=NULL, $asistentes=NULL, $porcentajeAsistentes=NULL){
+	public function __construct($activityname=NULL, $activityid=NULL, $dia=null, $horainicio=null, $porcentajeMatriculados=NULL,  $matriculados=NULL, $deportistas=NULL, $asistentes=NULL, $porcentajeAsistentes=NULL, $arrayAsistentesAño=NULL){
 		$this->activityname = $activityname;
 		$this->activityid = $activityid;
 		$this->dia = $dia;
@@ -25,6 +26,7 @@ class Activitiesstatistics{
 		$this->deportistas = $deportistas;
 		$this->asistentes = $asistentes;
 		$this->porcentajeAsistentes = $porcentajeAsistentes;
+		$this->arrayAsistentesAño = $arrayAsistentesAño;
 	}
 
 	public function setActivityname($activityname){
@@ -97,6 +99,14 @@ class Activitiesstatistics{
 
 	public function getHorainicio(){
 		return $this->horainicio;
+	}
+	
+	public function setArrayAsistentesAño($arrayAsistentesAño){
+		$this->arrayAsistentesAño = $arrayAsistentesAño;
+	}
+
+	public function getArrayAsistentesAño(){
+		return $this->arrayAsistentesAño;
 	}
 }
 ?>

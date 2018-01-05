@@ -10,16 +10,9 @@ $view = ViewManager::getInstance();
 $statistics = $view->getVariable("statistics");
 $view->setVariable("title", "View Statistics");
 
-/*$dataSet = new XYDataSet();
-$dataSet->addPoint(new Point("Jan 2005", 273));
-$dataSet->addPoint(new Point("Feb 2005", 321));
-$dataSet->addPoint(new Point("March 2005", 442));
-$dataSet->addPoint(new Point("April 2005", 711));
+require_once (__DIR__."/../../GoogChart.class.php");
+//require_once ('C:\xampp\htdocs\ABP_G41\jpgraph-4.1.1\src\jpgraph_line.php');
 
-$chart->setDataSet($dataSet);
-
-$chart->setTitle("Monthly usage for www.example.com");
-$chart->render("libchart/demo/generated/demo1.png");*/
 ?>
 
 <div>
@@ -29,7 +22,7 @@ $chart->render("libchart/demo/generated/demo1.png");*/
 
 <div class="col-md-4"></div>
 	<div class="row features margin-rows">
-		<div class="col-md-4 col-sm-6 item">
+		<div class="col-md-5 col-sm-6 item">
 			<div class="exercise-tables-background">
 		<h1 id="font-title"><?=i18n("Activity Statistics")?></h1>
 		<br>
@@ -56,12 +49,62 @@ $chart->render("libchart/demo/generated/demo1.png");*/
 						<tr>
 							<td><?=i18n("Percentage of assistants")?> <?= $statistic->getPorcentajeAsistentes(); ?> %</td>
 						</tr>
-					<?php endforeach; ?>
 				</tbody>
 			</table>
 		</div>
+		<?php $datos = $statistic->getArrayAsistentesAño();?>
+		<?php endforeach; ?>
+
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', '<?=i18n("Times")?>');
+        data.addRows([
+          ['<?=i18n("January")?>', <?=$datos[0]?>],
+          ['<?=i18n("February")?>', <?=$datos[1]?>],
+          ['<?=i18n("March")?>', <?=$datos[2]?>],
+          ['<?=i18n("April")?>', <?=$datos[3]?>],
+          ['<?=i18n("May")?>', <?=$datos[4]?>],
+		  ['<?=i18n("June")?>', <?=$datos[5]?>],
+		  ['<?=i18n("July")?>', <?=$datos[6]?>],
+		  ['<?=i18n("Agoust")?>', <?=$datos[7]?>],
+		  ['<?=i18n("September")?>', <?=$datos[8]?>],
+		  ['<?=i18n("October")?>', <?=$datos[9]?>],
+		  ['<?=i18n("November")?>', <?=$datos[10]?>],
+		  ['<?=i18n("December")?>', <?=$datos[11]?>]
+        ]);
+
+        // Set chart options
+        var options = {'title':'Asistencias del año',
+                       'width':500,
+                       'height':500};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+	<div id="chart_div"></div>
+  </div>
+		
 	</div>
 	</div>
+	
 	<div class="form-group">
 		<div class="col-lg-offset-6 col-lg-6">
 			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>

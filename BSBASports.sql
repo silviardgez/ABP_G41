@@ -176,7 +176,8 @@ CREATE TABLE `USUARIO` (
   `FECHA_NAC` date NOT NULL,
   `ADMIN` tinyint(1) DEFAULT NULL,
   `ENTRENADOR` tinyint(1) DEFAULT NULL,
-  `DEPORTISTA` tinyint(1) DEFAULT NULL,
+  `DEPORTISTA_TDU` tinyint(1) DEFAULT NULL,
+  `DEPORTISTA_PEF` tinyint(1) DEFAULT NULL,
   `ID_SESION` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -184,13 +185,13 @@ CREATE TABLE `USUARIO` (
 -- Inserts
 --
 
-INSERT INTO `USUARIO` (`DNI`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NAC`, `ADMIN`, `ENTRENADOR`, `DEPORTISTA`) VALUES
-('12345678Z', '21232f297a57a5a743894a0e4a801fc3', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL),
-('12345679S', '74d996a70f40c654f73f9b56c63fc28a', 'Pepe', 'Fernández', 'rosilvia@hotmail.com', '2017-11-07', NULL, NULL, 1),
-('11111111H', 'e77a37f64e93e3e3e0211e76bfe512b7', 'Brais', 'Domínguez', 'braisda@gmail.com', '1991-07-10', NULL, 1, 1),
-('22222222J', 'e5cb7c411f1d9a67f68deff4a954cfbc', 'Silvia', 'Rodríguez', 'silviardguez@gmail.com', '1995-08-17', NULL, NULL, 1),
-('33333333P', 'c5e3539121c4944f2bbe097b425ee774', 'Marcos', 'Arias', 'srigleisas@esei.uvigo.es', '2017-11-07', NULL, 1, 1),
-('12345670Y', 'a990ba8861d2b344810851e7e6b49104', 'Pepe', 'Glez', 'panocadas@gmail.com', '2017-11-08', NULL, 1, NULL);
+INSERT INTO `USUARIO` (`DNI`, `CONTRASEÑA`, `NOMBRE`, `APELLIDOS`, `EMAIL`, `FECHA_NAC`, `ADMIN`, `ENTRENADOR`, `DEPORTISTA_TDU`, `DEPORTISTA_PEF`) VALUES
+('12345678Z', '21232f297a57a5a743894a0e4a801fc3', 'Bruno', 'Cruz', 'brucruz53@gmail.com', '1996-02-19', 1, NULL, NULL, NULL),
+('12345679S', '74d996a70f40c654f73f9b56c63fc28a', 'Pepe', 'Fernández', 'rosilvia@hotmail.com', '2017-11-07', NULL, NULL, 1, NULL),
+('11111111H', 'e77a37f64e93e3e3e0211e76bfe512b7', 'Brais', 'Domínguez', 'braisda@gmail.com', '1991-07-10', NULL, 1, NULL, 1),
+('22222222J', 'e5cb7c411f1d9a67f68deff4a954cfbc', 'Silvia', 'Rodríguez', 'silviardguez@gmail.com', '1995-08-17', NULL, NULL, NULL, 1),
+('33333333P', 'c5e3539121c4944f2bbe097b425ee774', 'Marcos', 'Arias', 'srigleisas@esei.uvigo.es', '2017-11-07', NULL, 1, 1, NULL),
+('12345670Y', 'a990ba8861d2b344810851e7e6b49104', 'Pepe', 'Glez', 'panocadas@gmail.com', '2017-11-08', NULL, 1, NULL, NULL);
 
 --
 -- Indexes for dumped tables

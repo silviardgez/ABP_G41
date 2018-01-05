@@ -80,14 +80,28 @@ $view->setVariable("title", "Edit User");
       </div>
     </div>
   </div>
+	<?= isset($errors["athlete"])?i18n($errors["athlete"]):"" ?>
 	<div class="form-group">
     <div class="col-sm-12">
       <div class="checkbox">
         <label class="control-label text-size text-muted col-sm-8">
-					<?php if($user->getDeportist() == 1){ ?>
-          	<input type="checkbox" name="deportista" value="1" checked="checked"> <?=i18n("Athlete")?>
+					<?php if($user->getDeportistTdu() == 1){ ?>
+          	<input type="checkbox" name="deportista_tdu" value="1" checked="checked"> <?=i18n("Athlete"); echo " TDU"?>
 						<?php }else{ ?>
-							<input type="checkbox" name="deportista" value="1"> <?=i18n("Athlete")?>
+							<input type="checkbox" name="deportista_tdu" value="1"> <?=i18n("Athlete"); echo " TDU"?>
+							<?php }?>
+        </label>
+      </div>
+    </div>
+  </div>
+	<div class="form-group">
+    <div class="col-sm-12">
+      <div class="checkbox">
+        <label class="control-label text-size text-muted col-sm-8">
+					<?php if($user->getDeportistPef() == 1){ ?>
+          	<input type="checkbox" name="deportista_pef" value="1" checked="checked"> <?=i18n("Athlete"); echo " PEF"?>
+						<?php }else{ ?>
+							<input type="checkbox" name="deportista_pef" value="1"> <?=i18n("Athlete"); echo " PEF"?>
 							<?php }?>
         </label>
       </div>

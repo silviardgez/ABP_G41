@@ -13,12 +13,13 @@ class User{
 	private $date_born;
 	private $admin;
 	private $coach;
-	private $deportist;
+	private $deportist_tdu;
+	private $deportist_pef;
 	private $tlf;
 	private $id_sesion;
 	private $id_table;
 
-	public function __construct($username=NULL, $pass=NULL, $name=NULL, $surname=NULL, $email=NULL, $date_born=NULL, $admin=NULL,$coach=NULL,$deportist=NULL,$tlf=NULL,$id_sesion=NULL,$id_table=NULL){
+	public function __construct($username=NULL, $pass=NULL, $name=NULL, $surname=NULL, $email=NULL, $date_born=NULL, $admin=NULL,$coach=NULL,$deportist_tdu=NULL,$deportist_pef=NULL,$tlf=NULL,$id_sesion=NULL,$id_table=NULL){
 		$this->username = $username;
 		$this->pass = $pass;
 		$this->name = $name;
@@ -27,7 +28,8 @@ class User{
 		$this->date_born = $date_born;
 		$this->admin = $admin;
 		$this->coach = $coach;
-		$this->deportist = $deportist;
+		$this->deportist_pef = $deportist_pef;
+		$this->deportist_tdu = $deportist_tdu;
 		$this->tlf = $tlf;
 		$this->id_sesion = $id_sesion;
 		$this->id_table = $id_table;
@@ -65,8 +67,12 @@ class User{
 		$this->coach = $coach;
 	}
 
-	public function setDeportist($deportist){
-		$this->deportist = $deportist;
+	public function setDeportistTdu($deportist_tdu){
+		$this->deportist_tdu = $deportist_tdu;
+	}
+
+	public function setDeportistPef($deportist_pef){
+		$this->deportist_pef = $deportist_pef;
 	}
 
 	public function setTlf($tlf){
@@ -93,7 +99,7 @@ class User{
 
 	public function ValidRegister($pass_rep){
 		$errors = array();
-		$expresion = '/^[9|6|7][0-9]{8}$/'; 
+		$expresion = '/^[9|6|7][0-9]{8}$/';
 		$this->userMapper = new UserMapper();
 		if (strlen($this->username) < 8 ) {
 			$errors["DNI"] = "DNI must be at least 8 characters length";
@@ -104,6 +110,9 @@ class User{
 		if(!$this->validar_username($this->username) || $this->getUsername()==NULL){
 			$errors["DNI"] = "DNI incorrect";
 		}
+		if($this->getDeportistTdu() == 1 && $this->getDeportistPef() == 1){
+			$errors["athlete"] = "Athlete can not be TDU and PEF";
+		}
 		if (strlen($this->pass) < 5) {
 			$errors["passwd"] = "Password must be at least 5 characters length";
 		}
@@ -113,7 +122,7 @@ class User{
 		if(strlen($this->tlf) != 9){
 			$errors["tlf"] = "The phone number must have 9 numbers";
 		}
-		if(!preg_match($expresion, $this->tlf)){ 
+		if(!preg_match($expresion, $this->tlf)){
 			$errors["tlf"] = "The phone number is wrong";
 		}
 		if(!$this->is_valid_email($this->email)){
@@ -169,8 +178,12 @@ class User{
 		return $this->coach;
 	}
 
-	public function getDeportist(){
-		return $this->deportist;
+	public function getDeportistTdu(){
+		return $this->deportist_tdu;
+	}
+
+	public function getDeportistPef(){
+		return $this->deportist_pef;
 	}
 
 	public function getTlf(){
@@ -179,18 +192,21 @@ class User{
 
 	public function checkIsValidForUpdate() {
 		$errors = array();
-		$expresion = '/^[9|6|7][0-9]{8}$/'; 
+		$expresion = '/^[9|6|7][0-9]{8}$/';
 		if (!isset($this->username)) {
 			$errors["DNI"] = "DNI is mandatory";
 		}
 		if(strlen($this->tlf) != 9){
 			$errors["tlf"] = "The phone number must have 9 numbers";
 		}
-		if(!preg_match($expresion, $this->tlf)){ 
+		if(!preg_match($expresion, $this->tlf)){
 			$errors["tlf"] = "The phone number is wrong";
 		}
 		if(!$this->is_valid_email($this->email)){
 			$errors["email"] = "The email is wrong";
+		}
+		if($this->getDeportistTdu() == 1 && $this->getDeportistPef() == 1){
+			$errors["athlete"] = "Athlete can not be TDU and PEF";
 		}
 		if($this->getName()==NULL){
 			$errors["name"] = "The name is wrong";
@@ -208,7 +224,7 @@ class User{
 
 	public function checkIsValidForCurrentUpdate($pass,$npass,$rpass) {
 		$errors = array();
-		$expresion = '/^[9|6|7][0-9]{8}$/'; 
+		$expresion = '/^[9|6|7][0-9]{8}$/';
 		$this->userMapper = new UserMapper();
 		if (!isset($this->username)) {
 			$errors["DNI"] = "DNI is mandatory";
@@ -216,7 +232,7 @@ class User{
 		if(strlen($this->tlf) != 9){
 			$errors["tlf"] = "The phone number must have 9 numbers";
 		}
-		if(!preg_match($expresion, $this->tlf)){ 
+		if(!preg_match($expresion, $this->tlf)){
 			$errors["tlf"] = "The phone number is wrong";
 		}
 		if(!$this->is_valid_email($this->email)){
@@ -280,7 +296,7 @@ class User{
 	public function getIdTable(){
 		return $this->id_table;
 	}
-	
+
 	public function ValidRecoverPass($dni, $pass, $rpass){
 		$errors = array();
 		$this->userMapper = new UserMapper();
