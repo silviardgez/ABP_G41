@@ -171,8 +171,12 @@ class UsersController extends BaseController {
 				// validate user object
 				$user->ValidRegister($_POST["rpass"]); // if it fails, ValidationException
 
-				//save the user object into the database
-				$this->userMapper->add($user);
+				if(!$user->userMapper->is_valid_DNI($user->getUsername())){
+					$this->userMapper->update($user);
+				}else{
+					//save the user object into the database
+					$this->userMapper->add($user);
+				}
 
 				$this->view->setFlash(sprintf(i18n("user \"%s\" successfully added."),$user ->getUsername()));
 
