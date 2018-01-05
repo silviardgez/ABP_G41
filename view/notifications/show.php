@@ -24,8 +24,8 @@ $id = $view->getVariable("id");
 				<thead>
 				<tr>
 					<th><?=i18n("Send")?></th>
-					<th><?=i18n("Name")?></th>
 					<th><?=i18n("Surname")?></th>
+					<th><?=i18n("Name")?></th>
 					<th><?=i18n("DNI")?></th>
 				</tr>
 			</thead>
@@ -33,8 +33,8 @@ $id = $view->getVariable("id");
 				<?php foreach ($users as $user): ?>
 						<tr>
 							<td><a href="index.php?controller=notifications&amp;action=add&amp;dni=<?= $user->getUsername() ?>&amp;email=<?= $user->getEmail() ?>"><span class="fa fa-envelope-o"></span></a></td>
-							<td><?= htmlentities($user->getName())?></td>
 							<td><?= htmlentities($user->getSurname()) ?></td>
+							<td><?= htmlentities($user->getName())?></td>
 							<td><?= htmlentities($user->getUsername()) ?></td>
 						</tr>
 				<?php endforeach; ?>
