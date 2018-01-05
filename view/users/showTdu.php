@@ -12,7 +12,7 @@ $view->setVariable ( "title", "Show PEF Users" );
 	<br>
 </div>
 
-<div id="center-view" class="center-block col-md-6 col-sm-12 item">
+<div id="center-view" class="center-block col-md-6 col-sm-8 item">
 	<div class="exercise-tables-background center-block">
 		<h1 id="font-title"><?=i18n("Athletes"); echo " TDU"?></h1>
 		<br>
