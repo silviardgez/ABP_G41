@@ -12,7 +12,7 @@ require_once(__DIR__."/../controller/BaseController.php");
 
 class ExercisesController extends BaseController {
 
-	
+
 	private $exerciseMapper;
 	private $userMapper;
 
@@ -60,13 +60,14 @@ class ExercisesController extends BaseController {
 			throw new Exception("no such exercise with id: ".$exerciseid);
 		}
 
-		if (isset($_POST["submit"])) { 
+		if (isset($_POST["submit"])) {
 			$exercise->setName($_POST["nombre"]);
 			//If the image does not change, it is not overwritten
 			if($_POST["imagen"] != "") $exercise->setImage($_POST["imagen"]);
 			//If the video does not change, it is not overwritten
 			if($_POST["video"] != "") $exercise->setVideo($_POST["video"]);
 			$exercise->setType($_POST["tipo"]);
+			$exercise->setDescription($_POST["description"]);
 
 			try {
 
@@ -102,7 +103,7 @@ class ExercisesController extends BaseController {
 			throw new Exception("You aren't an admin or a coach. Deleting an exercise requires be admin or coach");
 		}
 
-		
+
 		$exerciseid = $_REQUEST["id"];
 		$exercise = $this->exerciseMapper->findExerciseById($exerciseid);
 
@@ -158,6 +159,7 @@ class ExercisesController extends BaseController {
 			// populate the exercise object with data form the form
 			$exercise->setName($_POST["name"]);
 			$exercise->setType($_POST["type"]);
+			$exercise->setDescription($_POST["description"]);
 			$exercise->setImage($_POST["image"]);
 			$exercise->setVideo($_POST["video"]);
 
