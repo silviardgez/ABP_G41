@@ -25,6 +25,12 @@ $view->setVariable("title", "View exercise");
 		</div>
 	</div>
 	<div class="form-group">
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
+		<div class="col-lg-7">
+			<textarea class="form-control" name="descripcion" readonly="readonly"><?=$exercise->getDescription()?></textarea>
+		</div>
+	</div>
+	<div class="form-group">
 		<?php if($exercise->getImage() != NULL && $exercise->getImage() != ""){ ?>
 			<label class="control-label text-size text-muted col-sm-4"><?=i18n("Image")?>:</label>
 			<div class="col-lg-7">
