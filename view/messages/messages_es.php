@@ -13,6 +13,7 @@ array(
 	"Email" => "Correo Electrónico",
 	"Telephone" => "Teléfono",
 	"Type" => "Tipo",
+	"Description" => "Descripción",
 	"PEF Users" => "Usuarios PEF",
 	"TDU Users" => "Usuarios TDU",
 	"Date Born" => "Fecha de nacimiento",
