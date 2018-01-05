@@ -13,7 +13,7 @@ $errors = $view->getVariable ( "errors" );
 </div>
 
 <div id="edit-view" class="center-block col-xs-6 col-lg-4">
-	<form id="edit-form" class="center-block form-horizontal" 
+	<form id="edit-form" class="center-block form-horizontal"
 	action="index.php?controller=users&amp;action=add" method="POST">
 	<br>
 	<div class="form-group">
@@ -105,7 +105,10 @@ $errors = $view->getVariable ( "errors" );
 	</div>
 	</br>
 	<div class="form-group">
-		<div class="col-sm-12">
+		<div class="col-sm-6">
+			<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
+		</div>
+		<div class="col-sm-6">
 			<button id="btn-styles" type="submit" name="submit"
 			class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 		</div>
