@@ -17,7 +17,7 @@ $view->setVariable("title", "Add Assistance");
 
 <div class="col-md-4"></div>
 	<div class="row features margin-rows">
-		<div class="col-md-4 col-sm-6 item">
+		<div class="col-md-5 col-sm-6 item">
 			<div class="exercise-tables-background">
 		<h1 id="font-title"><?=i18n("Add assistance")?></h1>
 		<br>
@@ -25,27 +25,38 @@ $view->setVariable("title", "Add Assistance");
 				<thead>
 							<tr class="active">
 							<th><?=i18n("Athlete")?></th>
-							<th><?=i18n("Date")?></th>
-							<th><?=i18n("Time")?></th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($assistants as $assistant): ?>
-							<tr>
-								<form action="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $assistance->getActivityid(); ?>" method="POST">
+							<form action="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $assistance->getActivityid(); ?>" method="POST">
+								<tr>
 									<input type="hidden" name="id_act" value="<?= $assistance->getActivityid(); ?>">
-									<input type="hidden" name="asistente" value="<?= $assistant->getDni(); ?>">
-									<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistant->getDni(); ?>"><?= $assistant->getDni(); ?> </a></td>
-									<td><input type="date" id="" name="fecha"></td>
-									<td><input type="time" id="hora" name="hora"></td>
+
+									<td>
+										<?= $assistant->getDni(); ?> 
+										<label>
+											<a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistant->getDni(); ?>">
+												<i class="fa fa-search col-md-3"></i> 
+											</a>
+										</label>
+										<input type="checkbox" name="asistentes[]" value="<?= $assistant->getDni(); ?>">
+										
+									</td>
 									
-									<td><button id="button2" type="submit" name="submit"><?=i18n("Add")?></button></td>
-								</form>
-							</tr>
-						<?php endforeach; ?>
+									
+								</tr><?php endforeach; ?>
+								
+						
 					</tbody>
 				</table>
+				
+				<br/>
+				<b><?=i18n("Date")?></b> <input type="date" id="" name="fecha"><br/><br/>
+				<b><?=i18n("Time")?></b> <input type="time" id="hora" name="hora" value="<?= $assistance->getTime(); ?>"><br/><br/>
+				<button id="button2" type="submit" name="submit"><?=i18n("Add")?></button>			
+							</form>
+				
 		</div>
 	</div>
 	</div>

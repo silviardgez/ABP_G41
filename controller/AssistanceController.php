@@ -73,28 +73,37 @@ class AssistanceController extends BaseController {
 		$assistance = new Assistance();
 		
 		$assistance->setActivityid($id);
+		$hora = $this->assistanceMapper->timeAct($id);
+		$assistance->setTime($hora);
 
 		if(isset($_POST["submit"])) { // reaching via HTTP user...
 
-			// populate the user object with data form the form
-			$assistance->setActivityid($id);
-			$assistance->setDni($_POST["asistente"]);
-			$assistance->setDateassistance($_POST["fecha"]);
-			$assistance->setTime($_POST["hora"]);
-
-			try {
-				//save the user object into the database
-				$this->assistanceMapper->add($assistance);
-
-				$this->view->setFlash(sprintf(i18n("assistance \"%s\" successfully added."),$assistance ->getDni()));
+				$num_assistants = count($_POST["asistentes"]);
+				foreach($_POST["asistentes"] as $key => $value){
 				
+					// populate the user object with data form the form
+					$assistance->setActivityid($id);
+					$assistance->setDni($value);
+					$assistance->setDateassistance($_POST["fecha"]);
+					$assistance->setTime($hora);
+
+					try {
+						//save the user object into the database
+						$this->assistanceMapper->add($assistance);
+
+						//$this->view->setFlash(sprintf(i18n("assistance \"%s\" successfully added."),$assistance ->getDni()));
+						
+						//$this->view->redirect("assistance", "show");
+					}catch(ValidationException $ex) {
+						// Get the errors array inside the exepction...
+						$errors = $ex->getErrors();
+						// And put it to the view as "errors" variable
+						$this->view->setVariable("errors", $errors);
+					}
+				}
+				$this->view->setFlash(sprintf(i18n("assistance successfully added.")));
 				$this->view->redirect("assistance", "show");
-			}catch(ValidationException $ex) {
-				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
-				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
-			}
+				
 		}
 
 		// Put the user object visible to the view

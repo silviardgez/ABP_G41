@@ -15,7 +15,7 @@ $view->setVariable("title", "View Assistance");
 
 <div class="col-md-4"></div>
 	<div class="row features margin-rows">
-		<div class="col-md-4 col-sm-6 item">
+		<div class="col-md-5 col-sm-6 item">
 			<div class="exercise-tables-background">
 		<h1 id="font-title"><?=i18n("Activity assistance")?></h1>
 		<br>
@@ -31,7 +31,7 @@ $view->setVariable("title", "View Assistance");
 					<tbody>
 						<?php foreach ($assistances as $assistance): ?>
 							<tr>
-								<td><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistance->getDni(); ?>"><?= $assistance->getDni(); ?></a></td>
+								<td><?= $assistance->getDni(); ?><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistance->getDni(); ?>"><i class="fa fa-search col-md-3"></i></a></td>
 								<td><?= $assistance->getDateassistance(); ?></td>
 								<td><?= $assistance->getTime(); ?></td>
 								<td><form method="POST" action="index.php?controller=assistance&amp;action=delete" id="delete_user_<?= $assistance->getDni(); ?>" style="display: inline">

@@ -83,4 +83,14 @@ class AssistanceMapper {
 		$stmt = $this->db->prepare("DELETE from ASISTE WHERE DNI_DEP=? AND FECHA=? AND HORA=?");
 		$stmt->execute(array($dni, $date, $time));
 	}
+	
+	public function timeAct($id){
+		$stmt = $this->db->prepare("SELECT HORA_INI FROM ACTIVIDAD WHERE ID_ACT=?");
+		$stmt->execute(array($id));
+		
+		$timeAct_db = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+		$timeAct = $timeAct_db[0]["HORA_INI"];
+
+		return $timeAct;
+	}
 }
