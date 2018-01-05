@@ -32,7 +32,7 @@ $id = $view->getVariable("id");
 			<tbody>
 				<?php foreach ($users as $user): ?>
 						<tr>
-							<td><a href="index.php?controller=notifications&amp;action=add&amp;dni=<?= $user->getUsername() ?>&amp;email=<?= $user->getEmail() ?>"><span class="fa fa-envelope-o"></span></a></td>
+							<td class="icons"><a href="index.php?controller=notifications&amp;action=add&amp;dni=<?= $user->getUsername() ?>&amp;email=<?= $user->getEmail() ?>"><span class="fa fa-envelope-o"></span></a></td>
 							<td><?= htmlentities($user->getSurname()) ?></td>
 							<td><?= htmlentities($user->getName())?></td>
 							<td><?= htmlentities($user->getUsername()) ?></td>
@@ -59,7 +59,7 @@ $id = $view->getVariable("id");
 			<tbody>
 				<?php foreach ($activities as $activity): ?>
 						<tr>
-							<td><a href="index.php?controller=notifications&amp;action=addGroup&amp;id=<?= $activity["ID_ACT"] ?>"><span class="fa fa-envelope-o"></span></a></td>
+							<td class="icons"><a href="index.php?controller=notifications&amp;action=addGroup&amp;id=<?= $activity["ID_ACT"] ?>"><span class="fa fa-envelope-o"></span></a></td>
 							<td><?= htmlentities($activity["NOMBRE"])?></td>
 							<td><?= htmlentities($activity["TIPO"]) ?></td>
 							<td><?= htmlentities($activity["DIA"]) ?></td>
