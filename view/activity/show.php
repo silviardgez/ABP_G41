@@ -91,6 +91,7 @@ $hours = array (
 				<?php if($_SESSION["admin"] || $_SESSION["entrenador"]):?>
 					<a href="index.php?controller=activity&amp;action=add"
 					class="btn-fab circulo right-ubication" id="add"> <i class="fa fa-plus"></i>
+				<?php endif; ?>
 				</a>
 			</div>
 		</div>
@@ -152,5 +153,3 @@ $hours = array (
 	</div>
 </div>
 </div>
-
-<?php endif;?>
