@@ -185,6 +185,19 @@ CREATE TABLE `USUARIO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
+-- Estrutura da táboa `NOTIFICACION`
+--
+
+CREATE TABLE `NOTIFICACION` (
+  `ID_NOTIFICACION` int(11) NOT NULL,
+  `REMITENTE` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `DESTINATARIO` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
+  `ASUNTO` varchar(800) COLLATE utf8_spanish_ci NOT NULL,
+  `MENSAJE` varchar(800) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+--
 -- Inserts
 --
 
@@ -509,6 +522,30 @@ INSERT INTO `INCLUYE` (`ID_ENTRENA`, `ID_TABLA`) VALUES
 --
 ALTER TABLE `ACTIVIDAD`
   ADD CONSTRAINT `ACTIVIDAD_ibfk_1` FOREIGN KEY (`DNI_ENTR`) REFERENCES `USUARIO` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+  -- Indexes for table `NOTIFICACION`
+  --
+  ALTER TABLE `NOTIFICACION`
+    ADD PRIMARY KEY (`ID_NOTIFICACION`);
+
+  --
+  -- AUTO_INCREMENT for dumped tables
+  --
+
+  --
+  -- AUTO_INCREMENT for table `NOTIFICACION`
+  --
+  ALTER TABLE `NOTIFICACION`
+    MODIFY `ID_NOTIFICACION` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- INSERTS
+--
+
+INSERT INTO `NOTIFICACION` (`ID_NOTIFICACION`, `REMITENTE`, `DESTINATARIO`, `ASUNTO`, `MENSAJE`) VALUES
+(1, 'sda@yahoo.es', '12345678Z', 'mensaje de pago', 'Aviso de que debe pagar la cuota del gimnasio antes del dia 30.'),
+(2, 'bsbasports@gmail.com', '12345678Z', 'mensaje de pago', 'Se ha recibido el pago de la cuota mensual.');
 
 --
 -- Restricións para a táboa `ASISTE`
