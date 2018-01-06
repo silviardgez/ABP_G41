@@ -35,6 +35,7 @@ $view = ViewManager::getInstance();
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
       var date_input=$('input[id="fecha"]'); //our date input has the name "date"
@@ -65,7 +66,7 @@ $view = ViewManager::getInstance();
 			</button>
 			<a class="navbar-brand" href="index.php?controller=login&amp;action=home"><img class="icon" src="src/BSBA.png" alt="<?=i18n("Home")?>" /></a>
 		</div>
-		
+
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<?php if (isset($_SESSION["currentuser"])): ?>
 				<ul class="nav navbar-nav">
@@ -81,7 +82,12 @@ $view = ViewManager::getInstance();
 					<?php if ($_SESSION["admin"] || $_SESSION["entrenador"]): ?>
 						<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><?=i18n("Administration")?> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="index.php?controller=notifications&amp;action=show"><?=i18n("Notifications")?></a></li>
+								<li class="dropdown-submenu"><a class="test" tabindex="-1" href=""><?=i18n("Notifications")?><b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="index.php?controller=notifications&amp;action=inbox"><?=i18n("Inbox")?></a></li>
+										<li><a href="index.php?controller=notifications&amp;action=show"><?=i18n("Send notification")?></a></li>
+									</ul>
+								</li>
 								<?php if ($_SESSION["admin"]): ?>
 									<li><a href="index.php?controller=users&amp;action=show"><?=i18n("Users")?></a></li>
 								<?php endif; ?>
@@ -139,7 +145,7 @@ $view = ViewManager::getInstance();
 				</form>
 			<?php endif ?>
 		</div>
-	</nav>		
+	</nav>
 </header>
 <main>
 	<!-- flash message -->
@@ -153,5 +159,14 @@ $view = ViewManager::getInstance();
 </main>
 <footer>
 </footer>
+<script>
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+</script>
 </body>
 </html>
