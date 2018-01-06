@@ -3,26 +3,56 @@
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../core/I18n.php");
 
-//require_once(__DIR__."/../model/Notification.php");
+require_once(__DIR__."/../model/Notification.php");
 require_once(__DIR__."/../model/ActivityMapper.php");
 require_once(__DIR__."/../model/UserMapper.php");
-
+require_once(__DIR__."/../model/NotificationMapper.php");
 require_once(__DIR__."/../controller/BaseController.php");
 
 
 class NotificationsController extends BaseController {
 
-	
+
 	private $activityMapper;
 	private $userMapper;
+	private $notificationMapper;
 
 	public function __construct() {
 		parent::__construct();
 
 		$this->activityMapper = new ActivityMapper();
 		$this->userMapper = new UserMapper();
+		$this->notificationMapper = new NotificationMapper();
 
 		$this->view->setLayout("welcome");
+	}
+
+	public function view(){
+		if (!isset($_GET["id"])) {
+			throw new Exception("Id is mandatory");
+		}
+
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. View Notifications requires login");
+		}
+
+		$notificationid = $_GET["id"];
+
+		// find the Notification object in the database
+		$notification = $this->notificationMapper->findNotificationById($notificationid);
+
+		if ($notification == NULL) {
+			throw new Exception("no such exercise with id: ".$exerciseid);
+		}
+		if($this->currentUser->getUsername() != $notification->getAddressee()){
+			throw new Exception("The user is not the addressee of the email");
+		}
+
+		// put the notification object to the view
+		$this->view->setVariable("notification", $notification);
+
+		// render the view (/view/notifications/view.php)
+		$this->view->render("notifications", "view");
 	}
 
 	public function show(){
@@ -53,15 +83,25 @@ class NotificationsController extends BaseController {
 		$dni = $_REQUEST["dni"];
 		$email = $_REQUEST["email"];
 
+		$notification = new Notification();
 
 		if(isset($_POST["submit"])) { // reaching via HTTP notification...
 
 			$subject = $_REQUEST["subject"];
 			$message = $_REQUEST["message"];
 
+			$notification->setSubject($_REQUEST["subject"]);
+			$notification->setMessage($_REQUEST["message"]);
+			$notification->setAddressee($dni);
+			if($this->currentUser->getEmail()!=null){
+				$notification->setSender($this->currentUser->getEmail());
+			}else{
+				$notification->setSender("bsbasports@gmail.com");
+			}
 
 
 			$this->sendEmail($email, $subject, $message);
+			$this->notificationMapper->add($notification);
 
 			$this->view->setFlash(sprintf(i18n("An email was sent.")));
 
@@ -74,6 +114,19 @@ class NotificationsController extends BaseController {
 		$this->view->setVariable("email", $email);
 		// render the view (/view/notifications/add.php)
 		$this->view->render("notifications", "add");
+	}
+
+	public function inbox(){
+		if(!isset($this->currentUser)){
+			throw new Exception("Not in session. Show notifications requires login");
+		}
+
+		$emails = $this->notificationMapper->selectAllNotifications($this->currentUser);
+
+		$this->view->setVariable("emails", $emails);
+
+		// render the view (/view/notifications/inbox.php)
+		$this->view->render("notifications", "inbox");
 	}
 
 	//manda un email a todos los usuarios que estan inscritos en una clase
@@ -106,6 +159,31 @@ class NotificationsController extends BaseController {
 
 		// render the view (/view/notifications/addGroup.php)
 		$this->view->render("notifications", "addGroup");
+	}
+
+	public function delete(){
+		if (!isset($_POST["id"])) {
+			throw new Exception("Id is mandatory");
+		}
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Deleting exercises requires login");
+		}
+
+		$notificationid = $_REQUEST["id"];
+		$notification = $this->notificationMapper->findNotificationById($notificationid);
+
+		if ($notification == NULL) {
+			throw new Exception("no such notification with id: ".$notificationid);
+		}
+		if($this->currentUser->getUsername() != $notification->getAddressee()){
+			throw new Exception("The user is not the addressee of the email");
+		}
+
+		$this->notificationMapper->delete($notification);
+
+		$this->view->setFlash(sprintf(i18n("Notification \"%s\" successfully deleted."),$notification ->getSubject()));
+
+		$this->view->redirect("notifications", "inbox");
 	}
 
 
