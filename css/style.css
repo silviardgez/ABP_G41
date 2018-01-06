@@ -35,6 +35,13 @@ body {
 	padding: 15px;
 	margin-bottom: 3%;
 }
+.activities-tables-background {
+	background: #eeeeeef0;
+	background: white;
+	border-radius: 2%;
+	padding: 15px;
+	margin-bottom: 3%;
+}
 
 .exercise-tables-content {
 	padding: 8px;
@@ -197,6 +204,8 @@ table td:hover {
 	border: 1px solid #333;
 	font-weight: bold;
 	height: 4em;
+	border-radius: 10%;
+	margin-left: 1px;
 }
 
 .actTable_activities {
@@ -206,6 +215,9 @@ table td:hover {
 	height: 4em;
 	border-radius: 10%;
 	margin-left: 1px;
+		-webkit-box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
+  -moz-box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
+  box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
 }
 
 .vertical_middle_text{
