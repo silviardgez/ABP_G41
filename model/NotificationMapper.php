@@ -55,4 +55,18 @@ class NotificationMapper {
 		}
   }
 
+	public function selectUsersPEF(User $user){
+		$stmt = $this->db->prepare("SELECT DISTINCT DNI_USUARIO FROM ENGLOBA WHERE DNI_ENTRENADOR=?");
+		$stmt->execute(array($user->getUsername()));
+		$users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$user = array();
+
+		foreach ($users_db as $users) {
+			array_push($user, new User($users["DNI_USUARIO"]));
+		}
+
+		return $user;
+	}
+
 }
