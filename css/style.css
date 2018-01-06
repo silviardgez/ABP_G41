@@ -19,15 +19,18 @@ body {
 	margin-top: 10px;
 }
 
-.exercise-tables-background {
-	background: white;
-	border-radius: 2%;
-	padding: 15px;
-	margin-bottom: 3%;
+.dropdown-submenu {
+    position: relative;
 }
 
-.activities-tables-background {
-	background: #eeeeeef0;
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+.exercise-tables-background {
+	background: white;
 	border-radius: 2%;
 	padding: 15px;
 	margin-bottom: 3%;
@@ -203,9 +206,6 @@ table td:hover {
 	height: 4em;
 	border-radius: 10%;
 	margin-left: 1px;
-	-webkit-box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
-  -moz-box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
-  box-shadow: 0 0px 2px #222, 0 0 30px #413e3e6e inset;
 }
 
 .vertical_middle_text{
@@ -389,7 +389,7 @@ color
 
 :
 
- 
+
 
 #313437
 
@@ -400,7 +400,7 @@ background-color
 
 :
 
- 
+
 
 #eef4f7
 
