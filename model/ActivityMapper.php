@@ -119,6 +119,16 @@ class ActivityMapper {
 		return $activities;
 	}
 
+	//Devuelve las actividades impartidas por un entrenador
+	public function selectCoachActivities(User $user){
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE DNI_ENTR=? ORDER BY NOMBRE");
+		$stmt->execute(array($user->getUsername()));
+
+		$activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $activities;
+	}
+
 	//Devuelve los emails de los usuarios anotados en una actividad
 	public function selectEmail($id_act){
 		$stmt = $this->db->prepare("SELECT EMAIL FROM USUARIO, RESERVA WHERE USUARIO.DNI=RESERVA.DNI_DEP AND ID_ACT=?");
