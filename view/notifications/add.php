@@ -13,7 +13,7 @@ $email = $view->getVariable("email");
 </div>
 
 <div id="edit-view" class="center-block col-xs-6 col-lg-4">
-<form action="index.php?controller=notifications&amp;action=add" method="POST" class="center-block form-horizontal">
+<form action="index.php?controller=notifications&amp;action=add&amp;dni=<?= $dni ?>&amp;email=<?= $email ?>" method="POST" class="center-block form-horizontal">
 	<br><div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Email")?>:</label>
 		<div class="col-lg-6">
