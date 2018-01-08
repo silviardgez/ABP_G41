@@ -230,6 +230,7 @@ class ActivityController extends BaseController {
 			$activity->setDay($_POST["day"]);
 			$activity->setMonitor($_POST["monitor"]);
 			$activity->setColor($_POST["color"]);
+			$activity->setAula($_POST["aula"]);
 
 			try {
 				//save the exercise object into the database

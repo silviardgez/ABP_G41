@@ -79,7 +79,7 @@ $view->setVariable ( "title", "Add Activity" );
 				<?=i18n("Classroom")?>:<?= isset($errors["classroom"])?i18n($errors["classroom"]):"" ?>
 				</label>
 				<div class="col-sm-8">
-					<select class="form-control" name="monitor">
+					<select class="form-control" name="aula">
 					<?php foreach ($aulas as $aula => $aulaName): ?> 
 					 	<option value="<?=$aula?>"><?=$aulaName?></option>
 					<?php endforeach; ?>
