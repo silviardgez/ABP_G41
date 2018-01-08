@@ -86,7 +86,7 @@ $view = ViewManager::getInstance();
 					<?php if ($_SESSION["admin"] || $_SESSION["entrenador"]): ?>
 						<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><?=i18n("Administration")?> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li class="dropdown-submenu"><a class="test" tabindex="-1" href=""><?=i18n("Notifications")?><b class="caret"></b></a>
+								<li class="dropdown-submenu"><a class="test" tabindex="-1" href=""><?=i18n("Notifications ")?><b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										<li><a href="index.php?controller=notifications&amp;action=inbox"><?=i18n("Inbox")?></a></li>
 										<li><a href="index.php?controller=notifications&amp;action=show"><?=i18n("Send notification")?></a></li>

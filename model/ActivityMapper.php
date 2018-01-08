@@ -150,6 +150,21 @@ class ActivityMapper {
 	}
 
 
+	//Devuelve todas las aulas asociadas a su id
+	public function getAulas() {
+		$stmt = $this->db->prepare ( "SELECT * FROM AULAS" );
+		$stmt->execute ();
+		$aulas_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
+		$aulas = array ();
+
+		foreach ( $aulas_db as $aula ) {
+			$aulas [$aula ["ID_AULA"]] = $aula ["NOMBRE_AULA"];
+		}
+
+		return $aulas;
+	}
+
+
 	//Devuelve el nombre del aula dado el id de la misma.
 	public function getAulaById($id){
 		$stmt = $this->db->prepare("SELECT NOMBRE_AULA FROM AULAS WHERE ID_AULA=?");

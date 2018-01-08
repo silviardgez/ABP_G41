@@ -220,6 +220,7 @@ class ActivityController extends BaseController {
 		}
 
 		$monitors = $this->userMapper->getCoaches();
+		$aulas = $this->activityMapper->getAulas();
 
 		if(isset($_POST["submit"])) { 
 
@@ -248,6 +249,7 @@ class ActivityController extends BaseController {
 
 		$this->view->setVariable("activity", $activity);
 		$this->view->setVariable("monitors", $monitors);
+		$this->view->setVariable("aulas", $aulas);
 		$this->view->setVariable("activityName", $activityName);
 		$this->view->render("activity", "add");
 	}
