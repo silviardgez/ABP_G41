@@ -140,7 +140,7 @@ $hours = array (
 						<div style="margin-top: <?php echo $margin?>em; height: <?php echo $activity->getDuration()*4;?>em; background-color: <?php echo $activity->getColor();?>" class="actTable_activities vertical_middle_text box_<?=$activity->getActivityName();?>">
 							<a id="link-activity"
 							href="index.php?controller=activity&amp;action=editcurrent&amp;id=<?= $activity->getActivityId() ?>"><?=  $activity->getActivityName() ?></a>
-							<i><small><b><?= "\n" . $activity->getAula(); ?></b></small></i>
+							<i><small><b><?= "\n" . $activity->getAulaName(); ?></b></small></i>
 							<i><small><?= "\n" . substr($activity->getStartTime(),0,5) . "-" . substr($activity->getEndTime(),0,5); ?></small></i>
 						</div>					
 					<?php endforeach;

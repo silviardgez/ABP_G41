@@ -33,7 +33,7 @@ class ActivityMapper {
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $this->getAulaById($activity["ID_AULA"])));
+			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"]));
 		}
 
 		return $grupalActivities;
@@ -46,7 +46,7 @@ class ActivityMapper {
 		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		if($activity != null) {
-			return new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $this->getAulaById($activity["ID_AULA"]));
+			return new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"]);
 		} else {
 			return NULL;
 		}
@@ -75,7 +75,7 @@ class ActivityMapper {
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $this->getAulaById($activity["ID_AULA"]), $activity["DURACION"]));
+			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"], $activity["DURACION"]));
 		}
 
 		return $grupalActivities;
@@ -162,6 +162,5 @@ class ActivityMapper {
 			return NULL;
 		}
 	}
-
 
 }

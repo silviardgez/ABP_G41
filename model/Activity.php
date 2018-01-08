@@ -16,6 +16,8 @@ class Activity {
 	private $color;
 	private $activityId;
 	private $aula;
+	private $aulaName;
+	private $activityMapper;
 
 	public function __construct($activityId=NULL, $activityName=NULL, $type=NULL, $day=NULL, $startTime=NULL, $endTime=NULL, $color=NULL, $monitor=NULL, $aula=NULL, $duration=NULL){
 		$this->activityId = $activityId;
@@ -27,6 +29,9 @@ class Activity {
 		$this->duration = $duration;
 		$this->color = $color;
 		$this->monitor = $monitor;
+
+		$this->activityMapper = new ActivityMapper();
+		$this->aulaName = $this->activityMapper->getAulaById($aula);
 		$this->aula = $aula;
 	}
 
@@ -60,6 +65,10 @@ class Activity {
 
 	public function setAula($aula){
 		$this->aula = $aula;
+	}
+
+	public function setAulaName($aulaName){
+		$this->aulaName = $aulaName;
 	}
 
 	public function getActivityId(){
@@ -100,6 +109,10 @@ class Activity {
 
 	public function getAula(){
 		return $this->aula;
+	}
+
+	public function getAulaName(){
+		return $this->aulaName;
 	}
 
 	public function getMonitorName(){
