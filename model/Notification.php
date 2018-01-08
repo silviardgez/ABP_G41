@@ -1,7 +1,7 @@
 <?php
 
 require_once(__DIR__."/../core/ValidationException.php");
-require_once(__DIR__."/../model/ExerciseMapper.php");
+require_once(__DIR__."/../model/NotificationMapper.php");
 
 class Notification{
 
