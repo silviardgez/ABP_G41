@@ -6,7 +6,9 @@ $view = ViewManager::getInstance();
 
 //$view->setLayout("welcome");
 $activities = $view->getVariable("activities");
+$act = $view->getVariable("act");
 $view->setVariable("title", "Show Activities");
+$i = 0;
 ?>
 
 <div>
@@ -33,8 +35,13 @@ $view->setVariable("title", "Show Activities");
 									<td><?= $activity->getActivityname(); ?><a href="index.php?controller=assistance&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><i class="icons fa fa-search col-md-3"></i></a></td>
 									<td><?= i18n($activity->getDia()); ?></td>
 									<td><?= $activity->getHorainicio(); ?></td>
-									<td><a href="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $activity->getActivityid(); ?>"><button id="button2" type="submit" name="submit" class="btn btn-success btn-lg"><?=i18n("Add")?></button></a></td>
+									<?php if($act[$i] == 1): ?>
+										<td><a href="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $activity->getActivityid(); ?>"><button id="button2" type="submit" name="submit" class="btn btn-success btn-lg"><?=i18n("Add")?></button></a></td>
+									<?php else: ?>
+										<td></td>
+									<?php endif; ?>
 								<tr>
+									<?php $i = $i+1; ?>
 							<?php endforeach; ?>
 						</tbody>
 			</table>
