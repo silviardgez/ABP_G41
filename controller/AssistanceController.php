@@ -57,43 +57,44 @@ class AssistanceController extends BaseController {
 	}
 
 	public function add(){
-		
+
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding users requires login");
 		}
-		
+
 		if (!isset($_GET["id_act"])) {
 			throw new Exception("Id is mandatory");
 		}
-		
+
 		$confirmado = 1;
 		$id = $_GET["id_act"];
 		$assistants = $this->assistanceMapper->showAllAssistants($id, $confirmado);
-		
+
 		$assistance = new Assistance();
-		
+
 		$assistance->setActivityid($id);
 		$hora = $this->assistanceMapper->timeAct($id);
 		$assistance->setTime($hora);
 
 		if(isset($_POST["submit"])) { // reaching via HTTP user...
 
+			if(isset($_POST["asistentes"])){
 				$num_assistants = count($_POST["asistentes"]);
 				foreach($_POST["asistentes"] as $key => $value){
-				
+
 					// populate the user object with data form the form
 					$assistance->setActivityid($id);
 					$assistance->setDni($value);
 					$assistance->setDateassistance($_POST["fecha"]);
 					$assistance->setTime($hora);
-
 					try {
+						// validate assistance object
+						$assistance->ValidRegister(); //if it fails, ValidationException
 						//save the user object into the database
 						$this->assistanceMapper->add($assistance);
+						$this->view->setFlash(sprintf(i18n("assistance successfully added.")));
+						$this->view->redirect("assistance", "show");
 
-						//$this->view->setFlash(sprintf(i18n("assistance \"%s\" successfully added."),$assistance ->getDni()));
-						
-						//$this->view->redirect("assistance", "show");
 					}catch(ValidationException $ex) {
 						// Get the errors array inside the exepction...
 						$errors = $ex->getErrors();
@@ -101,9 +102,8 @@ class AssistanceController extends BaseController {
 						$this->view->setVariable("errors", $errors);
 					}
 				}
-				$this->view->setFlash(sprintf(i18n("assistance successfully added.")));
-				$this->view->redirect("assistance", "show");
-				
+			}
+
 		}
 
 		// Put the user object visible to the view
@@ -120,7 +120,7 @@ class AssistanceController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Deleting user requires login");
 		}
-		
+
 		$this->assistanceMapper->delete($_POST["dni"],$_POST["date"],$_POST["time"]);
 
 		$this->view->setFlash(sprintf(i18n("Assistance successfully deleted.")));
