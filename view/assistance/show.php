@@ -33,7 +33,7 @@ $view->setVariable("title", "Show Activities");
 							<?php foreach ($activities as $activity): ?>
 								<tr>
 									<td><?= $activity->getActivityname(); ?><a href="index.php?controller=assistance&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><i class="fa fa-search col-md-3"></i></a></td>
-									<td><?= $activity->getDia(); ?></td>
+									<td><?= i18n($activity->getDia()); ?></td>
 									<td><?= $activity->getHorainicio(); ?></td>
 									<td><a href="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $activity->getActivityid(); ?>"><button id="button2" type="submit" name="submit"><?=i18n("Add")?></button></a></td>
 								<tr>
