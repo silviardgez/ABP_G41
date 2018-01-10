@@ -16,44 +16,44 @@ $view->setVariable("title", "View User");
 		<br><div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
 			<div class="col-sm-8">
-				<input type="text" name="nombre" value="<?=$user->getName()?>" readonly="readonly">
+				<input class="form-control" type="text" name="nombre" value="<?=$user->getName()?>" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4"><?=i18n("Surname")?>:<?= isset($errors["surname"])?i18n($errors["surname"]):"" ?></label>
 			<div class="col-sm-8">
-				<input type="text" name="apellidos" value="<?=$user->getSurname()?>" readonly="readonly">
+				<input class="form-control" type="text" name="apellidos" value="<?=$user->getSurname()?>" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4"><?=i18n("Date Born")?>:<?= isset($errors["dateborn"])?i18n($errors["dateborn"]):"" ?></label>
 			<div class="col-sm-8">
-				<input type="text" value="<?=$user->getDateBorn()?>"  readonly="readonly" name="fechaNac">
+				<input class="form-control" type="text" value="<?=$user->getDateBorn()?>"  readonly="readonly" name="fechaNac">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4"><?=i18n("Email")?>:<?= isset($errors["email"])?i18n($errors["email"]):"" ?></label>
 			<div class="col-sm-8">
-				<input type="tel" name="email" value="<?=$user->getEmail()?>" readonly="readonly">
+				<input class="form-control" type="tel" name="email" value="<?=$user->getEmail()?>" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4"><?=i18n("Telephone")?>:<?= isset($errors["tlf"])?i18n($errors["tlf"]):"" ?></label>
 			<div class="col-sm-8">
-				<input type="text" name="tel" value="<?=$user->getTlf()?>" readonly="readonly">
+				<input class="form-control" type="text" name="tel" value="<?=$user->getTlf()?>" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4"><?=i18n("DNI")?>:<?= isset($errors["DNI"])?i18n($errors["DNI"]):"" ?></label>
 			<div class="col-sm-8">
-				<input type="text" name="dni" value="<?=$user->getUsername()?>" readonly="readonly">
+				<input class="form-control" type="text" name="dni" value="<?=$user->getUsername()?>" readonly="readonly">
 			</div>
 		</div>
 		<div class="form-group">
 			<?php if($user->getAdmin() == 1){ ?>
 	    <label class="control-label text-size text-muted col-sm-4"><?=i18n("Administrator");?>:</label>
 					<div class="col-sm-8">
-	          	<input type="text" name="administrador" value="<?=i18n("Administrator");?>" readonly="readonly">
+	          	<input class="form-control" type="text" name="administrador" value="<?=i18n("Administrator");?>" readonly="readonly">
 	        </div>
 					<?php }?>
 	  </div>
@@ -61,7 +61,7 @@ $view->setVariable("title", "View User");
 			<?php if($user->getCoach() == 1){ ?>
 	    <label class="control-label text-size text-muted col-sm-4"><?=i18n("Coach");?>:</label>
 			<div class="col-sm-8">
-	        <input type="text" name="entrenador" value="<?=i18n("Coach");?>" readonly="readonly">
+	        <input class="form-control" type="text" name="entrenador" value="<?=i18n("Coach");?>" readonly="readonly">
 	    </div>
 			<?php }?>
 	  </div>
@@ -69,7 +69,7 @@ $view->setVariable("title", "View User");
 			<?php if($user->getDeportistTdu() == 1){ ?>
 	    <label class="control-label text-size text-muted col-sm-4"><?=i18n("Athlete"); echo " TDU"?>:</label>
 			<div class="col-sm-8">
-	        <input type="text" name="deportista_tdu" value="<?=i18n("Athlete"); echo " TDU"?>" readonly="readonly">
+	        <input class="form-control" type="text" name="deportista_tdu" value="<?=i18n("Athlete"); echo " TDU"?>" readonly="readonly">
 	    </div>
 			<?php }?>
 	  </div>
@@ -77,7 +77,7 @@ $view->setVariable("title", "View User");
 			<?php if($user->getDeportistPef() == 1){ ?>
 	    <label class="control-label text-size text-muted col-sm-4"><?=i18n("Athlete"); echo " PEF"?>:</label>
 			<div class="col-sm-8">
-	        <input type="text" name="deportista_pef" value="<?=i18n("Athlete"); echo " PEF"?>" readonly="readonly">
+	        <input class="form-control" type="text" name="deportista_pef" value="<?=i18n("Athlete"); echo " PEF"?>" readonly="readonly">
 	    </div>
 			<?php }?>
 	  </div>
