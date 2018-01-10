@@ -14,10 +14,8 @@ $view->setVariable("title", "Show Activities");
 	<br>
 </div>
 
-<div class="col-md-4"></div>
-	<div class="row features margin-rows">
-		<div class="col-md-4 col-sm-6 item">
-			<div class="exercise-tables-background">
+<div id="edit-view" class="center-block col-xs-6 col-lg-6">
+		<br>
 		<h1 id="font-title"><?=i18n("Activities")?></h1>
 		<br>
 			<table id="table-margin" class="table">
@@ -32,20 +30,18 @@ $view->setVariable("title", "Show Activities");
 						<tbody>
 							<?php foreach ($activities as $activity): ?>
 								<tr>
-									<td><?= $activity->getActivityname(); ?><a href="index.php?controller=assistance&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><i class="fa fa-search col-md-3"></i></a></td>
+									<td><?= $activity->getActivityname(); ?><a href="index.php?controller=assistance&amp;action=view&amp;id_act=<?= $activity->getActivityid(); ?>"><i class="icons fa fa-search col-md-3"></i></a></td>
 									<td><?= i18n($activity->getDia()); ?></td>
 									<td><?= $activity->getHorainicio(); ?></td>
-									<td><a href="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $activity->getActivityid(); ?>"><button id="button2" type="submit" name="submit"><?=i18n("Add")?></button></a></td>
+									<td><a href="index.php?controller=assistance&amp;action=add&amp;id_act=<?= $activity->getActivityid(); ?>"><button id="button2" type="submit" name="submit" class="btn btn-success btn-lg"><?=i18n("Add")?></button></a></td>
 								<tr>
 							<?php endforeach; ?>
 						</tbody>
 			</table>
-		</div>
-	</div>
+			<br>
 	</div>
 	<div class="form-group">
-		<div class="col-lg-offset-6 col-lg-6">
-			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
+		<div class="col-sm-12">
+			<button id="btn-styles" type="button" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
 		</div>
 	</div>
-<div class="col-md-4"></div>
