@@ -13,7 +13,7 @@ class Assistance{
 	private $dia;
 	private $horainicio;
 	private $arrayAsis;
-	
+
 	public function __construct($activityname=NULL, $activityid=NULL, $dia=NULL, $horainicio=NULL, $dni=NULL, $dateassistance=NULL, $timeassistance=NULL, $arrayAsis=NULL){
 		$this->activityname = $activityname;
 		$this->activityid = $activityid;
@@ -32,7 +32,7 @@ class Assistance{
 	public function getActivityname(){
 		return $this->activityname;
 	}
-	
+
 	public function setActivityid($activityid){
 		$this->activityid = $activityid;
 	}
@@ -40,7 +40,7 @@ class Assistance{
 	public function getActivityid(){
 		return $this->activityid;
 	}
-	
+
 	public function setDni($dni){
 		$this->dni = $dni;
 	}
@@ -48,7 +48,7 @@ class Assistance{
 	public function getDni(){
 		return $this->dni;
 	}
-	
+
 	public function setDateassistance($dateassistance){
 		$this->dateassistance = $dateassistance;
 	}
@@ -56,7 +56,7 @@ class Assistance{
 	public function getDateassistance(){
 		return $this->dateassistance;
 	}
-	
+
 	public function setTime($timeassistance){
 		$this->timeassistance = $timeassistance;
 	}
@@ -64,7 +64,7 @@ class Assistance{
 	public function getTime(){
 		return $this->timeassistance;
 	}
-	
+
 	public function setDia($dia){
 		$this->dia = $dia;
 	}
@@ -72,7 +72,20 @@ class Assistance{
 	public function getDia(){
 		return $this->dia;
 	}
-	
+
+	public function ValidRegister(){
+		$errors = array();
+		if (strlen($this->dateassistance) == null || strlen($this->dateassistance) == "") {
+			$errors["dateassistance"] = "Date can not be null";
+		}
+		if (strlen($this->timeassistance) == null || strlen($this->timeassistance) == "") {
+			$errors["timeassistance"] = "Time can not be null";
+		}
+		if (sizeof($errors)>0){
+			throw new ValidationException($errors, "Assistance is not valid");
+		}
+	}
+
 	public function setHorainicio($horainicio){
 		$this->horainicio = $horainicio;
 	}
