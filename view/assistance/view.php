@@ -9,15 +9,11 @@ $view->setVariable("title", "View Assistance");
 ?>
 
 <div>
-	<h1 id="bigger-size" class="stroke"><?=i18n("Assistance")?></h1>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Activity assistance")?></h1>
 	<br>
 </div>
 
-<div class="col-md-4"></div>
-	<div class="row features margin-rows">
-		<div class="col-md-5 col-sm-6 item">
-			<div class="exercise-tables-background">
-		<h1 id="font-title"><?=i18n("Activity assistance")?></h1>
+<div id="edit-view" class="center-block col-xs-6 col-lg-6">
 		<br>
 			<table id="table-margin" class="table">
 				<thead>
@@ -31,29 +27,40 @@ $view->setVariable("title", "View Assistance");
 					<tbody>
 						<?php foreach ($assistances as $assistance): ?>
 							<tr>
-								<td><?= $assistance->getDni(); ?><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistance->getDni(); ?>"><i class="fa fa-search col-md-3"></i></a></td>
+								<td><?= $assistance->getDni(); ?><a href="index.php?controller=users&amp;action=view&amp;dni=<?= $assistance->getDni(); ?>"><i class="icons fa fa-search col-md-3"></i></a></td>
 								<td><?= $assistance->getDateassistance(); ?></td>
 								<td><?= $assistance->getTime(); ?></td>
 								<td><form method="POST" action="index.php?controller=assistance&amp;action=delete" id="delete_user_<?= $assistance->getDni(); ?>" style="display: inline">
-										<input type="hidden" name="dni" value="<?= $assistance->getDni() ?>">
-										<input type="hidden" name="date" value="<?= $assistance->getDateassistance() ?>">
-										<input type="hidden" name="time" value="<?= $assistance->getTime() ?>">
+									<div class="form-group">
+										<div class="col-lg-6">
+											<input type="hidden" name="dni" value="<?= $assistance->getDni() ?>">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-6">
+											<input type="hidden" name="date" value="<?= $assistance->getDateassistance() ?>">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-6">
+											<input type="hidden" name="time" value="<?= $assistance->getTime() ?>">
+										</div>
+									</div>
 
 										<a onclick="if (confirm('<?= i18n("are you sure?")?>')) {
 											document.getElementById('delete_user_<?= $assistance->getDni() ?>').submit()
-										}"><i class="fa fa-trash"></i></a>
+										}"><i class="icons fa fa-trash"></i></a>
 									</form>
 								</td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
 			</table>
+			<br>
 		</div>
-	</div>
-	</div>
-	<div class="form-group">
-		<div class="col-lg-offset-6 col-lg-6">
-			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
+
+		<div class="form-group">
+			<div class="col-sm-12">
+				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
+			</div>
 		</div>
-	</div>
-<div class="col-md-4"></div>
