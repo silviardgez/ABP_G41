@@ -28,8 +28,19 @@ class AssistanceController extends BaseController {
 
 		$activities = $this->assistanceMapper->showAllActivities();
 
+		$act = array ();
+		foreach($activities as $value){
+			$r = $this->assistanceMapper->showAllAssistants($value->getActivityid(), 1);
+			if(count($r) > 0){
+				array_push($act, 1);
+			}else{
+				array_push($act, 0);
+			}
+		}
+
 		// put the users object to the view
 		$this->view->setVariable("activities", $activities);
+		$this->view->setVariable("act", $act);
 
 		// render the view (/view/users/show.php)
 		$this->view->render("assistance", "show");
