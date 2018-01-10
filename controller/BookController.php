@@ -51,12 +51,23 @@ class BookController extends BaseController {
 			$booksSerialize[$book_idAct."-".$book_idAthl]['userName'] = $this->userMapper->getNameByDNI($book_idAthl);
 			$booksSerialize[$book_idAct."-".$book_idAthl]['actName'] = $this->activityMapper->getActNameById($book_idAct);
 		}
-
+		//Order the array by activity Name in ascendant order
+		$this->array_sort_by($booksSerialize, 'actName', $order = SORT_ASC);
     // put the users object to the view
 		$this->view->setVariable("books", $booksSerialize);
 
 		// render the view (/view/book/show.php)
 		$this->view->render("book", "show");
+	}
+
+	public function array_sort_by(&$arrIni, $col, $order = SORT_ASC){
+		$arrAux = array();
+		foreach ($arrIni as $key=> $row)
+		{
+				$arrAux[$key] = is_object($row) ? $arrAux[$key] = $row->$col : $row[$col];
+				$arrAux[$key] = strtolower($arrAux[$key]);
+		}
+		array_multisort($arrAux, $order, $arrIni);
 	}
 
 	public function viewUser(){
