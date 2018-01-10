@@ -33,7 +33,7 @@ $view->setVariable("title", "Edit User");
 	<div class="form-group">
     <label class="control-label text-size text-muted col-sm-4"><?=i18n("Date Born")?>:<?= isset($errors["dateborn"])?i18n($errors["dateborn"]):"" ?></label>
     <div class="col-lg-6">
-      <input class="form-control" type="text" id="fecha" name="fechaNac" value="<?=$user->getDateBorn()?>">
+      <input class="form-control" type="date" id="date" name="fechaNac" value="<?=$user->getDateBorn()?>">
     </div>
   </div>
 	<div class="form-group">
