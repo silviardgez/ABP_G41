@@ -29,6 +29,15 @@ $view->setVariable ( "title", "Show Sessions" );
 </div>
 
 
+<div id="cronometro">
+  <div id="crono">
+	  00:00:00
+	</div>
+
+    <input type="button" class="btn btn-success" value="Empezar" id="boton" onclick="empezarDetener(this);"  />
+    <input type="button" class="btn btn-danger" value="Parar" name="boton2"  /><br/>
+
+</div>
 
 
 <div class="container-fluid">

@@ -10,6 +10,7 @@ $currentuser = $view->getVariable ( "currentusername" );
 <title><?= $view->getVariable("title", "WorldNote®") ?></title>
 <meta charset="utf-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="manage.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 <!--<link rel="stylesheet" href="css/style.css" type="text/css">-->

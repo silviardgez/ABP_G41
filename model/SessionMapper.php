@@ -15,21 +15,21 @@ class SessionMapper {
 		$sessions = array ();
 		
 		foreach ( $sessions_db as $session ) {
-			array_push ( $sessions, new Session ( $session ["ID_SESION"], $session ["FECHA"], $session ["HORA"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI"], $session["ID_TABLA"]) );
+			array_push ( $sessions, new Session ( $session ["ID_SESION"], $session ["FECHA"], $session ["HORA"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI_USUARIO"], $session["ID_TABLA"]) );
 		}
 		return $sessions;
 	}
 	
 	// Muestra todas las sesiones de un cliente
 	public function showAllClientSessions($client) {
-		$stmt = $this->db->prepare ("SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T1.DNI = ? ORDER BY T2.FECHA ASC" );
+		$stmt = $this->db->prepare ("SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T1.DNI_USUARIO = ? ORDER BY T2.FECHA ASC" );
 		$stmt->execute(array($client));
 		$sessions_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		
 		$sessions = array ();
 		
 		foreach ( $sessions_db as $session ) {
-			array_push ( $sessions, new Session ($session ["ID_SESION"], $session ["FECHA"], $session ["HORA"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI"], $session["ID_TABLA"]) );
+			array_push ( $sessions, new Session ($session ["ID_SESION"], $session ["FECHA"], $session ["HORA"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI_USUARIO"], $session["ID_TABLA"]) );
 		}
 		return $sessions;
 	}
@@ -49,13 +49,13 @@ class SessionMapper {
 	
 	//Devuelve el dni de un cliente dado un id de sesion
 	public function getUserById($idSession) {
-		$stmt = $this->db->prepare ("SELECT T1.DNI FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T2.ID_SESION = ?" );
+		$stmt = $this->db->prepare ("SELECT T1.DNI_USUARIO FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T2.ID_SESION = ?" );
 		$stmt->execute(array($idSession));
 		
 		$session = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		if($session != null) {
-			return $session["DNI"];
+			return $session["DNI_USUARIO"];
 		} else {
 			return NULL;
 		}
@@ -63,7 +63,7 @@ class SessionMapper {
 	
 	//Devuelve todas las tablas asociadas a un usuario
 	public function getTablesByUser($client) {
-		$stmt = $this->db->prepare ("SELECT DISTINCT ID_TABLA, ID_ENGLOBA FROM ENGLOBA WHERE DNI = ?" );
+		$stmt = $this->db->prepare ("SELECT DISTINCT ID_TABLA, ID_ENGLOBA FROM ENGLOBA WHERE DNI_USUARIO = ?" );
 		$stmt->execute(array($client));
 		$sessions_db = $stmt->fetchAll( PDO::FETCH_ASSOC );
 		
