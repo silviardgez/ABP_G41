@@ -1,5 +1,5 @@
 <?php
-// file: model/ExerciseMapper.php
+// file: model/NotificationMapper.php
 
 require_once(__DIR__."/../core/PDOConnection.php");
 
@@ -18,7 +18,6 @@ class NotificationMapper {
 		$notifications_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$notification = array();
-		//var_dump($exercises_db);
 
 		foreach ($notifications_db as $notifications) {
 			array_push($notification, new Notification($notifications["ID_NOTIFICACION"], $notifications["REMITENTE"], $notifications["DESTINATARIO"], $notifications["ASUNTO"], $notifications["MENSAJE"]));
@@ -44,7 +43,7 @@ class NotificationMapper {
 		$notification = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		if($notification != null) {
-			return new Exercise(
+			return new Notification(
 				$notification["ID_NOTIFICACION"],
 				$notification["REMITENTE"],
 				$notification["DESTINATARIO"],
@@ -54,5 +53,19 @@ class NotificationMapper {
 			return NULL;
 		}
   }
+
+	public function selectUsersPEF(User $user){
+		$stmt = $this->db->prepare("SELECT DISTINCT DNI_USUARIO FROM ENGLOBA WHERE DNI_ENTRENADOR=?");
+		$stmt->execute(array($user->getUsername()));
+		$users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$user = array();
+
+		foreach ($users_db as $users) {
+			array_push($user, new User($users["DNI_USUARIO"]));
+		}
+
+		return $user;
+	}
 
 }

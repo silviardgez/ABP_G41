@@ -33,7 +33,7 @@ class ActivityMapper {
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"]));
+			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"]));
 		}
 
 		return $grupalActivities;
@@ -46,7 +46,7 @@ class ActivityMapper {
 		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		if($activity != null) {
-			return new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"]);
+			return new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"]);
 		} else {
 			return NULL;
 		}
@@ -67,7 +67,7 @@ class ActivityMapper {
 	}
 
 
-	//Devuelve todas las actividades grupales
+	//Devuelve todas las actividades grupales dado un día
 	public function getGrupalActivities($weekDay){
 		$stmt = $this->db->prepare("SELECT *, (hour(HORA_FIN) - hour(HORA_INI)) + (minute(HORA_FIN) - minute(HORA_INI))/60 AS 'DURACION' FROM ACTIVIDAD where TIPO='GRUPAL' && DIA = ? ORDER BY HORA_INI");
 		$stmt->execute(array($weekDay));
@@ -75,7 +75,7 @@ class ActivityMapper {
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["DURACION"]));
+			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"], $activity["DURACION"]));
 		}
 
 		return $grupalActivities;
@@ -99,13 +99,13 @@ class ActivityMapper {
 
 	//Actualizar datos en común de las actividades
 	public function updateCurrent(Activity $activity){
-		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`TIPO`=?,`DIA`=?,`HORA_INI`=?,`HORA_FIN`=?,`COLOR`=?,`DNI_ENTR`=? WHERE ID_ACT=?");
-		$stmt->execute(array($activity->getActivityName(), $activity->getType(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor(), $activity->getActivityId()));
+		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`TIPO`=?,`DIA`=?,`HORA_INI`=?,`HORA_FIN`=?,`COLOR`=?,`DNI_ENTR`=?,`ID_AULA`=? WHERE ID_ACT=?");
+		$stmt->execute(array($activity->getActivityName(), $activity->getType(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor(), $activity->getAula(), $activity->getActivityId()));
 	}
 
 	public function add(Activity $activity){
-		$stmt = $this->db->prepare("INSERT INTO ACTIVIDAD(NOMBRE,DIA,HORA_INI,HORA_FIN,COLOR,DNI_ENTR) values (?,?,?,?,?,?)");
-		$stmt->execute(array($activity->getActivityName(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor()));
+		$stmt = $this->db->prepare("INSERT INTO ACTIVIDAD(NOMBRE,DIA,HORA_INI,HORA_FIN,COLOR,DNI_ENTR,ID_AULA) values (?,?,?,?,?,?,?)");
+		$stmt->execute(array($activity->getActivityName(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor(), $activity->getAula()));
 		return $this->db->lastInsertId();
 	}
 
@@ -113,6 +113,16 @@ class ActivityMapper {
 	public function selectAllActivities(){
 		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD ORDER BY NOMBRE");
 		$stmt->execute();
+
+		$activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $activities;
+	}
+
+	//Devuelve las actividades impartidas por un entrenador
+	public function selectCoachActivities(User $user){
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE DNI_ENTR=? ORDER BY NOMBRE");
+		$stmt->execute(array($user->getUsername()));
 
 		$activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -138,4 +148,34 @@ class ActivityMapper {
 
 		return $resul;
 	}
+
+
+	//Devuelve todas las aulas asociadas a su id
+	public function getAulas() {
+		$stmt = $this->db->prepare ( "SELECT * FROM AULAS" );
+		$stmt->execute ();
+		$aulas_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
+		$aulas = array ();
+
+		foreach ( $aulas_db as $aula ) {
+			$aulas [$aula ["ID_AULA"]] = $aula ["NOMBRE_AULA"];
+		}
+
+		return $aulas;
+	}
+
+
+	//Devuelve el nombre del aula dado el id de la misma.
+	public function getAulaById($id){
+		$stmt = $this->db->prepare("SELECT NOMBRE_AULA FROM AULAS WHERE ID_AULA=?");
+		$stmt->execute(array($id));
+		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($activity != null) {
+			return $activity["NOMBRE_AULA"];
+		} else {
+			return NULL;
+		}
+	}
+
 }

@@ -492,6 +492,7 @@ thead>tr>th, tbody {
 #link-activity {
 	color: black;
 	text-decoration: none;
+	font-size: 14px;
 }
 
 td>a:link, td>a:visited, td>a:hover {

@@ -60,8 +60,22 @@ class NotificationsController extends BaseController {
 			throw new Exception("Not in session. Show notifications requires login");
 		}
 
-		$activities = $this->activityMapper->selectAllActivities();
-		$users = $this->userMapper->showAllUsers();
+		$current_user = $this->userMapper->findUserByDNI($this->currentUser->getUsername());
+
+		if($current_user->getAdmin() == 1){
+			//Si es administrador, muestra todos los usuarios del sistema junto a todas las clases
+			$users = $this->userMapper->showAllUsers();
+			$activities = $this->activityMapper->selectAllActivities();
+		}else if($current_user->getCoach() == 1){
+			//Si es entrenador, muestra los usuarios PEF a los que controla junto a las clases que el imparte
+			$user = $this->notificationMapper->selectUsersPEF($this->currentUser);
+			$users = array();
+			foreach ($user as $key) {
+				$b = $this->userMapper->findUserByDNI($key->getUsername());
+				array_push($users, $b);
+			}
+			$activities = $this->activityMapper->selectCoachActivities($current_user);
+		}
 
 		$this->view->setVariable("activities", $activities);
 		$this->view->setVariable("users", $users);
