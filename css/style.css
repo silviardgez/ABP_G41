@@ -111,6 +111,14 @@ body {
 	/*-webkit-text-stroke: 1px black;*/
 }
 
+.width-session {
+	overflow: auto;
+}
+
+.width-session-table {
+	min-width: 630px;
+}
+
 table {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 13px;

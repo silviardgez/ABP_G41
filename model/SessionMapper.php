@@ -7,9 +7,9 @@ class SessionMapper {
 	}
 	
 	// Muestra todas las sesiónes
-	public function showAllSessions() {
-		$stmt = $this->db->prepare ( "SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA ORDER BY T1.DNI_USUARIO, T2.FECHA DESC" );
-		$stmt->execute ();
+	public function showAllSessions($coach) {
+		$stmt = $this->db->prepare ( "SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T1.DNI_ENTRENADOR = ? ORDER BY T1.DNI_USUARIO, T2.FECHA DESC" );
+		$stmt->execute (array($coach));
 		$sessions_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		
 		$sessions = array ();

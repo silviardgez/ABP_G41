@@ -30,8 +30,8 @@ $view->setVariable ( "title", "Show Sessions" );
 
 <div class="container-fluid">
 <div id="center-view" class="center-block col-xs-11 col-sd-9 col-md-7">
-	<div class="exercise-tables-background">
-		<table id="table-margin" class="table">
+	<div class="width-session exercise-tables-background">
+		<table id="table-margin" class="width-session-table table">
 			<tr>
 				<th id="center-text"><?=i18n("Table")?></th>
 				<?php if(isset($_REQUEST["entrena"]) || ($_SESSION["entrenador"] && !$_SESSION["deportista"])):?>
