@@ -150,7 +150,7 @@ $view->setVariable("title", "Show Exercises");
 </div>
 <div class="row">
 	<div class="btn-group">
-		<a href="index.php?controller=exercises&amp;action=add" class="btn-fab circulo" id="add">
+		<a href="index.php?controller=exercises&amp;action=add" class="btn-fab circulo btn-training" id="add">
 			<i class="fa fa-plus"></i>
 		</a>
 	</div>
