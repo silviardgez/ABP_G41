@@ -20,7 +20,7 @@ $view->setVariable ( "title", "Add Activity" );
 			action="index.php?controller=activity&amp;action=add" method="POST">
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
+				<?=i18n("Name")?>:<b class="aviso-vacio"><?= isset($errors["name"])?i18n($errors["name"]):"" ?></b>
 				</label>
 				<div class="col-sm-8">
 					<?php if($activityName == ""){ ?>
@@ -64,11 +64,11 @@ $view->setVariable ( "title", "Add Activity" );
 			</div>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
+				<?=i18n("Monitor")?>:<b class="aviso-vacio"><?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?></b>
 				</label>
 				<div class="col-sm-8">
 					<select class="form-control" name="monitor">
-					<?php foreach ($coaches as $coach => $coachName): ?> 
+					<?php foreach ($coaches as $coach => $coachName): ?>
 					 	<option value="<?=$coach?>"><?=$coachName?></option>
 					<?php endforeach; ?>
 				</select>
@@ -76,11 +76,11 @@ $view->setVariable ( "title", "Add Activity" );
 			</div>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Classroom")?>:<?= isset($errors["classroom"])?i18n($errors["classroom"]):"" ?>
+				<?=i18n("Classroom")?>:<b class="aviso-vacio"><?= isset($errors["classroom"])?i18n($errors["classroom"]):"" ?></b>
 				</label>
 				<div class="col-sm-8">
 					<select class="form-control" name="aula">
-					<?php foreach ($aulas as $aula => $aulaName): ?> 
+					<?php foreach ($aulas as $aula => $aulaName): ?>
 					 	<option value="<?=$aula?>"><?=$aulaName?></option>
 					<?php endforeach; ?>
 				</select>
@@ -104,4 +104,3 @@ $view->setVariable ( "title", "Add Activity" );
 		</form>
 	</div>
 </div>
-
