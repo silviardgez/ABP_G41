@@ -11,7 +11,6 @@ $statistics = $view->getVariable("statistics");
 $view->setVariable("title", "View Statistics");
 
 require_once (__DIR__."/../../GoogChart.class.php");
-//require_once ('C:\xampp\htdocs\ABP_G41\jpgraph-4.1.1\src\jpgraph_line.php');
 
 ?>
 
@@ -24,34 +23,34 @@ require_once (__DIR__."/../../GoogChart.class.php");
 	<div class="row features margin-rows">
 		<div class="col-md-5 col-sm-6 item">
 			<div class="exercise-tables-background">
-		<h1 id="font-title"><?=i18n("Activity Statistics")?></h1>
-		<br>
-			<table id="table-margin" class="table">
-				<thead>
-					<tr class="active">
-						<th><?=i18n("Statistics")?></th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ($statistics as $statistic): ?>
-						<tr>
-							<td><?=i18n("Total of athletes in the gym")?> <?= $statistic->getDeportistas(); ?></td>
+				<h1 id="font-title"><?=i18n("Activity Statistics")?></h1>
+				<br>
+				<table id="table-margin" class="table">
+					<thead>
+						<tr class="active">
+							<th><?=i18n("Statistics")?></th>
 						</tr>
-						<tr>
-							<td><?=i18n("Enrolled")?> <?= $statistic->getMatriculados(); ?></td>
-						</tr>
-						<tr>
-							<td><?=i18n("Percentage of enrolled")?> <?= $statistic->getPorcentajeMatriculados(); ?> %</td>
-						</tr>
-						<tr>
-							<td><?=i18n("Assistants")?> <?= $statistic->getAsistentes(); ?></p>
-						</tr>
-						<tr>
-							<td><?=i18n("Percentage of assistants")?> <?= $statistic->getPorcentajeAsistentes(); ?> %</td>
-						</tr>
-				</tbody>
-			</table>
-		</div>
+					</thead>
+					<tbody>
+						<?php foreach ($statistics as $statistic): ?>
+							<tr>
+								<td><?=i18n("Total of athletes in the gym")?> <?= $statistic->getDeportistas(); ?></td>
+							</tr>
+							<tr>
+								<td><?=i18n("Enrolled")?> <?= $statistic->getMatriculados(); ?></td>
+							</tr>
+							<tr>
+								<td><?=i18n("Percentage of enrolled")?> <?= $statistic->getPorcentajeMatriculados(); ?> %</td>
+							</tr>
+							<tr>
+								<td><?=i18n("Assistants")?> <?= $statistic->getAsistentes(); ?></p>
+							</tr>
+							<tr>
+								<td><?=i18n("Percentage of assistants")?> <?= $statistic->getPorcentajeAsistentes(); ?> %</td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
 		<?php $datos = $statistic->getArrayAsistentesAño();?>
 		<?php endforeach; ?>
 
@@ -90,7 +89,7 @@ require_once (__DIR__."/../../GoogChart.class.php");
         ]);
 
         // Set chart options
-        var options = {'title':'Asistencias del año',
+        var options = {'title':'<?=i18n("Anual assistances")?>',
                        'width':500,
                        'height':500};
 

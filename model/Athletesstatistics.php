@@ -13,8 +13,10 @@ class Athletesstatistics{
 	private $asistenciasTotales;
 	private $porcentajeMatriculas;
 	private $porcentajeAsistencias;
+	private $tablas;
+	private $tiempos;
 	
-	public function __construct($dni=NULL, $deportistname=NULL, $deportistsurname=NULL, $asistenciaActividades=NULL, $matriculas=NULL, $asistenciasTotales=NULL, $porcentajeMatriculas=NULL, $porcentajeAsistencias=NULL){
+	public function __construct($dni=NULL, $deportistname=NULL, $deportistsurname=NULL, $asistenciaActividades=NULL, $matriculas=NULL, $asistenciasTotales=NULL, $porcentajeMatriculas=NULL, $porcentajeAsistencias=NULL, $tablas=NULL, $tiempos=NULL){
 		$this->dni = $dni;
 		$this->deportistname = $deportistname;
 		$this->deportistsurname = $deportistsurname;
@@ -23,6 +25,8 @@ class Athletesstatistics{
 		$this->asistenciasTotales = $asistenciasTotales;
 		$this->porcentajeMatriculas = $porcentajeMatriculas;
 		$this->porcentajeAsistencias = $porcentajeAsistencias;
+		$this->tablas = $tablas;
+		$this->tiempos = $tiempos;
 	}
 
 	public function setDni($dni){
@@ -87,6 +91,26 @@ class Athletesstatistics{
 
 	public function getPorcentajeAsistencias(){
 		return $this->porcentajeAsistencias;
+	}
+	
+	public function setTablas($tablas){
+		$this->tablas = $tablas;
+	}
+
+	public function getTablas(){
+		return $this->tablas;
+	}
+	
+	public function getTabla($indice){
+		return $this->tablas[$indice]["ID_TABLA"];
+	}
+	
+	public function setTiempos($tiempos){
+		$this->tiempos = $tiempos;
+	}
+	
+	public function getTiempos(){
+		return $this->tiempos;
 	}
 }
 ?>

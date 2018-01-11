@@ -12,21 +12,26 @@ class AthletesstatisticsMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
-	public function showAllDeportists(){
-		$stmt = $this->db->prepare("SELECT * FROM USUARIO WHERE DEPORTISTA_TDU=1 OR DEPORTISTA_PEF=1 ORDER BY NOMBRE ASC");
+	public function showAllDeportists($entrenador){
+		$stmt = $this->db->prepare("SELECT DNI, NOMBRE, APELLIDOS FROM USUARIO WHERE DEPORTISTA_TDU=1 OR DEPORTISTA_PEF=1 ORDER BY NOMBRE ASC");
 		$stmt->execute();
 		$deportists_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$deportists = array();
 
 		foreach ($deportists_db as $deportist) {
-			array_push($deportists, new Athletesstatistics($deportist["DNI"], $deportist["NOMBRE"], $deportist["APELLIDOS"], null, null, null, null, null));
+			$stmt2 = $this->db->prepare("SELECT ID_TABLA FROM ENGLOBA WHERE DNI_USUARIO=?");
+			$stmt2->execute(array($deportist["DNI"]));
+			$tablas_db = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+			
+			array_push($deportists, new Athletesstatistics($deportist["DNI"], $deportist["NOMBRE"], $deportist["APELLIDOS"], null, null, null, null, null, $tablas_db, null));
 		}
-
+		
 		return $deportists;
+		
 	}
 
-	public function findStatistics($dni, $confirmado, $deportista){
+	public function findStatistics($dni, $confirmado, $deportista, $mes, $tabla){
 		$stmt = $this->db->prepare("SELECT COUNT(DISTINCT ID_ACT) FROM `ASISTE` WHERE DNI_DEP=?");
 		$stmt->execute(array($dni));
 		
@@ -54,10 +59,47 @@ class AthletesstatisticsMapper {
 		$porcentajeMatriculas = ($matriculas/$actividadesTotales)*100;
 		$porcentajeAsistencias = ($asistenciaActividades/$matriculas)*100;
 		
+		///////////////////////////////////////////
+		//datos grafica
+		
+		$stmt4 = $this->db->prepare("SELECT FECHA as F, DURACION as D, ID_TABLA as T, DNI_USUARIO as U FROM SESION, ENGLOBA WHERE MONTH(FECHA) = ? AND ID_TABLA = ? AND DNI_USUARIO = ? AND ENGLOBA.ID_ENGLOBA = SESION.ID_ENGLOBA");
+		$stmt4->execute(array($mes, $tabla, $dni));
+
+		$tiempos_db = $stmt4->fetchAll(PDO::FETCH_ASSOC); 
+		
 		$assistances = array();
 		
-		array_push($assistances, new Athletesstatistics(null, null, null, $asistenciaActividades, $matriculas, $asistenciasTotales, $porcentajeMatriculas, $porcentajeAsistencias));
+		array_push($assistances, new Athletesstatistics(null, null, null, $asistenciaActividades, $matriculas, $asistenciasTotales, $porcentajeMatriculas, $porcentajeAsistencias, null, $tiempos_db));
 
 		return $assistances;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

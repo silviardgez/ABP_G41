@@ -25,8 +25,9 @@ class AthletesstatisticsController extends BaseController {
 		if(!isset($this->currentUser)){
 			throw new Exception("Not in session. Show users requires login");
 		}
+		
 
-		$deportists = $this->athletesstatisticsMapper->showAllDeportists();
+		$deportists = $this->athletesstatisticsMapper->showAllDeportists($this->currentUser->getUsername());
 
 		// put the users object to the view
 		$this->view->setVariable("deportists", $deportists);
@@ -45,11 +46,19 @@ class AthletesstatisticsController extends BaseController {
 		}
 
 		$dni = $_GET["dni"];
+		$mes = $_POST["mes"];
+		if (!isset($_POST["tabla"])) {
+			$tabla = 0;
+		}else{
+			$tabla = $_POST["tabla"];
+		}
 		$confirmado=1;
 		$deportista=1;
 
+		//echo $mes." ".$tabla." ".$dni;
+		
 		// find the User object in the database
-		$statistics = $this->athletesstatisticsMapper->findStatistics($dni, $confirmado, $deportista);
+		$statistics = $this->athletesstatisticsMapper->findStatistics($dni, $confirmado, $deportista, $mes, $tabla);
 
 		if ($statistics == NULL) {
 			throw new Exception("no such activities with ID: ".$id);

@@ -1,25 +1,13 @@
 <?php
 //file: view/assistance/view.php
 
-//include "libchart/libchart.php";
-//$chart = new VerticalBarChart(500, 250);
-
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 
 $statistics = $view->getVariable("statistics");
 $view->setVariable("title", "View Statistics");
 
-/*$dataSet = new XYDataSet();
-$dataSet->addPoint(new Point("Jan 2005", 273));
-$dataSet->addPoint(new Point("Feb 2005", 321));
-$dataSet->addPoint(new Point("March 2005", 442));
-$dataSet->addPoint(new Point("April 2005", 711));
-
-$chart->setDataSet($dataSet);
-
-$chart->setTitle("Monthly usage for www.example.com");
-$chart->render("libchart/demo/generated/demo1.png");*/
+require_once (__DIR__."/../../GoogChart.class.php");
 ?>
 
 <div>
@@ -53,10 +41,99 @@ $chart->render("libchart/demo/generated/demo1.png");*/
 						<tr>
 							<td><?=i18n("He attends to")?> <?= $statistic->getporcentajeAsistencias(); ?> <?=i18n("% of the activities in which you are enrolled")?></p>
 						</tr>
+						<?php $datos = $statistic->getTiempos();?>
 				<?php endforeach; ?>
 				</tbody>
 			</table>
 		</div>
+		
+		
+		
+		
+		<!--Load the AJAX API-->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+
+		  // Load the Visualization API and the corechart package.
+		  google.charts.load('current', {'packages':['corechart']});
+
+		  // Set a callback to run when the Google Visualization API is loaded.
+		  google.charts.setOnLoadCallback(drawChart);
+
+		  // Callback that creates and populates a data table,
+		  // instantiates the pie chart, passes in the data and
+		  // draws it.
+		  function drawChart() {
+
+			// Create the data table.
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Topping');
+			data.addColumn('number', '<?=i18n("Minutes")?>');
+			data.addRows([
+				 <?php for($i = 0; $i < count($datos); $i++): ?> 
+					<?php
+						list($horas, $minutos, $segundos) = explode(':', $datos[$i]['D']);
+						$tiempo = ($horas * 60 ) + ($minutos) + ($segundos/60);
+					?>
+					['<?=$datos[$i]['F']?>', <?=$tiempo?>],
+				 
+				 <?php endfor;?>
+			  
+			]);
+
+			// Set chart options
+			var options = {'title':'<?=i18n("Session duration")?>',
+						   'width':600,
+						   'height':500};
+
+			// Instantiate and draw our chart, passing in some options.
+			var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		  }
+		</script>
+		<div id="chart_div"></div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</div>
 	</div>
 	<div class="form-group">
