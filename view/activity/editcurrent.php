@@ -62,7 +62,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 				<?=i18n("Day")?>:<?= isset($errors["day"])?i18n($errors["day"]):"" ?>
 			</label>
 			<div class="col-sm-8">
-				<select class="form-control" name="day" <?php if($_SESSION["deportista"]):?> onmouseover="this.disabled=true;" onmouseout="this.disabled=false;" <?php endif;?>>
+				<select class="form-control" name="day" <?php if($_SESSION["deportista"]):?> readonly onmouseover="this.disabled=true;" onmouseout="this.disabled=false;" <?php endif;?>>
 					<option value="MONDAY"><?=i18n("MONDAY")?></option>
 					<option value="THURSDAY"><?=i18n("TUESDAY")?></option>
 					<option value="WEDNESDAY"><?=i18n("WEDNESDAY")?></option>
@@ -79,7 +79,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 				<?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
 			</label>
 			<div class="col-sm-8">
-				<select class="form-control" name="monitor" <?php if($_SESSION["deportista"]):?> onmouseover="this.disabled=true;" onmouseout="this.disabled=false;" <?php endif;?>>
+				<select class="form-control" name="monitor" <?php if($_SESSION["deportista"]):?> readonly onmouseover="this.disabled=true;" onmouseout="this.disabled=false;" <?php endif;?>>
 					<?php foreach ($coaches as $coach => $coachName): ?>
 						<option value="<?=$coach?>"><?=$coachName?></option>
 					<?php endforeach; ?>
