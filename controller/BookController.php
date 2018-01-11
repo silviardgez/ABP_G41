@@ -82,7 +82,7 @@ class BookController extends BaseController {
 			throw new Exception("Not in session. Show sesions requires login");
 		}
 
-		if($this->userMapper->findType() != "deportista"){
+		if($this->userMapper->isAthlete() != true){
 			throw new Exception("You aren't an admin. See all books requires be athlete");
 		}
 
