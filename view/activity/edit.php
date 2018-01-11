@@ -22,7 +22,7 @@ $view->setVariable ( "title", "Edit Activity" );
 			action="index.php?controller=activity&amp;action=edit" method="POST">
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
+				<?=i18n("Name")?>:<b class="aviso-vacio"><?= isset($errors["name"])?i18n($errors["name"]):"" ?></b>
 				</label>
 				<div class="col-sm-8">
 					<input class="form-control" type="text" name="name"
@@ -31,7 +31,7 @@ $view->setVariable ( "title", "Edit Activity" );
 			</div>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Color")?>:<?= isset($errors["color"])?i18n($errors["color"]):"" ?>
+				<?=i18n("Color")?>:<b class="aviso-vacio"><?= isset($errors["color"])?i18n($errors["color"]):"" ?></b>
 				</label>
 				<div class="col-sm-8">
 					<input class="form-control" type="color" name="color" value="<?=$activity->getColor()?>">
