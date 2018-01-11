@@ -258,5 +258,6 @@ array(
  	"You have not made any session yet" => "Aún no has realizado ninguna sesión",
 	"You don't have assigned athletes"=>"No tienes deportistas asignados",
 	"Impossible to perform a session. You do not have assigned tables" => "Imposible realizar una sesión. No tienes tablas asignadas",
+	"Session in progress" => "Sesión en curso",
 )
 ?>

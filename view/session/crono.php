@@ -24,6 +24,9 @@ $view->setVariable ( "title", "Crono" );
 
 		</div>
 	</div>
+	<br/>
+	<input id="center-view" type="button" class="btn btn-primary btn-lg center-block col-xs-4 col-sm-2 col-md-1" value="<?= i18n("Back"); ?>" id="boton" onclick="recogeTiempo()"  />
+	<!--<a id="center-view" href="index.php?controller=session&amp;action=show&amp;back=true;" class="btn btn-primary btn-lg center-block col-xs-4 col-sm-2 col-md-1" role="button"><?= i18n("Back"); ?></a>-->
 </div>
 <br/>
 

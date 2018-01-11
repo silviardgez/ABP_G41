@@ -16,7 +16,7 @@ $view->setVariable ( "title", "Edit Training" );
 	<br>
 	<div id="edit-view" class="center-block col-xs-6 col-lg-4">
 		<form id="edit-form" class="center-block form-horizontal"
-			action="index.php?controller=session&amp;action=edit" method="POST">
+			action="index.php?controller=session&amp;action=show" method="POST">
 			<input type="hidden" name="id" value="<?=$session->getSessionId()?>" readonly>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
@@ -78,7 +78,7 @@ $view->setVariable ( "title", "Edit Training" );
 			<div class="form-group">
 				<div class="col-sm-12">
 					<button id="btn-styles" type="submit" name="submit"
-						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
+						class="btn btn-primary btn-lg"><?=i18n("Back")?></button>
 				</div>
 			</div>
 		</form>

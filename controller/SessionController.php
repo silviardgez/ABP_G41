@@ -40,6 +40,12 @@ class SessionController extends BaseController {
 			throw new Exception("You aren't an athlete or coach. View sessions requires be athlete or coach.");
 		}
 		
+		if(isset($_GET["back"])){
+			if(isset($_GET["on"])){
+				$on = true;
+				$this->view->setVariable("on", $on);
+			}
+		}
 		
 		// put the users object to the view
 		$this->view->setVariable("sessions", $sessions);
@@ -49,7 +55,7 @@ class SessionController extends BaseController {
 		}
 		
 		//Si el crono está iniciado no se pueden ver las otras sesiones
-		if(isset($_SESSION["crono"])){
+		if(isset($_SESSION["crono"]) && !isset($_GET["back"])){
 			$this->view->render("session", "crono");
 		} else {
 			$this->view->render("session", "show");
@@ -109,6 +115,39 @@ class SessionController extends BaseController {
 		$this->view->setVariable("tables", $tables);
 
 		$this->view->render("session", "edit");
+	} 
+
+	public function view(){
+		if (!isset($_REQUEST["id"])) {
+			throw new Exception("A id is mandatory");
+		}
+		
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session.");
+		}
+
+		if(!$_SESSION["deportista"]){
+		 	throw new Exception("You aren't an athlete. Edit a session requires be athlete");
+		}
+		
+		$dni = $this->sessionMapper->getUserById($_REQUEST["id"]);
+		if ($_SESSION["currentuser"] != $dni) {
+			throw new Exception("You aren't the user" . $dni . ".");
+		}
+		
+		$sessionId = $_REQUEST["id"];
+		$session = $this->sessionMapper->getSessionById($sessionId);
+		$tables = $this->sessionMapper->getTablesByUser($dni);
+		
+		
+		if ($session == NULL) {
+			throw new Exception("no such session with id: ". $sessionId);
+		}
+		
+		$this->view->setVariable("session", $session);
+		$this->view->setVariable("tables", $tables);
+
+		$this->view->render("session", "view");
 	} 
 	
 	public function delete(){

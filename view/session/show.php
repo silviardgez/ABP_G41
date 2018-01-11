@@ -3,8 +3,8 @@ require_once (__DIR__ . "/../../core/ViewManager.php");
 $view = ViewManager::getInstance ();
 
 $sessions = $view->getVariable ( "sessions" );
-
 $tables = $view->getVariable( "tables" );
+$on = $view->getVariable( "on" );
 
 $view->setVariable ( "title", "Show Sessions" );
 
@@ -22,9 +22,15 @@ $view->setVariable ( "title", "Show Sessions" );
 	<?php endif;?>
 	<?php endif;?>
 	<br>
-	<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"] && $tables != null):?>
+	<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"] && $tables != null && $on == null):?>
 	<div id="center-view">
 		<a href="index.php?controller=session&amp;action=crono" id="btn-session" class="center-block btn btn-success btn-lg" role="button"><b><?= i18n("Start a new session");?>
+		</b></a>
+	</div>
+	<br/>
+	<?php elseif($on != null): ?>
+	<div id="center-view">
+		<a href="index.php?controller=session&amp;action=crono" id="btn-session" class="center-block btn btn-warning btn-lg" role="button"><b><?= i18n("Session in progress");?>
 		</b></a>
 	</div>
 	<br/>
@@ -63,7 +69,7 @@ $view->setVariable ( "title", "Show Sessions" );
 				<td id="center-text"><?php echo $session->getObservations(); ?></td>
 				<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
 				<td id="table-actions" class="icons">
-					<a href="index.php?controller=table&amp;action=view&amp;id=<?= $session->getSessionId()?>"><i
+					<a href="index.php?controller=session&amp;action=view&amp;id=<?= $session->getSessionId()?>"><i
 						class="fa fa-search"></i></a>
 					<a href="index.php?controller=session&amp;action=edit&amp;id=<?= $session->getSessionId()?>"><i
 						class="fa fa-pencil-square-o"></i></a>

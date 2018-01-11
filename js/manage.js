@@ -203,3 +203,13 @@ function terminarSesion() {
 	document.formulario.submit();
 
 }
+
+function recogeTiempo() {
+    var duration = $('#crono').text();
+    if(duration != "00:00:00") {
+        window.location.href = "index.php?controller=session&action=show&back=true&on=true";
+    } else {
+        window.location.href = "index.php?controller=session&action=show&back=true";
+    }
+    
+}
