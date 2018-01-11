@@ -60,7 +60,7 @@ $view->setVariable ( "title", "Show PEF Users" );
 
 	<div class="btn-group">
 		<a href="index.php?controller=users&amp;action=add"
-		class="btn-fab circulo" id="add"> <i class="fa fa-plus"></i>
+		class="btn-fab circulo btn-training" id="add"> <i class="fa fa-plus"></i>
 	</a>
 </div>
 
