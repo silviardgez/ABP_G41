@@ -26,6 +26,18 @@ class BookMapper{
 
   }
 
+  public function findBook($id_act, $dni){
+      $stmt = $this->db->prepare("SELECT * FROM RESERVA WHERE ID_ACT=? AND DNI_DEP=?");
+      $stmt->execute(array($id_act, $dni));
+      $book = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if($book != null){
+        return 1;
+      }else{
+        return 0;
+      }
+  }
+
   public function findBookByIdAct($id){
     $stmt = $this->db->prepare("SELECT * FROM RESERVA WHERE ID_ACT=?");
     $stmt->execute(array($id));
@@ -41,6 +53,21 @@ class BookMapper{
     }else{
       return NULL;
     }
+  }
+
+  public function availableSpaces($id){
+    $stmt = $this->db->prepare("SELECT PLAZAS FROM ACTIVIDAD WHERE ID_ACT=?");
+    $stmt->execute(array($id));
+    $spaces = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $stmt = $this->db->prepare("SELECT COUNT(CONFIRMADO) FROM RESERVA WHERE ID_ACT=? AND CONFIRMADO=?");
+    $stmt->execute(array($id, 1));
+    $books = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if($spaces["PLAZAS"] == $books["COUNT(CONFIRMADO)"]){
+      return 1;
+    }
+    return 0;
   }
 
   public function findBookByIdDep($id){
