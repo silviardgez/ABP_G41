@@ -43,8 +43,11 @@ class SessionController extends BaseController {
 		// put the users object to the view
 		$this->view->setVariable("sessions", $sessions);
 		
-		// render the view (/view/users/show.php)
-		$this->view->render("session", "show");
+		if(isset($_SESSION["crono"])){
+			$this->view->render("session", "crono");
+		} else {
+			$this->view->render("session", "show");
+		}
 	}
 	
 	public function edit(){
@@ -133,6 +136,7 @@ class SessionController extends BaseController {
 	}
 	
 	public function add(){
+		unset($_SESSION["crono"]);
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding activities requires login.");
 		}
@@ -171,6 +175,20 @@ class SessionController extends BaseController {
 		$this->view->setVariable("session", $session);
 		$this->view->setVariable("tables", $tables);
 		$this->view->render("session", "add");
+	}
+
+	public function crono(){
+		if(!isset($this->currentUser)){
+			throw new Exception("Not in session. Show users requires login");
+		}
+		
+		$_SESSION["crono"] = true;
+		//Cambios a la vista de entrenador
+		if(!$_SESSION["deportista"]){
+			throw new Exception("You aren't an athlete. Add a session requires be athlete.");
+		}
+
+		$this->view->render("session", "crono");
 	}
 	
 }

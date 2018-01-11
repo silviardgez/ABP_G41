@@ -131,6 +131,7 @@ window.onload=function()
      		inicio.setTime(resta); //datos para nueva fecha inicial.
 
      		document.getElementById("boton").value="Reiniciar";
+
      		document.getElementById("boton3").disabled=false;
      		document.getElementById("boton3").value="Reanudar"; //cambiar el estado del botón
      		paro=1;
@@ -149,11 +150,11 @@ window.onload=function()
 
 function terminarSesion() {
 	var inicioSesion = new Date(localStorage.getItem("initialTime"));
-	var horaInicio = LeadingZero(inicioSesion.getUTCHours())+":"+LeadingZero(inicioSesion.getUTCMinutes())+":"+LeadingZero(inicioSesion.getUTCSeconds());
+	var horaInicio = LeadingZero(inicioSesion.getHours())+":"+LeadingZero(inicioSesion.getMinutes())+":"+LeadingZero(inicioSesion.getSeconds());
 	var finSesion = new Date();
-	var horaFin = LeadingZero(finSesion.getUTCHours())+":"+LeadingZero(finSesion.getUTCMinutes())+":"+LeadingZero(finSesion.getUTCSeconds());
+	var horaFin = LeadingZero(finSesion.getHours())+":"+LeadingZero(finSesion.getMinutes())+":"+LeadingZero(finSesion.getSeconds());
 	var duration = $('#crono').text();
-	var dia = inicioSesion.getUTCFullYear() + "-" + LeadingZero(inicioSesion.getUTCMonth()+1) + "-" + inicioSesion.getUTCDate();
+	var dia = inicioSesion.getFullYear() + "-" + LeadingZero(inicioSesion.getMonth()+1) + "-" + inicioSesion.getDate();
 
 	//Se vacía el localStorage
 	localStorage.clear();

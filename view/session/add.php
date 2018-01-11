@@ -40,7 +40,7 @@ $view->setVariable ( "title", "Add Session" );
 						<?=i18n("Observations")?>:
 				</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" name="observations" rows="4"></textarea>
+					<textarea class="form-control" name="observations" rows="6"></textarea>
 				</div>
 			</div>
 			<br>

@@ -628,15 +628,26 @@ i {
 	}
 }
 
+textarea {
+	resize: none;
+}
+
+#btn-session {
+	max-width: 350px;
+	border-color: #244f25;
+}
+
 #cronometro { 
 	padding:10px; 
 	border: 5px #5D93C3 double; 
-	width: 240px;
 	text-align: center; 
-	background-color: #feffffab; 
+	background-color: #fbfbfbf0; 
 	border-radius: 5px;
-	float: right; 
-	margin: 1em 3em 1em 3em; 
+	float: none; 
+}
+
+#crono {
+	font-size: 50px;
 }
 
 #reloj { 
@@ -649,6 +660,7 @@ i {
 	border-radius: 3px;  }
 
 #cronometro [type=button]  { 
-	margin: 5px; 
+	margin: 10px; 
+	min-width: 130px;
 } 
 

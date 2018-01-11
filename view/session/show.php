@@ -20,33 +20,20 @@ $view->setVariable ( "title", "Show Sessions" );
 	<?php endif;?>
 	<br>
 	<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
-	<div class="btn-group">
-		<a href="index.php?controller=session&amp;action=add"
-			class="btn-fab circulo btn-training" id="add"> <i class="fa fa-plus"></i>
-		</a>
+	<div id="center-view">
+		<a href="index.php?controller=session&amp;action=crono" id="btn-session" class="center-block btn btn-success btn-lg" role="button"><b><?= i18n("Start a new session");?>
+		</b></a>
 	</div>
+	<br/>
 	<?php endif;?>
 </div>
-
-
-<div id="cronometro">
-  <h2 id="crono">
-	  00:00:00
-	</h2>
-
-    <input type="button" class="btn btn-success" value="Empezar" id="boton" onclick="empezarDetener(this);"  />
-    <input type="button" class="btn btn-warning" value="Pausar" id="boton3" disabled="disabled" onclick="continuarPausar(this);" /><br/>
-    <input type="button" class="btn btn-danger" value="Terminar sesión" id="boton2" onclick="terminarSesion(this);" /><br/>
-
-</div>
-
 
 <div class="container-fluid">
 <div id="center-view" class="center-block col-xs-11 col-sd-9 col-md-7">
 	<div class="exercise-tables-background">
 		<table id="table-margin" class="table">
 			<tr>
-				<th><?=i18n("Table")?></th>
+				<th id="center-text"><?=i18n("Table")?></th>
 				<?php if(isset($_REQUEST["entrena"]) || ($_SESSION["entrenador"] && !$_SESSION["deportista"])):?>
 				<th id="center-text"><?=i18n("User")?></th>
 				<?php endif;?>
