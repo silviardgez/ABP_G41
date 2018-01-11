@@ -8,41 +8,40 @@ $users = $view->getVariable("user");
 $view->setVariable("title", "Bookings");
 ?>
 
+<div>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Bookings")?></h1>
+	<br>
+</div>
 
-<div class="container">
-	<div class="table-responsive col-md-6">
-		<table class="table">
-			<thead><tr>
-				<th class="tittle" colspan="5" colspan="5"><?=i18n("Bookings confirmed")?></th>
-			</tr>
-				<tr class="active">
-					<th><?=i18n("Name user")?></th>
-					<th><?=i18n("Name activity")?></th>
-					<th><?=i18n("Date of reservation")?></th>
-					<th><?=i18n("Hour of reservation")?></th>
-					<th><?=i18n("Status")?></th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($books as $book):?>
-						<tr class = "success">
+<div id="center-view" class="center-block col-md-6 col-sm-8 item">
+	<div class="exercise-tables-background center-block">
+		<br>
+		<table id="table-margin" class="table">
+				<thead>
+					<tr>
+						<th><?=i18n("Activity")?></th>
+						<th><?=i18n("Date of reservation")?></th>
+						<th><?=i18n("Hour of reservation")?></th>
+						<th><?=i18n("Status")?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($books as $book):?>
+							<tr>
+								<td><?= $book['actName'] ?></td> <!-- Devuelve el nombre de la actividad-->
+								<td><?= $book['dateBook'] ?></td>
+								<td><?= $book['hour'] ?></td>
+								<td>
+									<?php if ($book['confirmed']==1):
+											echo i18n("Confirmed");
+									elseif ($book['confirmed']==0):
+											echo i18n("Not confirmed");
+										endif?>
 
-							<td><?= $book['userName'] ?></td> <!-- Devuelve el nombre del usuario-->
-							<td><?= $book['actName'] ?></td> <!-- Devuelve el nombre de la actividad-->
-							<td><?= $book['dateBook'] ?></td>
-							<td><?= $book['hour'] ?></td>
-							<td>
-								<?php if ($book['confirmed']==1):
-										echo i18n("Confirmed");
-								elseif ($book['confirmed']==0):
-										echo i18n("Not confirmed");
-									endif
-									?>
-
-							</td>
-						</tr>
-			<?php endforeach; ?>
-			</tbody>
+								</td>
+							</tr>
+					<?php endforeach; ?>
+				</tbody>
 		</table>
 	</div>
 </div>

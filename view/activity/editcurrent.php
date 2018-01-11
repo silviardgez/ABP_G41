@@ -4,6 +4,7 @@ require_once (__DIR__ . "/../../core/ViewManager.php");
 $view = ViewManager::getInstance ();
 $activity = $view->getVariable ( "activity" );
 $coaches = $view->getVariable ( "monitors" );
+$booking = $view->getVariable ( "booking" );
 $errors = $view->getVariable ( "errors" );
 $view->setVariable ( "title", "Edit Current Activity" );
 ?>
@@ -79,7 +80,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 			</label>
 			<div class="col-sm-8">
 				<select class="form-control" name="monitor" <?php if($_SESSION["deportista"]):?> readonly <?php endif;?>>
-					<?php foreach ($coaches as $coach => $coachName): ?> 
+					<?php foreach ($coaches as $coach => $coachName): ?>
 						<option value="<?=$coach?>"><?=$coachName?></option>
 					<?php endforeach; ?>
 					<option value="<?=$activity->getMonitor()?>" selected="selected"><?=$activity->getMonitorName()?></option>
@@ -116,11 +117,17 @@ $view->setVariable ( "title", "Edit Current Activity" );
 	<?php endif;?>
 
 	<!-- BOTÓN DEL DEPORTISTA PARA REALIZAR LA RESERVA -->
-	<?php if($_SESSION["deportista"]):?>
+	<?php if($_SESSION["deportista"] && $booking == NULL):?>
 		<div class="form-group">
 			<div class="col-sm-12">
 				<button id="btn-styles" type="submit" name="submit"
 				class="btn btn-success btn-lg"><?=i18n("To reserve")?></button>
+			</div>
+		</div>
+	<?php elseif($_SESSION["deportista"]):?>
+		<div class="form-group">
+			<div class="col-sm-12">
+				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
 			</div>
 		</div>
 	<?php endif;?>
