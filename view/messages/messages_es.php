@@ -258,7 +258,7 @@ array(
 	"Anual assistances"=>"Asistencias anuales",
 	"Month"=>"Mes",
 	"Watch"=>"Consultar",
-	"Session duration"=>"Duración de la sesión",
+	"Session duration in minutes"=>"Duración de la sesión en minutos",
 	"Minutes"=>"Minutos",
 	""=>"",
 )

@@ -55,7 +55,7 @@ require_once (__DIR__."/../../GoogChart.class.php");
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
-        ["Element", "Density", { role: "style" } ],
+        ["Element", "<?=i18n("Minutes")?>", { role: "style" } ],
 		<?php for($i = 0; $i < count($datos); $i++): ?> 
 					<?php
 						list($horas, $minutos, $segundos) = explode(':', $datos[$i]['D']);
@@ -80,7 +80,7 @@ require_once (__DIR__."/../../GoogChart.class.php");
                        2]);
 
       var options = {
-        title: "<?=i18n("Session duration")?>",
+        title: "<?=i18n("Session duration in minutes")?>",
         width: 1050,
         height: 300,
         bar: {groupWidth: "95%"},
