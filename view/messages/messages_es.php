@@ -38,6 +38,7 @@ array(
 	"Activities" => "Actividades",
 	"Fitness" => "Fitness",
 	"Number of places covered" => "Número de plazas cubierto",
+	"Booking already made" => "Reserva ya realizada",
 	"Reservations" => "Reservas",
 	"Assistance" => "Asistencia",
 	"Exercises" => "Ejercicios",
