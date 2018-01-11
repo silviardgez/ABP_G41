@@ -16,7 +16,7 @@ require_once (__DIR__."/../../GoogChart.class.php");
 	<br>
 </div>
 
-<div id="edit-view" class="center-block col-xs-6 col-lg-6">
+<div id="edit-view" class="center-block col-xs-7 col-lg-7">
 		<br>
 				<h1 id="font-title"><?=i18n("Activity Statistics")?></h1>
 				<br>
@@ -51,50 +51,47 @@ require_once (__DIR__."/../../GoogChart.class.php");
 
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+	  <script type="text/javascript">
+		google.charts.load("current", {packages:['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+		  var data = google.visualization.arrayToDataTable([
+			["Element", "<?=i18n("Times")?>", { role: "style" } ],
+			['<?=i18n("January")?>', <?=$datos[0]?>, "silver"],
+			['<?=i18n("February")?>', <?=$datos[1]?>, "silver"],
+			['<?=i18n("March")?>', <?=$datos[2]?>, "silver"],
+			['<?=i18n("April")?>', <?=$datos[3]?>, "silver"],
+			['<?=i18n("May")?>', <?=$datos[4]?>, "silver"],
+			['<?=i18n("June")?>', <?=$datos[5]?>, "silver"],
+			['<?=i18n("July")?>', <?=$datos[6]?>, "silver"],
+			['<?=i18n("August")?>', <?=$datos[7]?>, "silver"],
+			['<?=i18n("September")?>', <?=$datos[8]?>, "silver"],
+			['<?=i18n("October")?>', <?=$datos[9]?>, "silver"],
+			['<?=i18n("November")?>', <?=$datos[10]?>, "silver"],
+			['<?=i18n("December")?>', <?=$datos[11]?>, "silver"],
+		  ]);
 
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+		  var view = new google.visualization.DataView(data);
+		  view.setColumns([0, 1,
+						   { calc: "stringify",
+							 sourceColumn: 1,
+							 type: "string",
+							 role: "annotation" },
+						   2]);
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', '<?=i18n("Times")?>');
-        data.addRows([
-          ['<?=i18n("January")?>', <?=$datos[0]?>],
-          ['<?=i18n("February")?>', <?=$datos[1]?>],
-          ['<?=i18n("March")?>', <?=$datos[2]?>],
-          ['<?=i18n("April")?>', <?=$datos[3]?>],
-          ['<?=i18n("May")?>', <?=$datos[4]?>],
-		  ['<?=i18n("June")?>', <?=$datos[5]?>],
-		  ['<?=i18n("July")?>', <?=$datos[6]?>],
-		  ['<?=i18n("Agoust")?>', <?=$datos[7]?>],
-		  ['<?=i18n("September")?>', <?=$datos[8]?>],
-		  ['<?=i18n("October")?>', <?=$datos[9]?>],
-		  ['<?=i18n("November")?>', <?=$datos[10]?>],
-		  ['<?=i18n("December")?>', <?=$datos[11]?>]
-        ]);
-
-        // Set chart options
-        var options = {'title':'<?=i18n("Anual assistances")?>',
-                       'width':500,
-                       'height':500};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-	<div id="chart_div"></div>
+		  var options = {
+			title: "<?=i18n("Anual assistances")?>",
+			width: 1200,
+			height: 300,
+			legend: { position: "none" },
+		  };
+		  var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+		  chart.draw(view, options);
+	  }
+	  </script>
+	  <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
   	</div>
+	
 	<div class="form-group">
 		<div class="col-sm-12">
 			<button id="btn-styles" type="button" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
