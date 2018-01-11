@@ -5,6 +5,7 @@ $view = ViewManager::getInstance ();
 $activity = $view->getVariable ( "activity" );
 $coaches = $view->getVariable ( "monitors" );
 $booking = $view->getVariable ( "booking" );
+$spaces = $view->getVariable ( "spaces" );
 $errors = $view->getVariable ( "errors" );
 $view->setVariable ( "title", "Edit Current Activity" );
 ?>
@@ -117,17 +118,26 @@ $view->setVariable ( "title", "Edit Current Activity" );
 	<?php endif;?>
 
 	<!-- BOTÓN DEL DEPORTISTA PARA REALIZAR LA RESERVA -->
-	<?php if($_SESSION["deportista"] && $booking == NULL):?>
+	<?php if($_SESSION["deportista"] && $booking == 0 && $spaces == 0):?>
 		<div class="form-group">
 			<div class="col-sm-12">
 				<button id="btn-styles" type="submit" name="submit"
 				class="btn btn-success btn-lg"><?=i18n("To reserve")?></button>
 			</div>
 		</div>
-	<?php elseif($_SESSION["deportista"]):?>
+	<?php elseif($_SESSION["deportista"] && $booking == 0 && $spaces == 1):?>
+		<div class="form-group">
+			<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Number of places covered")?>
+			</label>
+			<div class="col-sm-8">
+				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back");?></button>
+			</div>
+		</div>
+	<?php elseif($_SESSION["deportista"] && $booking == 1):?>
 		<div class="form-group">
 			<div class="col-sm-12">
-				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
+				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back");?></button>
 			</div>
 		</div>
 	<?php endif;?>
