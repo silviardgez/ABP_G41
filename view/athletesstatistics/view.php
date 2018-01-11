@@ -15,10 +15,8 @@ require_once (__DIR__."/../../GoogChart.class.php");
 	<br>
 </div>
 
-<div class="col-md-4"></div>
-	<div class="row features margin-rows">
-		<div class="col-md-4 col-sm-6 item">
-			<div class="exercise-tables-background">
+<div id="edit-view" class="center-block col-xs-6 col-lg-6">
+		<br>
 		<h1 id="font-title"><?=i18n("Athlete Statistics")?></h1>
 		<br>
 			<table id="table-margin" class="table">
@@ -45,7 +43,7 @@ require_once (__DIR__."/../../GoogChart.class.php");
 				<?php endforeach; ?>
 				</tbody>
 			</table>
-		</div>
+
 		
 		
 		
@@ -95,52 +93,13 @@ require_once (__DIR__."/../../GoogChart.class.php");
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	</div>
+<br/>
 	</div>
 	<div class="form-group">
-		<div class="col-lg-offset-6 col-lg-6">
-			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
+		<div class="col-sm-12">
+			<button id="btn-styles" type="button" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
 		</div>
 	</div>
-<div class="col-md-4"></div>
+
 
 

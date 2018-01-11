@@ -255,6 +255,11 @@ array(
 	"Time elapsed"=>"Tiempo transcurrido",
  	"End session" => "Terminar sesion",
  	"Start a new session" => "Iniciar una nueva sesión",
+	"Anual assistances"=>"Asistencias anuales",
+	"Month"=>"Mes",
+	"Watch"=>"Consultar",
+	"Session duration"=>"Duración de la sesión",
+	"Minutes"=>"Minutos",
 	""=>"",
 )
 ?>
