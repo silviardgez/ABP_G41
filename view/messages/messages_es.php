@@ -37,6 +37,7 @@ array(
 	"Send notification" => "Enviar notificación",
 	"Activities" => "Actividades",
 	"Fitness" => "Fitness",
+	"Number of places covered" => "Número de plazas cubierto",
 	"Reservations" => "Reservas",
 	"Assistance" => "Asistencia",
 	"Exercises" => "Ejercicios",
@@ -248,8 +249,6 @@ array(
 	"Restart"=>"Reiniciar",
 	"Pause"=>"Pausa",
 	"Resume"=>"Reanudar",
-	"Time elapsed"=>"Tiempo transcurrido",
-	"End session" => "Terminar sesion",
-	"Start a new session" => "Iniciar una nueva sesión"
+	""=>"",
 )
 ?>
