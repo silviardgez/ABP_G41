@@ -33,7 +33,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 		value="<?=$activity->getActivityId()?>">
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?>
+				<?=i18n("Name")?>:<b class="aviso-vacio"><?= isset($errors["name"])?i18n($errors["name"]):"" ?></b>
 			</label>
 			<div class="col-sm-8">
 				<input class="form-control" type="text" name="name"
@@ -42,7 +42,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Start")?>:<?= isset($errors["startTime"])?i18n($errors["startTime"]):"" ?>
+				<?=i18n("Start")?>:<b class="aviso-vacio"><?= isset($errors["startTime"])?i18n($errors["startTime"]):"" ?></b>
 			</label>
 			<div class="col-sm-8">
 				<input class="form-control" type="time" name="startTime"
@@ -51,7 +51,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("End")?>:<?= isset($errors["endTime"])?i18n($errors["endTime"]):"" ?>
+				<?=i18n("End")?>:<b class="aviso-vacio"><?= isset($errors["endTime"])?i18n($errors["endTime"]):"" ?></b>
 			</label>
 			<div class="col-sm-8">
 				<input class="form-control" type="time" name="endTime"
@@ -60,7 +60,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Day")?>:<?= isset($errors["day"])?i18n($errors["day"]):"" ?>
+				<?=i18n("Day<b class="aviso-vacio"> isset($errors["day"])?i18n($errors["day"]):"" ?></b>
 			</label>
 			<div class="col-sm-8">
 				<select class="form-control" name="day" <?php if($_SESSION["deportista"]):?> readonly onmouseover="this.disabled=true;" onmouseout="this.disabled=false;" <?php endif;?>>
@@ -77,7 +77,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 		</div>
 		<div class="form-group">
 			<label class="control-label text-size text-muted col-sm-4">
-				<?=i18n("Monitor")?>:<?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?>
+				<?=i18n("Monitor")?>:<b class="aviso-vacio"><?= isset($errors["monitor"])?i18n($errors["monitor"]):"" ?></b>
 			</label>
 			<div class="col-sm-8">
 				<select class="form-control" name="monitor" <?php if($_SESSION["deportista"]):?> readonly onmouseover="this.disabled=true;" onmouseout="this.disabled=false;" <?php endif;?>>
