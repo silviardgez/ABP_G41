@@ -259,5 +259,11 @@ array(
 	"You don't have assigned athletes"=>"No tienes deportistas asignados",
 	"Impossible to perform a session. You do not have assigned tables" => "Imposible realizar una sesión. No tienes tablas asignadas",
 	"Session in progress" => "Sesión en curso",
+	"Anual assistances"=>"Asistencias anuales",
+	"Month"=>"Mes",
+	"Watch"=>"Consultar",
+	"Session duration in minutes"=>"Duración de la sesión en minutos",
+	"Minutes"=>"Minutos",
+	""=>"",
 )
 ?>

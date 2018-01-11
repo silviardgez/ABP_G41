@@ -15,10 +15,8 @@ require_once (__DIR__."/../../GoogChart.class.php");
 	<br>
 </div>
 
-<div class="col-md-4"></div>
-	<div class="row features margin-rows">
-		<div class="col-md-4 col-sm-6 item">
-			<div class="exercise-tables-background">
+<div id="edit-view" class="center-block col-xs-6 col-lg-6">
+		<br>
 		<h1 id="font-title"><?=i18n("Athlete Statistics")?></h1>
 		<br>
 			<table id="table-margin" class="table">
@@ -45,102 +43,65 @@ require_once (__DIR__."/../../GoogChart.class.php");
 				<?php endforeach; ?>
 				</tbody>
 			</table>
-		</div>
+
 		
 		
 		
 		
 		<!--Load the AJAX API-->
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		<script type="text/javascript">
-
-		  // Load the Visualization API and the corechart package.
-		  google.charts.load('current', {'packages':['corechart']});
-
-		  // Set a callback to run when the Google Visualization API is loaded.
-		  google.charts.setOnLoadCallback(drawChart);
-
-		  // Callback that creates and populates a data table,
-		  // instantiates the pie chart, passes in the data and
-		  // draws it.
-		  function drawChart() {
-
-			// Create the data table.
-			var data = new google.visualization.DataTable();
-			data.addColumn('string', 'Topping');
-			data.addColumn('number', '<?=i18n("Minutes")?>');
-			data.addRows([
-				 <?php for($i = 0; $i < count($datos); $i++): ?> 
+			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "<?=i18n("Minutes")?>", { role: "style" } ],
+		<?php for($i = 0; $i < count($datos); $i++): ?> 
 					<?php
 						list($horas, $minutos, $segundos) = explode(':', $datos[$i]['D']);
 						$tiempo = ($horas * 60 ) + ($minutos) + ($segundos/60);
+					
+						$dia = $datos[$i]['F'];
+					
 					?>
-					['<?=$datos[$i]['F']?>', <?=$tiempo?>],
+					
+					['<?=$dia?>', <?=$tiempo?>, "silver"],
 				 
 				 <?php endfor;?>
-			  
-			]);
 
-			// Set chart options
-			var options = {'title':'<?=i18n("Session duration")?>',
-						   'width':600,
-						   'height':500};
+      ]);
 
-			// Instantiate and draw our chart, passing in some options.
-			var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-			chart.draw(data, options);
-		  }
-		</script>
-		<div id="chart_div"></div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "<?=i18n("Session duration in minutes")?>",
+        width: 1050,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+<div id="columnchart_values" style="width: 900px; height: 300px;"></div>
 		
 		
 		
 		
 	</div>
+
 	</div>
 	<div class="form-group">
-		<div class="col-lg-offset-6 col-lg-6">
-			<button type="button" onclick="history.back()"><?=i18n("OK")?></button>
+		<div class="col-sm-12">
+			<button id="btn-styles" type="button" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
 		</div>
 	</div>
-<div class="col-md-4"></div>
 
 
