@@ -124,7 +124,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 				class="btn btn-success btn-lg"><?=i18n("To reserve")?></button>
 			</div>
 		</div>
-	<?php else:?>
+	<?php elseif($_SESSION["deportista"]):?>
 		<div class="form-group">
 			<div class="col-sm-12">
 				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
