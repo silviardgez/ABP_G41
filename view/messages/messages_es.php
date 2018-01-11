@@ -34,6 +34,7 @@ array(
 	"Inbox" => "Bandeja de entrada",
 	"Sender" => "Remitente",
 	"Read" => "Leído",
+	"Activity" => "Actividad",
 	"Send notification" => "Enviar notificación",
 	"Activities" => "Actividades",
 	"Fitness" => "Fitness",
