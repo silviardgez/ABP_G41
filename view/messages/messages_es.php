@@ -250,6 +250,9 @@ array(
 	"Restart"=>"Reiniciar",
 	"Pause"=>"Pausa",
 	"Resume"=>"Reanudar",
+	"Time elapsed"=>"Tiempo transcurrido",
+ 	"End session" => "Terminar sesion",
+ 	"Start a new session" => "Iniciar una nueva sesión",
 	""=>"",
 )
 ?>
