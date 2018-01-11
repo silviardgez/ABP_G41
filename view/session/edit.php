@@ -71,7 +71,7 @@ $view->setVariable ( "title", "Edit Training" );
 						<?=i18n("Observations")?>:<?= isset($errors["observations"])?i18n($errors["observations"]):"" ?>
 				</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" name="observations" rows="4"><?=$session->getObservations()?></textarea>
+					<textarea class="form-control" name="observations" rows="6"><?=$session->getObservations()?></textarea>
 				</div>
 			</div>
 			<br>

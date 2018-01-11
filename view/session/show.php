@@ -48,13 +48,8 @@ $view->setVariable ( "title", "Show Sessions" );
 				<th id="center-text"><?=i18n("User")?></th>
 				<?php endif;?>
 				<th id="center-text"><?=i18n("Day")?></th>
-				<th id="center-text"><?=i18n("Start time")?></th>
-				<th id="center-text"><?=i18n("End time")?></th>
 				<th id="center-text"><?=i18n("Duration")?></th>
-				<th id="center-text"><?=i18n("Observations")?></th>
-				<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
 				<th id="center-text"><?=i18n("Actions")?></th>
-				<?php endif;?>
 			</tr>
 				<?php foreach ($sessions as $session): ?>
 						<tr>
@@ -63,14 +58,11 @@ $view->setVariable ( "title", "Show Sessions" );
 				<td id="center-text"><?php echo $session->getDNIUser(); ?></td>
 				<?php endif; ?>
 				<td id="center-text"><?php echo $session->getSessionDay(); ?></td>
-				<td id="center-text"><?php echo substr($session->getSessionHourIni(),0,5); ?></td>
-				<td id="center-text"><?php echo substr($session->getSessionHourFin(),0,5); ?></td>
 				<td id="center-text"><?php echo $session->getDuration(); ?></td>
-				<td id="center-text"><?php echo $session->getObservations(); ?></td>
-				<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
 				<td id="table-actions" class="icons">
 					<a href="index.php?controller=session&amp;action=view&amp;id=<?= $session->getSessionId()?>"><i
 						class="fa fa-search"></i></a>
+					<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
 					<a href="index.php?controller=session&amp;action=edit&amp;id=<?= $session->getSessionId()?>"><i
 						class="fa fa-pencil-square-o"></i></a>
 					<form method="POST"
@@ -85,8 +77,10 @@ $view->setVariable ( "title", "Show Sessions" );
 									document.getElementById('delete_session_<?= $session->getSessionId() ?>').submit()
 								}"><i class="fa fa-trash"></i></a>
 
-					</form></td>
-				<?php endif;?>
+					</form>
+					<?php endif;?>
+				</td>
+				
 			</tr>
 				<?php endforeach; ?>
 		</table>

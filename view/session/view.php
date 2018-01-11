@@ -23,10 +23,8 @@ $view->setVariable ( "title", "Edit Training" );
 						<?=i18n("Table")?>:<?= isset($errors["table"])?i18n($errors["table"]):"" ?>
 					</label> 
 				<div class="col-sm-8">
-					<select class="form-control" name="table">
-					<?php foreach ($tables as $id => $table): ?> 
-						<option value="<?=$id?>"><?= i18n("Table") . " " . $table?></option>
-					<?php endforeach; ?>
+					<select class="form-control" name="table" readonly>
+						<option value="<?=$id?>" readonly><?= i18n("Table") . " " . $session->getIdTable();?></option>
 					</select>
 				</div>
 			</div>
@@ -71,7 +69,7 @@ $view->setVariable ( "title", "Edit Training" );
 						<?=i18n("Observations")?>:<?= isset($errors["observations"])?i18n($errors["observations"]):"" ?>
 				</label>
 				<div class="col-sm-8">
-					<textarea class="form-control" name="observations" rows="4"><?=$session->getObservations()?></textarea>
+					<textarea class="form-control" name="observations" rows="6" readonly><?=$session->getObservations()?></textarea>
 				</div>
 			</div>
 			<br>

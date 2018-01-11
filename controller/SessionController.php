@@ -44,6 +44,8 @@ class SessionController extends BaseController {
 			if(isset($_GET["on"])){
 				$on = true;
 				$this->view->setVariable("on", $on);
+			} else {
+				unset($_SESSION["crono"]);
 			}
 		}
 		
@@ -91,8 +93,6 @@ class SessionController extends BaseController {
 		
 		if (isset($_POST["submit"])) {
 			$session->setIdClientTable($_POST["table"]);
-			$session->setSessionDay($_POST["date"]);
-			$session->setSessionHour($_POST["hours"]);
 			$session->setObservations($_POST["observations"]);
 			
 			try {
@@ -126,18 +126,13 @@ class SessionController extends BaseController {
 			throw new Exception("Not in session.");
 		}
 
-		if(!$_SESSION["deportista"]){
-		 	throw new Exception("You aren't an athlete. Edit a session requires be athlete");
+		if(!$_SESSION["deportista"] || !$_SESSION["entrenador"]){
+		 	throw new Exception("You aren't an athlete. View a session requires be athlete or coach");
 		}
 		
 		$dni = $this->sessionMapper->getUserById($_REQUEST["id"]);
-		if ($_SESSION["currentuser"] != $dni) {
-			throw new Exception("You aren't the user" . $dni . ".");
-		}
-		
 		$sessionId = $_REQUEST["id"];
 		$session = $this->sessionMapper->getSessionById($sessionId);
-		$tables = $this->sessionMapper->getTablesByUser($dni);
 		
 		
 		if ($session == NULL) {
@@ -145,7 +140,6 @@ class SessionController extends BaseController {
 		}
 		
 		$this->view->setVariable("session", $session);
-		$this->view->setVariable("tables", $tables);
 
 		$this->view->render("session", "view");
 	} 

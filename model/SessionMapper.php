@@ -8,7 +8,7 @@ class SessionMapper {
 	
 	// Muestra todas las sesiónes
 	public function showAllSessions($coach) {
-		$stmt = $this->db->prepare ( "SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T1.DNI_ENTRENADOR = ? ORDER BY T1.DNI_USUARIO, T2.FECHA DESC" );
+		$stmt = $this->db->prepare ( "SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T1.DNI_ENTRENADOR = ? ORDER BY T1.DNI_USUARIO, T1.ID_TABLA, T2.FECHA DESC, T2.HORA_INI DESC" );
 		$stmt->execute (array($coach));
 		$sessions_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		
@@ -22,7 +22,7 @@ class SessionMapper {
 	
 	// Muestra todas las sesiones de un cliente
 	public function showAllClientSessions($client) {
-		$stmt = $this->db->prepare ("SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T1.DNI_USUARIO = ? ORDER BY T2.FECHA DESC" );
+		$stmt = $this->db->prepare ("SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND T1.DNI_USUARIO = ? ORDER BY T1.ID_TABLA, T2.FECHA DESC, T2.HORA_INI DESC" );
 		$stmt->execute(array($client));
 		$sessions_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		
@@ -36,12 +36,12 @@ class SessionMapper {
 	
 	//Devuelve una sesión dado un id
 	public function getSessionById($id) {
-		$stmt = $this->db->prepare ( "SELECT * FROM SESION WHERE ID_SESION=?" );
+		$stmt = $this->db->prepare ( "SELECT * FROM ENGLOBA T1 JOIN SESION T2 WHERE T1.ID_ENGLOBA = T2.ID_ENGLOBA AND ID_SESION=?" );
 		$stmt->execute ( array ($id) );
 		$session = $stmt->fetch ( PDO::FETCH_ASSOC );
 		
 		if ($session != null) {
-			return new Session ($session ["ID_SESION"], $session ["FECHA"], $session ["HORA_INI"], $session ["HORA_FIN"], $session ["DURACION"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"]);
+			return new Session ($session ["ID_SESION"], $session ["FECHA"], $session ["HORA_INI"], $session ["HORA_FIN"], $session ["DURACION"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI_USUARIO"], $session["ID_TABLA"]);
 		} else {
 			return NULL;
 		}
@@ -77,11 +77,9 @@ class SessionMapper {
 	
 	//Edita una sesión
 	public function update(Session $session) {
-		$stmt = $this->db->prepare ("UPDATE SESION set ID_ENGLOBA=?, FECHA=?, HORA=?, OBSERVACIONES=? where ID_SESION=?");
+		$stmt = $this->db->prepare ("UPDATE SESION set ID_ENGLOBA=?, OBSERVACIONES=? where ID_SESION=?");
 		$stmt->execute ( array (
 				$session->getIdClientTable(),
-				$session->getSessionDay(),
-				$session->getSessionHour(),
 				$session->getObservations(),
 				$session->getSessionId() 
 		) );

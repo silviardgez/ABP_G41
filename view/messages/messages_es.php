@@ -253,7 +253,7 @@ array(
 	"Pause"=>"Pausa",
 	"Resume"=>"Reanudar",
 	"Time elapsed"=>"Tiempo transcurrido",
- 	"End session" => "Terminar sesion",
+ 	"End session" => "Terminar sesión",
  	"Start a new session" => "Iniciar una nueva sesión",
  	"You have not made any session yet" => "Aún no has realizado ninguna sesión",
 	"You don't have assigned athletes"=>"No tienes deportistas asignados",
