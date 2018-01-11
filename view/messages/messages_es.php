@@ -119,6 +119,7 @@ array(
 	"Activity \"%s\" successfully updated." => "Actividad \"%s\" actualizada correctamente.",
 	"Activity \"%s\" successfully deleted." => "Actividad \"%s\" eliminada correctamente.",
 	"Activity \"%s\" successfully added." => "Actividad \"%s\" añadida correctamente.",
+	"The booking demanded can not be added because the maximum number of seats is covered." => "La reserva no se puede añadir porque el número máximo de plazas está cubierto.",
 	"Notification \"%s\" successfully deleted." => "Notificación \"%s\" eliminada correctamente.",
 	"An email was sent to \"%s\"." => "Un email fue enviado a \"%s\".",
 	"MONDAY" => "LUNES",
