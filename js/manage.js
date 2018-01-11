@@ -153,7 +153,7 @@ function terminarSesion() {
 	var finSesion = new Date();
 	var horaFin = LeadingZero(finSesion.getUTCHours())+":"+LeadingZero(finSesion.getUTCMinutes())+":"+LeadingZero(finSesion.getUTCSeconds());
 	var duration = $('#crono').text();
-	var dia = inicioSesion.getUTCFullYear() + "-" + inicioSesion.getUTCMonth() + "-" + inicioSesion.getUTCDate();
+	var dia = inicioSesion.getUTCFullYear() + "-" + LeadingZero(inicioSesion.getUTCMonth()+1) + "-" + inicioSesion.getUTCDate();
 
 	//Se vacía el localStorage
 	localStorage.clear();

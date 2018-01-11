@@ -247,7 +247,6 @@ array(
 	"End time"=>"Hora de fin",
 	"Restart"=>"Reiniciar",
 	"Pause"=>"Pausa",
-	"Start"=>"Empezar",
 	"Resume"=>"Reanudar",
 	""=>"",
 )
