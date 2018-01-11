@@ -8,7 +8,7 @@ $view->setVariable ( "title", "Show Sessions" );
 ?>
 <div>
 	<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
-	<h1 id="bigger-size" class="stroke"><?=i18n("Sessions of the user: ") . $sessions[0]->getDNIUser(); ?></h1>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Sessions of the user: ") . $_SESSION["currentuser"]; ?></h1>
 	<?php if($_SESSION["entrenador"] && $_SESSION["deportista"]): ?>
 	<a id="link-view" href="index.php?controller=session&amp;action=show&amp;entrena=true"><?= i18n("Go to: Coach View")?></a>
 	<?php endif;?>
