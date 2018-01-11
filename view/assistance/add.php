@@ -49,14 +49,14 @@ $view->setVariable("title", "Add Assistance");
 
 				<br>
 				<div class="form-group">
-					<label class="control-label text-size text-muted col-sm-4"><?=i18n("Date")?> <?= isset($errors["dateassistance"])?i18n($errors["dateassistance"]):"" ?></label>
+					<label class="control-label text-size text-muted col-sm-4"><?=i18n("Date")?> <b class="aviso-vacio"><?= isset($errors["dateassistance"])?i18n($errors["dateassistance"]):"" ?></b></label>
 					<div class="col-lg-6">
 					 <input class="form-control" type="date" id="" name="fecha"><br/><br/>
 				 	</div>
 				</div>
 
 			 <div class="form-group">
-					<label class="control-label text-size text-muted col-sm-4"><?=i18n("Time")?><?= isset($errors["timeassistance"])?i18n($errors["timeassistance"]):"" ?></label>
+					<label class="control-label text-size text-muted col-sm-4"><?=i18n("Time")?><b class="aviso-vacio"><?= isset($errors["timeassistance"])?i18n($errors["timeassistance"]):"" ?></b></label>
 					<div class="col-lg-6">
 						<input class="form-control" type="time" id="hora" name="hora" value="<?= $assistance->getTime(); ?>"><br/><br/>
 					</div>
