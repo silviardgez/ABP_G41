@@ -23,7 +23,7 @@ $view->setVariable("title", "Edit Exercise");
 		</div>
 	</div>
 	<br><div class="form-group">
-		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<b class="aviso-vacio"><?= isset($errors["name"])?i18n($errors["name"]):"" ?></b></label>
 		<div class="col-lg-7">
 			<input class="form-control" type="text" name="nombre" value="<?=$exercise->getName()?>">
 		</div>
