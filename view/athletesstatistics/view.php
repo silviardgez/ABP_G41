@@ -81,7 +81,7 @@ require_once (__DIR__."/../../GoogChart.class.php");
 
       var options = {
         title: "<?=i18n("Session duration in minutes")?>",
-        width: 1050,
+        width: 700,
         height: 300,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },

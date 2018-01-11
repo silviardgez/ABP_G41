@@ -81,7 +81,7 @@ require_once (__DIR__."/../../GoogChart.class.php");
 
 		  var options = {
 			title: "<?=i18n("Anual assistances")?>",
-			width: 1200,
+			width: 850,
 			height: 300,
 			legend: { position: "none" },
 		  };
