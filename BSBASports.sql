@@ -92,7 +92,7 @@ CREATE TABLE `ENGLOBA` (
   `ID_ENGLOBA` int(10) UNSIGNED NOT NULL,
   `ID_TABLA` int(11) UNSIGNED NOT NULL,
   `DNI_USUARIO` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
-  `DNI_ENTRENADOR` varchar(9) COLLATE latin1_spanish_ci 
+  `DNI_ENTRENADOR` varchar(9) COLLATE latin1_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -176,7 +176,12 @@ CREATE TABLE `TLF_USUARIO` (
 --
 
 INSERT INTO `TLF_USUARIO` (`DNI`, `TELEFONO`) VALUES
-('12345678Z', '633801916');
+('12345678Z', '633801916'),
+('11111111H', '657154511'),
+('12345670Y', '693524875'),
+('12345679S', '988274516'),
+('22222222J', '988714830'),
+('33333333P', '611872654');
 
 -- --------------------------------------------------------
 
@@ -329,7 +334,7 @@ ALTER TABLE `AULAS`
 --
 -- INSERTS
 --
-INSERT INTO `AULAS` (`ID_AULA`, `NOMBRE_AULA`) VALUES 
+INSERT INTO `AULAS` (`ID_AULA`, `NOMBRE_AULA`) VALUES
 (1, 'SALA 1'),
 (2, 'SALA 2'),
 (3, 'SALA 3'),
@@ -1090,35 +1095,35 @@ ALTER TABLE `SESION`
  (1,"Realizada correctamente", "2017-01-18","18:00","19:00","00:45:00"),
  (1,"Realizada correctamente", "2017-01-19","18:00","19:00","00:36:00"),
  (1,"Realizadas más repeticiones en los ejercicios musculares.", "2017-01-21","18:00","19:30","01:20:00"),
- 
+
  (2,"No se pudo terminar", "2017-01-10","19:00","21:00","01:12:00"),
  (2,"Realizada correctamente", "2017-01-09","18:00","19:00","00:55:00"),
  (2,"Realizadas más repeticiones en los ejercicios musculares.", "2017-01-11","18:00","19:30","01:00:00"),
  (2,"Realizada correctamente", "2017-01-18","18:00","19:00","00:55:00"),
  (2,"Realizada correctamente", "2017-01-19","18:00","19:00","00:56:00"),
  (2,"Realizadas más repeticiones en los ejercicios musculares.", "2017-01-21","18:00","19:30","01:05:00"),
- 
+
  (3,"Realizada correctamente", "2017-01-08","18:00","18:45","01:00:00"),
  (3,"No se pudo terminar", "2017-01-10","19:00","21:00","01:12:00"),
  (3,"Realizada correctamente", "2017-01-09","18:00","19:00","00:55:00"),
  (3,"Realizadas más repeticiones en los ejercicios musculares.", "2017-01-11","18:00","19:30","01:00:00"),
  (3,"Realizada correctamente", "2017-01-18","18:00","19:00","00:55:00"),
  (3,"Realizada correctamente", "2017-01-19","18:00","19:00","00:56:00"),
- 
+
  (4,"Realizada correctamente", "2017-01-10","19:00","20:12","01:12:00"),
  (4,"No se pudo terminar", "2017-01-10","19:00","21:00","01:12:00"),
  (4,"Realizada correctamente", "2017-01-09","18:00","19:00","00:55:00"),
  (4,"Realizadas más repeticiones en los ejercicios musculares.", "2017-01-11","18:00","19:30","01:00:00"),
  (4,"Realizada correctamente", "2017-01-18","18:00","19:00","00:55:00"),
  (4,"Realizada correctamente", "2017-01-19","18:00","19:00","00:56:00"),
- 
+
  (5,"Interrumpida por problemas personales", "2017-01-11","10:00","10:30","00:17:00"),
  (5,"No se pudo terminar", "2017-01-10","19:00","21:00","01:12:00"),
  (5,"Realizada correctamente", "2017-01-09","18:00","19:00","00:55:00"),
  (5,"Realizadas más repeticiones en los ejercicios musculares.", "2017-01-11","18:00","19:30","01:00:00"),
  (5,"Realizada correctamente", "2017-01-18","18:00","19:00","00:55:00"),
  (5,"Realizada correctamente", "2017-01-19","18:00","19:00","00:56:00"),
- 
+
  (6,"Realizada correctamente", "2017-01-08","12:00","13:00","00:57:38"),
  (6,"No se pudo terminar", "2017-01-10","19:00","21:00","01:12:00"),
  (6,"Realizada correctamente", "2017-01-09","18:00","19:00","00:55:00"),
