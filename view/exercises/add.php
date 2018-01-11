@@ -15,7 +15,7 @@ $errors = $view->getVariable("errors");
 <div id="edit-view" class="center-block col-xs-6 col-lg-4">
 <form action="index.php?controller=exercises&amp;action=add" method="POST" class="center-block form-horizontal" >
 	<br><div class="form-group">
-		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<?= isset($errors["name"])?i18n($errors["name"]):"" ?></label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<b class="aviso-vacio"><?= isset($errors["name"])?i18n($errors["name"]):"" ?></b></label>
 		<div class="col-lg-7">
 			<input class="form-control" type="text" name="name">
 		</div>
@@ -31,7 +31,7 @@ $errors = $view->getVariable("errors");
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:<?= isset($errors["description"])?i18n($errors["description"]):"" ?></label>
+		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:<b class="aviso-vacio"><?= isset($errors["description"])?i18n($errors["description"]):"" ?></b></label>
 		<div class="col-lg-7">
 			<textarea class="form-control" type="text" rows="20" cols="20" name="description"></textarea>
 		</div>
