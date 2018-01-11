@@ -76,7 +76,7 @@ $activities = $view->getVariable("activities");
 									<td><?=i18n("Not confirmed")?></td>
 									<td class="icons">
 										<a href="index.php?controller=book&action=changeConfirmedStatus&idAct=<?= $book['idAct'] ?>&idAthl=<?= $book['idAthl'] ?>&status=1">
-											<i class="fa fa-check-square-o col-md-3"></i></a>
+											<i class="fa fa-check-square-o col-md-3" onclick="return confirm('<?=i18n("are you sure?")?>')"></i></a>
 										<form method="POST" action="index.php?controller=book&amp;action=delete" id="delete_book_<?=$book['idAct']?>-<?=$book['idAthl']?>" style="display: inline">
 											<input type="hidden" name="ids" value="<?=$book['idAct']?>-<?=$book['idAthl']?>">
 											<a onclick="if (confirm('<?= i18n("are you sure?")?>')) {document.getElementById('delete_book_<?=$book['idAct']?>-<?=$book['idAthl']?>').submit()}"><i class="fa fa-trash col-md-6"></i></a>
