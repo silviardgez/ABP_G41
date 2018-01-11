@@ -6,6 +6,8 @@ require_once(__DIR__."/../core/I18n.php");
 require_once(__DIR__."/../model/Activity.php");
 require_once(__DIR__."/../model/ActivityMapper.php");
 require_once(__DIR__."/../model/UserMapper.php");
+require_once(__DIR__."/../model/BookMapper.php");
+require_once(__DIR__."/../model/Book.php");
 
 require_once(__DIR__."/../controller/BaseController.php");
 
@@ -20,6 +22,7 @@ class ActivityController extends BaseController {
 
 		$this->activityMapper = new ActivityMapper();
 		$this->userMapper = new UserMapper();
+		$this->bookMapper = new BookMapper();
 
 		$this->view->setLayout("welcome");
 	}
@@ -123,18 +126,18 @@ class ActivityController extends BaseController {
 			}
 		}
 
-		if (isset($_POST["submit"])) { 
+		if (isset($_POST["submit"])) {
 			$activities = $_POST["activities"];
-			
+
 			$tmp = stripslashes($activities);
 			$tmp = urldecode($tmp);
-			$tmp = unserialize($tmp); 
+			$tmp = unserialize($tmp);
 
 			foreach ($tmp as $activity) {
 				$activity->setActivityName($_POST["name"]);
 				$activity->setColor($_POST["color"]);
 				try {
-					
+
 					$this->activityMapper->update($activity);
 
 				} catch(ValidationException $ex) {
@@ -162,7 +165,10 @@ class ActivityController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Editing user requires login");
 		}
-		
+
+		if(!$_SESSION["deportista"]){
+			throw new Exception("You aren't an athlete. Booking an activity requires be athlete.");
+		}
 
 		// Get the User object from the database
 		$activityId = $_REQUEST["id"];
@@ -172,9 +178,10 @@ class ActivityController extends BaseController {
 			throw new Exception("no such activity with id: ". $activityId);
 		}
 
+		$booking = $this->bookMapper->findBookByIdAct($activityId);
 		$monitors = $this->userMapper->getCoaches();
 
-		if (isset($_POST["submit"])) { 
+		if (isset($_POST["submit"])) {
 			$activity->setStartTime($_POST["startTime"]);
 			$activity->setEndTime($_POST["endTime"]);
 			$activity->setDay($_POST["day"]);
@@ -196,6 +203,7 @@ class ActivityController extends BaseController {
 			}
 		}
 
+		$this->view->setVariable("booking", $booking);
 		$this->view->setVariable("activity", $activity);
 		$this->view->setVariable("monitors", $monitors);
 
@@ -222,7 +230,7 @@ class ActivityController extends BaseController {
 		$monitors = $this->userMapper->getCoaches();
 		$aulas = $this->activityMapper->getAulas();
 
-		if(isset($_POST["submit"])) { 
+		if(isset($_POST["submit"])) {
 
 			$activity->setActivityName($_POST["name"]);
 			$activity->setStartTime($_POST["startTime"]);
