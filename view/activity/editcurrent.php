@@ -117,7 +117,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 	<?php endif;?>
 
 	<!-- BOTÓN DEL DEPORTISTA PARA REALIZAR LA RESERVA -->
-	<?php if($_SESSION["deportista"] && $booking->getConfirmed() == NULL):?>
+	<?php if($_SESSION["deportista"] && $booking == NULL):?>
 		<div class="form-group">
 			<div class="col-sm-12">
 				<button id="btn-styles" type="submit" name="submit"
