@@ -173,7 +173,8 @@ class ActivityController extends BaseController {
 			throw new Exception("no such activity with id: ". $activityId);
 		}
 
-		$booking = $this->bookMapper->findBookByIdAct($activityId);
+		$booking = $this->bookMapper->findBook($activityId, $this->currentUser->getUsername());
+		$spaces = $this->bookMapper->availableSpaces($activityId);
 		$monitors = $this->userMapper->getCoaches();
 
 		if (isset($_POST["submit"])) {
@@ -199,6 +200,7 @@ class ActivityController extends BaseController {
 		}
 
 		$this->view->setVariable("booking", $booking);
+		$this->view->setVariable("spaces", $spaces);
 		$this->view->setVariable("activity", $activity);
 		$this->view->setVariable("monitors", $monitors);
 
