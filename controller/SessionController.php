@@ -31,6 +31,7 @@ class SessionController extends BaseController {
 		//Cambios a la vista de entrenador
 		if($_SESSION["deportista"] && !isset($_REQUEST["entrena"])){
 			$sessions = $this->sessionMapper->showAllClientSessions($_SESSION["currentuser"]);
+			$tables = $this->sessionMapper->getTablesByUser($_SESSION["currentuser"]);
 		} else if(isset($_REQUEST["entrena"]) && $_REQUEST["entrena"] == "true" && $_SESSION["entrenador"]){
 			$sessions = $this->sessionMapper->showAllSessions($_SESSION["currentuser"]);
 		} else if($_SESSION["entrenador"] && !$_SESSION["deportista"]){
@@ -42,6 +43,10 @@ class SessionController extends BaseController {
 		
 		// put the users object to the view
 		$this->view->setVariable("sessions", $sessions);
+
+		if(isset($tables)) {
+			$this->view->setVariable("tables", $tables);
+		}
 		
 		//Si el crono está iniciado no se pueden ver las otras sesiones
 		if(isset($_SESSION["crono"])){

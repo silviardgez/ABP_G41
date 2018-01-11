@@ -12,7 +12,7 @@ class BookMapper{
 
 
   public function showAllBooks(){
-    $stmt = $this->db->prepare("SELECT * FROM RESERVA ORDER DESC BY FECHA, HORA");
+    $stmt = $this->db->prepare("SELECT * FROM RESERVA ORDER BY FECHA DESC, HORA DESC");
     $stmt->execute();
     $books_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

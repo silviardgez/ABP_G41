@@ -19,6 +19,12 @@ body {
 	margin-top: 10px;
 }
 
+.aviso-vacio {
+	text-align: center;
+	color: #ee3232;
+	margin-top: 6px;
+}
+
 .dropdown-submenu {
 	position: relative;
 }
@@ -31,7 +37,7 @@ body {
 
 .exercise-tables-background {
 	background: white;
-	border-radius: 2%;
+	border-radius: 7px;
 	padding: 15px;
 	margin-bottom: 3%;
 }
@@ -97,6 +103,10 @@ body {
 
 #bigger-size {
 	font-size: 42px;
+}
+
+#table-actions {
+	min-width: 120px;
 }
 
 .text-size {

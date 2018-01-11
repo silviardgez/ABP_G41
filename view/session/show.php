@@ -4,7 +4,10 @@ $view = ViewManager::getInstance ();
 
 $sessions = $view->getVariable ( "sessions" );
 
+$tables = $view->getVariable( "tables" );
+
 $view->setVariable ( "title", "Show Sessions" );
+
 ?>
 <div>
 	<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
@@ -19,7 +22,7 @@ $view->setVariable ( "title", "Show Sessions" );
 	<?php endif;?>
 	<?php endif;?>
 	<br>
-	<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
+	<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"] && $tables != null):?>
 	<div id="center-view">
 		<a href="index.php?controller=session&amp;action=crono" id="btn-session" class="center-block btn btn-success btn-lg" role="button"><b><?= i18n("Start a new session");?>
 		</b></a>
@@ -28,6 +31,7 @@ $view->setVariable ( "title", "Show Sessions" );
 	<?php endif;?>
 </div>
 
+<?php if($sessions != null):?>
 <div class="container-fluid">
 <div id="center-view" class="center-block col-xs-11 col-sd-9 col-md-7">
 	<div class="width-session exercise-tables-background">
@@ -48,8 +52,7 @@ $view->setVariable ( "title", "Show Sessions" );
 			</tr>
 				<?php foreach ($sessions as $session): ?>
 						<tr>
-				<td id="center-text"><a href="index.php?controller=table&amp;action=view"
-					style="color: #669"><strong><?= i18n("Table") . " " . $session->getIdTable() ?></strong></a></td>
+				<td id="center-text"><strong><?= i18n("Table") . " " . $session->getIdTable() ?></strong></td>
 				<?php if(isset($_REQUEST["entrena"]) || ($_SESSION["entrenador"] && !$_SESSION["deportista"])):?>
 				<td id="center-text"><?php echo $session->getDNIUser(); ?></td>
 				<?php endif; ?>
@@ -59,8 +62,10 @@ $view->setVariable ( "title", "Show Sessions" );
 				<td id="center-text"><?php echo $session->getDuration(); ?></td>
 				<td id="center-text"><?php echo $session->getObservations(); ?></td>
 				<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
-				<td class="icons"><a
-					href="index.php?controller=session&amp;action=edit&amp;id=<?= $session->getSessionId()?>"><i
+				<td id="table-actions" class="icons">
+					<a href="index.php?controller=table&amp;action=view&amp;id=<?= $session->getSessionId()?>"><i
+						class="fa fa-search"></i></a>
+					<a href="index.php?controller=session&amp;action=edit&amp;id=<?= $session->getSessionId()?>"><i
 						class="fa fa-pencil-square-o"></i></a>
 					<form method="POST"
 						action="index.php?controller=session&amp;action=delete"
@@ -82,4 +87,18 @@ $view->setVariable ( "title", "Show Sessions" );
 	</div>
 </div>
 </div>
+</br>
+<?php else: ?>
+	<div id="center-view" class="center-block exercise-tables-background col-xs-9 col-sm-6 col-md-4">
+		<?php if($_SESSION["deportista"] && !isset($_REQUEST["entrena"])): ?>
+			<?php if($tables == null): ?>
+				<h4 class="aviso-vacio"><b><?= i18n("Impossible to perform a session. You do not have assigned tables");?></b></h4>
+				<br/>
+			<?php endif; ?>
+			<h4 class="aviso-vacio"><b><?= i18n("You have not made any session yet");?></b></h4>
+		<?php elseif ($_SESSION["entrenador"]): ?>
+			<h4 class="aviso-vacio"><b><?= i18n("You don't have assigned athletes");?></b></h4>
+		<?php endif; ?>
+	</div>
+<?php endif; ?>
 

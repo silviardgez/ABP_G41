@@ -241,8 +241,8 @@ array(
 	"May"=>"Mayo",
 	"June"=>"Junio",
 	"July"=>"Julio",
-	"Agoust"=>"Agosto",
-	"September"=>"Sptiembre",
+	"August"=>"Agosto",
+	"September"=>"Septiembre",
 	"October"=>"Octubre",
 	"November"=>"Noviembre",
 	"December"=>"Diciembre",
@@ -255,6 +255,8 @@ array(
 	"Time elapsed"=>"Tiempo transcurrido",
  	"End session" => "Terminar sesion",
  	"Start a new session" => "Iniciar una nueva sesión",
-	""=>"",
+ 	"You have not made any session yet" => "Aún no has realizado ninguna sesión",
+	"You don't have assigned athletes"=>"No tienes deportistas asignados",
+	"Impossible to perform a session. You do not have assigned tables" => "Imposible realizar una sesión. No tienes tablas asignadas",
 )
 ?>
