@@ -120,10 +120,14 @@ $view->setVariable ( "title", "Edit Current Activity" );
 	<!-- BOTÓN DEL DEPORTISTA PARA REALIZAR LA RESERVA -->
 	<?php if($_SESSION["deportista"] && $booking == 0 && $spaces == 0):?>
 		<div class="form-group">
-			<div class="col-sm-12">
-				<button id="btn-styles" type="submit" name="submit"
+			<div class="col-sm-6">
+				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back");?></button>
+			</div>
+			<div class="col-sm-6">
+				<button id="confirm btn-styles" type="submit" name="submit"
 				class="btn btn-success btn-lg"><?=i18n("To reserve")?></button>
 			</div>
+
 		</div>
 	<?php elseif($_SESSION["deportista"] && $booking == 0 && $spaces == 1):?>
 		<div class="form-group">
@@ -136,7 +140,10 @@ $view->setVariable ( "title", "Edit Current Activity" );
 		</div>
 	<?php elseif($_SESSION["deportista"] && $booking == 1):?>
 		<div class="form-group">
-			<div class="col-sm-12">
+			<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Booking already made")?>
+			</label>
+			<div class="col-sm-8">
 				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back");?></button>
 			</div>
 		</div>
