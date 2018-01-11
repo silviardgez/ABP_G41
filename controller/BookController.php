@@ -130,12 +130,16 @@ class BookController extends BaseController {
 		$status = $_GET['status'];
 
 		$current_book = $this->bookMapper->findBookByIds($idAct,$idAthl);
+		$space = $this->bookMapper->availableSpaces($idAct);
 
 
-		if($current_book != null){
+		if($current_book != null && $space == 0){
 			$current_book->setConfirmed($status);
 			$this->bookMapper->update($current_book);
-		}else{
+		}else if($current_book != null && $space == 1){
+			$this->view->setFlash(sprintf(i18n("The booking demanded can not be added because the maximum number of seats is covered.")));
+		}
+		else{
 			throw new Exception("Impossible to change status because it doesn't exist the book demanded");
 		}
 
