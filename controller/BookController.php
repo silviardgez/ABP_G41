@@ -34,7 +34,7 @@ class BookController extends BaseController {
 			throw new Exception("Not in session. Show sesions requires login");
 		}
 
-		if($this->userMapper->findType() != "admin"){
+		if($this->userMapper->isAdmin() != true){
 			throw new Exception("You aren't an admin. See all books requires be admin");
 		}
 
@@ -82,8 +82,8 @@ class BookController extends BaseController {
 			throw new Exception("Not in session. Show sesions requires login");
 		}
 
-		if($this->userMapper->findType() != "deportista"){
-			throw new Exception("You aren't an admin. See all books requires be athlete");
+		if($this->userMapper->isAthlete() != true){
+			throw new Exception("You aren't an athlete. See all books requires be athlete");
 		}
 
 		$dni = $this->currentUser->getUsername();
@@ -121,7 +121,7 @@ class BookController extends BaseController {
 			throw new Exception("Not in session. Show sesions requires login");
 		}
 
-		if($this->userMapper->findType() != "admin"){
+		if($this->userMapper->isAdmin() != true){
 			throw new Exception("You aren't an admin. See all books requires be admin");
 		}
 
@@ -151,8 +151,8 @@ class BookController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Adding sesions requires login");
 		}
-		if($this->userMapper->findType() != "deportista"){
-			throw new Exception("You aren't an admin. See all books requires be athlete");
+		if($this->userMapper->isAthlete() != true){
+			throw new Exception("You aren't an athlete. See all books requires be athlete");
 		}
 
 
@@ -193,7 +193,7 @@ class BookController extends BaseController {
 			if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Deleting activity requires login");
 		}
-		if($this->userMapper->findType() != "admin"){
+		if($this->userMapper->isAdmin() != true){
 			throw new Exception("You aren't an admin. See all books requires be admin");
 		}
 
