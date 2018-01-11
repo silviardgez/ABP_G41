@@ -31,7 +31,7 @@ $errors = $view->getVariable ( "errors" );
 	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Date Born")?>:<?= isset($errors["dateborn"])?i18n($errors["dateborn"]):"" ?></label>
 		<div class="col-sm-8">
-			<input class="form-control" type="text" id="datepicker"
+			<input type="date" id="date" class="form-control"
 			name="fechaNac">
 		</div>
 	</div>
