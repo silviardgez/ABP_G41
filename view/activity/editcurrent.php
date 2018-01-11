@@ -124,8 +124,8 @@ $view->setVariable ( "title", "Edit Current Activity" );
 				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back");?></button>
 			</div>
 			<div class="col-sm-6">
-				<button id="confirm btn-styles" type="submit" name="submit"
-				class="btn btn-success btn-lg"><?=i18n("To reserve")?></button>
+				<input id="confirm btn-styles" type="submit" name="submit"
+				class="btn btn-success btn-lg" value='<?=i18n("To reserve")?>' onclick="return confirm('<?=i18n("are you sure?")?>')">
 			</div>
 
 		</div>
