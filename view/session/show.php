@@ -30,12 +30,13 @@ $view->setVariable ( "title", "Show Sessions" );
 
 
 <div id="cronometro">
-  <div id="crono">
+  <h2 id="crono">
 	  00:00:00
-	</div>
+	</h2>
 
     <input type="button" class="btn btn-success" value="Empezar" id="boton" onclick="empezarDetener(this);"  />
-    <input type="button" class="btn btn-danger" value="Parar" name="boton2"  /><br/>
+    <input type="button" class="btn btn-warning" value="Pausar" id="boton3" disabled="disabled" onclick="continuarPausar(this);" /><br/>
+    <input type="button" class="btn btn-danger" value="Terminar sesión" id="boton2" onclick="terminarSesion(this);" /><br/>
 
 </div>
 
@@ -50,7 +51,9 @@ $view->setVariable ( "title", "Show Sessions" );
 				<th id="center-text"><?=i18n("User")?></th>
 				<?php endif;?>
 				<th id="center-text"><?=i18n("Day")?></th>
-				<th id="center-text"><?=i18n("Hour")?></th>
+				<th id="center-text"><?=i18n("Start time")?></th>
+				<th id="center-text"><?=i18n("End time")?></th>
+				<th id="center-text"><?=i18n("Duration")?></th>
 				<th id="center-text"><?=i18n("Observations")?></th>
 				<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
 				<th id="center-text"><?=i18n("Actions")?></th>
@@ -64,7 +67,9 @@ $view->setVariable ( "title", "Show Sessions" );
 				<td id="center-text"><?php echo $session->getDNIUser(); ?></td>
 				<?php endif; ?>
 				<td id="center-text"><?php echo $session->getSessionDay(); ?></td>
-				<td id="center-text"><?php echo substr($session->getSessionHour(),0,5); ?></td>
+				<td id="center-text"><?php echo substr($session->getSessionHourIni(),0,5); ?></td>
+				<td id="center-text"><?php echo substr($session->getSessionHourFin(),0,5); ?></td>
+				<td id="center-text"><?php echo $session->getDuration(); ?></td>
 				<td id="center-text"><?php echo $session->getObservations(); ?></td>
 				<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
 				<td class="icons"><a

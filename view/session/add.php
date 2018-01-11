@@ -7,7 +7,7 @@ $session = $view->getVariable ( "session" );
 $tables = $view->getVariable ( "tables" );
 $errors = $view->getVariable ( "errors" );
 
-$view->setVariable ( "title", "Edit Training" );
+$view->setVariable ( "title", "Add Session" );
 
 ?>
 
@@ -18,6 +18,11 @@ $view->setVariable ( "title", "Edit Training" );
 		<form id="edit-form" class="center-block form-horizontal"
 			action="index.php?controller=session&amp;action=add" method="POST">
 			<input type="hidden" name="id" value="<?=$session->getSessionId()?>" readonly>
+			<input type="hidden" name="startTime" value="<?=$_POST["startTime"]?>" readonly>
+			<input type="hidden" name="endTime" value="<?=$_POST["endTime"]?>" readonly>
+			<input type="hidden" name="day" value="<?=$_POST["day"]?>" readonly>
+			<input type="hidden" name="duration" value="<?=$_POST["duration"]?>" readonly>
+
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
 						<?=i18n("Table")?>:
@@ -28,22 +33,6 @@ $view->setVariable ( "title", "Edit Training" );
 							<option value="<?=$id?>"><?= i18n("Table") . " " . $table?></option>
 					<?php endforeach; ?>
 					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label text-size text-muted col-sm-4">
-						<?=i18n("Date")?>:
-				</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="date" name="date" >
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label text-size text-muted col-sm-4">
-						<?=i18n("Hour")?>:
-				</label>
-				<div class="col-sm-8">
-					<input class="form-control" name="hours" type="time">
 				</div>
 			</div>
 			<div class="form-group">

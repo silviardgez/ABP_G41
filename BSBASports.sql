@@ -143,7 +143,9 @@ CREATE TABLE `SESION` (
   `ID_ENGLOBA` int(10) UNSIGNED NOT NULL,
   `OBSERVACIONES` varchar(255) COLLATE latin1_spanish_ci DEFAULT NULL,
   `FECHA` date NOT NULL,
-  `HORA` time NOT NULL DEFAULT '00:00:00'
+  `HORA_INI` time NOT NULL DEFAULT '00:00:00',
+  `HORA_FIN` time NOT NULL DEFAULT '00:00:00',
+  `DURACION` time NOT NULL DEFAULT '00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -509,14 +511,14 @@ INSERT INTO `RESERVA`(`ID_ACT`,`DNI_DEP`, `FECHA`, `HORA`, `CONFIRMADO`) VALUES
 ALTER TABLE `SESION`
   MODIFY `ID_SESION` int(11) NOT NULL AUTO_INCREMENT;
 
- INSERT INTO `SESION` (`ID_ENGLOBA`,`OBSERVACIONES`,`FECHA`,`HORA`) VALUES
- (1,"Realizada correctamente", "2017-11-08","18:00"),
- (2,"No se pudo terminar", "2017-11-10","19:00"),
- (1,"Realizadas más repeticiones en los ejercicios musculares.", "2017-11-11","18:00"),
- (3,"Realizada correctamente", "2017-11-08","18:00"),
- (4,"Realizada correctamente", "2017-11-10","19:00"),
- (5,"Realizada correctamente", "2017-11-11","10:00"),
- (6,"Realizada correctamente", "2017-11-08","12:00");
+ INSERT INTO `SESION` (`ID_ENGLOBA`,`OBSERVACIONES`,`FECHA`,`HORA_INI`,`HORA_FIN`,`DURACION`) VALUES
+ (1,"Realizada correctamente", "2017-11-08","18:00","19:00","00:30:00"),
+ (2,"No se pudo terminar", "2017-11-10","19:00","21:00","01:12:14"),
+ (1,"Realizadas más repeticiones en los ejercicios musculares.", "2017-11-11","18:00","19:30","01:20:42"),
+ (3,"Realizada correctamente", "2017-11-08","18:00","18:45","01:00:00"),
+ (4,"Realizada correctamente", "2017-11-10","19:00","20:12","01:12:00"),
+ (5,"Interrumpida por problemas personales", "2017-11-11","10:00","10:30","00:17:00"),
+ (6,"Realizada correctamente", "2017-11-08","12:00","13:00","00:57:38");
 
 --
 -- AUTO_INCREMENT for table `TABLA`

@@ -243,12 +243,12 @@ array(
 	"November"=>"Noviembre",
 	"December"=>"Diciembre",
 	"Assistants"=>"Asistentes",
-	""=>"",
-	""=>"",
-	""=>"",
-	""=>"",
-	""=>"",
-	""=>"",
+	"Start time"=>"Hora de inicio",
+	"End time"=>"Hora de fin",
+	"Restart"=>"Reiniciar",
+	"Pause"=>"Pausa",
+	"Start"=>"Empezar",
+	"Resume"=>"Reanudar",
 	""=>"",
 )
 ?>

@@ -630,10 +630,10 @@ i {
 
 #cronometro { 
 	padding:10px; 
-	border: 5px #7c7bff double; 
-	width: 200px;
+	border: 5px #5D93C3 double; 
+	width: 240px;
 	text-align: center; 
-	background-color: #e2e2efab; 
+	background-color: #feffffab; 
 	border-radius: 5px;
 	float: right; 
 	margin: 1em 3em 1em 3em; 
@@ -649,7 +649,6 @@ i {
 	border-radius: 3px;  }
 
 #cronometro [type=button]  { 
-		margin: 4px; 
-		font: normal 9pt arial; 
-		width: 70px; } 
-}
+	margin: 5px; 
+} 
+

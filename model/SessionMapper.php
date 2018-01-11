@@ -15,7 +15,7 @@ class SessionMapper {
 		$sessions = array ();
 		
 		foreach ( $sessions_db as $session ) {
-			array_push ( $sessions, new Session ( $session ["ID_SESION"], $session ["FECHA"], $session ["HORA"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI_USUARIO"], $session["ID_TABLA"]) );
+			array_push ( $sessions, new Session ( $session ["ID_SESION"], $session ["FECHA"], $session ["HORA_INI"], $session ["HORA_FIN"], $session ["DURACION"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI_USUARIO"], $session["ID_TABLA"]) );
 		}
 		return $sessions;
 	}
@@ -29,7 +29,7 @@ class SessionMapper {
 		$sessions = array ();
 		
 		foreach ( $sessions_db as $session ) {
-			array_push ( $sessions, new Session ($session ["ID_SESION"], $session ["FECHA"], $session ["HORA"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI_USUARIO"], $session["ID_TABLA"]) );
+			array_push ( $sessions, new Session ($session ["ID_SESION"], $session ["FECHA"], $session ["HORA_INI"], $session ["HORA_FIN"], $session ["DURACION"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"], $session ["DNI_USUARIO"], $session["ID_TABLA"]) );
 		}
 		return $sessions;
 	}
@@ -41,7 +41,7 @@ class SessionMapper {
 		$session = $stmt->fetch ( PDO::FETCH_ASSOC );
 		
 		if ($session != null) {
-			return new Session ($session ["ID_SESION"], $session ["FECHA"], $session ["HORA"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"]);
+			return new Session ($session ["ID_SESION"], $session ["FECHA"], $session ["HORA_INI"], $session ["HORA_FIN"], $session ["DURACION"], $session ["OBSERVACIONES"], $session ["ID_ENGLOBA"]);
 		} else {
 			return NULL;
 		}
@@ -95,13 +95,15 @@ class SessionMapper {
 	
 	//Añade una sesión
 	public function add(Session $session) {
-		$stmt = $this->db->prepare ( "INSERT INTO SESION(ID_ENGLOBA, OBSERVACIONES,FECHA,HORA) values (?,?,?,?)" );
-		echo "INSERT INTO SESION(ID_ENGLOBA, OBSERVACIONES,FECHA,HORA) values (".$session->getIdClientTable().",".$session->getObservations().",".$session->getSessionDay().",".$session->getSessionHour().")";
+		$stmt = $this->db->prepare ( "INSERT INTO SESION(ID_ENGLOBA,OBSERVACIONES,FECHA,HORA_INI,HORA_FIN,DURACION) values (?,?,?,?,?,?)" );
+
 		$stmt->execute ( array (
 				$session->getIdClientTable(),
 				$session->getObservations(),
 				$session->getSessionDay(),
-				$session->getSessionHour()
+				$session->getSessionHourIni(),
+				$session->getSessionHourFin(),
+				$session->getDuration()
 		) );
 		
 		return $this->db->lastInsertId ();

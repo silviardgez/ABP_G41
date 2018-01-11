@@ -15,172 +15,190 @@ function filterActivities(activity){
 }
 
 
-
-//Creación cronómetro
-
-/*window.onload = function() {
-
-visor=document.getElementById("reloj"); //localizar pantalla del reloj
-//asociar eventos a botones: al pulsar el botón se activa su función.
-document.cron.boton1.onclick = activo; 
-document.cron.boton2.onclick = pausa;
-document.cron.boton1.disabled=false;
-document.cron.boton2.disabled=true;
-//variables de inicio:
-var marcha=0; //control del temporizador
-var cro=0; //estado inicial del cronómetro.
-
-}*/
-
-//botón Empezar / Reiniciar
-function activo (){   
-     if (document.cron.boton1.value=="Empezar") { //botón en "Empezar"
-        empezar() //ir  la función empezar
-}
-     else {  //Botón en "Reiniciar"
-        reiniciar()  //ir a la función reiniciar
-}
-}
-
-//botón pausa / continuar
-function pausa (){ 
-     if (marcha==0) { //con el boton en "continuar"
-        continuar() //ir a la función continuar
-}
-     else {  //con el botón en "parar"
-        parar() //ir a la funcion parar
-}
-}
-
-//Botón 1: Estado empezar: Poner en marcha el crono
-function empezar() {
-      emp=new Date() //fecha inicial (en el momento de pulsar)
-      elcrono=setInterval(tiempo,10); //función del temporizador.
-      marcha=1 //indicamos que se ha puesto en marcha.
-      document.cron.boton1.value="Reiniciar"; //Cambiar estado del botón
-      document.cron.boton2.disabled=false; //activar botón de pausa
-  }
-
-//función del temporizador			
-function tiempo() { 
-     actual=new Date(); //fecha a cada instante
-        //tiempo del crono (cro) = fecha instante (actual) - fecha inicial (emp)
-     cro=actual-emp; //milisegundos transcurridos.
-     cr=new Date(); //pasamos el num. de milisegundos a objeto fecha.
-     cr.setTime(cro); 
-        //obtener los distintos formatos de la fecha:
-     cs=cr.getMilliseconds(); //milisegundos 
-     cs=cs/10; //paso a centésimas de segundo.
-     cs=Math.round(cs); //redondear las centésimas
-     sg=cr.getSeconds(); //segundos 
-     mn=cr.getMinutes(); //minutos 
-     ho=cr.getHours()-1; //horas 
-        //poner siempre 2 cifras en los números		 
-        if (cs<10) {cs="0"+cs;} 
-        if (sg<10) {sg="0"+sg;} 
-        if (mn<10) {mn="0"+mn;} 
-        //llevar resultado al visor.		 
-        visor.innerHTML=ho+" : "+mn+" : "+sg+" : "+cs; 
-    }
-
-//parar el cronómetro
-function parar() { 
-     clearInterval(elcrono); //parar el crono
-     marcha=0; //indicar que está parado.
-     document.cron.boton2.value="Continuar"; //cambiar el estado del botón
- }		
-
-//Continuar una cuenta empezada y parada.
-function continuar() {
-     emp2=new Date(); //fecha actual
-     emp2=emp2.getTime(); //pasar a tiempo Unix
-     emp3=emp2-cro; //restar tiempo anterior
-     emp=new Date(); //nueva fecha inicial para pasar al temporizador 
-     emp.setTime(emp3); //datos para nueva fecha inicial.
-     elcrono=setInterval(tiempo,10); //activar temporizador
-     marcha=1; //indicar que esta en marcha
-     document.cron.boton2.value="parar"; //Cambiar estado del botón
-     document.cron.boton1.disabled=false; //activar boton 1 si estuviera desactivado
- }
-
-//Volver al estado inicial
-function reiniciar() {
-     if (marcha==1) {  //si el cronómetro está en marcha:
-         clearInterval(elcrono); //parar el crono
-         marcha=0;	//indicar que está parado
-     }
-		     //en cualquier caso volvemos a los valores iniciales
-     cro=0; //tiempo transcurrido a cero
-     visor.innerHTML = "0 : 00 : 00 : 00"; //visor a cero
-     document.cron.boton1.value="Empezar"; //estado inicial primer botón
-     document.cron.boton2.value="Parar"; //estado inicial segundo botón
-     document.cron.boton2.disabled=true;  //segundo botón desactivado	 
- }	
-
-
-// Crono 2
+// Crono 
 var inicio=0;
 var timeout=0;
+var diff = 0;
+var paro = 0;
 
 function empezarDetener(elemento)
 {
 	if(timeout==0)
 	{
-            // empezar el cronometro
+        // empezar el cronometro
 
-            elemento.value="Detener";
+        elemento.value="Reiniciar";
+        document.getElementById("boton3").disabled=false;
+        localStorage.setItem("initialTime", new Date());
 
-            // Obtenemos el valor actual
-            inicio=new Date().getTime();
+        // Obtenemos el valor actual
+        inicio=new Date().getTime();
 
-            // Guardamos el valor inicial en la base de datos del navegador
-            localStorage.setItem("inicio",inicio);
+        // Guardamos el valor inicial en la base de datos del navegador
+        localStorage.setItem("inicio",inicio);
+        localStorage.removeItem("paro");
+        paro=0;
+        // iniciamos el proceso
+        funcionando();
 
-            // iniciamos el proceso
-            funcionando();
         }else{
-            // detemer el cronometro
+        // detener el cronometro
 
-            elemento.value="Empezar";
-            clearTimeout(timeout);
+        elemento.value="Empezar";
+        document.getElementById("boton3").disabled=true;
+        document.getElementById("boton3").value="Pausar"; //cambiar el estado del botón
+        clearTimeout(timeout);
+        var result="00:00:00";
+     	document.getElementById('crono').innerHTML = result;
 
-            // Eliminamos el valor inicial guardado
-            localStorage.removeItem("inicio");
-            timeout=0;
-        }
+        // Eliminamos el valor inicial guardado
+        localStorage.removeItem("inicio");
+        localStorage.removeItem("paro");
+        localStorage.removeItem("diff");
+        paro=0;
+        timeout=0;
     }
+}
 
-        function funcionando()
-    {
-        // obteneos la fecha actual
-        var actual = new Date().getTime();
- 
-        // obtenemos la diferencia entre la fecha actual y la de inicio
-        var diff=new Date(actual-inicio);
- 
-        // mostramos la diferencia entre la fecha actual y la inicial
-        var result=LeadingZero(diff.getUTCHours())+":"+LeadingZero(diff.getUTCMinutes())+":"+LeadingZero(diff.getUTCSeconds());
-        document.getElementById('crono').innerHTML = result;
- 
-        // Indicamos que se ejecute esta función nuevamente dentro de 1 segundo
-        timeout=setTimeout("funcionando()",1000);
+function funcionando()
+{
+    // obteneos la fecha actual
+    var actual = new Date().getTime();
+
+    // obtenemos la diferencia entre la fecha actual y la de inicio
+    diff=new Date(actual-inicio);
+
+    // mostramos la diferencia entre la fecha actual y la inicial
+    var result=LeadingZero(diff.getUTCHours())+":"+LeadingZero(diff.getUTCMinutes())+":"+LeadingZero(diff.getUTCSeconds());
+    document.getElementById('crono').innerHTML = result;
+
+    // Indicamos que se ejecute esta función nuevamente dentro de 1 segundo
+    timeout=setTimeout("funcionando()",1000);
+}
+
+//Continuar una cuenta empezada y parada.
+function continuarPausar(elemento) {
+	if(paro==0){
+		clearTimeout(timeout); //parar el crono
+		localStorage.removeItem("inicio");
+     	//timeout=0; //indicar que está parado.
+     	var actual = new Date().getTime(); //fecha actual
+     	resta=actual-diff; //restar tiempo anterior
+     	inicio=new Date(); //nueva fecha inicial para pasar al temporizador 
+     	inicio.setTime(resta); //datos para nueva fecha inicial.
+     	elemento.value="Reanudar"; //cambiar el estado del botón
+     	paro=1;
+     	localStorage.setItem("paro", paro);
+     	localStorage.setItem("diff",diff);
+    } else {
+     	var actual = new Date().getTime(); //fecha actual
+     	resta=actual-diff; //restar tiempo anterior
+     	inicio=new Date(); //nueva fecha inicial para pasar al temporizador 
+     	inicio.setTime(resta); //datos para nueva fecha inicial.
+    	timeout=setTimeout("funcionando()",1000); //activar temporizador
+     	marcha=1; //indicar que esta en marcha
+     	elemento.value="Pausar"; //Cambiar estado del botón
+     	paro = 0;
+     	localStorage.removeItem("paro");
+     	localStorage.setItem("inicio",inicio.getTime());
+     	//elemento.disabled=false; //activar boton 1 si estuviera desactivado
     }
- 
-    /* Funcion que pone un 0 delante de un valor si es necesario */
-    function LeadingZero(Time)
+}
+
+/* Funcion que pone un 0 delante de un valor si es necesario */
+function LeadingZero(Time)
+{
+    return (Time < 10) ? "0" + Time : + Time;
+}
+
+window.onload=function()
+{
+    // Si al iniciar el navegador, la variable inicio que se guarda
+    // en la base de datos del navegador tiene valor, cargamos el valor
+    // y iniciamos el proceso.
+    if(localStorage.getItem("diff")!=null || localStorage.getItem("inicio")!=null)
     {
-        return (Time < 10) ? "0" + Time : + Time;
+    	//Si el cronometro estaba pausado
+        if(localStorage.getItem("paro")!=null) {
+        	clearTimeout(timeout); //parar el crono
+			
+     		timeout=0;
+     		var actual = new Date().getTime(); //fecha actual
+     		diff = localStorage.getItem("diff");
+     		diff = new Date(diff);
+     		var resta=actual-(actual-diff);
+     		inicio=new Date(); //nueva fecha inicial para pasar al temporizador 
+     		inicio.setTime(resta); //datos para nueva fecha inicial.
+
+     		document.getElementById("boton").value="Reiniciar";
+     		document.getElementById("boton3").disabled=false;
+     		document.getElementById("boton3").value="Reanudar"; //cambiar el estado del botón
+     		paro=1;
+
+     		var result=LeadingZero(inicio.getUTCHours())+":"+LeadingZero(inicio.getUTCMinutes())+":"+LeadingZero(inicio.getUTCSeconds());
+     		document.getElementById('crono').innerHTML = result;
+     	} else {
+     		localStorage.removeItem("diff");
+     		inicio=localStorage.getItem("inicio");
+     		document.getElementById("boton").value="Reiniciar";
+     		document.getElementById("boton3").disabled=false;
+     		funcionando();
+     	}
     }
- 
-    window.onload=function()
-    {
-        if(localStorage.getItem("inicio")!=null)
-        {
-            // Si al iniciar el navegador, la variable inicio que se guarda
-            // en la base de datos del navegador tiene valor, cargamos el valor
-            // y iniciamos el proceso.
-            inicio=localStorage.getItem("inicio");
-            document.getElementById("boton").value="Detener";
-            funcionando();
-        }
-    }
+}
+
+function terminarSesion() {
+	var inicioSesion = new Date(localStorage.getItem("initialTime"));
+	var horaInicio = LeadingZero(inicioSesion.getUTCHours())+":"+LeadingZero(inicioSesion.getUTCMinutes())+":"+LeadingZero(inicioSesion.getUTCSeconds());
+	var finSesion = new Date();
+	var horaFin = LeadingZero(finSesion.getUTCHours())+":"+LeadingZero(finSesion.getUTCMinutes())+":"+LeadingZero(finSesion.getUTCSeconds());
+	var duration = $('#crono').text();
+	var dia = inicioSesion.getUTCFullYear() + "-" + inicioSesion.getUTCMonth() + "-" + inicioSesion.getUTCDate();
+
+	//Se vacía el localStorage
+	localStorage.clear();
+
+	// Creamos el formulario auxiliar
+	var form = document.createElement( "form" );
+
+	// Le añadimos atributos como el name, action y el method
+	form.setAttribute( "name", "formulario" );
+	form.setAttribute( "action", "index.php?controller=session&action=add" );
+	form.setAttribute( "method", "post" );
+
+	// Creamos un input para enviar el valor
+	var input1 = document.createElement( "input" );
+	var input2 = document.createElement( "input" );
+	var input3 = document.createElement( "input" );
+	var input4 = document.createElement( "input" );
+
+	// Le añadimos atributos como el name, type y el value
+	input1.setAttribute( "name", "startTime" );
+	input1.setAttribute( "type", "hidden" );
+	input1.setAttribute( "value", horaInicio );
+
+	input2.setAttribute( "name", "endTime" );
+	input2.setAttribute( "type", "hidden" );
+	input2.setAttribute( "value", horaFin );
+
+	input3.setAttribute( "name", "day" );
+	input3.setAttribute( "type", "hidden" );
+	input3.setAttribute( "value", dia );
+
+	input4.setAttribute( "name", "duration" );
+	input4.setAttribute( "type", "hidden" );
+	input4.setAttribute( "value", duration );
+
+	// Añadimos el input al formulario
+	form.appendChild( input1 );
+	form.appendChild( input2 );
+	form.appendChild( input3 );
+	form.appendChild( input4 );
+
+	// Añadimos el formulario al documento
+	document.getElementsByTagName( "body" )[0].appendChild( form );
+
+	// Hacemos submit
+	document.formulario.submit();
+
+}

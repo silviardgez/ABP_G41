@@ -148,8 +148,10 @@ class SessionController extends BaseController {
 	
 		if(isset($_POST["submit"])) {
 			$session->setIdClientTable($_POST["table"]);
-			$session->setSessionDay($_POST["date"]);
-			$session->setSessionHour($_POST["hours"]);
+			$session->setSessionDay($_POST["day"]);
+			$session->setSessionHourIni($_POST["startTime"]);
+			$session->setSessionHourFin($_POST["endTime"]);
+			$session->setDuration($_POST["duration"]);
 			$session->setObservations($_POST["observations"]);
 			
 			try {
