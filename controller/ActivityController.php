@@ -165,11 +165,6 @@ class ActivityController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Editing user requires login");
 		}
-
-		if(!$_SESSION["deportista"]){
-			throw new Exception("You aren't an athlete. Booking an activity requires be athlete.");
-		}
-
 		// Get the User object from the database
 		$activityId = $_REQUEST["id"];
 		$activity = $this->activityMapper->getActivityById($activityId);
