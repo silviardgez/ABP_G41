@@ -121,12 +121,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 
 		<?php if(!$_SESSION["deportista"] || $_SESSION["deportista"] && $entrenador):?>
 			<div class="row">
-				<div class="col-xs-0 col-sm-2"></div>
-				<div id="null_margin" class="form-group col-sm-4 col-xs-12">
-					<button id="btn-styles" type="submit" name="submit"
-					class="btn btn-success btn-lg"><?=i18n("Send")?></button>
-				</div>
-				<div id="null_margin" class="form-group col-xs-12 col-sm-4">
+				<div id="null_margin" class="form-group col-xs-12 col-sm-5 col-md-4">
 					<form method="POST"
 					action="index.php?controller=activity&amp;action=delete"
 					id="delete_activity_<?= $activity->getActivityId(); ?>"
@@ -142,15 +137,14 @@ $view->setVariable ( "title", "Edit Current Activity" );
 				}"
 				form="delete_activity_<?= $activity->getActivityId(); ?>"><?=i18n("Delete")?></button>
 			</div>
-			<div class="col-xs-0 col-sm-2 col-xl-3"></div>
-		</div>
-		<div class="row">
-		<div class="form-group">
-			<div class="col-sm-12">
-				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-primary btn-lg"><?=i18n("Back");?></button>
+				<div id="null_margin" class="form-group col-xs-12 col-sm-5 col-md-4">
+					<button id="btn-styles" type="submit" name="submit"
+					class="btn btn-success btn-lg"><?=i18n("Send")?></button>
+				</div>
+			<div id="null_margin" class="form-group col-xs-12 col-sm-5 col-md-4">
+				<a role="button" id="btn-styles" href="index.php?controller=activity&amp;action=show" class="btn btn-primary btn-lg"><?=i18n("Back");?></a>
 			</div>
 		</div>
-	</div>
 	<br/>
 		<?php endif;?>
 
@@ -158,7 +152,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 	<?php if($_SESSION["deportista"] && !$entrenador && $booking == 0 && $spaces == 0):?>
 		<div class="form-group">
 			<div class="col-sm-6">
-				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-primary btn-lg"><?=i18n("Back");?></button>
+				<a role="button" id="btn-styles" href="index.php?controller=activity&amp;action=show" class="btn btn-primary btn-lg"><?=i18n("Back");?></a>
 			</div>
 			<div class="col-sm-6">
 				<input id="btn-styles" type="submit" name="submit"
@@ -174,7 +168,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 		</div>
 		<div class="form-group">
 			<div class="col-sm-12">
-				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-primary btn-lg"><?=i18n("Back");?></button>
+				<a role="button" id="btn-styles" href="index.php?controller=activity&amp;action=show" class="btn btn-primary btn-lg"><?=i18n("Back");?></a>
 			</div>
 		</div>
 	<?php elseif($_SESSION["deportista"] && !$entrenador && $booking == 1):?>
@@ -185,7 +179,7 @@ $view->setVariable ( "title", "Edit Current Activity" );
 		</div>
 		<div class="form-group">
 			<div class="col-sm-12">
-				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-primary btn-lg"><?=i18n("Back");?></button>
+				<a role="button" id="btn-styles" href="index.php?controller=activity&amp;action=show" class="btn btn-primary btn-lg"><?=i18n("Back");?></a>
 			</div>
 		</div>
 	<?php endif;?>

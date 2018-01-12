@@ -89,7 +89,7 @@ body {
 }
 
 #edit-form {
-	padding: 30px 20px 10px 12px;
+	padding: 30px 12px 10px 12px;
 }
 
 #font-title {
@@ -104,6 +104,7 @@ body {
 	font-weight: bold;
 	margin: auto;
 	display:table;
+	min-width: 110px;
 }
 
 #center-text {
