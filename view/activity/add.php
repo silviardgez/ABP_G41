@@ -7,6 +7,7 @@ $coaches = $view->getVariable ( "monitors" );
 $aulas = $view->getVariable ( "aulas" );
 $errors = $view->getVariable ( "errors" );
 $activityName = $view->getVariable("activityName");
+$color = $view->getVariable("color");
 
 $view->setVariable ( "title", "Add Activity" );
 
@@ -88,19 +89,37 @@ $view->setVariable ( "title", "Add Activity" );
 			</div>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Places offered")?>:
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="number" name="places">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
 				<?=i18n("Color")?>:
 				</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="color" name="color">
+					<?php if($color == ""){ ?>
+						<input class="form-control" type="color" name="color">
+					<?php }else{ ?>
+						<input class="form-control" type="color" name="color" value="<?=$color?>" readonly onmouseover="this.disabled=true;" onmouseout="this.disabled=false;" >
+					<?php } ?>
 				</div>
 			</div>
 			<br>
-			<div class="form-group">
-				<div class="col-sm-12">
+			<div class="row">
+				<div class="col-xs-0 col-sm-2"></div>
+				<div id="null_margin" class="form-group col-sm-4 col-xs-12">
 					<button id="btn-styles" type="submit" name="submit"
-						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
+					class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 				</div>
-			</div>
+				<div id="null_margin" class="form-group col-sm-4 col-xs-12">
+					<button id="btn-styles" type="button" onclick="history.back()"
+					class="btn btn-primary btn-lg"><?=i18n("Back")?></button>
+				</div>
+			<div class="col-xs-0 col-sm-2 col-xl-3"></div>
+		</div>
 		</form>
 	</div>
 </div>

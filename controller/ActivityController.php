@@ -177,13 +177,19 @@ class ActivityController extends BaseController {
 		$booking = $this->bookMapper->findBook($activityId, $this->currentUser->getUsername());
 		$spaces = $this->bookMapper->availableSpaces($activityId);
 		$monitors = $this->userMapper->getCoaches();
+		$aulas = $this->activityMapper->getAulas();
 		$entrenador = $_SESSION["entrenador"];
+
+		if(isset($_GET["entrena"])){
+			$entrenador = 0;
+		}
 
 		if (isset($_POST["submit"])) {
 			$activity->setStartTime($_POST["startTime"]);
 			$activity->setEndTime($_POST["endTime"]);
 			$activity->setDay($_POST["day"]);
 			$activity->setMonitor($_POST["monitor"]);
+			$activity->setAula($_POST["aula"]);
 
 			try {
 
@@ -206,6 +212,7 @@ class ActivityController extends BaseController {
 		$this->view->setVariable("activity", $activity);
 		$this->view->setVariable("monitors", $monitors);
 		$this->view->setVariable("entrenador", $entrenador);
+		$this->view->setVariable("aulas", $aulas);
 
 		$this->view->render("activity", "editcurrent");
 	}
@@ -223,8 +230,10 @@ class ActivityController extends BaseController {
 
 		if(isset($_GET["name"])){
 			$activityName = $_GET["name"];
+			$color = $this->activityMapper->getColorByName($activityName);
 		} else {
 			$activityName = "";
+			$color = "";
 		}
 
 		$monitors = $this->userMapper->getCoaches();
@@ -239,6 +248,7 @@ class ActivityController extends BaseController {
 			$activity->setMonitor($_POST["monitor"]);
 			$activity->setColor($_POST["color"]);
 			$activity->setAula($_POST["aula"]);
+			$activity->setPlaces($_POST["places"]);
 
 			try {
 				//save the exercise object into the database
@@ -260,6 +270,7 @@ class ActivityController extends BaseController {
 		$this->view->setVariable("monitors", $monitors);
 		$this->view->setVariable("aulas", $aulas);
 		$this->view->setVariable("activityName", $activityName);
+		$this->view->setVariable("color", $color);
 		$this->view->render("activity", "add");
 	}
 

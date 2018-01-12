@@ -7,19 +7,26 @@ $coaches = $view->getVariable ( "monitors" );
 $booking = $view->getVariable ( "booking" );
 $spaces = $view->getVariable ( "spaces" );
 $entrenador = $view->getVariable ( "entrenador" );
+$aulas = $view->getVariable ( "aulas" );
 $errors = $view->getVariable ( "errors" );
 $view->setVariable ( "title", "Edit Current Activity" );
 ?>
 
 <div class="container-fluid col-xs-12">
-	<?php if(!$_SESSION["deportista"] || $_SESSION["deportista"] && $_SESSION["entrenador"]):?>
+	<?php if(!$_SESSION["deportista"] || $_SESSION["deportista"] && $entrenador):?>
 		<h1 class="stroke"><?=i18n("Edit Activity")?></h1>
+		<?php if($entrenador): ?>
+			<a id="link-view" href="index.php?controller=activity&amp;action=editcurrent&amp;id=<?=$activity->getActivityId()?>&amp;entrena=true"><?= i18n("Go to: Client View")?></a>
+		<?php endif; ?>
 	<?php endif;?>
 	<?php if($_SESSION["deportista"] && !$entrenador):?>
 		<h1 class="stroke"><?=i18n("Reservation")?></h1>
 	<?php endif;?>
+	<?php if(!$entrenador && $_SESSION["entrenador"]): ?>
+		<a id="link-view" href="index.php?controller=activity&amp;action=editcurrent&amp;id=<?=$activity->getActivityId()?>"><?= i18n("Go to: Coach View")?></a>
+	<?php endif;?>
 	<br>
-	<div id="edit-view" class="center-block col-xs-6 col-lg-4 editactivity_box">
+	<div id="edit-view" class="center-block col-xs-6 col-lg-4">
 		<?php if(!$_SESSION["deportista"]):?>
 			<form id="edit-form" class="center-block form-horizontal"
 			action="index.php?controller=activity&amp;action=editcurrent"
@@ -89,9 +96,30 @@ $view->setVariable ( "title", "Edit Current Activity" );
 				</select>
 			</div>
 		</div>
+		<div class="form-group">
+			<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Classroom")?>:<b class="aviso-vacio"><?= isset($errors["aula"])?i18n($errors["aula"]):"" ?></b>
+			</label>
+			<div class="col-sm-8">
+				<select class="form-control" name="aula" <?php if($_SESSION["deportista"] && !$entrenador):?> readonly onmouseover="this.disabled=true;" onmouseout="this.disabled=false;" <?php endif;?>>
+					<?php foreach ($aulas as $aula => $aulaName): ?>
+						<option value="<?=$aula?>"><?=$aulaName?></option>
+					<?php endforeach; ?>
+					<option value="<?=$activity->getAula()?>" selected="selected"><?=$activity->getAulaName()?></option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+				<label class="control-label text-size text-muted col-sm-4">
+				<?=i18n("Places offered")?>:<b class="aviso-vacio"><?= isset($errors["places"])?i18n($errors["places"]):"" ?></b>
+				</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="number" name="places" value="<?=$activity->getPlaces()?>" <?php if($_SESSION["deportista"] && !$entrenador):?> readonly <?php endif;?>>
+				</div>
+			</div>
 		<br>
 
-		<?php if(!$_SESSION["deportista"] || $_SESSION["deportista"] && $_SESSION["entrenador"]):?>
+		<?php if(!$_SESSION["deportista"] || $_SESSION["deportista"] && $entrenador):?>
 			<div class="row">
 				<div class="col-xs-0 col-sm-2"></div>
 				<div id="null_margin" class="form-group col-sm-4 col-xs-12">

@@ -265,6 +265,8 @@ array(
 	"Watch"=>"Consultar",
 	"Session duration in minutes"=>"Duración de la sesión en minutos",
 	"Minutes"=>"Minutos",
+	"Classroom" => "Aula",
+	"Places offered" => "Plazas ofertadas",
 	""=>"",
 )
 ?>
