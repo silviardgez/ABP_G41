@@ -13,6 +13,7 @@ array(
 	"Email" => "Correo Electrónico",
 	"Telephone" => "Teléfono",
 	"Type" => "Tipo",
+	"Contact" => "Contacto",
 	"Date can not be null" => "La fecha no puede estar vacía",
 	"Time can not be null" => "La hora no puede estar vacía",
 	"assistance successfully added." => "Asistencia añadida correctamente",
