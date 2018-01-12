@@ -26,16 +26,16 @@ $i=0;
 				value="<?=$training->getTrainingId()?>" readonly>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-						<?=i18n("Exercise")?>:<?= isset($errors["exerciseId"])?i18n($errors["exerciseId"]):"" ?>
+						<?=i18n("Exercise")?>:<b class="aviso-vacio"><?= isset($errors["exerciseId"])?i18n($errors["exerciseId"]):"" ?></b>
 					</label> <input type="hidden" name="exerciseId"
 					value="<?=$training->getExerciseId()?>">
 				<div class="col-sm-8">
 					<select class="form-control" name="exerciseId">
 					<?php foreach ($exercises as $exerciseType):?>
 						<optgroup label="<?=i18n($type[$i])?>">
-					<?php foreach ($exerciseType as $exercise => $exerciseName): ?> 
+					<?php foreach ($exerciseType as $exercise => $exerciseName): ?>
 							<option value="<?=$exercise?>"><?=$exerciseName?></option>
-					<?php endforeach; 
+					<?php endforeach;
 					$i++;?>
 						</optgroup>
 					<?php endforeach; ?>
@@ -44,7 +44,7 @@ $i=0;
 			</div>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-						<?=i18n("Repeats")?>:<?= isset($errors["repeats"])?i18n($errors["repeats"]):"" ?>
+						<?=i18n("Repeats")?>:<b class="aviso-vacio"><?= isset($errors["repeats"])?i18n($errors["repeats"]):"" ?></b>
 					</label>
 				<div class="col-sm-8">
 					<input class="form-control" type="number" name="repeats"
@@ -54,7 +54,7 @@ $i=0;
 			<?php if($exerciseType != "MUSCULAR"):?>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
-						<?=i18n("Duration")?>:<?= isset($errors["duration"])?i18n($errors["duration"]):"" ?>
+						<?=i18n("Duration")?>:<b class="aviso-vacio"><?= isset($errors["duration"])?i18n($errors["duration"]):"" ?></b>
 				</label>
 				<div class="col-sm-8">
 					<input class="form-control" name="time" type="time" step="1"
