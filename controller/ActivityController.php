@@ -121,6 +121,7 @@ class ActivityController extends BaseController {
 		//Solo comprobamos en la primera llamada ya que el nombre es modificable
 		if(!isset($_POST["submit"])){
 			$activities = $this->activityMapper->getActivitiesByName($activityName);
+
 			if ($activities == NULL) {
 				throw new Exception("no such activity with name: ". $activityName);
 			}
@@ -176,6 +177,7 @@ class ActivityController extends BaseController {
 		$booking = $this->bookMapper->findBook($activityId, $this->currentUser->getUsername());
 		$spaces = $this->bookMapper->availableSpaces($activityId);
 		$monitors = $this->userMapper->getCoaches();
+		$entrenador = $_SESSION["entrenador"];
 
 		if (isset($_POST["submit"])) {
 			$activity->setStartTime($_POST["startTime"]);
@@ -203,6 +205,7 @@ class ActivityController extends BaseController {
 		$this->view->setVariable("spaces", $spaces);
 		$this->view->setVariable("activity", $activity);
 		$this->view->setVariable("monitors", $monitors);
+		$this->view->setVariable("entrenador", $entrenador);
 
 		$this->view->render("activity", "editcurrent");
 	}

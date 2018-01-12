@@ -6,7 +6,7 @@ $view = ViewManager::getInstance ();
 $activity = $view->getVariable ( "activity" );
 $activities = $view->getVariable ( "activities" );
 $errors = $view->getVariable ( "errors" );
-
+echo $activities[0]->getActivityName();
 $activitiesArray = serialize($activities);
 $activitiesArray = urlencode($activitiesArray);
 

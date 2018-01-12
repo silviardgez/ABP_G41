@@ -48,14 +48,13 @@ $hours = array (
 					<?php foreach ($activitiesName as $activity): ?>
 
 						<div class="row">
-
 							<div class="col-xs-1">
 								<input type="checkbox" id="chk_<?= htmlentities($activity) ?>"
 								checked="checked"
 								onclick="filterActivities('<?= htmlentities($activity) ?>');">
 							</div>
 							<div class="col-xs-6">
-								<?= htmlentities($activity) ?>
+								<b><?= htmlentities($activity) ?></b>
 							</div>
 
 							<?php if($_SESSION["admin"] || $_SESSION["entrenador"]):?>

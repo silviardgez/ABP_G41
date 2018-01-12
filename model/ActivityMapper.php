@@ -27,26 +27,26 @@ class ActivityMapper {
 
 	//Busca una actividad por nombre
 	public function getActivitiesByName($name){
-		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE NOMBRE=?");
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD T1 JOIN AULAS T2 WHERE T1.ID_AULA = T2.ID_AULA AND NOMBRE=?");
 		$stmt->execute(array($name));
 		$grupalActivities_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"]));
+			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"], $activity["NOMBRE_AULA"]));
 		}
-
+		
 		return $grupalActivities;
 	}
 
 	//Busca una actividad por id
 	public function getActivityById($id){
-		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD WHERE ID_ACT=?");
+		$stmt = $this->db->prepare("SELECT * FROM ACTIVIDAD T1 JOIN AULAS T2 WHERE T1.ID_AULA = T2.ID_AULA AND ID_ACT=?");
 		$stmt->execute(array($id));
 		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		if($activity != null) {
-			return new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"]);
+			return new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"], $activity["NOMBRE_AULA"]);
 		} else {
 			return NULL;
 		}
@@ -69,13 +69,13 @@ class ActivityMapper {
 
 	//Devuelve todas las actividades grupales dado un día
 	public function getGrupalActivities($weekDay){
-		$stmt = $this->db->prepare("SELECT *, (hour(HORA_FIN) - hour(HORA_INI)) + (minute(HORA_FIN) - minute(HORA_INI))/60 AS 'DURACION' FROM ACTIVIDAD where TIPO='GRUPAL' && DIA = ? ORDER BY HORA_INI");
+		$stmt = $this->db->prepare("SELECT *, (hour(T1.HORA_FIN) - hour(T1.HORA_INI)) + (minute(T1.HORA_FIN) - minute(T1.HORA_INI))/60 AS 'DURACION' FROM ACTIVIDAD T1 JOIN AULAS T2 WHERE T1.ID_AULA = T2.ID_AULA AND T1.TIPO='GRUPAL' && T1.DIA = ? ORDER BY T1.HORA_INI");
 		$stmt->execute(array($weekDay));
 		$grupalActivities_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$grupalActivities = array();
 
 		foreach ($grupalActivities_db as $activity) {
-			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"], $activity["DURACION"]));
+			array_push($grupalActivities, new Activity($activity["ID_ACT"], $activity["NOMBRE"], $activity["TIPO"], $activity["DIA"], $activity["HORA_INI"], $activity["HORA_FIN"], $activity["COLOR"], $activity["DNI_ENTR"], $activity["ID_AULA"], $activity["NOMBRE_AULA"], $activity["DURACION"]));
 		}
 
 		return $grupalActivities;
