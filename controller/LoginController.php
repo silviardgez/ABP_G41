@@ -46,4 +46,9 @@ class LoginController extends BaseController {
 		}
 	}
 
+	public function contact(){
+		// render the view (/view/login/contact.php)
+		$this->view->render("login", "contact");
+	}
+
 }
