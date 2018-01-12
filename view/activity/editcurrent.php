@@ -27,11 +27,11 @@ $view->setVariable ( "title", "Edit Current Activity" );
 	<?php endif;?>
 	<br>
 	<div id="edit-view" class="center-block col-xs-6 col-lg-4">
-		<?php if(!$_SESSION["deportista"]):?>
+		<?php if(!$_SESSION["deportista"] || $_SESSION["deportista"] && $entrenador):?>
 			<form id="edit-form" class="center-block form-horizontal"
 			action="index.php?controller=activity&amp;action=editcurrent"
 			method="POST">
-		<?php elseif($_SESSION["deportista"]):?>
+		<?php elseif($_SESSION["deportista"] && !$entrenador):?>
 			<form id="edit-form" class="center-block form-horizontal"
 			action="index.php?controller=book&amp;action=addBook"
 			method="POST">

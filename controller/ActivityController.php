@@ -190,6 +190,7 @@ class ActivityController extends BaseController {
 			$activity->setDay($_POST["day"]);
 			$activity->setMonitor($_POST["monitor"]);
 			$activity->setAula($_POST["aula"]);
+			$activity->setPlaces($_POST["places"]);
 
 			try {
 

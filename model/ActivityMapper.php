@@ -99,8 +99,8 @@ class ActivityMapper {
 
 	//Actualizar datos en común de las actividades
 	public function updateCurrent(Activity $activity){
-		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`TIPO`=?,`DIA`=?,`HORA_INI`=?,`HORA_FIN`=?,`COLOR`=?,`DNI_ENTR`=?,`ID_AULA`=? WHERE ID_ACT=?");
-		$stmt->execute(array($activity->getActivityName(), $activity->getType(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor(), $activity->getAula(), $activity->getActivityId()));
+		$stmt = $this->db->prepare("UPDATE ACTIVIDAD SET `NOMBRE`=?,`TIPO`=?,`DIA`=?,`HORA_INI`=?,`HORA_FIN`=?,`COLOR`=?,`DNI_ENTR`=?,`ID_AULA`=?, `PLAZAS`=? WHERE ID_ACT=?");
+		$stmt->execute(array($activity->getActivityName(), $activity->getType(), $activity->getDay(), $activity->getStartTime(), $activity->getEndTime(), $activity->getColor(), $activity->getMonitor(), $activity->getAula(), $activity->getPlaces(), $activity->getActivityId()));
 	}
 
 	public function add(Activity $activity){
