@@ -39,7 +39,7 @@ CREATE TABLE `ACTIVIDAD` (
   `COLOR` varchar(7) COLLATE latin1_spanish_ci,
   `DNI_ENTR` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `ID_AULA` int(4) UNSIGNED NOT NULL,
-  `PLAZAS` int(4) UNSIGNED NOT NULL
+  `PLAZAS` int(4) UNSIGNED NOT NULL DEFAULT 10
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 
