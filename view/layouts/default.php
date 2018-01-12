@@ -53,7 +53,7 @@ $currentuser = $view->getVariable ( "currentusername" );
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li role="presentation"><a href="#">Contacto</a></li>
+					<li role="presentation"><a href="index.php?controller=login&amp;action=contact"><?= i18n("Contact")?></a></li>
 					<li role="presentation"><a> <?= i18n("Language:") ?></a></li>
 					<?php
 					include (__DIR__ . "/language_select_element.php");
