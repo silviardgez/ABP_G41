@@ -13,7 +13,7 @@ $view->setVariable ( "title", "Show PEF Users" );
 </div>
 
 <div id="center-view" class="center-block col-md-6 col-sm-8 item">
-	<div class="exercise-tables-background center-block">
+	<div class="exercise-tables-background center-block" style="max-width: 700px">
 		<h1 id="font-title"><?=i18n("Athletes"); echo " TDU"?></h1>
 		<br>
 		<table id="table-margin" class="table">
@@ -32,7 +32,7 @@ $view->setVariable ( "title", "Show PEF Users" );
 							<td><?= htmlentities($user->getName())?></td>
 							<td class="icons">
 								<a href="index.php?controller=users&amp;action=view&amp;dni=<?= $user->getUsername() ?>">
-									<i class="fa fa-search col-md-3"></i></a>
+									<i class="fa fa-search"></i></a>
 									<form method="POST"
 									action="index.php?controller=users&amp;action=delete"
 									id="delete_user_<?= $user->getUsername(); ?>"
@@ -43,11 +43,11 @@ $view->setVariable ( "title", "Show PEF Users" );
 									onclick="
 									if (confirm('<?= i18n("are you sure?")?>')) {
 										document.getElementById('delete_user_<?= $user->getUsername() ?>').submit()
-									}"><i class="fa fa-trash col-md-3"></i></a>
+									}"><i class="fa fa-trash"></i></a>
 
 								</form> <a
 								href="index.php?controller=users&amp;action=edit&amp;dni=<?= $user->getUsername() ?>"><i
-								class="fa fa-pencil-square-o col-md-3"></i></a></td>
+								class="fa fa-pencil-square-o"></i></a></td>
 							</tr>
 						<?php endif ?>
 					<?php endforeach; ?>

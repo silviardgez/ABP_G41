@@ -38,6 +38,12 @@ class BookController extends BaseController {
 			throw new Exception("You aren't an admin. See all books requires be admin");
 		}
 
+		if(isset($_GET["confirmed"])){
+			$confirmed = 1;
+		} else {
+			$confirmed = 0;
+		}
+
 		$books = $this->bookMapper->showAllBooks();
 
 		$booksSerialize = array();
@@ -57,9 +63,10 @@ class BookController extends BaseController {
 			$booksSerialize[$book_idAct."-".$book_idAthl]['actName'] = $this->activityMapper->getActNameById($book_idAct);
 		}
 		//Order the array by activity Name in ascendant order
-		$this->array_sort_by($booksSerialize, 'actName', $order = SORT_ASC);
+		$this->array_sort_by($booksSerialize, 'userName', $order = SORT_ASC);
     // put the users object to the view
 		$this->view->setVariable("books", $booksSerialize);
+		$this->view->setVariable("confirmed", $confirmed);
 
 		// render the view (/view/book/show.php)
 		$this->view->render("book", "show");

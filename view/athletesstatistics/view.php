@@ -81,8 +81,6 @@ require_once (__DIR__."/../../GoogChart.class.php");
 
       var options = {
         title: "<?=i18n("Session duration in minutes")?>",
-        width: 700,
-        height: 300,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
       };
@@ -90,18 +88,17 @@ require_once (__DIR__."/../../GoogChart.class.php");
       chart.draw(view, options);
   }
   </script>
-<div id="columnchart_values" style="width: 900px; height: 300px;"></div>
-		
-		
-		
-		
+<div id="columnchart_values" ></div>
+
 	</div>
 
 	</div>
 	<div class="form-group">
 		<div class="col-sm-12">
-			<button id="btn-styles" type="button" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
+			<button id="btn-styles" type="button" onclick="history.back()" class="btn btn-info btn-lg"><?=i18n("Back")?></button>
 		</div>
 	</div>
+		<br/>
+		<br/>
 
 

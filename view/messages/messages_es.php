@@ -29,6 +29,7 @@ array(
 	"Contents" => "Contenido",
 	"Administration" => "Administración",
 	"Notifications" => "Notificaciones",
+	"Notifications " => "Notificaciones ",
 	"Users" => "Usuarios",
 	"Statistics" => "Estadísticas",
 	"Athletes" => "Deportistas",
@@ -267,6 +268,9 @@ array(
 	"Minutes"=>"Minutos",
 	"Classroom" => "Aula",
 	"Places offered" => "Plazas ofertadas",
+	"Go to unconfirmed reservations"=>"Ir a reservas no confirmadas",
+	"Go to confirmed reservations"=>"Ir a reservas confirmadas",
+	""=>"",
 	""=>"",
 )
 ?>

@@ -10,6 +10,11 @@ $view->setVariable ( "title", "Show Users" );
 <div>
 	<h1 id="bigger-size" class="stroke"><?=i18n("Users")?></h1>
 	<br>
+	<div class="btn-group">
+		<a href="index.php?controller=users&amp;action=add"
+			class="btn-fab circulo btn-training" id="add"> <i class="fa fa-plus"></i>
+		</a>
+	</div>
 </div>
 
 <div class="container-fluid">
@@ -26,7 +31,6 @@ $view->setVariable ( "title", "Show Users" );
 							<th><?=i18n("Actions")?></th>
 						</tr>
 					</thead>
-					<tbody>
 				<?php foreach ($users as $user): ?>
 					<?php if ($user->getCoach() == 1): ?>
 						<tr>
@@ -34,7 +38,7 @@ $view->setVariable ( "title", "Show Users" );
 							<td><?= htmlentities($user->getName())?></td>
 							<td class="icons">
 								<a href="index.php?controller=users&amp;action=view&amp;dni=<?= $user->getUsername() ?>">
-									<i class="fa fa-search col-md-3"></i></a>
+									<i class="fa fa-search"></i></a>
 								<form method="POST"
 									action="index.php?controller=users&amp;action=delete"
 									id="delete_user_<?= $user->getUsername(); ?>"
@@ -45,15 +49,14 @@ $view->setVariable ( "title", "Show Users" );
 										onclick="
 							if (confirm('<?= i18n("are you sure?")?>')) {
 								document.getElementById('delete_user_<?= $user->getUsername() ?>').submit()
-							}"><i class="fa fa-trash col-md-3"></i></a>
+							}"><i class="fa fa-trash"></i></a>
 
 								</form> <a
 								href="index.php?controller=users&amp;action=edit&amp;dni=<?= $user->getUsername() ?>"><i
-									class="fa fa-pencil-square-o col-md-3"></i></a></td>
+									class="fa fa-pencil-square-o"></i></a></td>
 						</tr>
 					<?php endif ?>
 				<?php endforeach; ?>
-			</tbody>
 				</table>
 			</div>
 		</div>
@@ -77,7 +80,7 @@ $view->setVariable ( "title", "Show Users" );
 							<td><?= htmlentities($user->getName())?></td>
 							<td class="icons">
 								<a href="index.php?controller=users&amp;action=view&amp;dni=<?= $user->getUsername() ?>">
-									<i class="fa fa-search col-md-3"></i></a>
+									<i class="fa fa-search col-sm-4"></i></a>
 								<form method="POST"
 									action="index.php?controller=users&amp;action=delete"
 									id="delete_user_<?= $user->getUsername(); ?>"
@@ -88,11 +91,11 @@ $view->setVariable ( "title", "Show Users" );
 										onclick="
 							if (confirm('<?= i18n("are you sure?")?>')) {
 								document.getElementById('delete_user_<?= $user->getUsername() ?>').submit()
-							}"><i class="fa fa-trash col-md-3"></i></a>
+							}"><i class="fa fa-trash col-sm-4"></i></a>
 
 								</form> <a
 								href="index.php?controller=users&amp;action=edit&amp;dni=<?= $user->getUsername() ?>"><i
-									class="fa fa-pencil-square-o col-md-3"></i></a></td>
+									class="fa fa-pencil-square-o col-sm-4"></i></a></td>
 						</tr>
 					<?php endif ?>
 				<?php endforeach; ?>
@@ -126,10 +129,4 @@ $view->setVariable ( "title", "Show Users" );
 </div>
 
 </div>
-<div class="row">
-	<div class="btn-group">
-		<a href="index.php?controller=users&amp;action=add"
-			class="btn-fab circulo btn-training" id="add"> <i class="fa fa-plus"></i>
-		</a>
-	</div>
-</div>
+
