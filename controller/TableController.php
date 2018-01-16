@@ -39,7 +39,7 @@ class TableController extends BaseController {
 			throw new Exception("Not in session. Show users requires login");
 		}
 
-		if($_SESSION["entrenador"] && !isset($_POST["submit"])){
+		if(($_SESSION["entrenador"] || $_SESSION["admin"]) && !isset($_POST["submit"])){
 			$tables_id = $this->tableMapper->getIdTablesWithExercises();
 			$tables_withoutid = $this->tableMapper->getIdTablesWithoutExercises();
 		}
@@ -54,9 +54,11 @@ class TableController extends BaseController {
 		} 
 		
 		$tables = array();
+		$tablesType = array();
 		
 		//Clasificamos según el tipo de tabla
 		foreach ($tables_id as $id) {
+			array_push($tablesType, $this->tableMapper->getTypeById($id));
 			$tables_db = $this->tableMapper->getTables($id);
 			$cardio = array();
 			$muscular = array();
@@ -86,8 +88,15 @@ class TableController extends BaseController {
 		// put the users object to the view
 		$this->view->setVariable("tables", $tables);
 		$this->view->setVariable("tables_id", $tables_id);
+		$this->view->setVariable("tablesType", $tablesType);
+
 		if(isset($tables_withoutid)){
 			$this->view->setVariable("tableswithoutid", $tables_withoutid);
+		}
+		if(isset($userDNI)){
+			$userVar = $this->userMapper->findUserByDNI($userDNI);
+			$nombre = $userVar->getUsername() . " - " . $userVar->getName() . " " . $userVar->getSurname();
+			$this->view->setVariable("nombre" , $nombre);
 		}
 		$this->view->render("table", "show");
 	}

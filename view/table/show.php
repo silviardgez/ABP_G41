@@ -3,7 +3,9 @@
 require_once (__DIR__ . "/../../core/ViewManager.php");
 $view = ViewManager::getInstance ();
 $tables = $view->getVariable ( "tables" );
+$nombre = $view->getVariable ( "nombre" );
 $tables_id = $view->getVariable ( "tables_id" );
+$tablesType = $view->getVariable ( "tablesType" );
 $tableswithoutid = $view->getVariable ( "tableswithoutid" );
 
 $view->setVariable ( "title", "Show Tables" );
@@ -11,9 +13,14 @@ $view->setVariable ( "title", "Show Tables" );
 
 
 <div>
-	<h1 id="bigger-size" class="stroke"><?=i18n("Standard Tables")?></h1>
+	<?php if(isset($nombre) && $nombre!=NULL): ?>
+		<h1 id="bigger-size" class="stroke"><?=i18n("Tables") . ": " . $nombre?></h1>
+		<br>
+	<?php else: ?>
+		<h1 id="bigger-size" class="stroke"><?=i18n("Standard Tables")?></h1>
+	<?php endif;?>
 	
-	<?php if(!$_SESSION["deportista"] || ($_SESSION["deportista"] && $_SESSION["entrenador"])):?>
+	<?php if((!$_SESSION["deportista"] || ($_SESSION["deportista"] && $_SESSION["entrenador"])) && !isset($nombre) && $nombre==NULL):?>
 		<div class="btn-group">
 			<a href="index.php?controller=table&amp;action=add"
 			class="btn-fab circulo btn-training" id="add"> <i class="fa fa-plus"></i>
@@ -21,7 +28,7 @@ $view->setVariable ( "title", "Show Tables" );
 	</div>
 <?php endif;?>
 </div>
-<?php if(!$_SESSION["deportista"] || ($_SESSION["deportista"] && $_SESSION["entrenador"])):?>
+<?php if((!$_SESSION["deportista"] || ($_SESSION["deportista"] && $_SESSION["entrenador"])) && !isset($nombre) && $nombre==NULL):?>
 <form class="center-block"
 action="index.php?controller=table&amp;action=show" method="POST">
 <div id="input-table" class="form-group center-block">
@@ -38,6 +45,16 @@ action="index.php?controller=table&amp;action=show" method="POST">
 	</div>
 </div>
 </form>
+<?php elseif($_SESSION["deportista"] && !$_SESSION["entrenador"]): ?>
+	<br>
+<?php else: ?>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<button id="btn-styles" type="button" onclick="history.back()"
+			class="btn btn-primary"><?=i18n("Back")?></button>
+		</div>
+	</div>
+	<br><br><br>
 <?php endif; ?>
 
 <div class="container-fluid">
@@ -50,6 +67,9 @@ action="index.php?controller=table&amp;action=show" method="POST">
 						<div class="row">
 							<div class="col-xs-12">
 								<h1><?=i18n("Table") . " " . $tables_id[$j]; ?></h1>
+								<?php if(isset($nombre) && $nombre!=NULL): ?>
+									<h4 style="text-align: center;"><?= $tablesType[$j]?></h4>
+								<?php endif; ?>
 								<br>
 							</div>
 							<?php if(!$_SESSION["deportista"] || ($_SESSION["deportista"] && $_SESSION["entrenador"])):?>
@@ -59,6 +79,7 @@ action="index.php?controller=table&amp;action=show" method="POST">
 								style="display: inline">
 								<input type="hidden" name="id" value="<?= $tables_id[$j] ?>">
 								<div class="icons ubica-right">
+									<?php if(!isset($nombre) && $nombre==NULL || $tablesType[$j] == "PERSONALIZADA"): ?>
 									<div class="col-xs-2">
 										<a
 										onclick="
@@ -71,6 +92,8 @@ action="index.php?controller=table&amp;action=show" method="POST">
 										href="index.php?controller=table&amp;action=edit&amp;id=<?= $tables_id[$j] ?>"><i
 										class="fa fa-pencil-square-o"></i></a>
 									</div>
+									<?php endif; ?>
+									<?php if(!isset($nombre) && $nombre==NULL): ?>
 									<div class="col-xs-2">
 										<a
 										href="index.php?controller=table&amp;action=showusers&amp;id=<?= $tables_id[$j] ?>">
@@ -83,6 +106,7 @@ action="index.php?controller=table&amp;action=show" method="POST">
 									class="btn btn-info"> <span class="glyphicon glyphicon-plus"></span><?= i18n(" Assign")?>
 								</a>
 							</div>
+						<?php endif; ?>
 						</div>
 					</form>
 				<?php endif;?>
@@ -140,19 +164,23 @@ action="index.php?controller=table&amp;action=show" method="POST">
 	<div class="col-xs-12 col-lg-6">
 		<div id="tableExercises" class="exercise-tables-background center-block">
 			<div class="container-fluid">
-				<?php if(!$_SESSION["deportista"]):?>
 					<div class="row">
+						<div class="col-xs-12">
+								<h1><?=i18n("Table") . " " . $tables_id[$j]; ?></h1>
+								<?php if(isset($nombre) && $nombre!=NULL): ?>
+									<h4 style="text-align: center;"><?= $tablesType[$j]?></h4>
+								<?php endif; ?>
+								<br>
+							</div>
+						<?php if(!$_SESSION["deportista"] || ($_SESSION["deportista"] && $_SESSION["entrenador"])):?>
 						<form method="POST"
 						action="index.php?controller=table&amp;action=delete"
 						id="delete_table_<?= $tableswithoutid[$j] ?>" class="none-styles"
 						style="display: inline">
 						<input type="hidden" name="id"
 						value="<?= $tableswithoutid[$j] ?>">
-						<div class="col-xs-12">
-							<h1><?=i18n("Table") . " " . $tableswithoutid[$j]; ?></h1>
-							<br>
-						</div>
 						<div class="icons ubica-right">
+							<?php if(!isset($nombre) && $nombre==NULL || $tablesType[$j] == "PERSONALIZADA"): ?>
 							<div class="col-xs-2">
 								<a
 								onclick="
@@ -165,6 +193,8 @@ action="index.php?controller=table&amp;action=show" method="POST">
 								href="index.php?controller=table&amp;action=edit&amp;id=<?= $tableswithoutid[$j] ?>"><i
 								class="fa fa-pencil-square-o"></i></a>
 							</div>
+						<?php endif; ?>
+						<?php if(!isset($nombre) && $nombre==NULL): ?>
 							<div class="col-xs-2">
 								<a
 								href="index.php?controller=table&amp;action=showusers&amp;id=<?= $tableswithoutid[$j] ?>">
@@ -177,10 +207,12 @@ action="index.php?controller=table&amp;action=show" method="POST">
 							class="btn btn-info"> <span class="glyphicon glyphicon-plus"></span><?= i18n(" Assign")?>
 						</a>
 					</div>
+				<?php endif; ?>
 				</div>
 			</form>
+			<?php endif;?>
 		</div>
-	<?php endif;?>
+	
 </div>
 </div>
 </div>

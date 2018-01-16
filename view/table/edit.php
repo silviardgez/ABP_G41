@@ -75,11 +75,12 @@ $view->setVariable ( "title", "Edit Table" );
 									return false;
 								}"><i class="fa fa-trash"></i></a>
 
-							</form>
+							
 						</td>
 					</tr>
 				<?php endforeach; ?>
 			<?php endif;?>
+			</form>
 			</table>
 		</div>
 	</div>

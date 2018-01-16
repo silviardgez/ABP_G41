@@ -41,7 +41,7 @@ class TableMapper {
 	
 	//Devuelve el id de las tablas que NO tienen asociado algun ejercicio
 	public function getIdTablesWithoutExercises(){
-		$stmt = $this->db->prepare("SELECT DISTINCT ID_TABLA FROM TABLA WHERE ID_TABLA NOT IN (SELECT DISTINCT ID_TABLA FROM `INCLUYE`)");
+		$stmt = $this->db->prepare("SELECT DISTINCT ID_TABLA FROM TABLA WHERE ID_TABLA NOT IN (SELECT DISTINCT ID_TABLA FROM `INCLUYE`) AND TIPO='ESTANDAR'");
 		$stmt->execute();
 		$tables_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$tables = array();
@@ -92,7 +92,7 @@ class TableMapper {
 	}
 	
 	public function deleteUserFromTable($id, $dni){
-		$stmt = $this->db->prepare("DELETE from ENGLOBA WHERE ID_TABLA=? AND DNI=?");
+		$stmt = $this->db->prepare("DELETE from ENGLOBA WHERE ID_TABLA=? AND DNI_USUARIO=?");
 		$stmt->execute(array($id,$dni));
 	}
 
@@ -154,6 +154,21 @@ class TableMapper {
 			$this->addTraining($training["ID_ENTRENA"],$idNew);			
 		}
 
+	}
+
+	// Devolver nombre de usuario dado un dni
+	public function getTypeById($id) {
+		$stmt = $this->db->prepare ( "SELECT TIPO FROM TABLA WHERE ID_TABLA=?" );
+		$stmt->execute ( array (
+				$id
+		) );
+		$tabla = $stmt->fetch ( PDO::FETCH_ASSOC );
+
+		if ($tabla != null) {
+			return $tabla ["TIPO"];
+		} else {
+			return NULL;
+		}
 	}
 	
 }

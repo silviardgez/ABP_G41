@@ -41,12 +41,17 @@ $view->setVariable ( "title", "Assign table to user" );
 				</div>
 			</div>
 			<br>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<button id="btn-styles" type="submit" name="submit"
-						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
-				</div>
+			<div class="row">
+			<div class="col-xs-0 col-sm-2"></div>
+			<div id="null_margin" class="form-group col-sm-4 col-xs-12">
+				<button id="btn-styles" type="submit" name="submit"
+				class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 			</div>
+			<div id="null_margin" class="form-group col-sm-4 col-xs-12">
+				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-primary btn-lg"><?=i18n("Back");?></button>
+			</div>
+			<div class="col-xs-0 col-sm-2"></div>
+		</div>
 		</form>
 	</div>
 </div>

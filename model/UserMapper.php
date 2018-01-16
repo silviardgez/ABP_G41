@@ -170,7 +170,7 @@ class UserMapper {
 
 	// Devolver todos los nombres de los deportistas
 	public function getAthletesWithoutTable($id) {
-		$stmt = $this->db->prepare ( "SELECT DNI, NOMBRE, APELLIDOS FROM USUARIO WHERE DNI NOT IN (SELECT T1.DNI FROM USUARIO T1 JOIN ENGLOBA T2 WHERE DEPORTISTA=1 AND T2.ID_TABLA = ? AND T1.DNI=T2.DNI) AND DEPORTISTA = 1;" );
+		$stmt = $this->db->prepare ( "SELECT DNI, NOMBRE, APELLIDOS FROM USUARIO WHERE DNI NOT IN (SELECT T1.DNI FROM USUARIO T1 JOIN ENGLOBA T2 WHERE (DEPORTISTA_PEF = 1 OR DEPORTISTA_TDU=1) AND T2.ID_TABLA = ? AND T1.DNI=T2.DNI_USUARIO) AND (DEPORTISTA_PEF = 1 OR DEPORTISTA_TDU=1);" );
 		$stmt->execute (array($id));
 		$users_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		$athletes = array ();
