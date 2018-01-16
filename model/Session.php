@@ -47,6 +47,10 @@ class Session {
 	public function setIdClientTable($idClientTable){
 		$this->idClientTable = $idClientTable;
 	}
+
+	public function setDNIUser($dni){
+		$this->dni = $dni;
+	}
 	
 	public function getObservations() {
 		return $this->observation;

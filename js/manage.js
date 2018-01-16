@@ -41,7 +41,7 @@ function empezarDetener(elemento)
         // iniciamos el proceso
         funcionando();
 
-        }else{
+    }else{
         // detener el cronometro
 
         elemento.value="Empezar";
@@ -49,7 +49,7 @@ function empezarDetener(elemento)
         document.getElementById("boton3").value="Pausar"; //cambiar el estado del botón
         clearTimeout(timeout);
         var result="00:00:00";
-     	document.getElementById('crono').innerHTML = result;
+        document.getElementById('crono').innerHTML = result;
 
         // Eliminamos el valor inicial guardado
         localStorage.removeItem("inicio");
@@ -90,7 +90,7 @@ function continuarPausar(elemento) {
      	paro=1;
      	localStorage.setItem("paro", paro);
      	localStorage.setItem("diff",diff);
-    } else {
+     } else {
      	var actual = new Date().getTime(); //fecha actual
      	resta=actual-diff; //restar tiempo anterior
      	inicio=new Date(); //nueva fecha inicial para pasar al temporizador 
@@ -102,12 +102,12 @@ function continuarPausar(elemento) {
      	localStorage.removeItem("paro");
      	localStorage.setItem("inicio",inicio.getTime());
      	//elemento.disabled=false; //activar boton 1 si estuviera desactivado
-    }
-}
+     }
+ }
 
-/* Funcion que pone un 0 delante de un valor si es necesario */
-function LeadingZero(Time)
-{
+ /* Funcion que pone un 0 delante de un valor si es necesario */
+ function LeadingZero(Time)
+ {
     return (Time < 10) ? "0" + Time : + Time;
 }
 
@@ -121,8 +121,8 @@ window.onload=function()
     	//Si el cronometro estaba pausado
         if(localStorage.getItem("paro")!=null) {
         	clearTimeout(timeout); //parar el crono
-			
-     		timeout=0;
+
+         timeout=0;
      		var actual = new Date().getTime(); //fecha actual
      		diff = localStorage.getItem("diff");
      		diff = new Date(diff);
@@ -145,16 +145,20 @@ window.onload=function()
      		document.getElementById("boton3").disabled=false;
      		funcionando();
      	}
-    }
-}
+     }
+ }
 
-function terminarSesion() {
-	var inicioSesion = new Date(localStorage.getItem("initialTime"));
-	var horaInicio = LeadingZero(inicioSesion.getHours())+":"+LeadingZero(inicioSesion.getMinutes())+":"+LeadingZero(inicioSesion.getSeconds());
-	var finSesion = new Date();
-	var horaFin = LeadingZero(finSesion.getHours())+":"+LeadingZero(finSesion.getMinutes())+":"+LeadingZero(finSesion.getSeconds());
-	var duration = $('#crono').text();
-	var dia = inicioSesion.getFullYear() + "-" + LeadingZero(inicioSesion.getMonth()+1) + "-" + inicioSesion.getDate();
+ function terminarSesion(elemento) {
+    var duration = $('#crono').text();
+    if(duration == "00:00:00") {
+        alert("Error, session not started");
+    } else if (confirm('¿Terminar sesión?')) {
+       var inicioSesion = new Date(localStorage.getItem("initialTime"));
+       var horaInicio = LeadingZero(inicioSesion.getHours())+":"+LeadingZero(inicioSesion.getMinutes())+":"+LeadingZero(inicioSesion.getSeconds());
+       var finSesion = new Date();
+       var horaFin = LeadingZero(finSesion.getHours())+":"+LeadingZero(finSesion.getMinutes())+":"+LeadingZero(finSesion.getSeconds());
+       var duration = $('#crono').text();
+       var dia = inicioSesion.getFullYear() + "-" + LeadingZero(inicioSesion.getMonth()+1) + "-" + inicioSesion.getDate();
 
 	//Se vacía el localStorage
 	localStorage.clear();
@@ -201,6 +205,7 @@ function terminarSesion() {
 
 	// Hacemos submit
 	document.formulario.submit();
+}
 
 }
 

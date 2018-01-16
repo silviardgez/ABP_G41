@@ -10,6 +10,11 @@ $view->setVariable("title", "Show Exercises");
 <div>
 	<h1 id="bigger-size" class="stroke"><?=i18n("Exercises")?></h1>
 	<br>
+	<div class="btn-group">
+		<a href="index.php?controller=exercises&amp;action=add"
+			class="btn-fab circulo btn-training" id="add"> <i class="fa fa-plus"></i>
+		</a>
+	</div>
 </div>
 
 <div class="container-fluid">
@@ -21,7 +26,7 @@ $view->setVariable("title", "Show Exercises");
 		<table id="table-margin" class="table">
 			<thead>
 				<tr>
-					<th><?=i18n("Name")?></th>
+					<th style="min-width: 18em"><?=i18n("Name")?></th>
 					<th><?=i18n("Actions")?></th>
 				</tr>
 			</thead>
@@ -32,7 +37,7 @@ $view->setVariable("title", "Show Exercises");
 							<td><?= htmlentities($exercice->getName())?></td>
 							<td class="icons">
 							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercice->getId() ?>">
-								<i class="fa fa-search col-md-4"></i></a>
+								<i class="fa fa-search"></i></a>
 							<form
 							method="POST"
 							action="index.php?controller=exercises&amp;action=delete"
@@ -47,10 +52,10 @@ $view->setVariable("title", "Show Exercises");
 							if (confirm('<?= i18n("are you sure?")?>')) {
 								document.getElementById('delete_exercise_<?= $exercice->getName() ?>').submit()
 							}"
-							><i class="fa fa-trash col-md-4"></i></a>
+							><i class="fa fa-trash"></i></a>
 
 						</form>
-						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercice->getId() ?>"><i class="fa fa-pencil-square-o col-md-4"></i></a>
+						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercice->getId() ?>"><i class="fa fa-pencil-square-o"></i></a>
 						</tr>
 					<?php endif ?>
 				<?php endforeach; ?>
@@ -65,7 +70,7 @@ $view->setVariable("title", "Show Exercises");
 			<table id="table-margin" class="table">
 			<thead>
 				<tr>
-					<th><?=i18n("Name")?></th>
+					<th style="min-width: 18em"><?=i18n("Name")?></th>
 					<th><?=i18n("Actions")?></th>
 				</tr>
 			</thead>
@@ -76,7 +81,7 @@ $view->setVariable("title", "Show Exercises");
 							<td><?= htmlentities($exercise->getName()) ?></td>
 							<td class="icons">
 							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>">
-									<i class="fa fa-search col-md-4"></i></a>
+									<i class="fa fa-search"></i></a>
 							<form
 							method="POST"
 							action="index.php?controller=exercises&amp;action=delete"
@@ -91,10 +96,10 @@ $view->setVariable("title", "Show Exercises");
 							if (confirm('<?= i18n("are you sure?")?>')) {
 								document.getElementById('delete_exercise_<?= $exercise->getName(); ?>').submit()
 							}"
-							><i class="fa fa-trash col-md-4"></i></a>
+							><i class="fa fa-trash"></i></a>
 
 						</form>
-						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o col-md-4"></i></a></td>
+						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o"></i></a></td>
 						</tr>
 					<?php endif ?>
 				<?php endforeach; ?>
@@ -109,7 +114,7 @@ $view->setVariable("title", "Show Exercises");
 		<table id="table-margin" class="table">
 			<thead>
 				<tr>
-					<th><?=i18n("Name")?></th>
+					<th style="min-width: 18em"><?=i18n("Name")?></th>
 					<th><?=i18n("Actions")?></th>
 				</tr>
 			</thead>
@@ -120,7 +125,7 @@ $view->setVariable("title", "Show Exercises");
 							<td><?= htmlentities($exercise->getName()) ?></td>
 							<td class="icons">
 							<a href="index.php?controller=exercises&amp;action=view&amp;id=<?= $exercise->getId() ?>">
-									<i class="fa fa-search col-md-4"></i></a>
+									<i class="fa fa-search"></i></a>
 							<form
 								method="POST"
 								action="index.php?controller=exercises&amp;action=delete"
@@ -135,10 +140,10 @@ $view->setVariable("title", "Show Exercises");
 								if (confirm('<?= i18n("are you sure?")?>')) {
 									document.getElementById('delete_exercise_<?= $exercise->getName(); ?>').submit()
 								}"
-								><i class="fa fa-trash col-md-4"></i></a>
+								><i class="fa fa-trash"></i></a>
 
 							</form>
-						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o col-md-4"></i></a></td>
+						<a href="index.php?controller=exercises&amp;action=edit&amp;id=<?= $exercise->getId() ?>"><i class="fa fa-pencil-square-o"></i></a></td>
 						</tr>
 					<?php endif ?>
 				<?php endforeach; ?>
@@ -147,11 +152,4 @@ $view->setVariable("title", "Show Exercises");
 	</div>
 </div>
 </div>
-</div>
-<div class="row">
-	<div class="btn-group">
-		<a href="index.php?controller=exercises&amp;action=add" class="btn-fab circulo btn-training" id="add">
-			<i class="fa fa-plus"></i>
-		</a>
-	</div>
 </div>

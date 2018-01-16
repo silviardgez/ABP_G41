@@ -15,14 +15,14 @@ $view->setVariable("title", "Edit Exercise");
 	<br>
 </div>
 
-<div id="edit-view" class="center-block col-xs-6 col-lg-4">
+<div id="edit-view" class="center-block col-xs-6">
 <form action="index.php?controller=exercises&amp;action=edit" method="POST" class="center-block form-horizontal">
 	<br><div class="form-group">
 		<div class="col-lg-6">
 			<input class="form-control" type="hidden" name="id" value="<?=$exercise->getId()?>">
 		</div>
 	</div>
-	<br><div class="form-group">
+	<div class="form-group">
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Name")?>:<b class="aviso-vacio"><?= isset($errors["name"])?i18n($errors["name"]):"" ?></b></label>
 		<div class="col-lg-7">
 			<input class="form-control" type="text" name="nombre" value="<?=$exercise->getName()?>">
@@ -66,13 +66,17 @@ $view->setVariable("title", "Edit Exercise");
 			<input type="file" name="video" value="<?=$exercise->getVideo()?>">
 		</div>
 	</div>
-	<div class="form-group">
-		<div class="col-sm-6">
-      <button type="button" id="btn-styles" onclick="history.back()" class="btn btn-warning btn-lg"><?=i18n("Back")?></button>
-    </div>
-    <div class="col-sm-6">
-      <button id="btn-styles" type="submit" name="submit" class="btn btn-success btn-lg"><?=i18n("Send")?></button>
-    </div>
-  </div>
+	<br>
+	<div class="row">
+			<div class="col-xs-0 col-sm-2 col-md-3"></div>
+			<div id="null_margin" class="form-group col-sm-4 col-md-3 col-xs-12">
+				<button id="btn-styles" type="submit" name="submit"
+				class="btn btn-success btn-lg"><?=i18n("Send")?></button>
+			</div>
+			<div id="null_margin" class="form-group col-sm-4 col-md-3 col-xs-12">
+				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-primary btn-lg"><?=i18n("Back");?></button>
+			</div>
+			<div class="col-xs-0 col-sm-2 col-md-3"></div>
+		</div>
 </form>
 </div>

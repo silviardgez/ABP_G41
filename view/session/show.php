@@ -5,13 +5,14 @@ $view = ViewManager::getInstance ();
 $sessions = $view->getVariable ( "sessions" );
 $tables = $view->getVariable( "tables" );
 $on = $view->getVariable( "on" );
+$name = $view->getVariable( "name" );
 
 $view->setVariable ( "title", "Show Sessions" );
 
 ?>
 <div>
 	<?php if(!isset($_REQUEST["entrena"]) && $_SESSION["deportista"]):?>
-	<h1 id="bigger-size" class="stroke"><?=i18n("Sessions of the user: ") . $_SESSION["currentuser"]; ?></h1>
+	<h1 id="bigger-size" class="stroke"><?=i18n("Sessions of the user: ") . $name; ?></h1>
 	<?php if($_SESSION["entrenador"] && $_SESSION["deportista"]): ?>
 	<a id="link-view" href="index.php?controller=session&amp;action=show&amp;entrena=true"><?= i18n("Go to: Coach View")?></a>
 	<?php endif;?>
@@ -45,7 +46,7 @@ $view->setVariable ( "title", "Show Sessions" );
 			<tr>
 				<th id="center-text"><?=i18n("Table")?></th>
 				<?php if(isset($_REQUEST["entrena"]) || ($_SESSION["entrenador"] && !$_SESSION["deportista"])):?>
-				<th id="center-text"><?=i18n("User")?></th>
+				<th id="center-text" style="min-width: 15em"><?=i18n("User")?></th>
 				<?php endif;?>
 				<th id="center-text"><?=i18n("Day")?></th>
 				<th id="center-text"><?=i18n("Duration")?></th>
@@ -53,7 +54,7 @@ $view->setVariable ( "title", "Show Sessions" );
 			</tr>
 				<?php foreach ($sessions as $session): ?>
 						<tr>
-				<td id="center-text"><strong><?= i18n("Table") . " " . $session->getIdTable() ?></strong></td>
+				<td id="center-text"><big><a id="link-activity" href="index.php?controller=table&amp;action=view" class="fa fa-table"></a></big><strong><?= " - ". i18n("Table") . " " . $session->getIdTable()?></strong></td>
 				<?php if(isset($_REQUEST["entrena"]) || ($_SESSION["entrenador"] && !$_SESSION["deportista"])):?>
 				<td id="center-text"><?php echo $session->getDNIUser(); ?></td>
 				<?php endif; ?>

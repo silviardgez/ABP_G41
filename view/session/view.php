@@ -75,8 +75,8 @@ $view->setVariable ( "title", "Edit Training" );
 			<br>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<button id="btn-styles" type="submit" name="submit"
-						class="btn btn-primary btn-lg"><?=i18n("Back")?></button>
+					<button id="btn-styles" type="button" onclick="history.back()"
+					class="btn btn-primary btn-lg"><?=i18n("Back")?></button>
 				</div>
 			</div>
 		</form>

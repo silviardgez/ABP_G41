@@ -13,11 +13,13 @@ require_once(__DIR__."/../controller/BaseController.php");
 class SessionController extends BaseController {
 	
 	private $sessionMapper;
+	private $userMapper;
 	
 	public function __construct() {
 		parent::__construct();
 		
 		$this->sessionMapper = new SessionMapper();
+		$this->userMapper = new UserMapper();
 		
 		$this->view->setLayout("welcome");
 	}
@@ -32,10 +34,20 @@ class SessionController extends BaseController {
 		if($_SESSION["deportista"] && !isset($_REQUEST["entrena"])){
 			$sessions = $this->sessionMapper->showAllClientSessions($_SESSION["currentuser"]);
 			$tables = $this->sessionMapper->getTablesByUser($_SESSION["currentuser"]);
+			$user = $this->userMapper->findUserByDNI($_SESSION["currentuser"]);
+			$name = $_SESSION["currentuser"] . " - " . $user->getName() . " " . $user->getSurname();
 		} else if(isset($_REQUEST["entrena"]) && $_REQUEST["entrena"] == "true" && $_SESSION["entrenador"]){
 			$sessions = $this->sessionMapper->showAllSessions($_SESSION["currentuser"]);
+			foreach($sessions as $currentsession){
+				$user = $this->userMapper->findUserByDNI($currentsession->getDNIUser());
+				$currentsession->setDNIUser($currentsession->getDNIUser() . " - " . $user->getName() . " " . $user->getSurname());
+			}
 		} else if($_SESSION["entrenador"] && !$_SESSION["deportista"]){
 			$sessions = $this->sessionMapper->showAllSessions($_SESSION["currentuser"]);
+			foreach($sessions as $currentsession){
+				$user = $this->userMapper->findUserByDNI($currentsession->getDNIUser());
+				$currentsession->setDNIUser($currentsession->getDNIUser() . " - " . $user->getName() . " " . $user->getSurname());
+			}
 		} else {
 			throw new Exception("You aren't an athlete or coach. View sessions requires be athlete or coach.");
 		}
@@ -54,6 +66,10 @@ class SessionController extends BaseController {
 
 		if(isset($tables)) {
 			$this->view->setVariable("tables", $tables);
+		}
+
+		if(isset($name)) {
+			$this->view->setVariable("name", $name);
 		}
 		
 		//Si el crono está iniciado no se pueden ver las otras sesiones
@@ -126,7 +142,7 @@ class SessionController extends BaseController {
 			throw new Exception("Not in session.");
 		}
 
-		if(!$_SESSION["deportista"] || !$_SESSION["entrenador"]){
+		if(!$_SESSION["deportista"] && !$_SESSION["entrenador"]){
 		 	throw new Exception("You aren't an athlete. View a session requires be athlete or coach");
 		}
 		

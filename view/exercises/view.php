@@ -7,7 +7,7 @@ $view->setVariable("title", "View exercise");
 $errors = $view->getVariable ( "errors" );
 ?>
 <div>
-	<h1 id="bigger-size" class="stroke"><?=i18n("View Exercice")?></h1>
+	<h1 id="bigger-size" class="stroke"><?=i18n("View Exercise")?></h1>
 	<br>
 </div>
 
@@ -26,10 +26,12 @@ $errors = $view->getVariable ( "errors" );
 		</div>
 	</div>
 	<div class="form-group">
+		<?php if($exercise->getDescription() != NULL && $exercise->getDescription() != ""){ ?>
 		<label class="control-label text-size text-muted col-sm-4"><?=i18n("Description")?>:</label>
 		<div class="col-lg-7">
-			<textarea class="form-control" rows="20" cols="40" name="descripcion" readonly="readonly"><?=$exercise->getDescription()?></textarea>
+			<textarea class="form-control" rows="18" cols="36" name="descripcion" readonly="readonly"><?=$exercise->getDescription()?></textarea>
 		</div>
+		<?php } ?>
 	</div>
 	<div class="form-group">
 		<?php if($exercise->getImage() != NULL && $exercise->getImage() != ""){ ?>
@@ -49,7 +51,7 @@ $errors = $view->getVariable ( "errors" );
 	</div>
 	<div class="form-group">
 		<div class="col-sm-12">
-			<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-success btn-lg"><?=i18n("Back")?></button>
+			<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-primary btn-lg"><?=i18n("Back")?></button>
 		</div>
 	</div>
 </form>
