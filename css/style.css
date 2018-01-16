@@ -40,6 +40,7 @@ body {
 	border-radius: 7px;
 	padding: 15px;
 	margin-bottom: 3%;
+	max-width: 68em;
 }
 .activities-tables-background {
 	background: #eeeeeef0;
@@ -55,6 +56,11 @@ body {
 	border-bottom: 1px solid #fff;
 	color: #669;
 	border-top: 1px solid transparent;
+	max-width: 13em;
+}
+
+#exercise-tables-height {
+	min-height: 18em;
 }
 
 .exercise-tables-name {

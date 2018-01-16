@@ -27,7 +27,7 @@ $view->setVariable ( "title", "Show Tables" );
 		<?php $j=0; ?>
 		<?php foreach ($tables as $table) : ?>
 			<div class="col-xs-12 col-lg-6">
-			<div id="tableExercises" class="exercise-tables-background">
+			<div id="tableExercises" class="exercise-tables-background center-block">
 				<div class="container-fluid">
 					<?php if(!$_SESSION["deportista"]):?>
 					<div class="row">
@@ -75,13 +75,13 @@ $view->setVariable ( "title", "Show Tables" );
 				<?php $tam = min(6, max(3,(12/sizeof($type))))?>
 					<div class="row">
 						<div
-							class="exercise-tables-head col-xs-<?php echo sizeof($type)*$tam;?>">
+							class="exercise-tables-head col-xs-<?php echo sizeof($type)*$tam;?>" style="max-width: <?php echo sizeof($type)*12+0.25;?>em">
 							<strong><?php echo $type[0][3] ?></strong>
 						</div>
 					</div>
 					<div class="row">
 						<?php for ($i=0; $i < sizeof($type); $i++) : ?>
-							<div class="exercise-tables-content col-xs-<?php echo $tam; ?>">
+							<div id="exercise-tables-height" class="exercise-tables-content col-xs-<?php echo $tam; ?>">
 							<div>
 								<a
 									href="index.php?controller=exercises&amp;action=view&amp;id=<?= $type[$i][0] ?>"><img
@@ -118,7 +118,7 @@ $view->setVariable ( "title", "Show Tables" );
 
 	<?php for ($j=0; $j<sizeof($tableswithoutid); $j++) : ?>
 	<div class="col-xs-12 col-lg-6">
-			<div id="tableExercises" class="exercise-tables-background">
+			<div id="tableExercises" class="exercise-tables-background center-block">
 				<div class="container-fluid">
 					<?php if(!$_SESSION["deportista"]):?>
 					<div class="row">
