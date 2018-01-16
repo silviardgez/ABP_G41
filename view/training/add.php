@@ -38,6 +38,15 @@ $i=0;
 					<?php endforeach; ?>
 					</select>
 				</div>
+				<script type="text/javascript">
+					$("select[name=exerciseId]").change(function(){
+						if($('select[name=exerciseId] :selected').closest('optgroup').prop('label') == "Muscular"){
+							$('#duration').hide();
+						} else {
+							$('#duration').show();
+						};
+					}); 
+				</script>
 			</div>
 			<div class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
@@ -48,7 +57,7 @@ $i=0;
 						placeholder="<?=i18n("Number of repeats")?>">
 				</div>
 			</div>
-			<div class="form-group">
+			<div id="duration" class="form-group">
 				<label class="control-label text-size text-muted col-sm-4">
 						<?=i18n("Duration")?>:
 					</label>
@@ -57,12 +66,17 @@ $i=0;
 				</div>
 			</div>
 			<br>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<button id="btn-styles" type="submit" name="submit"
-						class="btn btn-success btn-lg"><?=i18n("Send")?></button>
-				</div>
+			<div class="row">
+			<div class="col-xs-0 col-sm-2"></div>
+			<div id="null_margin" class="form-group col-sm-4 col-xs-12">
+				<button id="btn-styles" type="submit" name="submit"
+				class="btn btn-success btn-lg"><?=i18n("Send")?></button>
 			</div>
+			<div id="null_margin" class="form-group col-sm-4 col-xs-12">
+				<button type="button" id="btn-styles" onclick="history.back()" class="btn btn-primary btn-lg"><?=i18n("Back");?></button>
+			</div>
+			<div class="col-xs-0 col-sm-2"></div>
+		</div>
 		</form>
 	</div>
 </div>

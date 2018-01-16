@@ -13,7 +13,7 @@ class TrainingMapper {
 
 	//Devuelve todos los entrenamientos
 	public function getTrainings(){
-		$stmt = $this->db->prepare("SELECT * FROM ENTRENAMIENTO");
+		$stmt = $this->db->prepare("SELECT * FROM ENTRENAMIENTO T1 JOIN EJERCICIO T2 WHERE T1.ID_EJERCICIO = T2.ID_EJERCICIO ORDER BY T2.NOMBRE");
 		$stmt->execute();
 		$grupalTrainings_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$grupalTrainings = array();

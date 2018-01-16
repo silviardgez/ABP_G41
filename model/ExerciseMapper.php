@@ -131,7 +131,7 @@ class ExerciseMapper {
 
 	//Devolver todos los nombres de los ejercicios de cardio
 	public function getCardioExercises(){
-		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='CARDIO'");
+		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='CARDIO' ORDER BY NOMBRE");
 		$stmt->execute();
 		$exercises_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$exercises = array();
@@ -145,7 +145,7 @@ class ExerciseMapper {
 
 	//Devolver todos los nombres de los ejercicios de cardio
 	public function getMuscularExercises(){
-		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='MUSCULAR'");
+		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='MUSCULAR' ORDER BY NOMBRE");
 		$stmt->execute();
 		$exercises_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$exercises = array();
@@ -159,7 +159,7 @@ class ExerciseMapper {
 
 	//Devolver todos los nombres de los ejercicios de cardio
 	public function getEstExercises(){
-		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='ESTIRAMIENTO'");
+		$stmt = $this->db->prepare("SELECT ID_EJERCICIO, NOMBRE FROM EJERCICIO WHERE TIPO='ESTIRAMIENTO' ORDER BY NOMBRE");
 		$stmt->execute();
 		$exercises_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$exercises = array();

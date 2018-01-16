@@ -78,7 +78,6 @@ class TrainingController extends BaseController {
 		 throw new Exception("You aren't an admin or coach. Edit a training requires be admin or coach.");
 		 }
 
-		// Get the User object from the database
 		$trainingId = $_REQUEST["id"];
 		$training = $this->trainingMapper->getTrainingById($trainingId);
 		$exerciseId = $training->getExerciseId();
@@ -88,6 +87,14 @@ class TrainingController extends BaseController {
 		$cardio = $this->exerciseMapper->getCardioExercises();
 		$muscular = $this->exerciseMapper->getMuscularExercises();
 		$est = $this->exerciseMapper->getEstExercises();
+
+		if($exerciseType == "CARDIO") {
+			$cardio = array_diff($cardio, array($exerciseName));
+		} elseif($exerciseType == "MUSCULAR") {
+			$muscular = array_diff($muscular, array($exerciseName));
+		} elseif($exerciseType == "ESTIRAMIENTO") {
+			$est = array_diff($est, array($exerciseName));
+		}
 		
 		$exercises = array($cardio,$muscular,$est);
 

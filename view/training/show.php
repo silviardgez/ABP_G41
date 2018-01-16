@@ -21,7 +21,7 @@ $view->setVariable ( "title", "Show Trainings" );
 
 <div class="container-fluid">
 	<div class="row features margin-rows">
-		<div class="col-md-4 col-sm-6 item">
+		<div class="col-md-5 col-lg-4 col-sm-6 item">
 			<div class="exercise-tables-background">
 			<h1 id="font-title"><?=i18n("Cardio")?></h1>
 			<br>
@@ -34,9 +34,7 @@ $view->setVariable ( "title", "Show Trainings" );
 					</tr>
 					<?php foreach ($grupalTrainings[0] as $trainings): ?>
 						<tr>
-						<td id="center-text"><a
-							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
-							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
+						<td id="center-text"><strong><?php echo $trainings[0] ?></strong></td>
 						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>
 							<?php
 						$duracion = substr ( $trainings [1]->getTime (), 3 );
@@ -61,6 +59,9 @@ $view->setVariable ( "title", "Show Trainings" );
 								}"><i class="fa fa-trash"></i></a>
 
 							</form>
+							<a
+							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2]?>"><i
+								class="fa fa-eye"></i></a>
 						</td>
 					</tr>
 					<?php endforeach; ?>
@@ -68,7 +69,7 @@ $view->setVariable ( "title", "Show Trainings" );
 			</div>
 		</div>
 
-		<div class="col-md-4 col-sm-6 item">
+		<div class="col-md-5 col-lg-4 col-sm-6 item">
 			<div class="exercise-tables-background">
 				<h1 id="font-title"><?=i18n("Muscular")?></h1>
 				<br>
@@ -80,9 +81,7 @@ $view->setVariable ( "title", "Show Trainings" );
 					</tr>
 					<?php foreach ($grupalTrainings[1] as $trainings): ?>
 						<tr>
-						<td id="center-text"><a
-							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
-							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
+						<td id="center-text"><strong><?php echo $trainings[0] ?></strong></td>
 						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>
 						<td class="icons"><a
 							href="index.php?controller=training&amp;action=edit&amp;id=<?= $trainings[1]->getTrainingId() ?>"><i
@@ -99,14 +98,18 @@ $view->setVariable ( "title", "Show Trainings" );
 									document.getElementById('delete_training_<?= $trainings[1]->getTrainingId() ?>').submit()
 								}"><i class="fa fa-trash"></i></a>
 
-							</form></td>
+							</form>
+							<a
+							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2]?>"><i
+								class="fa fa-eye"></i></a>
+						</td>
 					</tr>
 					<?php endforeach; ?>
 				</table>
 			</div>
 		</div>
 
-		<div class="col-md-4 col-sm-6 item">
+		<div class="col-md-5 col-lg-4 col-sm-6 item">
 			<div class="exercise-tables-background">
 				<h1 id="font-title"><?=i18n("Stretch")?></h1>
 				<br>
@@ -119,9 +122,7 @@ $view->setVariable ( "title", "Show Trainings" );
 					</tr>
 					<?php foreach ($grupalTrainings[2] as $trainings): ?>
 						<tr>
-						<td id="center-text"><a
-							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2] ?>"
-							style="color: #669"><strong><?php echo $trainings[0] ?></strong></a></td>
+						<td id="center-text"><strong><?php echo $trainings[0] ?></strong></td>
 						<td id="center-text"><?php echo $trainings[1]->getRepeats(); ?></td>
 							<?php
 						$duracion = substr ( $trainings [1]->getTime (), 3 );
@@ -145,7 +146,11 @@ $view->setVariable ( "title", "Show Trainings" );
 									document.getElementById('delete_training_<?= $trainings[1]->getTrainingId() ?>').submit()
 								}"><i class="fa fa-trash"></i></a>
 
-							</form></td>
+							</form>
+							<a
+							href="index.php?controller=exercises&amp;action=view&amp;id=<?= $trainings[2]?>"><i
+								class="fa fa-eye"></i></a>
+						</td>
 					</tr>
 					<?php endforeach; ?>
 				</table>

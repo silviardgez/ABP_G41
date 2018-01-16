@@ -955,8 +955,8 @@ INSERT INTO `EJERCICIO`(`NOMBRE`, `TIPO`, `DESCRIPCION`, `IMAGEN`, `VIDEO`) VALU
   Alinea tus pies con tus caderas.
   Párate derecho, manteniendo la columna en una posición neutral para reducir el estrés durante el ejercicio. Empuja tu pelvis hacia adelante, de manera que no estés arqueando tu espalda de más y jala con tus músculos abdominales para darle apoyo a la espalda.
   Comienza a pedalear hacia adelante para activar la pantalla en la elíptica.","src/eliptica.jpg",NULL),
-("Cinta de correr","Inicie la máquina y configurela con la velocidad que mejor se adapte al ritmo que desea seguir.
-  Inicie el movimiento de correr durante el tiempo estipulado dentro de la cinta en movimiento","CARDIO","src/cinta.jpg",NULL),
+("Cinta de correr","CARDIO","Inicie la máquina y configurela con la velocidad que mejor se adapte al ritmo que desea seguir.
+  Inicie el movimiento de correr durante el tiempo estipulado dentro de la cinta en movimiento","src/cinta.jpg",NULL),
 ("Bicicleta","CARDIO",NULL,"src/bici.jpg",NULL),
 ("Remo","CARDIO","Comienza con los brazos extendidos, las rodillas dobladas y el peso del cuerpo sobre las puntas de los pies.
     Con la espalda recta y el núcleo compacto, empuja hacia atrás utilizando sólo las piernas.
