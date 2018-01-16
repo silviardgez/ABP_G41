@@ -270,7 +270,10 @@ array(
 	"Places offered" => "Plazas ofertadas",
 	"Go to unconfirmed reservations"=>"Ir a reservas no confirmadas",
 	"Go to confirmed reservations"=>"Ir a reservas confirmadas",
-	""=>"",
-	""=>"",
+	"No reservations confirmed"=>"No hay reservas confirmadas",
+	"No reservations without confirmed"=>"No hay reservas sin confirmar",
+	"Activity name" => "Nombre de la actividad",
+	"Activity day" => "Día de la actividad",
+	"Activity hour" => "Hora de la actividad",
 )
 ?>

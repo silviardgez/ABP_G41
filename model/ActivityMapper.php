@@ -12,7 +12,33 @@ class ActivityMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
-	//Devuelve el nombre de la actividad en función del id de la misma.
+	//Devuelve la hora de inicio de la actividad en función del id de la misma.
+	public function getActHourById($id){
+		$stmt = $this->db->prepare("SELECT HORA_INI FROM ACTIVIDAD WHERE ID_ACT=?");
+		$stmt->execute(array($id));
+		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($activity != null) {
+			return $activity["HORA_INI"];
+		} else {
+			return NULL;
+		}
+	}
+
+	//Devuelve el día de la actividad en función del id de la misma.
+	public function getActDayById($id){
+		$stmt = $this->db->prepare("SELECT DIA FROM ACTIVIDAD WHERE ID_ACT=?");
+		$stmt->execute(array($id));
+		$activity = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if($activity != null) {
+			return $activity["DIA"];
+		} else {
+			return NULL;
+		}
+	}
+
+	//Devuelve la hora de inicio de la actividad en función del id de la misma.
 	public function getActNameById($id){
 		$stmt = $this->db->prepare("SELECT NOMBRE FROM ACTIVIDAD WHERE ID_ACT=?");
 		$stmt->execute(array($id));

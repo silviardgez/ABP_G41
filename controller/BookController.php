@@ -61,6 +61,8 @@ class BookController extends BaseController {
 			//Serialize relational data
 			$booksSerialize[$book_idAct."-".$book_idAthl]['userName'] = $this->userMapper->getNameByDNI($book_idAthl);
 			$booksSerialize[$book_idAct."-".$book_idAthl]['actName'] = $this->activityMapper->getActNameById($book_idAct);
+			$booksSerialize[$book_idAct."-".$book_idAthl]['actHour'] = $this->activityMapper->getActHourById($book_idAct);
+			$booksSerialize[$book_idAct."-".$book_idAthl]['actDay'] = $this->activityMapper->getActDayById($book_idAct);
 		}
 		//Order the array by activity Name in ascendant order
 		$this->array_sort_by($booksSerialize, 'userName', $order = SORT_ASC);
@@ -112,6 +114,8 @@ class BookController extends BaseController {
 			//Serialize relational data
 			$bookingsSerialized[$book_idAct."-".$book_idAthl]['userName'] = $this->userMapper->getNameByDNI($book_idAthl);
 			$bookingsSerialized[$book_idAct."-".$book_idAthl]['actName'] = $this->activityMapper->getActNameById($book_idAct);
+			$bookingsSerialized[$book_idAct."-".$book_idAthl]['actHour'] = $this->activityMapper->getActHourById($book_idAct);
+			$bookingsSerialized[$book_idAct."-".$book_idAthl]['actDay'] = $this->activityMapper->getActDayById($book_idAct);
 		}
 
 		// put the exercises object to the view
@@ -150,7 +154,7 @@ class BookController extends BaseController {
 			throw new Exception("Impossible to change status because it doesn't exist the book demanded");
 		}
 
-		$this->view->redirect("book", "show");
+		$this->view->redirect("book", "show", "confirmed=1");
 	}
 
 //Athlete add a book
