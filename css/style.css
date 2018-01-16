@@ -673,6 +673,10 @@ textarea {
 	border-color: #244f25;
 }
 
+#input-table {
+	max-width: 600px;
+}
+
 #cronometro { 
 	padding:10px; 
 	border: 5px #5D93C3 double; 

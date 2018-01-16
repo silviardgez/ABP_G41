@@ -27,7 +27,7 @@ class TableMapper {
 
 	//Devuelve el id de las tablas que tienen asociado algun ejercicio
 	public function getIdTablesWithExercises(){
-		$stmt = $this->db->prepare("SELECT DISTINCT ID_TABLA FROM `INCLUYE` WHERE 1"); 
+		$stmt = $this->db->prepare("SELECT DISTINCT T1.ID_TABLA FROM INCLUYE T1 JOIN TABLA T2 WHERE T1.ID_TABLA = T2.ID_TABLA AND T2.TIPO='ESTANDAR'"); 
 		$stmt->execute();
 		$tables_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$tables = array();
@@ -67,6 +67,20 @@ class TableMapper {
 		}
 	}
 
+	// Busca las tablas asociadas a un cliente
+	public function getUserTables($user){
+		$stmt = $this->db->prepare("SELECT DISTINCT ID_TABLA FROM ENGLOBA WHERE DNI_USUARIO=?");
+		$stmt->execute(array($user));
+		$tables_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$tables = array();
+		
+		foreach ($tables_db as $table) {
+			array_push($tables, $table["ID_TABLA"]);
+		}
+		
+		return $tables;
+	}
+
 	public function delete($id){
 		$stmt = $this->db->prepare("DELETE from TABLA WHERE ID_TABLA=?");
 		$stmt->execute(array($id));
@@ -90,6 +104,19 @@ class TableMapper {
 	public function add(Table $table){
 		$stmt = $this->db->prepare("INSERT INTO TABLA(TIPO) VALUES(?)");
 		$stmt->execute(array($table->getType()));
+		return $this->db->lastInsertId();
+	}
+
+	public function addAux($id, $table){
+		$last = $this->db->lastInsertId();
+		$stmt = $this->db->prepare("INSERT INTO TABLA(ID_TABLA, TIPO) VALUES(?,?)");
+		$stmt->execute(array($id,$table));
+		return $last;
+	}
+
+	public function addReferenceUser($id, $user, $coach){
+		$stmt = $this->db->prepare("INSERT INTO ENGLOBA(ID_TABLA,DNI_USUARIO,DNI_ENTRENADOR) VALUES(?,?,?)");
+		$stmt->execute(array($id,$user,$coach));
 	}
 	
 	public function addTraining($training, $tableId){
@@ -98,7 +125,7 @@ class TableMapper {
 	}
 	
 	public function addUser($table, $user){
-		$stmt = $this->db->prepare("INSERT INTO ENGLOBA(ID_TABLA, DNI) VALUES(?,?)");
+		$stmt = $this->db->prepare("INSERT INTO ENGLOBA(ID_TABLA, DNI_USUARIO) VALUES(?,?)");
 		$stmt->execute(array($table,$user));
 	}
 	
@@ -114,6 +141,19 @@ class TableMapper {
 		}
 		
 		return $grupalTrainings;
+	}
+
+	//Devuelve los entrenamientos de una tabla y se los asocia a otra
+	public function copyTrainings($id, $idNew){
+		$stmt = $this->db->prepare("SELECT DISTINCT ID_ENTRENA FROM INCLUYE WHERE ID_TABLA = ?");
+		$stmt->execute(array($id));
+		$grupalTrainings_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$grupalTrainings = array();
+		
+		foreach ($grupalTrainings_db as $training) {
+			$this->addTraining($training["ID_ENTRENA"],$idNew);			
+		}
+
 	}
 	
 }

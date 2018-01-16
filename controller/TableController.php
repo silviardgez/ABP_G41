@@ -39,8 +39,19 @@ class TableController extends BaseController {
 			throw new Exception("Not in session. Show users requires login");
 		}
 
-		$tables_id = $this->tableMapper->getIdTablesWithExercises();
-		$tables_withoutid = $this->tableMapper->getIdTablesWithoutExercises();
+		if($_SESSION["entrenador"] && !isset($_POST["submit"])){
+			$tables_id = $this->tableMapper->getIdTablesWithExercises();
+			$tables_withoutid = $this->tableMapper->getIdTablesWithoutExercises();
+		}
+		elseif(isset($_POST["submit"]) || $_SESSION["deportista"]){
+			if(isset($_POST["user"])){
+				$userDNI = $_POST["user"];
+			} else {
+				$userDNI = $_SESSION["currentuser"];
+			}
+
+			$tables_id = $this->tableMapper->getUserTables($userDNI);
+		} 
 		
 		$tables = array();
 		
@@ -75,7 +86,9 @@ class TableController extends BaseController {
 		// put the users object to the view
 		$this->view->setVariable("tables", $tables);
 		$this->view->setVariable("tables_id", $tables_id);
-		$this->view->setVariable("tableswithoutid", $tables_withoutid);
+		if(isset($tables_withoutid)){
+			$this->view->setVariable("tableswithoutid", $tables_withoutid);
+		}
 		$this->view->render("table", "show");
 	}
 	
@@ -133,7 +146,7 @@ class TableController extends BaseController {
 		
 		/*if($this->userMapper->findType() != "admin"){
 		 throw new Exception("You aren't an admin. Deleting an user requires be admin");
-		 }*/
+		}*/
 		
 		$tableId = $_REQUEST["idtable"];
 		$dni = $_REQUEST["id"];
@@ -146,11 +159,11 @@ class TableController extends BaseController {
 	}
 
 	public function deletecurrent(){
-		if (!isset($_POST["id"])) {
-			throw new Exception("Table id is mandatory");
+		if (!isset($_REQUEST["id"])) {
+			throw new Exception("Training id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Delete a table requires login");
+			throw new Exception("Not in session. Delete a training in table requires login");
 		}
 
 		/*if($this->userMapper->findType() != "admin"){
@@ -180,13 +193,18 @@ class TableController extends BaseController {
 			throw new Exception("Not in session. Editing user requires login");
 		}
 
-		// Get the User object from the database
+		if ($_SESSION["deportista"] && !$_SESSION["entrenador"]) {
+			throw new Exception("Edit a table requires be admin or coach");
+		}
+
 		$tableId = $_REQUEST["id"];
 		$table = $this->tableMapper->getTableById($tableId);
 
 		if ($table == NULL) {
 			throw new Exception("no such table with id: ". $tableId);
 		}
+
+		$usersPEF = $this->userMapper->showPEF();
 
 		$trainings_db = $this->tableMapper->getTables($tableId);
 		$trainings = array();
@@ -200,30 +218,50 @@ class TableController extends BaseController {
 		$totalTrainings = array();
 		
 		foreach($totalTrainings_db as $training) {
-		$exerciseId = $training->getExerciseId();
-		$totalTrainings[$training->getTrainingId()] = $this->exerciseMapper->getNameById($exerciseId) . " (" . $training->getRepeats() . ", " . substr($training->getTime(), 3) .")";
+			$exerciseId = $training->getExerciseId();
+			$totalTrainings[$training->getTrainingId()] = $this->exerciseMapper->getNameById($exerciseId) . " (" . $training->getRepeats() . ", " . substr($training->getTime(), 3) .")";
 		}
 
 		if (isset($_POST["submit"])) { 
-			$table->setType($_POST["type"]);
 
-			try {
+			if(isset($_POST["user"]) && $_POST["user"] != "" && $table->getType() == "ESTANDAR"){
+				$tableNew = new Table();
+				$tableNew->setType($_POST["type"]);
 
-				$this->tableMapper->update($table);
+				try {
+					$id = $this->tableMapper->add($tableNew);
+					$this->tableMapper->addReferenceUser($id, $_POST["user"], $_SESSION["currentuser"]);
+					$this->tableMapper->copyTrainings($table->getTableId(),$id);
 
-				$this->view->setFlash(sprintf(i18n("Table \"%s\" successfully updated."), $table->getTableId()));
-
-				$this->view->redirect("table", "show");
-
-			}catch(ValidationException $ex) {
+					$this->view->redirect("table", "show");
+				}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
+					$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
+					$this->view->setVariable("errors", $errors);
+				}
+			} else {
+				$table->setType($_POST["type"]);
+
+				try {
+
+					$this->tableMapper->update($table);
+
+					$this->view->setFlash(sprintf(i18n("Table \"%s\" successfully updated."), $table->getTableId()));
+
+					$this->view->redirect("table", "show");
+
+				}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+					$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+					$this->view->setVariable("errors", $errors);
+				}
 			}
 		}
 
 		$this->view->setVariable("table", $table);
+		$this->view->setVariable("PEF", $usersPEF);
 		$this->view->setVariable("trainings", $trainings);
 		$this->view->setVariable("totaltrainings", $totalTrainings);
 		$this->view->render("table", "edit");
@@ -233,30 +271,73 @@ class TableController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Editing user requires login");
 		}
-		$table = new Table();
+
+		if ($_SESSION["deportista"] && !$_SESSION["entrenador"]) {
+			throw new Exception("Add a table requires be admin or coach");
+		}
+
+		$tableId = 1;
+		$table = $this->tableMapper->getTableById($tableId);
+
+		if($table == NULL){
+			$table = new Table(1,"PERSONALIZADA");
+			$last = $this->tableMapper->addAux(1,"PERSONALIZADA");
+		}
+
+		$usersPEF = $this->userMapper->showPEF();
+
+		$trainings_db = $this->tableMapper->getTables($tableId);
+		$trainings = array();
+
+		foreach ($trainings_db as $table) {
+			$training = $this->trainingMapper->getTrainingById($table->getTrainingId());
+			array_push($trainings, array($training->getTrainingId(), $this->exerciseMapper->getNameById($training->getExerciseId()), $training->getRepeats(), $training->getTime()));
+		}
+		
+		$totalTrainings_db = $this->tableMapper->getTrainings($tableId);
+		$totalTrainings = array();
+		
+		foreach($totalTrainings_db as $training) {
+			$exerciseId = $training->getExerciseId();
+			$totalTrainings[$training->getTrainingId()] = $this->exerciseMapper->getNameById($exerciseId) . " (" . $training->getRepeats() . ", " . substr($training->getTime(), 3) .")";
+		}
 
 		if (isset($_POST["submit"])) { 
-			$table->setType($_POST["type"]);
 
-			try {
+				$tableNew = new Table();
+				$tableNew->setType($_POST["type"]);
 
-				$this->tableMapper->add($table);
+				try {
+					if(isset($last)){
+						$id = $this->tableMapper->addAux($last,$tableNew->getType());
+					} else {
+						$id = $this->tableMapper->add($tableNew);
+					}
+					if($tableNew->getType() == "PERSONALIZADA") {
+						$this->tableMapper->addReferenceUser($id, $_POST["user"], $_SESSION["currentuser"]);
+					}
 
-				$this->view->setFlash(sprintf(i18n("Table \"%s\" successfully added."), $table->getTableId()));
+					$this->tableMapper->copyTrainings($table->getTableId(),$id);
 
-				$this->view->redirect("table", "show");
+					$this->tableMapper->delete(1);
 
-			}catch(ValidationException $ex) {
+					$this->view->setFlash(sprintf(i18n("Table successfully added.")));
+
+					$this->view->redirect("table", "show");
+				}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
-				$errors = $ex->getErrors();
+					$errors = $ex->getErrors();
 				// And put it to the view as "errors" variable
-				$this->view->setVariable("errors", $errors);
-			}
+					$this->view->setVariable("errors", $errors);
+				}
 		}
 
 		$this->view->setVariable("table", $table);
-
+		$this->view->setVariable("PEF", $usersPEF);
+		$this->view->setVariable("trainings", $trainings);
+		$this->view->setVariable("totaltrainings", $totalTrainings);
 		$this->view->render("table", "add");
+
 	}
 	
 	public function addtraining(){
@@ -274,6 +355,31 @@ class TableController extends BaseController {
 				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully added."), $training));
 				
 				$this->view->redirect("table", "edit", "id=$tableId");
+				
+			}catch(ValidationException $ex) {
+				// Get the errors array inside the exepction...
+				$errors = $ex->getErrors();
+				// And put it to the view as "errors" variable
+				$this->view->setVariable("errors", $errors);
+			}
+		}
+	}
+
+	public function addtrainingAdd(){
+		if (!isset($this->currentUser)) {
+			throw new Exception("Not in session. Editing user requires login");
+		}
+		
+		if (isset($_POST["addtraining"])) {
+			$training = $_REQUEST["training"];
+			$tableId = 1;
+			try {
+				
+				$this->tableMapper->addTraining($training, $tableId);
+				
+				$this->view->setFlash(sprintf(i18n("Training \"%s\" successfully added."), $training));
+				
+				$this->view->redirect("table", "add");
 				
 			}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
@@ -301,7 +407,7 @@ class TableController extends BaseController {
 			$table = $_REQUEST["id"];
 			
 			try {
-							
+
 				$this->tableMapper->addUser($table, $user);
 				
 				$this->view->setFlash(sprintf(i18n("User \"%s\" successfully added to table \"%s\"."), $user, $table));

@@ -275,5 +275,7 @@ array(
 	"Activity name" => "Nombre de la actividad",
 	"Activity day" => "Día de la actividad",
 	"Activity hour" => "Hora de la actividad",
+	"Search by DNI" => "Búsqueda por DNI",
+	"Standard Tables" => "Tablas estándar"
 )
 ?>

@@ -232,8 +232,22 @@ class UserMapper {
 
 	//Devuelve todos los usuarios asignados a una tabla
 	public function showUsers($idTable) {
-		$stmt = $this->db->prepare ( "SELECT DNI, NOMBRE, APELLIDOS FROM USUARIO WHERE DNI IN (SELECT DNI FROM ENGLOBA WHERE ID_TABLA=?);" );
+		$stmt = $this->db->prepare ( "SELECT DNI, NOMBRE, APELLIDOS FROM USUARIO WHERE DNI IN (SELECT DNI_USUARIO FROM ENGLOBA WHERE ID_TABLA=?);" );
 		$stmt->execute (array($idTable));
+		$users_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
+		$athletes = array ();
+
+		foreach ( $users_db as $user ) {
+			$athletes [$user ["DNI"]] = $user ["NOMBRE"] . " " . $user ["APELLIDOS"];
+		}
+
+		return $athletes;
+	}
+
+	//Devuelve todos los usuarios asignados a una tabla
+	public function showPEF() {
+		$stmt = $this->db->prepare ( "SELECT DNI, NOMBRE, APELLIDOS FROM USUARIO WHERE DEPORTISTA_PEF = 1" );
+		$stmt->execute ();
 		$users_db = $stmt->fetchAll ( PDO::FETCH_ASSOC );
 		$athletes = array ();
 
