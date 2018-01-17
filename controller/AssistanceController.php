@@ -103,7 +103,7 @@ class AssistanceController extends BaseController {
 						$assistance->ValidRegister(); //if it fails, ValidationException
 						//save the user object into the database
 						$this->assistanceMapper->add($assistance);
-						$this->view->setFlash(sprintf(i18n("assistance successfully added.")));
+						
 						$this->view->redirect("assistance", "show");
 
 					}catch(ValidationException $ex) {
@@ -113,6 +113,7 @@ class AssistanceController extends BaseController {
 						$this->view->setVariable("errors", $errors);
 					}
 				}
+				$this->view->setFlash(sprintf(i18n("assistance successfully added.")));
 			}
 
 		}
